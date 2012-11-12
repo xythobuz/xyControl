@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * xmem.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,10 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _xmem_h
+#define _xmem_h
 
-void xyInit(void);
+void xmemInit(void);
+void xmemSetBank(uint8_t bank);
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+#endif

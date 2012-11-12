@@ -30,28 +30,49 @@
 #include <avr/io.h>
 #include <stdint.h>
 
+#include <serial.h>
+#include <spi.h>
+#include <time.h>
+#include <xmem.h>
+
 void xyInit(void) {
     // LEDs
     DDRL |= (1 << PL7) | (1 << PL6);
-    PORTL &= ~((1 << PL6) | (1 << PL7));
+    DDRG |= (1 << PG5);
+    DDRE |= (1 << PE2);
+    PORTL |= (1 << PL6) | (1 << PL7);
+    PORTG |= (1 << PG5);
+    PORTE |= (1 << PE2);
+
+    initSystemTimer();
+    serialInit(BAUD(38400, F_CPU));
+    spiInit();
+    xmemInit();
 }
 
-void xyLedA(uint8_t v) {
+void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
     if (v == 0) {
-        PORTL &= ~(1 << PL6);
+        *port &= ~(1 << pin);
     } else if (v == 1) {
-        PORTL |= (1 << PL6);
+        *port |= (1 << pin);
     } else {
-        PORTL ^= (1 << PL6);
+        *port ^= (1 << pin);
     }
 }
 
-void xyLedB(uint8_t v) {
-    if (v == 0) {
-        PORTL &= ~(1 << PL7);
-    } else if (v == 1) {
-        PORTL |= (1 << PL7);
+void xyLed(uint8_t l, uint8_t v) {
+    if (l == 0) {
+        xyLedInternal(v, &PORTL, PL6);
+    } else if (l == 1) {
+        xyLedInternal(v, &PORTL, PL7);
+    } else if (l == 2) {
+        xyLedInternal(v, &PORTG, PL5);
+    } else if (l == 3) {
+        xyLedInternal(v, &PORTE, PL2);
     } else {
-        PORTL ^= (1 << PL7);
+        xyLed(0, v);
+        xyLed(1, v);
+        xyLed(2, v);
+        xyLed(3, v);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * spi.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,12 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _spi_h
+#define _spi_h
 
-void xyInit(void);
+void spiInit(void);
+uint8_t spiSendByte(uint8_t d);
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+#define spiReadByte() spiSendByte(0xFF)
+
+#endif

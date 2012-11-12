@@ -31,8 +31,12 @@ OPT = s
 EXTRAINCDIR = include
 CSTANDARD = gnu99
 
-SRC = lib/xycontrol.c
-SRC += main.c
+SRC = main.c
+SRC += lib/time.c
+SRC += lib/spi.c
+SRC += lib/serial.c
+SRC += lib/xmem.c
+SRC += lib/xycontrol.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -47,6 +51,10 @@ CARGS += -Wall -Wstrict-prototypes
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
 
+LINKER = -Wl,--relax
+LINKER += -Wl,-Map -Wl,test.map
+LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
+
 all: test.hex
 
 program: test.hex
@@ -59,13 +67,16 @@ flash: test.hex
 	avr-gcc -c $< -o $@ $(CARGS)
 
 test.elf: $(OBJ)
-	avr-gcc $(CARGS) $(OBJ) --output test.elf -Wl,--relax
+	avr-gcc $(CARGS) $(OBJ) --output test.elf $(LINKER)
 	avr-size --mcu=$(MCU) -C test.elf
 
 test.hex: test.elf
 	avr-objcopy -O ihex test.elf test.hex
+	avr-objdump -h -S test.elf > test.lss
 
 clean:
 	$(RM) $(OBJ)
 	$(RM) *.elf
 	$(RM) *.hex
+	$(RM) *.lss
+	$(RM) *.map

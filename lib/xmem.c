@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * xmem.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,24 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <avr/io.h>
+#include <stdint.h>
 
-void xyInit(void);
+#include <xmem.h>
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+void xmemInit(void) {
+    DDRG |= (1 << PG3) | (1 << PG4);
+    DDRL |= (1 << PL5); // Bank selection
+
+    XMCRB = 0; // Use full address space
+    XMCRA = (1 << SRW11) | (1 << SRW10); // 3 Wait cycles
+    XMCRA |= (1 << SRE); // Enable XMEM
+}
+
+void xmemSetBank(uint8_t bank) {
+    PORTG &= ~((1 << PG3) | (1 << PG4));
+    PORTL &= ~(1 << PL5);
+
+    PORTG |= ((bank & 0x03) << 3);
+    PORTL |= ((bank & 0x04) << 3);
+}

@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * spi.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,19 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdint.h>
+#include <avr/io.h>
 
-void xyInit(void);
+#include <spi.h>
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+void spiInit(void) {
+    DDRB |= (1 << PB2) | (1 << PB1) | (1 << PB0); // MOSI & SCK & SS
+    SPCR |= (1 << MSTR) | (1 << SPE); // Enable SPI, Master mode
+    // SPSR |= (1 << SPI2X); // Double speed --> F_CPU/2
+}
+
+uint8_t spiSendByte(uint8_t d) {
+    SPDR = d;
+    while (!(SPSR & (1 << SPIF))); // Wait for transmission
+    return SPDR;
+}

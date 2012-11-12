@@ -34,8 +34,7 @@
 
 int main(void) {
     xyInit();
-    xyLedA(1);
-    xyLedB(1);
+    xyLed(4, 1); // All LEDs on
 
     return 0;
 }

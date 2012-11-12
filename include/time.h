@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * time.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,15 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _time_h
+#define _time_h
 
-void xyInit(void);
+#define TIMEZONE 1 // If you're eg. GMT-5, enter -5 or -4 on DST
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+typedef uint64_t time_t; // For milliseconds since system start or UNIX timestamp
+
+void initSystemTimer(void);
+
+time_t getSystemTime(void); // System uptime in ms
+
+#endif

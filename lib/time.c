@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * time.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,9 +27,41 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdlib.h>
+#include <stdint.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/atomic.h>
 
-void xyInit(void);
+#include <time.h>
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+// Uses Timer 2!
+// Interrupt:
+// Prescaler 64
+// Count to 250
+// => 1 Interrupt per millisecond
+
+volatile time_t systemTime = 0; // Unix Timestamp, Overflows in 500 million years...
+
+#define TCRA TCCR2A
+#define TCRB TCCR2B
+#define OCR OCR2A
+#define TIMS TIMSK2
+#define OCIE OCIE2A
+
+void initSystemTimer() {
+    // Timer initialization
+    TCRA |= (1 << WGM21); // CTC Mode
+    TCRB |= (1 << CS22); // Prescaler: 64
+    OCR = 250;
+    TIMS |= (1 << OCIE); // Enable compare match interrupt
+}
+
+// ISR Name is MCU dependent
+ISR(TIMER2_COMPA_vect) {
+    systemTime++;
+}
+
+time_t getSystemTime(void) {
+    return systemTime;
+}
