@@ -1,0 +1,33 @@
+Name            Value       Package         Comment
+-------------------------------------------------------------------
+IC1             ATMEGA2560  TQFP100         -
+IC2             74AHC573    SO20W           -
+IC3             SRAM 512K   SOP-32          e.g. K6T48008C1B-GB55
+IC4             FT232RL     SSOP28          -
+IC5             LM2576      ?               -
+C1 + C2         22pF        0603            -
+C3              10nF        0603            -
+C4 - C11        100nF       0603            -
+C12             330uF       Radial          -
+C13 - C24       100nF       0603            -
+C25             100uF       Elko, SMD, 6.5  -
+R1 - R3         1k8         0603            -
+R4 - R6         3k3         0603            -
+R10 + R14       10k         0603            -
+R11             4.7k        0603            -
+R12 + R13       270         0603            -
+R15 + R16       1k          0603            -
+Q1 - Q6         2N3904      TO92            General Purpose NPN
+LED1 - LED4     -           0603            -
+D2              1N5401      ?               Shottky Diode
+H1              330uH       PISR            Inductor
+Q7              16MHz       HC49/S          16MHz Crystal
+USB             -           USB-B-Mini-SMD  -
+X1              -           ?               Conrad 733980-62
+T1              -           SMD Button      -
+SD              -           FPS009-30003    -
+AD-A + AD-B     -           ML10            2x5 2.54mm
+I2C, SPI, ISP   -           ML10            -
+P1 - P4         -           ML10            -
+JP1 - JP6       -           ?               Jumper 2.54mm
+RS1 - RS3       -           ?               1x4 2.54mm
