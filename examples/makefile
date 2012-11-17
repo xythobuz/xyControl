@@ -26,23 +26,21 @@
 
 MCU = atmega2560
 F_CPU = 16000000
-RM = rm -rf
-OPT = s
-EXTRAINCDIR = include
+RM = rm -f
+EXTRAINCDIR = ../include
 CSTANDARD = gnu99
 
-SRC = main.c
-SRC += lib/time.c
-SRC += lib/spi.c
-SRC += lib/serial.c
-SRC += lib/xmem.c
-SRC += lib/xycontrol.c
+SRC = ../lib/time.c
+SRC += ../lib/spi.c
+SRC += ../lib/serial.c
+SRC += ../lib/xmem.c
+SRC += ../lib/xycontrol.c
 
 OBJ = $(SRC:.c=.o)
 
 CARGS = -mmcu=$(MCU)
 CARGS += -I$(EXTRAINCDIR)
-CARGS += -O$(OPT)
+CARGS += -Os
 CARGS += -funsigned-char
 CARGS += -funsigned-bitfields
 CARGS += -fpack-struct
@@ -55,27 +53,28 @@ LINKER = -Wl,--relax
 LINKER += -Wl,-Map -Wl,test.map
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-all: test.hex
-
-program: test.hex
-	yasab /dev/tty.usbserial-A100QOUE test.hex q
-
-flash: test.hex
-	avrdude -p $(MCU) -c stk500v2 -P /dev/tty.usbmodem641 -e -U test.hex
+all: minimal.hex
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)
 
-test.elf: $(OBJ)
-	avr-gcc $(CARGS) $(OBJ) --output test.elf $(LINKER)
-	avr-size --mcu=$(MCU) -C test.elf
+%.elf: %.o $(OBJ)
+	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER)
+	avr-size --mcu=$(MCU) -C $@
 
-test.hex: test.elf
-	avr-objcopy -O ihex test.elf test.hex
-	avr-objdump -h -S test.elf > test.lss
+%.hex: %.elf
+	avr-objcopy -O ihex $< $@
+	avr-objdump -h -S $< > $(@:.hex=.lss)
+	@echo
+	@echo "Run this to flash with yasab:"
+	@echo "yasab /dev/tty.usbserial-A100QOUE $@ q"
+	@echo "Or this for avrdude:"
+	@echo "avrdude -p $(MCU) -c stk500v2 -P /dev/tty.usbmodem641 -e -U $@"
+	@echo
 
 clean:
 	$(RM) $(OBJ)
+	$(RM) *.o
 	$(RM) *.elf
 	$(RM) *.hex
 	$(RM) *.lss

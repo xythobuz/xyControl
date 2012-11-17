@@ -29,22 +29,74 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <xmem.h>
+
+#define BANKS 8
+
+typedef struct {
+    char *start;
+    char *end;
+    void *val;
+    void *fl;
+} MallocState;
+
+MallocState states[BANKS];
+uint8_t currentBank = 0;
+uint8_t tempBankSwitch = 0;
+
+extern void *__brkval;
+extern void *__flp; // Internal Malloc State
+
+void saveState(uint8_t bank) {
+    states[bank].start = __malloc_heap_start;
+    states[bank].end = __malloc_heap_end;
+    states[bank].val = __brkval;
+    states[bank].fl = __flp;
+}
+
+void restoreState(uint8_t bank) {
+    __malloc_heap_start = states[bank].start;
+    __malloc_heap_end = states[bank].end;
+    __brkval = states[bank].val;
+    __flp = states[bank].fl;
+}
 
 void xmemInit(void) {
     DDRG |= (1 << PG3) | (1 << PG4);
     DDRL |= (1 << PL5); // Bank selection
+    PORTG &= ~((1 << PG3) | (1 << PG4));
+    PORTL &= ~(1 << PL5);
 
     XMCRB = 0; // Use full address space
     XMCRA = (1 << SRW11) | (1 << SRW10); // 3 Wait cycles
     XMCRA |= (1 << SRE); // Enable XMEM
+
+    for (uint8_t i = 0; i < BANKS; i++) {
+        saveState(i);
+    }
 }
 
 void xmemSetBank(uint8_t bank) {
-    PORTG &= ~((1 << PG3) | (1 << PG4));
-    PORTL &= ~(1 << PL5);
+    if (bank < BANKS) {
+        saveState(currentBank);
 
-    PORTG |= ((bank & 0x03) << 3);
-    PORTL |= ((bank & 0x04) << 3);
+        PORTG &= ~((1 << PG3) | (1 << PG4));
+        PORTL &= ~(1 << PL5);
+        PORTG |= ((bank & 0x03) << 3);
+        PORTL |= ((bank & 0x04) << 3);
+
+        currentBank = bank;
+        restoreState(bank);
+    }
+}
+
+void xmemSwitchTemporary(uint8_t bank) {
+    tempBankSwitch = currentBank;
+    xmemSetBank(bank);
+}
+
+void xmemSwitchBack(void) {
+    xmemSetBank(tempBankSwitch);
 }

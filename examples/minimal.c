@@ -1,5 +1,5 @@
 /*
- * xmem.h
+ * main.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,13 +27,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _xmem_h
-#define _xmem_h
+#include <avr/io.h>
+#include <stdint.h>
 
-void xmemInit(void);
-void xmemSetBank(uint8_t bank);
+#include <xycontrol.h>
 
-void xmemSwitchTemporary(uint8_t bank);
-void xmemSwitchBack(void);
+int main(void) {
+    xyInit();
+    xyLed(4, 1); // All LEDs on
 
-#endif
+    for(;;) {
+
+    }
+
+    return 0;
+}

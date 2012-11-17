@@ -32,10 +32,13 @@
 
 #include <spi.h>
 
-void spiInit(void) {
-    DDRB |= (1 << PB2) | (1 << PB1) | (1 << PB0); // MOSI & SCK & SS
-    SPCR |= (1 << MSTR) | (1 << SPE); // Enable SPI, Master mode
-    // SPSR |= (1 << SPI2X); // Double speed --> F_CPU/2
+void spiInit(uint8_t mode, uint8_t speed) {
+    DDRB |= (1 << PB2) | (1 << PB1) | (1 << PB0); // MOSI & SCK & SS as Output
+    SPCR = (1 << MSTR) | (1 << SPE); // Enable SPI, Master mode
+    SPCR |= (mode & 0x03) << 2;
+    SPCR |= (speed & 0x03);
+    if (speed & 4)
+        SPSR |= (1 << SPI2X); // Double speed
 }
 
 uint8_t spiSendByte(uint8_t d) {

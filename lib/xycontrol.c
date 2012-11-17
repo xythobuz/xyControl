@@ -36,6 +36,8 @@
 #include <xmem.h>
 
 void xyInit(void) {
+    xmemInit(); // Most important!
+
     // LEDs
     DDRL |= (1 << PL7) | (1 << PL6);
     DDRG |= (1 << PG5);
@@ -46,8 +48,6 @@ void xyInit(void) {
 
     initSystemTimer();
     serialInit(BAUD(38400, F_CPU));
-    spiInit();
-    xmemInit();
 }
 
 void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {

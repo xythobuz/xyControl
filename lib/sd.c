@@ -1,5 +1,5 @@
 /*
- * main.c
+ * sd.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -30,11 +30,18 @@
 #include <avr/io.h>
 #include <stdint.h>
 
-#include <xycontrol.h>
+#include <sd.h>
 
-int main(void) {
-    xyInit();
-    xyLed(4, 1); // All LEDs on
+#define isStartToken(x)         (x == 0xFE)
 
-    return 0;
-}
+#define isErrorToken(x)         (!(x & 0xE0))
+#define     isError(x)          (x & 0x01)
+#define     isCardError(x)      (x & 0x02)
+#define     isMediaError(x)     (x & 0x04)
+#define     isOutOfRange(x)     (x & 0x08)
+#define     isLocked(x)         (x & 0x10)
+
+#define CIDLength 16
+#define CSDLength 16
+
+#endif

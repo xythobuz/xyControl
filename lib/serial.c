@@ -31,7 +31,7 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
-#include "serial.h"
+#include <serial.h>
 
 // Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
 // #define FLOWCONTROL

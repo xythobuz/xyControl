@@ -30,7 +30,20 @@
 #ifndef _spi_h
 #define _spi_h
 
-void spiInit(void);
+#define SPI_MODE0 0 // CPOL 0, CPHA 0
+#define SPI_MODE1 1 // CPOL 0, CPHA 1
+#define SPI_MODE2 2 // CPOL 1, CPHA 0
+#define SPI_MODE3 3 // CPOL 1, CPHA 1
+
+#define SPI_SPEED2 4
+#define SPI_SPEED4 0
+#define SPI_SPEED8 5
+#define SPI_SPEED16 1
+#define SPI_SPEED32 6
+#define SPI_SPEED64 2
+#define SPI_SPEED128 3
+
+void spiInit(uint8_t mode, uint8_t speed);
 uint8_t spiSendByte(uint8_t d);
 
 #define spiReadByte() spiSendByte(0xFF)
