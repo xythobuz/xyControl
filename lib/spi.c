@@ -31,9 +31,10 @@
 #include <avr/io.h>
 
 #include <spi.h>
+#include <config.h>
 
 void spiInit(uint8_t mode, uint8_t speed) {
-    DDRB |= (1 << PB2) | (1 << PB1) | (1 << PB0); // MOSI & SCK & SS as Output
+    SPIDDR |= (1 << SPIMOSI) | (1 << SPISCK) | (1 << SPISS);
     SPCR = (1 << MSTR) | (1 << SPE); // Enable SPI, Master mode
     SPCR |= (mode & 0x03) << 2;
     SPCR |= (speed & 0x03);

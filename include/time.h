@@ -30,12 +30,9 @@
 #ifndef _time_h
 #define _time_h
 
-#define TIMEZONE 1 // If you're eg. GMT-5, enter -5 or -4 on DST
-
-typedef uint64_t time_t; // For milliseconds since system start or UNIX timestamp
+typedef uint64_t time_t;
 
 void initSystemTimer(void);
-
 time_t getSystemTime(void); // System uptime in ms
 
 #endif

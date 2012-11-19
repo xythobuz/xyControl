@@ -76,8 +76,8 @@
 <hole x="6.35" y="93.65" drill="3.2"/>
 <hole x="153.65" y="93.65" drill="3.2"/>
 <hole x="153.65" y="6.35" drill="3.2"/>
-<text x="140" y="95.5" size="2.5" layer="1" font="vector">TOP</text>
-<text x="149.5" y="95.5" size="2.5" layer="16" font="vector" rot="MR0">BOTTOM</text>
+<text x="133" y="5" size="2.5" layer="1" font="vector">TOP</text>
+<text x="139" y="5" size="2.5" layer="16" font="vector" rot="MR0">BOT</text>
 <text x="127.5" y="13.5" size="2.1844" layer="1" font="vector">www.xythobuz.org</text>
 <text x="43.5" y="85" size="2.54" layer="1" font="vector">xyControl</text>
 <text x="61.5" y="85" size="2.54" layer="16" font="vector" rot="MR0">xyControl</text>

@@ -32,6 +32,7 @@
 #include <stdlib.h>
 
 #include <xmem.h>
+#include <config.h>
 
 #define BANKS 8
 
@@ -64,10 +65,12 @@ void restoreState(uint8_t bank) {
 }
 
 void xmemInit(void) {
-    DDRG |= (1 << PG3) | (1 << PG4);
-    DDRL |= (1 << PL5); // Bank selection
-    PORTG &= ~((1 << PG3) | (1 << PG4));
-    PORTL &= ~(1 << PL5);
+    BANK0DDR |= (1 << BANK0PIN);
+    BANK1DDR |= (1 << BANK1PIN);
+    BANK2DDR |= (1 << BANK2PIN);
+    BANK0PORT &= ~(1 << BANK0PIN);
+    BANK1PORT &= ~(1 << BANK1PIN);
+    BANK2PORT &= ~(1 << BANK2PIN);
 
     XMCRB = 0; // Use full address space
     XMCRA = (1 << SRW11) | (1 << SRW10); // 3 Wait cycles
@@ -82,10 +85,12 @@ void xmemSetBank(uint8_t bank) {
     if (bank < BANKS) {
         saveState(currentBank);
 
-        PORTG &= ~((1 << PG3) | (1 << PG4));
-        PORTL &= ~(1 << PL5);
-        PORTG |= ((bank & 0x03) << 3);
-        PORTL |= ((bank & 0x04) << 3);
+        BANK0PORT &= ~(1 << BANK0PIN);
+        BANK1PORT &= ~(1 << BANK1PIN);
+        BANK2PORT &= ~(1 << BANK2PIN);
+        BANK0PORT |= ((bank & 0x01) << BANK0PIN);
+        BANK1PORT |= (((bank & 0x02) >> 1) << BANK1PIN);
+        BANK2PORT |= (((bank & 0x04) >> 2) << BANK2PIN);
 
         currentBank = bank;
         restoreState(bank);

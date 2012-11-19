@@ -30,20 +30,6 @@
 #ifndef _serial_h
 #define _serial_h
 
-/* You always write Strings with '\n' (LF) as line ending.
- * If you define this, a '\r' (CR) will be put in front of the LF
- */
-// #define SERIALINJECTCR
-
-// RX & TX buffer size in bytes
-#ifndef RX_BUFFER_SIZE
-#define RX_BUFFER_SIZE 64
-#endif
-
-#ifndef TX_BUFFER_SIZE
-#define TX_BUFFER_SIZE 64
-#endif
-
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
 
 void serialInit(uint16_t baud);

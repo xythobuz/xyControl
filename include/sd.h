@@ -1,5 +1,5 @@
 /*
- * xycontrol.c
+ * sd.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,55 +27,14 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
-#include <stdint.h>
+#ifndef _sd_h
+#define _sd_h
 
-#include <serial.h>
-#include <spi.h>
-#include <time.h>
-#include <xmem.h>
-#include <config.h>
+uint8_t sdInit(void); // 0 on success
 
-void xyInit(void) {
-    xmemInit(); // Most important!
+uint16_t sdBlockSize(void); // Returns block size, 512...2048
 
-    // LEDs
-    LED0DDR |= (1 << LED0PIN);
-    LED1DDR |= (1 << LED1PIN);
-    LED2DDR |= (1 << LED2PIN);
-    LED3DDR |= (1 << LED3PIN);
-    LED0PORT |= (1 << LED0PIN);
-    LED1PORT |= (1 << LED1PIN);
-    LED2PORT |= (1 << LED2PIN);
-    LED3PORT |= (1 << LED3PIN);
+uint8_t sdReadBlock(uint32_t address, uint8_t *data); // 0 on success
+uint8_t sdWriteBlock(uint32_t address, uint8_t *data); // 0 on success
 
-    initSystemTimer();
-    serialInit(BAUD(38400, F_CPU));
-}
-
-void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
-    if (v == 0) {
-        *port &= ~(1 << pin);
-    } else if (v == 1) {
-        *port |= (1 << pin);
-    } else {
-        *port ^= (1 << pin);
-    }
-}
-
-void xyLed(uint8_t l, uint8_t v) {
-    if (l == 0) {
-        xyLedInternal(v, &LED0PORT, LED0PIN);
-    } else if (l == 1) {
-        xyLedInternal(v, &LED1PORT, LED0PIN);
-    } else if (l == 2) {
-        xyLedInternal(v, &LED2PORT, LED0PIN);
-    } else if (l == 3) {
-        xyLedInternal(v, &LED3PORT, LED0PIN);
-    } else {
-        xyLed(0, v);
-        xyLed(1, v);
-        xyLed(2, v);
-        xyLed(3, v);
-    }
-}
+#endif

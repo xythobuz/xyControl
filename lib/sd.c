@@ -44,4 +44,18 @@
 #define CIDLength 16
 #define CSDLength 16
 
-#endif
+uint8_t sdInit(void) {
+    return 0;
+}
+
+uint16_t sdBlockSize(void) {
+    return 512;
+}
+
+uint8_t sdReadBlock(uint32_t address, uint8_t *data) {
+    return 0;
+}
+
+uint8_t sdWriteBlock(uint32_t address, uint8_t *data) {
+    return 0;
+}

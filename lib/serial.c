@@ -32,9 +32,7 @@
 #include <stdint.h>
 
 #include <serial.h>
-
-// Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
-// #define FLOWCONTROL
+#include <config.h>
 
 #define XON 0x11
 #define XOFF 0x13

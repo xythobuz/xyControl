@@ -1,5 +1,5 @@
 /*
- * xycontrol.c
+ * config.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,55 +27,63 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
-#include <stdint.h>
+#ifndef _config_h
+#define _config_h
 
-#include <serial.h>
-#include <spi.h>
-#include <time.h>
-#include <xmem.h>
-#include <config.h>
+//  -----------------
+// |    xyControl    |
+//  -----------------
 
-void xyInit(void) {
-    xmemInit(); // Most important!
+#define LED0PORT PORTL
+#define LED0DDR DDRL
+#define LED0PIN PL6
+#define LED1PORT PORTL
+#define LED1DDR DDRL
+#define LED1PIN PL7
+#define LED2PORT PORTG
+#define LED2DDR DDRG
+#define LED2PIN PG5
+#define LED3PORT PORTE
+#define LED3DDR DDRE
+#define LED3PIN PE2
 
-    // LEDs
-    LED0DDR |= (1 << LED0PIN);
-    LED1DDR |= (1 << LED1PIN);
-    LED2DDR |= (1 << LED2PIN);
-    LED3DDR |= (1 << LED3PIN);
-    LED0PORT |= (1 << LED0PIN);
-    LED1PORT |= (1 << LED1PIN);
-    LED2PORT |= (1 << LED2PIN);
-    LED3PORT |= (1 << LED3PIN);
 
-    initSystemTimer();
-    serialInit(BAUD(38400, F_CPU));
-}
+//  -----------------
+// |      XMEM       |
+//  -----------------
 
-void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
-    if (v == 0) {
-        *port &= ~(1 << pin);
-    } else if (v == 1) {
-        *port |= (1 << pin);
-    } else {
-        *port ^= (1 << pin);
-    }
-}
+#define BANK0PORT PORTG
+#define BANK0DDR DDRG
+#define BANK0PIN PG3
+#define BANK1PORT PORTG
+#define BANK1DDR DDRG
+#define BANK1PIN PG4
+#define BANK2PORT PORTL
+#define BANK2DDR DDRL
+#define BANK2PIN PL5
 
-void xyLed(uint8_t l, uint8_t v) {
-    if (l == 0) {
-        xyLedInternal(v, &LED0PORT, LED0PIN);
-    } else if (l == 1) {
-        xyLedInternal(v, &LED1PORT, LED0PIN);
-    } else if (l == 2) {
-        xyLedInternal(v, &LED2PORT, LED0PIN);
-    } else if (l == 3) {
-        xyLedInternal(v, &LED3PORT, LED0PIN);
-    } else {
-        xyLed(0, v);
-        xyLed(1, v);
-        xyLed(2, v);
-        xyLed(3, v);
-    }
-}
+
+//  -----------------
+// |       SPI       |
+//  -----------------
+
+#define SPIDDR DDRB
+#define SPIMOSI PB2
+#define SPISCK PB1
+#define SPISS PB0
+
+
+//  -----------------
+// |     Serial      |
+//  -----------------
+
+// If you define this, a '\r' (CR) will be put in front of '\n' (LF)
+// #define SERIALINJECTCR
+
+// Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
+// #define FLOWCONTROL
+
+#define RX_BUFFER_SIZE 64
+#define TX_BUFFER_SIZE 64
+
+#endif

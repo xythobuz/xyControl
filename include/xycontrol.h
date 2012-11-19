@@ -27,9 +27,13 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _xycontrol_h
+#define _xycontrol_h
 
 void xyInit(void);
 
 // l: LED No. 0 - 3
 // v: 0 off, 1 on, 2 toggle
 void xyLed(uint8_t l, uint8_t v);
+
+#endif
