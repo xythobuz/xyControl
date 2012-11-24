@@ -31,6 +31,16 @@
 #define _config_h
 
 //  -----------------
+// |     MMC/SD      |
+//  -----------------
+
+#define SD_CSPORT PORTJ
+#define SD_CSDDR DDRJ
+#define SD_CSPIN PJ7
+#define SD_CMDSIZE 6
+#define SD_TIMEOUT 100
+
+//  -----------------
 // |    xyControl    |
 //  -----------------
 

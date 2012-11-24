@@ -30,21 +30,60 @@
 #include <avr/io.h>
 #include <stdint.h>
 
+#include <spi.h>
 #include <sd.h>
+#include <config.h>
 
-#define isStartToken(x)         (x == 0xFE)
+#define SELECT() (SD_CSPORT &= ~(1 << SD_CSPIN))
+#define DESELECT() (SD_CSPORT |= (1 << SD_CSPIN))
 
-#define isErrorToken(x)         (!(x & 0xE0))
-#define     isError(x)          (x & 0x01)
-#define     isCardError(x)      (x & 0x02)
-#define     isMediaError(x)     (x & 0x04)
-#define     isOutOfRange(x)     (x & 0x08)
-#define     isLocked(x)         (x & 0x10)
+#define writeByte(x) spiSendByte(x)
+#define readByte() writeByte(0xFF)
 
-#define CIDLength 16
-#define CSDLength 16
+// Internal API
+
+uint8_t sdCommand(uint8_t *cmd) {
+    uint8_t try = 0, v = 0xFF;
+
+    DESELECT();
+    writeByte(0xFF); // Sync
+    SELECT();
+    for (uint8_t i = 0; i < SD_CMDSIZE; i++) {
+        writeByte(cmd[i]);
+    }
+    while (v == 0xFF) {
+        v = readByte();
+        if (try++ >= SD_TIMEOUT) {
+            break;
+        }
+    }
+    return v;
+}
+
+// External API
 
 uint8_t sdInit(void) {
+    SD_CSDDR |= (1 << SD_CSPIN);
+    SELECT();
+    spiInit(SPI_MODE0, SPI_SPEED128); // 125kHz
+
+    // Send some clocks to the card
+    for (uint8_t i = 0; i < 0x10; i++) {
+        writeByte(0xFF);
+    }
+
+    // Send CMD0 --> SPI Mode
+    uint8_t cmd[SD_CMDSIZE] = { 0x40, 0x00, 0x00, 0x00, 0x00, 0x95 };
+    uint8_t try = 0;
+    while (sdCommand(cmd) != 1) {
+        if (try++ >= SD_TIMEOUT) {
+            DESELECT();
+            return 1;
+        }
+    }
+
+    spiInit(SPI_MODE0, SPI_SPEED2); // 8MHz
+    DESELECT();
     return 0;
 }
 

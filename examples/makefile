@@ -51,7 +51,6 @@ CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
 
 LINKER = -Wl,--relax
-LINKER += -Wl,-Map -Wl,test.map
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
 all: minimal.hex
@@ -60,7 +59,7 @@ all: minimal.hex
 	avr-gcc -c $< -o $@ $(CARGS)
 
 %.elf: %.o $(OBJ)
-	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER)
+	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
 	avr-size --mcu=$(MCU) -C $@
 
 %.hex: %.elf
