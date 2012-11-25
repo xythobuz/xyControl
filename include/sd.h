@@ -33,7 +33,9 @@
 uint8_t sdInit(void); // 0 on success
 
 uint16_t sdBlockSize(void); // Returns block size, 512...2048
+uint32_t sdCardSize(void); // Returns card size in bytes, up to 4GB
 
+// Using Block Addresses
 uint8_t sdReadBlock(uint32_t address, uint8_t *data); // 0 on success
 uint8_t sdWriteBlock(uint32_t address, uint8_t *data); // 0 on success
 

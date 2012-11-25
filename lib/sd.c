@@ -29,9 +29,11 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <spi.h>
 #include <sd.h>
+#include <xmem.h>
 #include <config.h>
 
 #define SELECT() (SD_CSPORT &= ~(1 << SD_CSPIN))
@@ -40,17 +42,22 @@
 #define writeByte(x) spiSendByte(x)
 #define readByte() writeByte(0xFF)
 
-// Internal API
+uint8_t sdBlocksize;
+uint32_t sdCardsize;
 
-uint8_t sdCommand(uint8_t *cmd) {
+uint8_t sdCommand(uint8_t cmd1, uint8_t cmd2, uint8_t cmd3,
+                    uint8_t cmd4, uint8_t cmd5, uint8_t cmd6) {
     uint8_t try = 0, v = 0xFF;
 
     DESELECT();
     writeByte(0xFF); // Sync
     SELECT();
-    for (uint8_t i = 0; i < SD_CMDSIZE; i++) {
-        writeByte(cmd[i]);
-    }
+    writeByte(cmd1);
+    writeByte(cmd2);
+    writeByte(cmd3);
+    writeByte(cmd4);
+    writeByte(cmd5);
+    writeByte(cmd6);
     while (v == 0xFF) {
         v = readByte();
         if (try++ >= SD_TIMEOUT) {
@@ -58,6 +65,43 @@ uint8_t sdCommand(uint8_t *cmd) {
         }
     }
     return v;
+}
+
+uint8_t readSomething(uint8_t cmd1, uint8_t cmd2, uint8_t cmd3,
+                    uint8_t cmd4, uint8_t cmd5, uint8_t cmd6,
+                    uint8_t *data, uint16_t length) {
+    uint8_t v = sdCommand(cmd1, cmd2, cmd3, cmd4, cmd5, cmd6);
+    if (v != 0) {
+        return v;
+    }
+    while (readByte() != 0xFE); // Wait for start byte
+    for (uint16_t i = 0; i < length; i++) {
+        data[i] = readByte();
+    }
+    readByte();
+    readByte(); // Read CRC
+    DESELECT();
+    return 0;
+}
+
+void readInfos(void) {
+    uint8_t oldBank = xmemGetBank();
+    xmemSetBank(BANK_GENERIC);
+    uint8_t *csd = (uint8_t *)malloc(16);
+
+    readSomething(0x49, 0x00, 0x00, 0x00, 0x00, 0xFF, csd, 16);
+    sdBlocksize = csd[5] & 0x0F;
+
+    // BLOCKNR = (C_SIZE + 1) * 2^(C_SIZE_MULT + 2)
+    // CARDSIZE = BLOCKNR * BLOCKLEN
+    uint16_t csize = (csd[8] & 0xC0) >> 6;
+    csize |= (csd[7] << 2);
+    uint8_t csizemult = (csd[10] & 0x80) >> 7;
+    csizemult |= ((csd[9] & 0x03) << 1);
+    sdCardsize = (1 << sdBlocksize) * (csize + 1) * (1 << (csizemult + 2));
+
+    free(csd);
+    xmemSetBank(oldBank);
 }
 
 // External API
@@ -73,9 +117,8 @@ uint8_t sdInit(void) {
     }
 
     // Send CMD0 --> SPI Mode
-    uint8_t cmd[SD_CMDSIZE] = { 0x40, 0x00, 0x00, 0x00, 0x00, 0x95 };
     uint8_t try = 0;
-    while (sdCommand(cmd) != 1) {
+    while (sdCommand(0x40, 0x00, 0x00, 0x00, 0x00, 0x95) != 1) {
         if (try++ >= SD_TIMEOUT) {
             DESELECT();
             return 1;
@@ -84,17 +127,48 @@ uint8_t sdInit(void) {
 
     spiInit(SPI_MODE0, SPI_SPEED2); // 8MHz
     DESELECT();
+    readInfos();
     return 0;
 }
 
 uint16_t sdBlockSize(void) {
-    return 512;
+    return (uint16_t)(1 << sdBlocksize);
 }
 
-uint8_t sdReadBlock(uint32_t address, uint8_t *data) {
-    return 0;
+uint32_t sdCardSize(void) {
+    return sdCardsize;
 }
 
-uint8_t sdWriteBlock(uint32_t address, uint8_t *data) {
+uint8_t sdReadBlock(uint32_t address, uint8_t *data) { // Block address
+    address <<= sdBlocksize; // Convert address
+    return readSomething(0x51, ((address & 0xFF000000) >> 24),
+                        ((address & 0x00FF0000) >> 16),
+                        ((address & 0x0000FF00) >> 8),
+                        (address & 0x000000FF), 0xFF, data, sdBlockSize());
+}
+
+uint8_t sdWriteBlock(uint32_t address, uint8_t *data) { // Block address
+    address <<= sdBlocksize; // Convert address
+    uint8_t v = sdCommand(0x58, ((address & 0xFF000000) >> 24),
+                                ((address & 0x00FF0000) >> 16),
+                                ((address & 0x0000FF00) >> 8),
+                                (address & 0x000000FF), 0xFF);
+    if (v != 0) {
+        return v;
+    }
+    for (uint8_t i = 0; i < SD_TIMEOUT; i++) {
+        readByte(); // Send some clocks
+    }
+    writeByte(0xFE); // Start Byte
+    for (uint16_t i = 0; i < sdBlockSize(); i++) {
+        writeByte(data[i]); // Send data
+    }
+    writeByte(0xFF);
+    writeByte(0xFF); // Dummy CRC
+    if ((readByte() & 0x1F) != 0x05) {
+        return 1; // Error while writing
+    }
+    while (readByte() != 0xFF); // Wait for Card
+    DESELECT();
     return 0;
 }

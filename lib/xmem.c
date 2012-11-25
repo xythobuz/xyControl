@@ -45,7 +45,6 @@ typedef struct {
 
 MallocState states[BANKS];
 uint8_t currentBank = 0;
-uint8_t tempBankSwitch = 0;
 
 extern void *__brkval;
 extern void *__flp; // Internal Malloc State
@@ -97,11 +96,6 @@ void xmemSetBank(uint8_t bank) {
     }
 }
 
-void xmemSwitchTemporary(uint8_t bank) {
-    tempBankSwitch = currentBank;
-    xmemSetBank(bank);
-}
-
-void xmemSwitchBack(void) {
-    xmemSetBank(tempBankSwitch);
+uint8_t xmemGetBank(void) {
+    return currentBank;
 }

@@ -30,10 +30,10 @@
 #ifndef _xmem_h
 #define _xmem_h
 
+#define BANK_GENERIC 0
+
 void xmemInit(void);
 void xmemSetBank(uint8_t bank);
-
-void xmemSwitchTemporary(uint8_t bank);
-void xmemSwitchBack(void);
+uint8_t xmemGetBank(void);
 
 #endif
