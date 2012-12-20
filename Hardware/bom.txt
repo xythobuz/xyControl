@@ -3,18 +3,20 @@ Partlist
 C1 + C2     22p             0603
 C3          10n             0603
 C4 - C11    100n            0603
-C12         330u            Elko
+C12         330u            Elko SMD
 C13 - C24   100n            0603
 C25         100u            Elko SMD 6.5
 C26         100n            0603
 C27         1u              Elko 2.5 - 6
 C28         330u            Elko 5 - 10.5
+
 LED1        -               0603
 LED2        -               0603
 LED3        -               0603
 LED4        -               0603
 LED5        -               0603
 LED6        -               0603
+
 R1          240             0603
 R2          2k5             Pot ST10
 R7          1k              0603
@@ -26,6 +28,7 @@ R13         270             0603
 R14         10k             0603
 R15         1k              0603
 R16         1k              0603
+
 IC1         ATMEGA2560      TQFP100
 IC2         74HC573D        SO20W
 IC3         K6X4008C1FSMD   SOP-32
@@ -33,9 +36,11 @@ IC4         FT232RL         SSOP28
 IC5         74AHC125        SO14
 IC6         LM317L          TO-92
 IC7         LM2576          TO-220
+
 D2          1N5908          C4111-15
 H1          330uH           PISR
 Q7          16M             HC49/S
+
 JP1         -               Jumper 1x2
 JP2         -               Jumper 1x2
 JP3         -               Jumper 1x2
@@ -45,7 +50,7 @@ JP6         -               Jumper 1x2
 RS1         -               Jumper 1x4
 RS2         -               Jumper 1x4
 RS3         -               Jumper 1x4
-SD          -               FPS009-30003
+
 SPI         -               ML10
 I2C         -               ML10
 AD-A        -               ML10
@@ -54,6 +59,10 @@ P1          -               ML10
 P2          -               ML10
 P3          -               ML10
 ISP         -               ML10
+
 T1          -               SMD Button
+
 USB         USB-B Mini      SMD
+SD          -               FPS009-30003
+
 X1          -               Conrad 733980-62

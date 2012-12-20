@@ -1,5 +1,5 @@
 /*
- * serial.h
+ * tasks.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,27 +27,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _serial_h
-#define _serial_h
+#ifndef _tasks_h
+#define _tasks_h
 
-#define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
+typedef void (*Task)(void);
 
-void serialInit(uint16_t baud);
-void serialClose(void);
+// Adds another task that will cause func() to be called
+// when testFunc() returns a value other than zero or always,
+// if testFunc == NULL
+uint8_t addTask(Task func); // 0 on success
+uint8_t removeTask(Task func); // 0 on success
+void tasks(void); // Call in your main loop!
 
-void setFlow(uint8_t on);
+uint8_t tasksRegistered(void);
 
-// Reception
-uint8_t serialHasChar(void);
-uint8_t serialGet(void); // Get a character
-uint8_t serialGetBlocking(void);
-uint8_t serialRxBufferFull(void); // 1 if full
-uint8_t serialRxBufferEmpty(void); // 1 if empty
-
-// Transmission
-void serialWrite(uint8_t data);
-void serialWriteString(const char *data);
-uint8_t serialTxBufferFull(void); // 1 if full
-uint8_t serialTxBufferEmpty(void); // 1 if empty
-
-#endif // _serial_h
+#endif

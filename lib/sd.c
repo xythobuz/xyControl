@@ -112,7 +112,7 @@ uint8_t sdInit(void) {
     spiInit(SPI_MODE0, SPI_SPEED128); // 125kHz
 
     // Send some clocks to the card
-    for (uint8_t i = 0; i < 0x10; i++) {
+    for (uint8_t i = 0; i < (SD_TIMEOUT / 7); i++) {
         writeByte(0xFF);
     }
 

@@ -1,5 +1,5 @@
 /*
- * serial.h
+ * tasks.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,27 +27,65 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _serial_h
-#define _serial_h
+#include <stdlib.h>
+#include <stdint.h>
 
-#define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
+#include <xmem.h>
+#include <tasks.h>
 
-void serialInit(uint16_t baud);
-void serialClose(void);
+typedef struct TaskElement TaskElement;
+struct TaskElement {
+    Task task;
+    TaskElement *next;
+};
 
-void setFlow(uint8_t on);
+TaskElement *taskList = NULL;
 
-// Reception
-uint8_t serialHasChar(void);
-uint8_t serialGet(void); // Get a character
-uint8_t serialGetBlocking(void);
-uint8_t serialRxBufferFull(void); // 1 if full
-uint8_t serialRxBufferEmpty(void); // 1 if empty
+uint8_t tasksRegistered(void) {
+    uint8_t c = 0;
+    for (TaskElement *p = taskList; p != NULL; p = p->next) {
+        c++;
+    }
+    return c;
+}
 
-// Transmission
-void serialWrite(uint8_t data);
-void serialWriteString(const char *data);
-uint8_t serialTxBufferFull(void); // 1 if full
-uint8_t serialTxBufferEmpty(void); // 1 if empty
+uint8_t addTask(Task func) {
+    TaskElement *p = (TaskElement *)malloc(sizeof(TaskElement));
+    if (p == NULL) {
+        return 1;
+    }
+    p->task = func;
+    p->next = taskList;
+    taskList = p;
+    return 0;
+}
 
-#endif // _serial_h
+uint8_t removeTask(Task func) {
+    TaskElement *p = taskList;
+    TaskElement *prev = NULL;
+    while (p != NULL) {
+        if (p->task == func) {
+            if (prev == NULL) {
+                taskList = p->next;
+            } else {
+                prev->next = p->next;
+            }
+            free(p);
+            return 0;
+        }
+        prev = p;
+        p = p->next;
+    }
+    return 1;
+}
+
+void tasks(void) {
+    static TaskElement *p = NULL;
+    if (p == NULL) {
+        p = taskList;
+    }
+    if (p != NULL) {
+        p->task();
+        p = p->next;
+    }
+}

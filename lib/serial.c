@@ -53,6 +53,26 @@
 
 #define FLOWMARK 5 // Space remaining to trigger xoff/xon
 
+#define SERIALRECIEVEINTERRUPT USART0_RX_vect
+#define SERIALTRANSMITINTERRUPT USART0_UDRE_vect
+#define SERIALDATA UDR0
+#define SERIALB UCSR0B
+#define SERIALIE UDRIE0
+#define SERIALC UCSR0C
+#define SERIALUPM1 UPM01
+#define SERIALUPM0 UPM00
+#define SERIALUSBS USBS0
+#define SERIALUCSZ0 UCSZ00
+#define SERIALUCSZ1 UCSZ01
+#define SERIALUCSZ2 UCSZ02
+#define SERIALRXCIE RXCIE0
+#define SERIALRXEN RXEN0
+#define SERIALTXEN TXEN0
+#define SERIALA UCSR0A
+#define SERIALUDRIE UDRIE0
+#define SERIALUDRE UDRE0
+#define SERIALUBRR UBRR0
+
 uint8_t volatile rxBuffer[RX_BUFFER_SIZE];
 uint8_t volatile txBuffer[TX_BUFFER_SIZE];
 uint16_t volatile rxRead = 0;
@@ -117,12 +137,7 @@ void serialInit(uint16_t baud) {
     SERIALC = (1 << SERIALUCSZ0) | (1 << SERIALUCSZ1);
 
     // Set baudrate
-#ifdef SERIALBAUD8
-    SERIALUBRRH = (baud >> 8);
-    SERIALUBRRL = baud;
-#else
     SERIALUBRR = baud;
-#endif
 
     SERIALB = (1 << SERIALRXCIE); // Enable Interrupts
     SERIALB |= (1 << SERIALRXEN) | (1 << SERIALTXEN); // Enable Receiver/Transmitter
