@@ -54,7 +54,7 @@ CARGS += -DF_CPU=$(F_CPU)
 LINKER = -Wl,--relax
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-all: minimal.hex
+all: minimal.hex ramtest.hex
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)
@@ -66,12 +66,12 @@ all: minimal.hex
 %.hex: %.elf
 	avr-objcopy -O ihex $< $@
 	avr-objdump -h -S $< > $(@:.hex=.lss)
-	@echo
-	@echo "Run this to flash with yasab:"
-	@echo "yasab /dev/tty.usbserial-A100QOUE $@ q"
-	@echo "Or this for avrdude:"
-	@echo "avrdude -p $(MCU) -c stk500v2 -P /dev/tty.usbmodem641 -e -U $@"
-	@echo
+
+%.program: %.hex
+	avrdude -p $(MCU) -c stk500v2 -P /dev/tty.usbmodem641 -e -U $<
+
+%.flash: %.hex
+	yasab /dev/tty.usbserial-A100QOUE $< q
 
 clean:
 	$(RM) $(OBJ)

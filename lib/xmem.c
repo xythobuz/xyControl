@@ -34,8 +34,6 @@
 #include <xmem.h>
 #include <config.h>
 
-#define BANKS 8
-
 typedef struct {
     char *start;
     char *end;
@@ -43,7 +41,7 @@ typedef struct {
     void *fl;
 } MallocState;
 
-MallocState states[BANKS];
+MallocState states[MEMBANKS];
 uint8_t currentBank = 0;
 
 extern void *__brkval;
@@ -75,13 +73,13 @@ void xmemInit(void) {
     XMCRA = (1 << SRW11) | (1 << SRW10); // 3 Wait cycles
     XMCRA |= (1 << SRE); // Enable XMEM
 
-    for (uint8_t i = 0; i < BANKS; i++) {
+    for (uint8_t i = 0; i < MEMBANKS; i++) {
         saveState(i);
     }
 }
 
 void xmemSetBank(uint8_t bank) {
-    if (bank < BANKS) {
+    if (bank < MEMBANKS) {
         saveState(currentBank);
 
         BANK0PORT &= ~(1 << BANK0PIN);

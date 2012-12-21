@@ -30,6 +30,8 @@
 #ifndef _xmem_h
 #define _xmem_h
 
+#define MEMBANKS 8
+
 #define BANK_GENERIC 0
 
 void xmemInit(void);

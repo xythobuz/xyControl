@@ -29,31 +29,75 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <util/delay.h>
 
 #include <xycontrol.h>
+#include <xmem.h>
+
+#define CHECKSIZE 53248 // 52KB
+
+// Both lights will be red if malloc failed
+// One light will be red if the data is corrupt
+// Both green lights will show if banks are okay
+
+void check(uint8_t *data, uint8_t mode) {
+    for (uint16_t i = 0; i < CHECKSIZE; i++) {
+        uint8_t c;
+        if (mode) {
+            c = 0xFF - (i & 0xFF);
+        } else {
+            c = (i & 0xFF);
+        }
+        if (data[i] != c) {
+            xyLed(0, 1);
+        }
+    }
+    xyLed(2 + mode, 1);
+}
 
 int main(void) {
     xyInit();
-    xyLed(4, 0); // All LEDs off
+    uint8_t bank = 0;
 
     for(;;) {
-        xyLed(0, 1);
-        _delay_ms(1000);
-        xyLed(1, 1);
-        _delay_ms(1000);
-        xyLed(2, 1);
-        _delay_ms(1000);
-        xyLed(3, 1);
-        _delay_ms(1000);
-        xyLed(3, 0);
-        _delay_ms(1000);
-        xyLed(2, 0);
-        _delay_ms(1000);
-        xyLed(1, 0);
-        _delay_ms(1000);
-        xyLed(0, 0);
-        _delay_ms(1000);
+        xyLed(4, 0);
+
+        xmemSetBank(bank);
+        uint8_t *data = (uint8_t *)malloc(CHECKSIZE);
+        xmemSetBank(bank + 1);
+        uint8_t *data2 = (uint8_t *)malloc(CHECKSIZE);
+
+        if ((data == NULL) || (data2 == NULL)) {
+            xyLed(0, 1);
+            xyLed(1, 1);
+            while(1);
+        }
+
+        for (uint16_t i = 0; i < CHECKSIZE; i++) {
+            xmemSetBank(bank);
+            data[i] = i & 0xFF;
+            xmemSetBank(bank + 1);
+            data2[i] = 0xFF - (i & 0xFF);
+        }
+
+        xmemSetBank(bank);
+        check(data, 0);
+        xmemSetBank(bank + 1);
+        check(data2, 1);
+
+        xmemSetBank(bank);
+        free(data);
+        xmemSetBank(bank + 1);
+        free(data2);
+
+        _delay_ms(2500);
+
+        if (bank < (MEMBANKS - 2)) {
+            bank += 2;
+        } else {
+            bank = 0;
+        }
     }
 
     return 0;
