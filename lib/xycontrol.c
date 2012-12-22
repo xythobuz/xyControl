@@ -34,6 +34,7 @@
 #include <spi.h>
 #include <time.h>
 #include <xmem.h>
+#include <xycontrol.h>
 #include <config.h>
 
 void xyInit(void) {
@@ -44,6 +45,7 @@ void xyInit(void) {
     LED1DDR |= (1 << LED1PIN);
     LED2DDR |= (1 << LED2PIN);
     LED3DDR |= (1 << LED3PIN);
+    xyLed(4, 1);
 
     initSystemTimer();
     serialInit(BAUD(38400, F_CPU));

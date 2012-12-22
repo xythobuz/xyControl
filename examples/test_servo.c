@@ -1,5 +1,5 @@
 /*
- * main.c
+ * test_servo.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,75 +29,89 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
-#include <stdlib.h>
+#include <avr/interrupt.h>
 #include <util/delay.h>
 
 #include <xycontrol.h>
 #include <xmem.h>
 
-#define CHECKSIZE 53248 // 52KB
+#define SERVOPORT PORTJ
+#define SERVODDR DDRJ
+#define SERVOPIN PJ4
 
-// Both lights will be red if malloc failed
-// One light will be red if the data is corrupt
-// Both green lights will show if banks are okay
+// Prescaler: 8 --> 2MHz
+#define MIN 2000 // 2000 ------> 1ms
+#define MAX 4000 // 4000 ------> 2ms
+#define WIDTH 40000 // 40000 --> 20ms
 
-void check(uint8_t *data, uint8_t mode) {
-    for (uint16_t i = 0; i < CHECKSIZE; i++) {
-        uint8_t c;
-        if (mode) {
-            c = 0xFF - (i & 0xFF);
+#define MULT 30
+#define CONSTANT ((MAX - MIN) * MULT / 255)
+
+volatile uint8_t currentPin = 0;
+volatile uint16_t next;
+
+ISR(TIMER1_COMPA_vect) {
+    if (OCR1A != next) {
+        if (currentPin == 0) {
+            OCR1A = next;
         } else {
-            c = (i & 0xFF);
+            OCR1A = WIDTH - OCR1A;
         }
-        if (data[i] != c) {
-            xyLed(0, 1);
-        }
+    } else {
+        OCR1A = WIDTH - OCR1A;
+        next = OCR1A;
     }
-    xyLed(2 + mode, 1);
+
+    if (currentPin) {
+        currentPin = 0;
+        SERVOPORT &= ~(1 << SERVOPIN);
+    } else {
+        currentPin = 1;
+        SERVOPORT |= (1 << SERVOPIN);
+    }
+}
+
+void ledShowNumber(uint8_t i) {
+    xyLed(4, 0);
+    if (i & 0x01) {
+        xyLed(0, 1);
+    }
+    if (i & 0x02) {
+        xyLed(1, 1);
+    }
+    if (i & 0x04) {
+        xyLed(2, 1);
+    }
+    if (i & 0x08) {
+        xyLed(3, 1);
+    }
 }
 
 int main(void) {
     xyInit();
-    uint8_t bank = 0;
+    SERVODDR |= (1 << SERVOPIN);
 
-    for(;;) {
-        xyLed(4, 0);
+    TCCR1B |= (1 << WGM12) | (1 << CS11); // Timer1 CTC Mode Prescaler 8
+    OCR1A = MIN;
+    next = MIN;
+    TIMSK1 |= (1 << OCIE1A); // Overflow Interrupt
+    sei();
 
-        xmemSetBank(bank);
-        uint8_t *data = (uint8_t *)malloc(CHECKSIZE);
-        xmemSetBank(bank + 1);
-        uint8_t *data2 = (uint8_t *)malloc(CHECKSIZE);
+    _delay_ms(6000);
 
-        if ((data == NULL) || (data2 == NULL)) {
-            xyLed(0, 1);
-            xyLed(1, 1);
-            while(1);
+    for (;;) {
+        for (uint8_t i = 0; i < 16; i++) {
+            next = MIN + (125 * (i + 1));
+            ledShowNumber(i);
+            _delay_ms(1000);
         }
-
-        for (uint16_t i = 0; i < CHECKSIZE; i++) {
-            xmemSetBank(bank);
-            data[i] = i & 0xFF;
-            xmemSetBank(bank + 1);
-            data2[i] = 0xFF - (i & 0xFF);
+        _delay_ms(2000);
+        for (uint8_t i = 16; i > 0; i--) {
+            next = MIN + (125 * (i - 1));
+            ledShowNumber(i);
+            _delay_ms(1000);
         }
-
-        xmemSetBank(bank);
-        check(data, 0);
-        xmemSetBank(bank + 1);
-        check(data2, 1);
-
-        xmemSetBank(bank);
-        free(data);
-        xmemSetBank(bank + 1);
-        free(data2);
-
-        _delay_ms(2500);
-
-        if (bank < (MEMBANKS - 2)) {
-            bank += 2;
-        } else {
-            bank = 0;
-        }
+        _delay_ms(2000);
     }
 
     return 0;
