@@ -35,8 +35,9 @@ SRC += ../lib/spi.c
 SRC += ../lib/serial.c
 SRC += ../lib/xmem.c
 SRC += ../lib/xycontrol.c
-SRC += ../lib/sd.c
+#SRC += ../lib/sd.c
 SRC += ../lib/tasks.c
+SRC += ../lib/servos.c
 
 OBJ = $(SRC:.c=.o)
 

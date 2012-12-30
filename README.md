@@ -18,3 +18,7 @@ This gives us 8 memory banks, consisting of 56KB. All memory from 0x0000 to 0x21
 This gives us 8 banks with 56KB each, resulting in 448KB external RAM.
 
 The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.
+
+## Known Problems
+
+In the current PCB layout, the SD-Card holder is rotated 180 degrees. This prevents an SD-Card from being inserted! As it is not a needed feature, code support will not be compiled.

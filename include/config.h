@@ -31,6 +31,23 @@
 #define _config_h
 
 //  -----------------
+// |     Servos      |
+//  -----------------
+
+#define SERVO0PORT PORTJ
+#define SERVO0DDR DDRJ
+#define SERVO0PIN PJ4
+#define SERVO1PORT PORTJ
+#define SERVO1DDR DDRJ
+#define SERVO1PIN PJ5
+#define SERVO2PORT PORTJ
+#define SERVO2DDR DDRJ
+#define SERVO2PIN PJ6
+#define SERVO3PORT PORTJ
+#define SERVO3DDR DDRJ
+#define SERVO3PIN PJ7
+
+//  -----------------
 // |     MMC/SD      |
 //  -----------------
 

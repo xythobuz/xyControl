@@ -1,5 +1,5 @@
 /*
- * test_servo.c
+ * servos.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -30,100 +30,45 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <avr/interrupt.h>
-#include <util/delay.h>
 
 #include <xycontrol.h>
-#include <xmem.h>
-
-#define SERVOPORT PORTJ
-#define SERVODDR DDRJ
-#define SERVOPIN PJ4
+#include <config.h>
 
 // Prescaler: 8 --> 2MHz
 #define MIN 2000 // 2000 ------> 1ms
 #define MAX 4000 // 4000 ------> 2ms
 #define WIDTH 40000 // 40000 --> 20ms
 
-#define MULT 30
-#define CONSTANT ((MAX - MIN) * MULT / 255)
+typedef struct {
+    volatile uint8_t *port;
+    volatile uint8_t *ddr;
+    uint8_t pin;
+} Servo;
 
-volatile uint8_t currentPin = 0;
-volatile uint16_t next;
+const Servo servos[4] = {
+    {.port = &SERVO0PORT, .ddr = &SERVO0DDR, .pin = SERVO0PIN},
+    {.port = &SERVO1PORT, .ddr = &SERVO1DDR, .pin = SERVO1PIN},
+    {.port = &SERVO2PORT, .ddr = &SERVO2DDR, .pin = SERVO2PIN},
+    {.port = &SERVO3PORT, .ddr = &SERVO3DDR, .pin = SERVO3PIN},
+};
 
-ISR(TIMER1_COMPA_vect) {
-    if (OCR1A != next) {
-        if (currentPin == 0) {
-            OCR1A = next;
-        } else {
-            OCR1A = WIDTH - OCR1A;
-        }
-    } else {
-        OCR1A = WIDTH - OCR1A;
-        next = OCR1A;
+void servosInit(void) {
+    // Set Servo Pins to output
+    for (uint8_t i = 0; i < 4; i++) {
+        *(servos[i].ddr) = (1 << servos[i].pin);
     }
-
-    if (currentPin) {
-        currentPin = 0;
-        SERVOPORT &= ~(1 << SERVOPIN);
-    } else {
-        currentPin = 1;
-        SERVOPORT |= (1 << SERVOPIN);
-    }
-}
-
-void ledShowNumber(uint8_t i) {
-    xyLed(4, 0);
-    if (i & 0x01) {
-        xyLed(0, 1);
-    }
-    if (i & 0x02) {
-        xyLed(1, 1);
-    }
-    if (i & 0x04) {
-        xyLed(2, 1);
-    }
-    if (i & 0x08) {
-        xyLed(3, 1);
-    }
-}
-
-int main(void) {
-    xyInit();
-    SERVODDR |= (1 << SERVOPIN);
 
     TCCR1B |= (1 << WGM12) | (1 << CS11); // Timer1 CTC Mode Prescaler 8
     OCR1A = MIN - 125;
-    next = MIN - 125;
+    // next = MIN - 125;
     TIMSK1 |= (1 << OCIE1A); // Overflow Interrupt
     sei();
 
-    _delay_ms(5000);
-    next = MIN;
-    _delay_ms(2000);
+    // _delay_ms(5000);
+    // next = MIN;
+    // _delay_ms(2000);
+}
 
-    for (;;) {
-        next = MAX;
-        _delay_ms(500);
-        next = MIN;
-        _delay_ms(2000);
+ISR(TIMER1_COMPA_vect) {
 
-        next = MAX;
-        _delay_ms(1000);
-        next = MIN;
-        _delay_ms(2000);
-
-        /*for (uint8_t i = 0; i < 16; i++) {
-            next = MIN + (125 * (i + 1));
-            ledShowNumber(i);
-            _delay_ms(1000);
-        }
-        for (uint8_t i = 16; i > 0; i--) {
-            next = MIN + (125 * (i - 1));
-            ledShowNumber(i);
-            _delay_ms(1000);
-        }
-        _delay_ms(2000);*/
-    }
-
-    return 0;
 }
