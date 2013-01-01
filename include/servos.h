@@ -1,5 +1,5 @@
 /*
- * tasks.h
+ * servos.h
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,16 +27,20 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _tasks_h
-#define _tasks_h
 
-typedef void (*Task)(void);
+/*
+ * Prescaler 8:
+ *      16MHz / 8 = 2MHz
+ *
+ *  ticks = time / (1 / freq)
+ *      0,02s / (1/2000000) = 40000
+ *      0,002s / (1/2000000) = 4000
+ *      0,001s / (1/2000000) = 2000
+ */
+#define MIN 2000 // 2000 ------> 1ms
+#define MAX 4000 // 4000 ------> 2ms
+#define WIDTH 40000 // 40000 --> 20ms
+#define INIT (MIN - 125)
 
-// Adds another task that will cause func() to be called regularly
-uint8_t addTask(Task func); // 0 on success
-uint8_t removeTask(Task func); // 0 on success
-void tasks(void); // Call in your main loop!
-
-uint8_t tasksRegistered(void);
-
-#endif
+void servosInit(void);
+void servoPos(uint8_t servo, uint16_t value);

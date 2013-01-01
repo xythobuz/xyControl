@@ -55,7 +55,7 @@ CARGS += -DF_CPU=$(F_CPU)
 LINKER = -Wl,--relax
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-all: minimal.hex test_ram.hex test_servo.hex
+all: minimal.hex test_ram.hex test_servo.hex test_servolib.hex
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)

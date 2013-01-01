@@ -30,45 +30,109 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #include <xycontrol.h>
 #include <config.h>
+#include <servos.h>
 
-// Prescaler: 8 --> 2MHz
-#define MIN 2000 // 2000 ------> 1ms
-#define MAX 4000 // 4000 ------> 2ms
-#define WIDTH 40000 // 40000 --> 20ms
+#define STATE_GOHIGH 0
+#define STATE_GOLOW 1
 
 typedef struct {
+    uint8_t id;
     volatile uint8_t *port;
     volatile uint8_t *ddr;
     uint8_t pin;
+    uint16_t width;
+    uint16_t next;
 } Servo;
 
-const Servo servos[4] = {
+extern Servo servos[4];
+
+Servo servos[4] = {
     {.port = &SERVO0PORT, .ddr = &SERVO0DDR, .pin = SERVO0PIN},
     {.port = &SERVO1PORT, .ddr = &SERVO1DDR, .pin = SERVO1PIN},
     {.port = &SERVO2PORT, .ddr = &SERVO2DDR, .pin = SERVO2PIN},
     {.port = &SERVO3PORT, .ddr = &SERVO3DDR, .pin = SERVO3PIN},
 };
 
-void servosInit(void) {
-    // Set Servo Pins to output
+inline void sortServos(void) {
+    Servo tmp;
     for (uint8_t i = 0; i < 4; i++) {
-        *(servos[i].ddr) = (1 << servos[i].pin);
+        for (uint8_t j = i + 1; j < 4; j++) {
+            if (servos[i].width > servos[j].width) {
+                tmp = servos[i];
+                servos[i] = servos[j];
+                servos[j] = tmp;
+            }
+        }
     }
-
-    TCCR1B |= (1 << WGM12) | (1 << CS11); // Timer1 CTC Mode Prescaler 8
-    OCR1A = MIN - 125;
-    // next = MIN - 125;
-    TIMSK1 |= (1 << OCIE1A); // Overflow Interrupt
-    sei();
-
-    // _delay_ms(5000);
-    // next = MIN;
-    // _delay_ms(2000);
 }
 
 ISR(TIMER1_COMPA_vect) {
+    static uint8_t state = STATE_GOHIGH;
+    static uint8_t servoCount;
 
+    if (state == STATE_GOHIGH) {
+        for (uint8_t i = 0; i < 4; i++) {
+            *(servos[i].port) |= (1 << servos[i].pin);
+            servos[i].width = servos[i].next;
+        }
+        sortServos();
+        servoCount = 0;
+        OCR1A = servos[servoCount].width;
+        state = STATE_GOLOW;
+    } else if (state == STATE_GOLOW) {
+        *(servos[servoCount].port) &= ~(1 << servos[servoCount].pin);
+        if (servoCount == 3) {
+            // was last servo
+            OCR1A = WIDTH - servos[servoCount].width;
+            state = STATE_GOLOW;
+        } else {
+            uint16_t sum = 0;
+            servoCount++;
+            for (uint8_t i = 0; i < servoCount; i++) {
+                sum += servos[i].width;
+            }
+            OCR1A = servos[servoCount].width - sum;
+        }
+    }
+}
+
+void servosInit(void) {
+    // Set Servo Pins to output
+    for (uint8_t i = 0; i < 4; i++) {
+        *(servos[i].ddr) |= (1 << servos[i].pin);
+        servos[i].width = INIT;
+        servos[i].next = INIT;
+        servos[i].id = i;
+    }
+
+    TCCR1B |= (1 << WGM12) | (1 << CS11); // Timer1 CTC Mode Prescaler 8
+    OCR1A = 100;
+    TIMSK1 |= (1 << OCIE1A); // Overflow Interrupt
+    sei();
+
+    // Init sequence
+    _delay_ms(5000);
+    for (uint8_t i = 0; i < 4; i++) {
+        servos[i].next = MIN;
+    }
+    _delay_ms(2000);
+}
+
+void servoPos(uint8_t servo, uint16_t value) {
+    if (servo < 4) {
+        for (uint8_t i = 0; i < 4; i++) {
+            if (servos[i].id == servo) {
+                servos[i].next = value;
+                return;
+            }
+        }
+    } else {
+        for (uint8_t i = 0; i < 4; i++) {
+            servoPos(i, value);
+        }
+    }
 }

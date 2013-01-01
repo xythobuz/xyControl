@@ -1,5 +1,5 @@
 /*
- * tasks.h
+ * test_servolib.c
  *
  * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,16 +27,41 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _tasks_h
-#define _tasks_h
+#include <avr/io.h>
+#include <stdint.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 
-typedef void (*Task)(void);
+#include <xycontrol.h>
+#include <xmem.h>
+#include <servos.h>
 
-// Adds another task that will cause func() to be called regularly
-uint8_t addTask(Task func); // 0 on success
-uint8_t removeTask(Task func); // 0 on success
-void tasks(void); // Call in your main loop!
+void ledShowNumber(uint8_t i) {
+    xyLed(4, 0);
+    if (i & 0x01) {
+        xyLed(0, 1);
+    }
+    if (i & 0x02) {
+        xyLed(1, 1);
+    }
+    if (i & 0x04) {
+        xyLed(2, 1);
+    }
+    if (i & 0x08) {
+        xyLed(3, 1);
+    }
+}
 
-uint8_t tasksRegistered(void);
+int main(void) {
+    xyInit();
+    servosInit();
 
-#endif
+    for (;;) {
+        servoPos(5, MAX);
+        _delay_ms(500);
+        servoPos(5, MIN);
+        _delay_ms(1500);
+    }
+
+    return 0;
+}
