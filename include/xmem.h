@@ -1,7 +1,7 @@
 /*
  * xmem.h
  *
- * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
+ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

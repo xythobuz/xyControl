@@ -1,7 +1,7 @@
 /*
  * config.h
  *
- * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
+ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,23 +29,6 @@
  */
 #ifndef _config_h
 #define _config_h
-
-//  -----------------
-// |     Servos      |
-//  -----------------
-
-#define SERVO0PORT PORTJ
-#define SERVO0DDR DDRJ
-#define SERVO0PIN PJ4
-#define SERVO1PORT PORTJ
-#define SERVO1DDR DDRJ
-#define SERVO1PIN PJ5
-#define SERVO2PORT PORTJ
-#define SERVO2DDR DDRJ
-#define SERVO2PIN PJ6
-#define SERVO3PORT PORTJ
-#define SERVO3DDR DDRJ
-#define SERVO3PIN PJ7
 
 //  -----------------
 // |     MMC/SD      |

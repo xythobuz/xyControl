@@ -1,7 +1,7 @@
 /*
- * servos.h
+ * gyro.h
  *
- * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
+ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,20 +27,25 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _gyro_h
+#define _gyro_h
+
+typedef enum {
+    r250DPS,
+    r500DPS,
+    r2000DPS,
+} GyroRange;
+
+#define GYRO_ADDRESS 0xD6 // 110101xr, x = 1
+
+uint8_t gyroInit(GyroRange r);
 
 /*
- * Prescaler 8:
- *      16MHz / 8 = 2MHz
- *
- *  ticks = time / (1 / freq)
- *      0,02s / (1/2000000) = 40000
- *      0,002s / (1/2000000) = 4000
- *      0,001s / (1/2000000) = 2000
+ * Bit 00-15: X-Value
+ * Bit 16-31: Y-Value
+ * Bit 32-47: Z-Value
+ * Bit 48-63: Zero
  */
-#define MIN 2000 // 2000 ------> 1ms
-#define MAX 4000 // 4000 ------> 2ms
-#define WIDTH 40000 // 40000 --> 20ms
-#define INIT (MIN - 125)
+uint64_t gyroRead(void);
 
-void servosInit(void);
-void servoPos(uint8_t servo, uint16_t value);
+#endif

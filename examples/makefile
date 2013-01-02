@@ -35,9 +35,9 @@ SRC += ../lib/spi.c
 SRC += ../lib/serial.c
 SRC += ../lib/xmem.c
 SRC += ../lib/xycontrol.c
-#SRC += ../lib/sd.c
 SRC += ../lib/tasks.c
-SRC += ../lib/servos.c
+SRC += ../lib/twi.c
+SRC += ../lib/gyro.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -55,7 +55,12 @@ CARGS += -DF_CPU=$(F_CPU)
 LINKER = -Wl,--relax
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-all: minimal.hex test_ram.hex test_servo.hex test_servolib.hex
+all: minimal.hex test_ram.hex test_servo.hex
+	$(RM) $(OBJ)
+	$(RM) *.o
+	$(RM) *.elf
+	$(RM) *.lss
+	$(RM) *.map
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)

@@ -1,7 +1,7 @@
 /*
  * xycontrol.c
  *
- * Copyright (c) 2012, Thomas Buck <xythobuz@me.com>
+ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,6 +35,7 @@
 #include <time.h>
 #include <xmem.h>
 #include <xycontrol.h>
+#include <twi.h>
 #include <config.h>
 
 void xyInit(void) {
@@ -49,6 +50,7 @@ void xyInit(void) {
 
     initSystemTimer();
     serialInit(BAUD(38400, F_CPU));
+    twiInit();
 }
 
 void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
