@@ -38,6 +38,7 @@ SRC += ../lib/xycontrol.c
 SRC += ../lib/tasks.c
 SRC += ../lib/twi.c
 SRC += ../lib/gyro.c
+SRC += ../lib/acc.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -66,7 +67,7 @@ all: minimal.hex test_ram.hex test_servo.hex
 	avr-gcc -c $< -o $@ $(CARGS)
 
 %.elf: %.o $(OBJ)
-	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
+	avr-gcc $(CARGS) -lm $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
 	avr-size --mcu=$(MCU) -C $@
 
 %.hex: %.elf

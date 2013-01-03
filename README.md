@@ -20,7 +20,8 @@ The data and bss memory sections, as well as the Stack are located in the intern
 
 ## Sensors
 
-+ Gyroscope L3GD20, Code roughly based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
++ Gyroscope L3GD20, code based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
++ Accelerometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
 
 ## Known Problems
 
