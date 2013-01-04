@@ -1,5 +1,5 @@
 /*
- * acc.c
+ * test_acc.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,59 +29,46 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <util/delay.h>
 
-#include <twi.h>
+#include <xycontrol.h>
+#include <serial.h>
 #include <acc.h>
 
-#define ACCREG_CTRL1 0x20
-#define ACCREG_CTRL4 0x23
-#define ACCREG_XL 0x28
-
-void accWriteRegister(uint8_t reg, uint8_t val) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiWrite(val);
-    twiStop();
-}
-
-uint8_t accInit(AccRange r) {
-    accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
-    switch (r) {
-        case r2G:
-            accWriteRegister(ACCREG_CTRL4, 0x00);
-            break;
-        case r4G:
-            accWriteRegister(ACCREG_CTRL4, 0x10);
-            break;
-        case r8G:
-            accWriteRegister(ACCREG_CTRL4, 0x20);
-            break;
-        case r16G:
-            accWriteRegister(ACCREG_CTRL4, 0x30);
-            break;
-    }
+// Out of lazyness, we use stdio
+int output(char c, FILE *f) {
+    serialWrite(c);
     return 0;
 }
 
-/*
- * Bit 00-15: X-Axis
- * Bit 16-31: Y-Axis
- * Bit 32-47: Z-Axis
- * Bit 48-63: Zero
- */
-uint64_t accRead(void) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(ACCREG_XL | (1 << 7)); // Auto Increment
-    twiRepStart(ACC_ADDRESS | TWI_READ);
-    uint8_t xl = twiReadAck();
-    uint8_t xh = twiReadAck();
-    uint8_t yl = twiReadAck();
-    uint8_t yh = twiReadAck();
-    uint8_t zl = twiReadAck();
-    uint8_t zh = twiReadNak();
+int input(FILE *f) {
+    while (!serialHasChar());
+    return serialGet();
+}
 
-    uint64_t res = xl | (xh << 8);
-    res |= (uint64_t)(yl | (yh << 8)) << 16;
-    res |= (uint64_t)(zl | (zh << 8)) << 32;
-    return res;
+int main(void) {
+    xyInit();
+    xyLed(4, 0);
+
+    fdevopen(&output, NULL); // stdout & stderr
+    fdevopen(NULL, &input); // stdin
+
+    serialWriteString("Accelerometer on 2G: ");
+    accInit(r2G);
+    serialWriteString("Initialized!\n");
+
+    for(;;) {
+        xyLed(2, 2);
+        xyLed(3, 2); // Toggle Green LEDs
+        uint64_t r = accRead();
+        uint16_t x = (r & 0xFFFF);
+        uint16_t y = ((r >> 16) & 0xFFFF);
+        uint16_t z = ((r >> 24) & 0xFFFF);
+        printf("x: %i  y: %i  z: %i\n", x, y, z);
+        _delay_ms(500);
+    }
+
+    return 0;
 }
