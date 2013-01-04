@@ -1,5 +1,5 @@
 /*
- * xycontrol.c
+ * test_uart.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,56 +29,22 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
-#include <avr/interrupt.h>
 
-#include <serial.h>
-#include <spi.h>
-#include <time.h>
-#include <xmem.h>
 #include <xycontrol.h>
-#include <twi.h>
-#include <config.h>
+#include <serial.h>
 
-void xyInit(void) {
-    xmemInit(); // Most important!
+int main(void) {
+    xyInit();
+    xyLed(4, 0);
 
-    // LEDs
-    LED0DDR |= (1 << LED0PIN);
-    LED1DDR |= (1 << LED1PIN);
-    LED2DDR |= (1 << LED2PIN);
-    LED3DDR |= (1 << LED3PIN);
-    xyLed(4, 1);
+    serialWriteString("xyControl UART Test.\n");
+    serialWriteString("Type something: ");
 
-    initSystemTimer();
-    serialInit(BAUD(38400, F_CPU));
-    twiInit();
-
-    sei();
-}
-
-void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
-    if (v == 0) {
-        *port &= ~(1 << pin);
-    } else if (v == 1) {
-        *port |= (1 << pin);
-    } else {
-        *port ^= (1 << pin);
+    for(;;) {
+        xyLed(4, 2);
+        while (!serialHasChar());
+        serialWrite(serialGet());
     }
-}
 
-void xyLed(uint8_t l, uint8_t v) {
-    if (l == 0) {
-        xyLedInternal(v, &LED0PORT, LED0PIN);
-    } else if (l == 1) {
-        xyLedInternal(v, &LED1PORT, LED1PIN);
-    } else if (l == 2) {
-        xyLedInternal(v, &LED2PORT, LED2PIN);
-    } else if (l == 3) {
-        xyLedInternal(v, &LED3PORT, LED3PIN);
-    } else {
-        xyLed(0, v);
-        xyLed(1, v);
-        xyLed(2, v);
-        xyLed(3, v);
-    }
+    return 0;
 }
