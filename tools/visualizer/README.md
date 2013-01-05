@@ -4,7 +4,7 @@ Visualizer is a small menu-driven Unix command line utility, utilizing GNUs [ncu
 It allows you to connect to an xyControl with an attached Inertial Measurement Unit, running the visualizer.hex firmware.
 Data from the IMU can then be displayed, more or less graphically.
 
-**Beware!** This is full of dirty hacks and probably breaks when using a terminal window not big enough...
+**Beware!** This is full of dirty hacks and probably breaks when using a terminal window not big enough. Also, I really just made this to try out ncurses. Use the Java App for nice Output.
 
 ## Protocol
 <table>

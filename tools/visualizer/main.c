@@ -37,8 +37,10 @@
 
 #include "serial.h"
 
+// Settings
 #define BAUD 38400
 
+// Messages
 #define VERSION      "0.1"
 #define HEADING      "Visualizer Version "VERSION // Is this really portable?
 #define SUBHEADING   "Press q to exit!"
@@ -46,15 +48,10 @@
 #define DISCONNECTED "Disconnected"
 #define HEADINGSIZE 4
 
-// Main Menu
+// Menu
 #define IDLE 0
 #define MAINREDRAW 1
 #define QUIT 2
-
-// Connect Menu
-//#define IDLE 0
-//#define MAINREDRAW 1
-//#define QUIT 2
 
 void printHeading(char *third);
 int selectMenu(void);
