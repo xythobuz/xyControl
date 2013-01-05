@@ -35,9 +35,10 @@ import java.awt.event.*;
 import javax.imageio.*;
 import java.io.*;
 
-public class Remote extends JFrame {
+public class Remote extends JFrame implements ActionListener {
 
-    private final String version = "1.0";
+    private final String preferredPort = "/dev/tty.usbserial-AE01539L";
+
     public int width = 420;
     public int height = 420;
     public int xOff = 10;
@@ -45,20 +46,73 @@ public class Remote extends JFrame {
 
     public SerialCommunicator serial;
 
+    private JComboBox selector;
+    private JButton connector;
+
+    private DataThread dt;
+
     public Remote() {
         super("FlightRemote");
 
         serial = new SerialCommunicator(this);
+        dt = new DataThread(serial, this);
 
         setBounds(xOff, yOff, width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        setResizable(false);
         Container c = getContentPane();
+
+        String[] ports = HelperUtility.getPorts();
+        if ((ports == null) || (ports.length == 0)) {
+            showError("No serial ports found!");
+            System.exit(1);
+        }
+        java.util.List<String> list = java.util.Arrays.asList(ports);
+        java.util.Collections.reverse(list);
+        ports = (String[])list.toArray();
+        for (int i = 0; i < ports.length; i++) {
+            if (ports[i].equals(preferredPort) && (i != 0)) {
+                String tmp = ports[0];
+                ports[0] = ports[i];
+                ports[i] = tmp;
+            }
+        }
+        selector = new JComboBox(ports);
+        selector.setBounds(10, 10, 245, 30);
+        add(selector);
+
+        connector = new JButton();
+        connector.setText("Connect");
+        connector.setBounds(265, 10, 145, 30);
+        connector.addActionListener(this);
+        add(connector);
 
         setVisible(true);
 
         // Shutdown Hook to close an opened serial port
         Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownThread(this), "Serial Closer"));
+    }
+
+    public void drawData(short data[]) {
+
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == connector) {
+            if (serial.isOpen()) {
+                dt.stopThread();
+                serial.closePort();
+                connector.setText("Connect");
+            } else {
+                if (!serial.openPort((String)selector.getSelectedItem())) {
+                    showError("Could not open " + (String)selector.getSelectedItem());
+                } else {
+                    //dt.startThread();
+                    connector.setText("Disconnect");
+                }
+            }
+        }
     }
 
     public void showError(String error) {
@@ -71,6 +125,62 @@ public class Remote extends JFrame {
 
     public static void main(String[] args) {
         Remote r = new Remote();
+    }
+}
+
+class DataThread extends Thread {
+    SerialCommunicator serial;
+    Remote remote;
+    boolean shouldRun = true;
+
+    DataThread(SerialCommunicator s, Remote r) {
+        serial = s;
+        remote = r;
+    }
+
+    public void stopThread() {
+        shouldRun = false;
+    }
+
+    public void startThread() {
+        shouldRun = true;
+        this.start();
+    }
+
+    public void run() {
+        int device = 0, axis = 0, count = 0;
+        int devMax = 2, axMax = 3, countMax = 2;
+        short devCode[] = {'a', 'm'};
+        short data[] = new short[devMax * axMax * countMax];
+
+        while (shouldRun && serial.isOpen()) {
+            if ((axis == 0) && (count == 0)) {
+                serial.writeChar(devCode[device]);
+            }
+
+            short tmp[] = serial.readData(1);
+            if (tmp == null) {
+                shouldRun = false;
+                remote.showError("Timeout while reading!");
+                return;
+            }
+            data[(axMax * countMax * device) + (countMax * axis) + count] = tmp[0];
+
+            count++;
+            if (count > (countMax - 1)) {
+                count = 0;
+                axis++;
+                if (axis > (axMax - 1)) {
+                    axis = 0;
+                    device++;
+                    if (device > (devMax - 1)) {
+                        device = 0;
+                        // Dataset finished
+                        remote.drawData(data);
+                    }
+                }
+            }
+        }
     }
 }
 
