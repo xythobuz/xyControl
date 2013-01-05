@@ -52,8 +52,9 @@ CARGS += -fshort-enums
 CARGS += -Wall -Wstrict-prototypes
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
+CARGS += -lm -lprintf_flt
 
-LINKER = -Wl,--relax,-u,vfprintf
+LINKER = -Wl,--relax,-u,vfprintf,-lm,-lprintf_flt
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
 all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyro.hex visualizer.hex
@@ -67,7 +68,7 @@ all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyr
 	avr-gcc -c $< -o $@ $(CARGS)
 
 %.elf: %.o $(OBJ)
-	avr-gcc $(CARGS) -lm -lprintf_flt $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
+	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
 	avr-size --mcu=$(MCU) -C $@
 
 %.hex: %.elf

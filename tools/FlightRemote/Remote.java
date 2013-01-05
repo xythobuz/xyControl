@@ -177,10 +177,6 @@ public class Remote extends JFrame implements ActionListener {
         log("Error: " + error);
     }
 
-    public void showInfo(String info) {
-        JOptionPane.showMessageDialog(null, info, "Info", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     public static void main(String[] args) {
         Remote r = new Remote();
     }
@@ -208,7 +204,7 @@ class DataThread extends Thread {
     public void run() {
         int device = 0, axis = 0, count = 0;
         int devMax = 2, axMax = 3, countMax = 2;
-        short devCode[] = {0x61, 0x67, 0x6D}; // 'a', 'g', 'm'
+        short devCode[] = {'a', 'g', 'm'};
         short data[] = new short[devMax * axMax * countMax];
 
         long timeStart = System.currentTimeMillis();
@@ -243,7 +239,6 @@ class DataThread extends Thread {
                     device++;
                     if (device > (devMax - 1)) {
                         device = 0;
-                        // Dataset finished
                         remote.drawData(data);
                     }
                 }

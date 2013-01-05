@@ -31,6 +31,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include <util/delay.h>
 
 #include <xycontrol.h>
@@ -55,17 +56,27 @@ int main(void) {
     fdevopen(&output, NULL); // stdout & stderr
     fdevopen(NULL, &input); // stdin
 
-    serialWriteString("Accelerometer on 2G: ");
     accInit(r2G);
-    serialWriteString("Initialized!\n");
 
     for(;;) {
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
         Vector v;
         accRead(&v);
-        printf("x: %f  y: %f  z: %f\n", (double)v.x, (double)v.y, (double)v.z);
-        printf("x: %i  y: %i  z: %i\n", v.a, v.b, v.c);
+
+        double x = (double)v.x;
+        double y = (double)v.y;
+        double z = (double)v.z;
+
+        double pitch = atan(x / hypot(y, z));
+        double roll = atan(y / hypot(x, z));
+
+        // Convert Radians to Degrees
+        pitch = (pitch * 180) / M_PI;
+        roll = (roll * 180) / M_PI;
+
+        printf("Pitch: %f\nRoll: %f\n\n", pitch, roll);
+
         _delay_ms(500);
     }
 
