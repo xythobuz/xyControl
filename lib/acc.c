@@ -63,13 +63,7 @@ uint8_t accInit(AccRange r) {
     return 0;
 }
 
-/*
- * Bit 00-15: X-Axis
- * Bit 16-31: Y-Axis
- * Bit 32-47: Z-Axis
- * Bit 48-63: Zero
- */
-uint64_t accRead(void) {
+void accRead(Vector *v) {
     twiStart(ACC_ADDRESS | TWI_WRITE);
     twiWrite(ACCREG_XL | (1 << 7)); // Auto Increment
     twiRepStart(ACC_ADDRESS | TWI_READ);
@@ -80,8 +74,10 @@ uint64_t accRead(void) {
     uint8_t zl = twiReadAck();
     uint8_t zh = twiReadNak();
 
-    uint64_t res = xl | (xh << 8);
-    res |= (uint64_t)(yl | (yh << 8)) << 16;
-    res |= (uint64_t)(zl | (zh << 8)) << 32;
-    return res;
+    v->a = (int16_t)(xh << 8 | xl);
+    v->b = (int16_t)(yh << 8 | yl);
+    v->c = (int16_t)(zh << 8 | zl);
+    v->x = v->a >> 4;
+    v->y = v->b >> 4;
+    v->z = v->c >> 4;
 }

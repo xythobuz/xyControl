@@ -30,6 +30,8 @@
 #ifndef _acc_h
 #define _acc_h
 
+#include <xycontrol.h>
+
 typedef enum {
     r2G, // +- 2G
     r4G, // +- 4G
@@ -40,13 +42,6 @@ typedef enum {
 #define ACC_ADDRESS 0x32 // 0011001r
 
 uint8_t accInit(AccRange r);
-
-/*
- * Bit 00-15: X-Axis
- * Bit 16-31: Y-Axis
- * Bit 32-47: Z-Axis
- * Bit 48-63: Zero
- */
-uint64_t accRead(void);
+void accRead(Vector *v);
 
 #endif

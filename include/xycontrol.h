@@ -30,6 +30,11 @@
 #ifndef _xycontrol_h
 #define _xycontrol_h
 
+typedef struct {
+    float x, y, z;
+    int16_t a, b, c;
+} Vector;
+
 void xyInit(void);
 
 // l: LED No. 0 - 3

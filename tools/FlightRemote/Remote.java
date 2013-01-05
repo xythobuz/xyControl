@@ -55,6 +55,8 @@ public class Remote extends JFrame implements ActionListener {
     public JTextArea logArea;
     public JScrollPane logPane;
 
+    public JProgressBar[] visuals;
+
     public Remote() {
         super("FlightRemote");
 
@@ -65,7 +67,6 @@ public class Remote extends JFrame implements ActionListener {
         yOff -= height / 2;
 
         serial = new SerialCommunicator(this);
-        dt = new DataThread(serial, this);
 
         setBounds(xOff, yOff, width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,7 +104,7 @@ public class Remote extends JFrame implements ActionListener {
 
         logF = new JFrame("Log");
         logF.setLayout(new FlowLayout());
-        logArea = new JTextArea("Initialized FlightRemote!", 23, 25);
+        logArea = new JTextArea("Initialized FlightRemote!", 23, 30);
         logArea.setLineWrap(true);
         logPane = new JScrollPane(logArea);
         logPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -113,11 +114,39 @@ public class Remote extends JFrame implements ActionListener {
         logF.setLocation(xOff + width + 10, yOff + 10);
         logF.setVisible(true);
 
+        visuals = new JProgressBar[6];
+        for (int i = 0; i < visuals.length; i++) {
+            visuals[i] = new JProgressBar(-32768, 32767);
+            visuals[i].setValue(0);
+            visuals[i].setStringPainted(true);
+            int y = 50 + (40 * i);
+            if (i >= 3) {
+                y += 15;
+            }
+            visuals[i].setBounds(10, y, 400, 30);
+            add(visuals[i]);
+        }
+
         setVisible(true);
     }
 
     public void drawData(short data[]) {
+        short ax = (short)(((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
+        short ay = (short)(((data[2] & 0xFF) << 8) | (data[3] & 0xFF));
+        short az = (short)(((data[4] & 0xFF) << 8) | (data[5] & 0xFF));
+        //short gx = (short)(((data[6] & 0xFF) << 8) | (data[7] & 0xFF));
+        //short gy = (short)(((data[8] & 0xFF) << 8) | (data[9] & 0xFF));
+        //short gz = (short)(((data[10] & 0xFF) << 8) | (data[11] & 0xFF));
 
+        log(ax + " " + ay + " " + az);
+        //log(gx + " " + gy + " " + gz);
+
+        visuals[0].setValue(ax); visuals[0].setString("" + ax);
+        visuals[1].setValue(ay); visuals[1].setString("" + ay);
+        visuals[2].setValue(az); visuals[2].setString("" + az);
+        //visuals[3].setValue(gx); visuals[3].setString("" + gx);
+        //visuals[4].setValue(gy); visuals[4].setString("" + gy);
+        //visuals[5].setValue(gz); visuals[5].setString("" + gz);
     }
 
     public void log(String l) {
@@ -129,6 +158,7 @@ public class Remote extends JFrame implements ActionListener {
         if (e.getSource() == connector) {
             if (serial.isOpen()) {
                 dt.stopThread();
+                while(!dt.isDone());
                 serial.closePort();
                 connector.setText("Connect");
                 log("Disconnected!");
@@ -136,7 +166,8 @@ public class Remote extends JFrame implements ActionListener {
                 if (!serial.openPort((String)selector.getSelectedItem())) {
                     showError("Could not open port!");
                 } else {
-                    dt.startThread();
+                    dt = new DataThread(serial, this);
+                    dt.start();
                     connector.setText("Disconnect");
                     log("Connected!");
                 }
@@ -159,38 +190,44 @@ public class Remote extends JFrame implements ActionListener {
 }
 
 class DataThread extends Thread {
-    SerialCommunicator serial;
-    Remote remote;
-    boolean shouldRun = true;
+    private SerialCommunicator serial;
+    private Remote remote;
+    private volatile boolean shouldRun = true;
+    private volatile boolean done = false;
 
     DataThread(SerialCommunicator s, Remote r) {
         serial = s;
         remote = r;
     }
 
+    public boolean isDone() {
+        return done;
+    }
+
     public void stopThread() {
         shouldRun = false;
     }
 
-    public void startThread() {
-        shouldRun = true;
-        this.start();
-    }
-
     public void run() {
         int device = 0, axis = 0, count = 0;
-        int devMax = 2, axMax = 3, countMax = 2;
-        short devCode[] = {'a', 'm'};
+        int devMax = 1, axMax = 3, countMax = 2;
+        short devCode[] = {0x61, 0x67, 0x6D}; // 'a', 'g', 'm'
         short data[] = new short[devMax * axMax * countMax];
 
         while (shouldRun && serial.isOpen()) {
             if ((axis == 0) && (count == 0)) {
-                serial.writeChar(devCode[device]);
+                if (!serial.writeChar(devCode[device])) {
+                    shouldRun = false;
+                    done = true;
+                    remote.showError("Error while writing!");
+                    return;
+                }
             }
 
             short tmp[] = serial.readData(1);
             if (tmp == null) {
                 shouldRun = false;
+                done = true;
                 remote.showError("Timeout while reading!");
                 return;
             }
@@ -211,6 +248,7 @@ class DataThread extends Thread {
                 }
             }
         }
+        done = true;
     }
 }
 

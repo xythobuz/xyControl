@@ -33,14 +33,14 @@
 #include <xycontrol.h>
 #include <serial.h>
 #include <acc.h>
-#include <gyro.h>
 
 int main(void) {
     xyInit();
     xyLed(4, 0);
+    xyLed(0, 1);
+    xyLed(2, 1);
 
-    accInit(r8G);
-    gyroInit(r500DPS);
+    accInit(r2G);
 
     for(;;) {
         xyLed(2, 2);
@@ -48,25 +48,20 @@ int main(void) {
 
         while (!serialHasChar());
         char c = serialGet();
-
-        uint64_t r;
+        Vector v;
         if (c == 'a') {
-            r = accRead();
-        } else if (c == 'g') {
-            r = gyroRead();
+            accRead(&v);
         } else {
             xyLed(0, 2);
             xyLed(1, 2); // Toggle Red LEDs
         }
 
-        if ((c == 'a') || (c == 'g')) {
-            serialWrite((r >> 8) & 0xFF); // Xh
-            serialWrite(r & 0xFF); // Xl
-            serialWrite((r >> 24) & 0xFF); // Yh
-            serialWrite((r >> 16) & 0xFF); // Yl
-            serialWrite((r >> 40) & 0xFF); // Zh
-            serialWrite((r >> 32) & 0xFF); // Zl
-        }
+        serialWrite(((*((uint16_t *)(&v.a))) & 0xFF00) >> 8);
+        serialWrite((*((uint16_t *)(&v.a))) & 0xFF);
+        serialWrite(((*((uint16_t *)(&v.b))) & 0xFF00) >> 8);
+        serialWrite((*((uint16_t *)(&v.b))) & 0xFF);
+        serialWrite(((*((uint16_t *)(&v.c))) & 0xFF00) >> 8);
+        serialWrite((*((uint16_t *)(&v.c))) & 0xFF);
     }
 
     return 0;

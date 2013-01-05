@@ -86,12 +86,7 @@ class SerialCommunicator {
         int errorCount = 10;
         short[] dat = new short[1];
         dat[0] = (short)c;
-        while (errorCount > 0) {
-            if (writeData(dat, 1)) {
-                return true;
-            }
-        }
-        return false;
+        return writeData(dat, 1);
     }
 
     public short[] readData(int length) {
