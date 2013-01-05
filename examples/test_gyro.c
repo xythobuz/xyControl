@@ -48,24 +48,48 @@ int input(FILE *f) {
     return serialGet();
 }
 
+// Runge-Kutta Integration
+double integrate(double last, double v0, double v1, double v2, double v3) {
+    double result = last + ((v3 + (2 * v2) + (2 * v1) + v0) / 6);
+    return result;
+}
+
+// Take a look at this: http://tom.pycke.be/mav/70/
+// First, we normalize the data (that's the "+ 7").
+// Then, we integrate it using the Runge-Kutta Integrator.
+// Last, we scale it ("/ 15").
+// Notice the very large drift without accelerometer compensation!
+
 int main(void) {
     xyInit();
+    Vector v[4];
     xyLed(4, 0);
 
     fdevopen(&output, NULL); // stdout & stderr
     fdevopen(NULL, &input); // stdin
 
-    serialWriteString("Gyroscope on 250DPS: ");
     gyroInit(r250DPS);
-    serialWriteString("Initialized!\n");
+    gyroRead(&v[2]);
+    gyroRead(&v[1]);
+    gyroRead(&v[0]);
+
+    double xResult = 0;
 
     for(;;) {
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
-        Vector v;
-        gyroRead(&v);
-        printf("x: %f  y: %f  z: %f\n", (double)v.x, (double)v.y, (double)v.z);
-        printf("x: %i  y: %i  z: %i\n", v.a, v.b, v.c);
+
+        v[3] = v[2];
+        v[2] = v[1];
+        v[1] = v[0];
+        gyroRead(&v[0]);
+
+        // Integrate on X-Axis
+        xResult = integrate(xResult, v[0].x + 7, v[0].x + 7, v[0].x + 7, v[0].x + 7);
+
+        printf("Data:  %f\n", (double)(v[0].x + 7));
+        printf("Angle: %f\n", xResult / 15);
+
         _delay_ms(500);
     }
 
