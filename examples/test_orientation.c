@@ -1,5 +1,5 @@
 /*
- * test_gyro.c
+ * test_orientation.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -36,6 +36,7 @@
 #include <xycontrol.h>
 #include <serial.h>
 #include <gyro.h>
+#include <acc.h>
 
 // Out of lazyness, we use stdio
 int output(char c, FILE *f) {
@@ -48,49 +49,63 @@ int input(FILE *f) {
     return serialGet();
 }
 
-// Runge-Kutta Integration
-double integrate(double last, double v0, double v1, double v2, double v3) {
-    double result = last + ((v3 + (2 * v2) + (2 * v1) + v0) / 6);
-    return result;
+// Take a look at this: http://tom.pycke.be/mav/70/
+// First, we normalize the data.
+// Then, we integrate it using the Runge-Kutta Integrator.
+// Last, we scale it.
+// Notice the very large drift without accelerometer compensation!
+#define NORMALIZE 7 // to zero
+#define NORMVAL 550 // Gyro reads 550...
+#define NORMDPS 90 // ...when 90 DPS are applied.
+#define NORMFACTOR (NORMVAL / NORMDPS)
+
+void normalize(Vector *v) {
+    v->x = ((v->x + NORMALIZE) / NORMFACTOR);
+    v->y = ((v->y + NORMALIZE) / NORMFACTOR);
+    v->z = ((v->z + NORMALIZE) / NORMFACTOR);
 }
 
-// Take a look at this: http://tom.pycke.be/mav/70/
-// First, we normalize the data (that's the "+ 7").
-// Then, we integrate it using the Runge-Kutta Integrator.
-// Last, we scale it ("/ 15").
-// Notice the very large drift without accelerometer compensation!
+double complementary(double angle, double rate, double last) {
+    double timeConstant = 1.0;
+    double dt = 0.2;
+    return ((((angle - last) * square(timeConstant) * dt) + ((angle - last) * 2 * timeConstant) + rate) * dt) + angle;
+}
 
 int main(void) {
     xyInit();
-    Vector v[4];
+    Vector v;
     xyLed(4, 0);
 
     fdevopen(&output, NULL); // stdout & stderr
     fdevopen(NULL, &input); // stdin
 
     gyroInit(r250DPS);
-    gyroRead(&v[2]);
-    gyroRead(&v[1]);
-    gyroRead(&v[0]);
+    accInit(r2G);
 
-    double xResult = 0;
+    double filteredAngle = 0;
+    double filteredPitch = 0;
 
     for(;;) {
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
 
-        v[3] = v[2];
-        v[2] = v[1];
-        v[1] = v[0];
-        gyroRead(&v[0]);
+        gyroRead(&v);
+        normalize(&v);
 
-        // Integrate on X-Axis
-        xResult = integrate(xResult, v[0].x + 7, v[1].x + 7, v[2].x + 7, v[3].x + 7);
+        Vector a;
+        accRead(&a);
+        double roll = atan((double)a.y / hypot((double)a.x, (double)a.z));
+        double pitch = atan((double)a.x / hypot((double)a.y, (double)a.z));
+        roll = (roll * 180) / M_PI;
+        pitch = (pitch * 180) / M_PI;
+        filteredAngle = complementary(roll, v.x, filteredAngle);
+        filteredPitch = complementary(pitch, v.y, filteredPitch);
 
-        printf("Data:  %f\n", (double)(v[0].x + 7));
-        printf("Angle: %f\n", xResult / 15);
+        printf("Roll:  %f\n", filteredAngle);
+        printf("Pitch: %f\n", filteredPitch);
+        printf("\n");
 
-        _delay_ms(500);
+        _delay_ms(200);
     }
 
     return 0;
