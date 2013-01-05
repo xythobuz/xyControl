@@ -51,6 +51,8 @@ int main(void) {
         Vector v;
         if (c == 'a') {
             accRead(&v);
+        } else if (c == 'g') {
+            gyroRead(&v);
         } else {
             xyLed(0, 2);
             xyLed(1, 2); // Toggle Red LEDs

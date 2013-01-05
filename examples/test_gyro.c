@@ -62,11 +62,10 @@ int main(void) {
     for(;;) {
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
-        uint64_t r = gyroRead();
-        uint16_t x = (r & 0xFFFF);
-        uint16_t y = ((r >> 16) & 0xFFFF);
-        uint16_t z = ((r >> 24) & 0xFFFF);
-        printf("x: %i  y: %i  z: %i\n", x, y, z);
+        Vector v;
+        gyroRead(&v);
+        printf("x: %f  y: %f  z: %f\n", (double)v.x, (double)v.y, (double)v.z);
+        printf("x: %i  y: %i  z: %i\n", v.a, v.b, v.c);
         _delay_ms(500);
     }
 

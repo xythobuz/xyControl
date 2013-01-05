@@ -30,6 +30,8 @@
 #ifndef _gyro_h
 #define _gyro_h
 
+#include <xycontrol.h>
+
 typedef enum {
     r250DPS,
     r500DPS,
@@ -39,13 +41,6 @@ typedef enum {
 #define GYRO_ADDRESS 0xD6 // 110101xr, x = 1
 
 uint8_t gyroInit(GyroRange r);
-
-/*
- * Bit 00-15: X-Value
- * Bit 16-31: Y-Value
- * Bit 32-47: Z-Value
- * Bit 48-63: Zero
- */
-uint64_t gyroRead(void);
+void gyroRead(Vector *v);
 
 #endif

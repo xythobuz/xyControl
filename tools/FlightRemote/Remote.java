@@ -134,19 +134,16 @@ public class Remote extends JFrame implements ActionListener {
         short ax = (short)(((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
         short ay = (short)(((data[2] & 0xFF) << 8) | (data[3] & 0xFF));
         short az = (short)(((data[4] & 0xFF) << 8) | (data[5] & 0xFF));
-        //short gx = (short)(((data[6] & 0xFF) << 8) | (data[7] & 0xFF));
-        //short gy = (short)(((data[8] & 0xFF) << 8) | (data[9] & 0xFF));
-        //short gz = (short)(((data[10] & 0xFF) << 8) | (data[11] & 0xFF));
-
-        log(ax + " " + ay + " " + az);
-        //log(gx + " " + gy + " " + gz);
+        short gx = (short)(((data[6] & 0xFF) << 8) | (data[7] & 0xFF));
+        short gy = (short)(((data[8] & 0xFF) << 8) | (data[9] & 0xFF));
+        short gz = (short)(((data[10] & 0xFF) << 8) | (data[11] & 0xFF));
 
         visuals[0].setValue(ax); visuals[0].setString("" + ax);
         visuals[1].setValue(ay); visuals[1].setString("" + ay);
         visuals[2].setValue(az); visuals[2].setString("" + az);
-        //visuals[3].setValue(gx); visuals[3].setString("" + gx);
-        //visuals[4].setValue(gy); visuals[4].setString("" + gy);
-        //visuals[5].setValue(gz); visuals[5].setString("" + gz);
+        visuals[3].setValue(gx); visuals[3].setString("" + gx);
+        visuals[4].setValue(gy); visuals[4].setString("" + gy);
+        visuals[5].setValue(gz); visuals[5].setString("" + gz);
     }
 
     public void log(String l) {
@@ -210,9 +207,13 @@ class DataThread extends Thread {
 
     public void run() {
         int device = 0, axis = 0, count = 0;
-        int devMax = 1, axMax = 3, countMax = 2;
+        int devMax = 2, axMax = 3, countMax = 2;
         short devCode[] = {0x61, 0x67, 0x6D}; // 'a', 'g', 'm'
         short data[] = new short[devMax * axMax * countMax];
+
+        long timeStart = System.currentTimeMillis();
+        int timeCounter = 0;
+        boolean timeDone = false;
 
         while (shouldRun && serial.isOpen()) {
             if ((axis == 0) && (count == 0)) {
@@ -245,6 +246,14 @@ class DataThread extends Thread {
                         // Dataset finished
                         remote.drawData(data);
                     }
+                }
+            }
+
+            if (!timeDone) {
+                timeCounter++;
+                if ((System.currentTimeMillis() - timeStart) >= 1000) {
+                    remote.log("Gathering " + timeCounter + " packets per second.");
+                    timeDone = true;
                 }
             }
         }

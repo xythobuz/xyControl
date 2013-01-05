@@ -34,23 +34,9 @@
 #include <twi.h>
 #include <gyro.h>
 
-#define GYRO_ID 0xD4
 #define GYROREG_CTRL1 0x20
 #define GYROREG_CTRL4 0x23
 #define GYROREG_OUTXL 0x28
-#define GYROREG_WHOAMI 0x0F
-
-GyroRange range;
-
-uint8_t gyroReadByte(uint8_t reg) {
-    twiStart(GYRO_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiRepStart(GYRO_ADDRESS | TWI_READ);
-    // uint8_t val = twiReadNak();
-    uint8_t val = twiReadAck();
-    twiStop();
-    return val;
-}
 
 void gyroWriteByte(uint8_t reg, uint8_t val) {
     twiStart(GYRO_ADDRESS | TWI_WRITE);
@@ -60,12 +46,8 @@ void gyroWriteByte(uint8_t reg, uint8_t val) {
 }
 
 uint8_t gyroInit(GyroRange r) {
-    range = r;
-    if (gyroReadByte(GYROREG_WHOAMI) != GYRO_ID) {
-        return 1;
-    }
     gyroWriteByte(GYROREG_CTRL1, 0x0F);
-    switch (range) {
+    switch (r) {
         case r250DPS:
             gyroWriteByte(GYROREG_CTRL4, 0x00);
             break;
@@ -79,13 +61,7 @@ uint8_t gyroInit(GyroRange r) {
     return 0;
 }
 
-/*
- * Bit 00-15: X-Value
- * Bit 16-31: Y-Value
- * Bit 32-47: Z-Value
- * Bit 48-63: Zero
- */
-uint64_t gyroRead(void) {
+void gyroRead(Vector *v) {
     twiStart(GYRO_ADDRESS | TWI_WRITE);
     twiWrite(GYROREG_OUTXL | 0x80); // Auto Increment
     twiRepStart(GYRO_ADDRESS | TWI_READ);
@@ -94,44 +70,12 @@ uint64_t gyroRead(void) {
     uint8_t yl = twiReadAck();
     uint8_t yh = twiReadAck();
     uint8_t zl = twiReadAck();
-    // uint8_t zh = twiReadNak();
-    uint8_t zh = twiReadAck();
-    twiStop();
+    uint8_t zh = twiReadNak();
 
-    uint32_t x = (xl | (xh << 8));
-    uint32_t y = (yl | (yh << 8));
-    uint32_t z = (zl | (zh << 8));
-
-    switch (range) {
-        case r250DPS:
-            x *= 22;
-            x = (x >> 8); // x /= 256
-            y *= 22;
-            y = (y >> 8); // y /= 256
-            z *= 22;
-            z = (z >> 8); // z /= 256
-            break;
-        case r500DPS:
-            x *= 45;
-            x = (x >> 8); // x /= 256
-            y *= 45;
-            y = (y >> 8); // y /= 256
-            z *= 45;
-            z = (z >> 8); // z /= 256
-            break;
-        case r2000DPS:
-            x *= 18;
-            x = (x >> 8); // x /= 256
-            y *= 18;
-            y = (y >> 8); // y /= 256
-            z *= 18;
-            z = (z >> 8); // z /= 256
-            break;
-    }
-
-    uint64_t result = (x & 0xFFFF);
-    result |= ((y & 0xFFFF) << 16);
-    result |= ((uint64_t)(z & 0xFFFF) << 32);
-
-    return result;
+    v->a = (int16_t)(xh << 8 | xl);
+    v->b = (int16_t)(yh << 8 | yl);
+    v->c = (int16_t)(zh << 8 | zl);
+    v->x = v->a >> 4;
+    v->y = v->b >> 4;
+    v->z = v->c >> 4;
 }
