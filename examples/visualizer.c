@@ -1,5 +1,5 @@
 /*
- * serial.h
+ * visualizer.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,19 +27,47 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <avr/io.h>
+#include <stdint.h>
 
-// Open the serial port. Return file handle on success, -1 on error.
-int serialOpen(char *port, int baud, int flowcontrol, int vmin, int vtime);
-void serialClose(int fd);
+#include <xycontrol.h>
+#include <serial.h>
+#include <acc.h>
+#include <gyro.h>
 
-int serialHasChar(int fd); // Returns 1 if char is available, 0 if not.
+int main(void) {
+    xyInit();
+    xyLed(4, 0);
 
-void serialWriteChar(int fd, char c);
-void serialReadChar(int fd, char *c);
-void serialWriteString(int fd, char *s);
+    accInit(r8G);
+    gyroInit(r500DPS);
 
-int serialReadRaw(int fd, char *d, int len);
-int serialWriteRaw(int fd, char *d, int len);
+    for(;;) {
+        xyLed(2, 2);
+        xyLed(3, 2); // Toggle Green LEDs
 
-// String array with serial port names. Free after use!
-char** getSerialPorts(void);
+        while (!serialHasChar());
+        char c = serialGet();
+
+        uint64_t r;
+        if (c == 'a') {
+            r = accRead();
+        } else if (c == 'g') {
+            r = gyroRead();
+        } else {
+            xyLed(0, 2);
+            xyLed(1, 2); // Toggle Red LEDs
+        }
+
+        if ((c == 'a') || (c == 'g')) {
+            serialWrite((r >> 8) & 0xFF); // Xh
+            serialWrite(r & 0xFF); // Xl
+            serialWrite((r >> 24) & 0xFF); // Yh
+            serialWrite((r >> 16) & 0xFF); // Yl
+            serialWrite((r >> 40) & 0xFF); // Zh
+            serialWrite((r >> 32) & 0xFF); // Zl
+        }
+    }
+
+    return 0;
+}

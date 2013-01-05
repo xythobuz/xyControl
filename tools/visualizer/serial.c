@@ -46,7 +46,7 @@
 #define XON 0x11
 #define XOFF 0x13
 
-int serialOpen(char *port, int baud, int flowcontrol) {
+int serialOpen(char *port, int baud, int flowcontrol, int vmin, int vtime) {
     int fd;
     struct termios options;
 
@@ -107,8 +107,8 @@ int serialOpen(char *port, int baud, int flowcontrol) {
     options.c_lflag |= IEXTEN; // Extended input character processing
 
     // Special characters
-    options.c_cc[VMIN] = 0; // Always return...
-    options.c_cc[VTIME] = 0; // ..immediately from read()
+    options.c_cc[VMIN] = vmin;
+    options.c_cc[VTIME] = vtime;
     options.c_cc[VSTOP] = XOFF;
     options.c_cc[VSTART] = XON;
 

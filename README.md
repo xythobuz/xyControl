@@ -6,6 +6,10 @@ Also included is a switched power supply as well as a USB connection to communic
 All I/O pins, including 3 additional UARTs, SPI, I2C (TWI) and 16 ADC Channels, are accessible via standard 2.54mm connectors.
 The Board can be powered from an external stable 5V supply, USB or 7V or more, via the on-board switched power supply. All voltage sources can be selected via jumpers.
 
+## Known Problems
+
+In the current PCB layout, the SD-Card holder is rotated 180 degrees. This prevents an SD-Card from being inserted!
+
 # Examples
 
 You can compile each example into it's own hex, using "make all". To compile just one example, call make with the examples filename, ending in .hex instead of .c. So, to create minimal.hex from minimal.c and the library, call "make minimal.hex".
@@ -23,13 +27,13 @@ The data and bss memory sections, as well as the Stack are located in the intern
 + Gyroscope L3GD20, code based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
 + Accelerometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
 
-## Known Problems
-
-In the current PCB layout, the SD-Card holder is rotated 180 degrees. This prevents an SD-Card from being inserted!
-
-## Software used
+# Software used
 
  + [Peter Fleurys TWI Library](http://homepage.hispeed.ch/peterfleury/avr-software.html)
+
+# PC Tools
+
+You can find some PC Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
 
 # License
 
