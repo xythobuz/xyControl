@@ -51,8 +51,18 @@ public class Remote extends JFrame implements ActionListener {
 
     private DataThread dt;
 
+    public JFrame logF;
+    public JTextArea logArea;
+    public JScrollPane logPane;
+
     public Remote() {
         super("FlightRemote");
+
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        xOff = gd.getDisplayMode().getWidth() / 2;
+        xOff -= width / 2;
+        yOff = gd.getDisplayMode().getHeight() / 2;
+        yOff -= height / 2;
 
         serial = new SerialCommunicator(this);
         dt = new DataThread(serial, this);
@@ -88,14 +98,31 @@ public class Remote extends JFrame implements ActionListener {
         connector.addActionListener(this);
         add(connector);
 
-        setVisible(true);
-
         // Shutdown Hook to close an opened serial port
         Runtime.getRuntime().addShutdownHook(new Thread(new ShutdownThread(this), "Serial Closer"));
+
+        logF = new JFrame("Log");
+        logF.setLayout(new FlowLayout());
+        logArea = new JTextArea("Initialized FlightRemote!", 23, 25);
+        logArea.setLineWrap(true);
+        logPane = new JScrollPane(logArea);
+        logPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        logF.add(logPane);
+        logF.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        logF.pack();
+        logF.setLocation(xOff + width + 10, yOff + 10);
+        logF.setVisible(true);
+
+        setVisible(true);
     }
 
     public void drawData(short data[]) {
 
+    }
+
+    public void log(String l) {
+        logArea.append("\n" + l);
+        logArea.setCaretPosition(logArea.getDocument().getLength());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -104,23 +131,26 @@ public class Remote extends JFrame implements ActionListener {
                 dt.stopThread();
                 serial.closePort();
                 connector.setText("Connect");
+                log("Disconnected!");
             } else {
                 if (!serial.openPort((String)selector.getSelectedItem())) {
-                    showError("Could not open " + (String)selector.getSelectedItem());
+                    showError("Could not open port!");
                 } else {
-                    //dt.startThread();
+                    dt.startThread();
                     connector.setText("Disconnect");
+                    log("Connected!");
                 }
             }
         }
     }
 
     public void showError(String error) {
-        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        log("Error: " + error);
     }
 
     public void showInfo(String info) {
-        JOptionPane.showMessageDialog(this, info, "Info", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, info, "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
