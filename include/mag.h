@@ -1,5 +1,5 @@
 /*
- * visualizer.c
+ * mag.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,54 +27,24 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
-#include <stdint.h>
+#ifndef _mag_h
+#define _mag_h
 
 #include <xycontrol.h>
-#include <serial.h>
-#include <acc.h>
-#include <gyro.h>
-#include <mag.h>
 
-int main(void) {
-    xyInit();
-    xyLed(4, 0);
-    xyLed(0, 1);
-    xyLed(2, 1);
+typedef enum {
+    r1g3 = 1, // +- 1.3 gauss
+    r1g9 = 2, // +- 1.9 gauss
+    r2g5 = 3, // +- 2.5 gauss
+    r4g = 4, // +- 4 gauss
+    r4g7 = 5, // +- 4.7 gauss
+    r5g6 = 6, // +- 5.6 gauss
+    r8g1 = 7, // +- 8.1 gauss
+} MagRange;
 
-    accInit(r2G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
+#define MAG_ADDRESS 0x3C
 
-    for(;;) {
-        xyLed(2, 2);
-        xyLed(3, 2); // Toggle Green LEDs
+uint8_t magInit(MagRange r);
+void magRead(Vector *v);
 
-        while (!serialHasChar());
-        char c = serialGet();
-        Vector v;
-        if (c == 'a') {
-            accRead(&v);
-        } else if (c == 'g') {
-            gyroRead(&v);
-        } else if (c == 'm') {
-            magRead(&v);
-        } else {
-            xyLed(0, 2);
-            xyLed(1, 2); // Toggle Red LEDs
-        }
-
-        int16_t x = v.x;
-        int16_t y = v.y;
-        int16_t z = v.z;
-
-        serialWrite(((*((uint16_t *)(&x))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&x))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&y))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&y))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&z))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&z))) & 0xFF);
-    }
-
-    return 0;
-}
+#endif

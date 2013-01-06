@@ -1,5 +1,5 @@
 /*
- * visualizer.c
+ * mag.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -30,51 +30,41 @@
 #include <avr/io.h>
 #include <stdint.h>
 
-#include <xycontrol.h>
-#include <serial.h>
-#include <acc.h>
-#include <gyro.h>
+#include <twi.h>
 #include <mag.h>
 
-int main(void) {
-    xyInit();
-    xyLed(4, 0);
-    xyLed(0, 1);
-    xyLed(2, 1);
+#define MAGREG_CRA 0x00
+#define MAGREG_CRB 0x01
+#define MAGREG_MR 0x02
+#define MAGREG_XH 0x03
+#define MAGREG_TEMPH 0x31
+#define MAGREG_TEMPL 0x32
 
-    accInit(r2G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
+void magWriteRegister(uint8_t reg, uint8_t val) {
+    twiStart(MAG_ADDRESS | TWI_WRITE);
+    twiWrite(reg);
+    twiWrite(val);
+    twiStop();
+}
 
-    for(;;) {
-        xyLed(2, 2);
-        xyLed(3, 2); // Toggle Green LEDs
-
-        while (!serialHasChar());
-        char c = serialGet();
-        Vector v;
-        if (c == 'a') {
-            accRead(&v);
-        } else if (c == 'g') {
-            gyroRead(&v);
-        } else if (c == 'm') {
-            magRead(&v);
-        } else {
-            xyLed(0, 2);
-            xyLed(1, 2); // Toggle Red LEDs
-        }
-
-        int16_t x = v.x;
-        int16_t y = v.y;
-        int16_t z = v.z;
-
-        serialWrite(((*((uint16_t *)(&x))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&x))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&y))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&y))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&z))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&z))) & 0xFF);
-    }
-
+uint8_t magInit(MagRange r) {
+    magWriteRegister(MAGREG_MR, 0x00); // Continuous Conversion
+    magWriteRegister(MAGREG_CRB, (r << 5)); // Set Range
     return 0;
+}
+
+void magRead(Vector *v) {
+    twiStart(MAG_ADDRESS | TWI_WRITE);
+    twiWrite(MAGREG_XH);
+    twiRepStart(MAG_ADDRESS | TWI_READ);
+    uint8_t xh = twiReadAck();
+    uint8_t xl = twiReadAck();
+    uint8_t zh = twiReadAck();
+    uint8_t zl = twiReadAck();
+    uint8_t yh = twiReadAck();
+    uint8_t yl = twiReadNak();
+
+    v->x = (int16_t)(xh << 8 | xl);
+    v->y = (int16_t)(yh << 8 | yl);
+    v->z = (int16_t)(zh << 8 | zl);
 }

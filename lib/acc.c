@@ -74,10 +74,7 @@ void accRead(Vector *v) {
     uint8_t zl = twiReadAck();
     uint8_t zh = twiReadNak();
 
-    v->a = (int16_t)(xh << 8 | xl);
-    v->b = (int16_t)(yh << 8 | yl);
-    v->c = (int16_t)(zh << 8 | zl);
-    v->x = v->a >> 4;
-    v->y = v->b >> 4;
-    v->z = v->c >> 4;
+    v->x = ((int16_t)(xh << 8 | xl)) >> 4;
+    v->y = ((int16_t)(yh << 8 | yl)) >> 4;
+    v->z = ((int16_t)(zh << 8 | zl)) >> 4;
 }

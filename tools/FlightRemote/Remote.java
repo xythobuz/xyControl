@@ -40,7 +40,7 @@ public class Remote extends JFrame implements ActionListener {
     private final String preferredPort = "/dev/tty.usbserial-AE01539L";
 
     public int width = 420;
-    public int height = 420;
+    public int height = 330;
     public int xOff = 10;
     public int yOff = 10;
 
@@ -58,7 +58,7 @@ public class Remote extends JFrame implements ActionListener {
     public JProgressBar[] visuals;
 
     public Remote() {
-        super("FlightRemote");
+        super("Raw Data");
 
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         xOff = gd.getDisplayMode().getWidth() / 2;
@@ -104,19 +104,19 @@ public class Remote extends JFrame implements ActionListener {
 
         logF = new JFrame("Log");
         logF.setLayout(new FlowLayout());
-        logArea = new JTextArea("Initialized FlightRemote!", 23, 30);
+        logArea = new JTextArea("Initialized FlightRemote!", 17, 30);
         logArea.setLineWrap(true);
         logPane = new JScrollPane(logArea);
         logPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         logF.add(logPane);
-        logF.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        logF.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         logF.pack();
         logF.setLocation(xOff + width + 10, yOff + 10);
         logF.setVisible(true);
 
         visuals = new JProgressBar[6];
         for (int i = 0; i < visuals.length; i++) {
-            visuals[i] = new JProgressBar(-32768, 32767);
+            visuals[i] = new JProgressBar(-2048, 2047);
             visuals[i].setValue(0);
             visuals[i].setStringPainted(true);
             int y = 50 + (40 * i);

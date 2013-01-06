@@ -32,7 +32,6 @@
 
 typedef struct {
     float x, y, z;
-    int16_t a, b, c;
 } Vector;
 
 void xyInit(void);

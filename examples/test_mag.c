@@ -1,5 +1,5 @@
 /*
- * visualizer.c
+ * test_acc.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,51 +29,49 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <util/delay.h>
 
 #include <xycontrol.h>
 #include <serial.h>
-#include <acc.h>
-#include <gyro.h>
 #include <mag.h>
+
+// Out of lazyness, we use stdio
+int output(char c, FILE *f) {
+    serialWrite(c);
+    return 0;
+}
+
+int input(FILE *f) {
+    while (!serialHasChar());
+    return serialGet();
+}
 
 int main(void) {
     xyInit();
     xyLed(4, 0);
-    xyLed(0, 1);
-    xyLed(2, 1);
 
-    accInit(r2G);
-    gyroInit(r250DPS);
+    fdevopen(&output, NULL); // stdout & stderr
+    fdevopen(NULL, &input); // stdin
+
     magInit(r1g9);
 
     for(;;) {
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
-
-        while (!serialHasChar());
-        char c = serialGet();
         Vector v;
-        if (c == 'a') {
-            accRead(&v);
-        } else if (c == 'g') {
-            gyroRead(&v);
-        } else if (c == 'm') {
-            magRead(&v);
-        } else {
-            xyLed(0, 2);
-            xyLed(1, 2); // Toggle Red LEDs
-        }
+        magRead(&v);
 
-        int16_t x = v.x;
-        int16_t y = v.y;
-        int16_t z = v.z;
+        double x = (double)v.x;
+        double y = (double)v.y;
+        double z = (double)v.z;
 
-        serialWrite(((*((uint16_t *)(&x))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&x))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&y))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&y))) & 0xFF);
-        serialWrite(((*((uint16_t *)(&z))) & 0xFF00) >> 8);
-        serialWrite((*((uint16_t *)(&z))) & 0xFF);
+        printf("X: %f\nY: %f\nZ: %f\n", x, y, z);
+        printf("Temp: %i C\n", getTemperature());
+
+        _delay_ms(500);
     }
 
     return 0;

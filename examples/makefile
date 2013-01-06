@@ -39,6 +39,7 @@ SRC += ../lib/tasks.c
 SRC += ../lib/twi.c
 SRC += ../lib/gyro.c
 SRC += ../lib/acc.c
+SRC += ../lib/mag.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -57,7 +58,7 @@ CARGS += -lm -lprintf_flt
 LINKER = -Wl,--relax,-u,vfprintf,-lm,-lprintf_flt
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyro.hex visualizer.hex test_orientation.hex
+all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyro.hex visualizer.hex test_orientation.hex test_mag.hex
 	$(RM) $(OBJ)
 	$(RM) *.o
 	$(RM) *.elf
