@@ -37,6 +37,7 @@
 #include <serial.h>
 #include <gyro.h>
 #include <acc.h>
+#include <time.h>
 
 // Out of lazyness, we use stdio
 int output(char c, FILE *f) {
@@ -49,15 +50,16 @@ int input(FILE *f) {
     return serialGet();
 }
 
-// Take a look at this: http://tom.pycke.be/mav/70/
-// First, we normalize the data.
-// Then, we integrate it using the Runge-Kutta Integrator.
-// Last, we scale it.
-// Notice the very large drift without accelerometer compensation!
+// You may need to play with these values
 #define NORMALIZE 7 // to zero
-#define NORMVAL 550 // Gyro reads 550...
-#define NORMDPS 90 // ...when 90 DPS are applied.
-#define NORMFACTOR (NORMVAL / NORMDPS)
+#define NORMVAL 550 // Gyro reads 550 when 90 DPS are applied.
+#define TIMECONST (1.0)
+#define FREQ 2 // defines how much serial output you get
+
+#define NORMFACTOR (NORMVAL / 90)
+#define DT (1 / FREQ) // s
+#define DELAY (1000 / FREQ) // ms
+#define TODEG(x) ((x * 180) / M_PI)
 
 void normalize(Vector *v) {
     v->x = ((v->x + NORMALIZE) / NORMFACTOR);
@@ -65,15 +67,17 @@ void normalize(Vector *v) {
     v->z = ((v->z + NORMALIZE) / NORMFACTOR);
 }
 
+/*
+ * The real magic is happening here and,
+ * to be honest, I don't really understand it.
+ * But, hey, at least it works...
+ */
 double complementary(double angle, double rate, double last) {
-    double timeConstant = 1.0;
-    double dt = 0.2;
-    return ((((angle - last) * square(timeConstant) * dt) + ((angle - last) * 2 * timeConstant) + rate) * dt) + angle;
+    return ((((angle - last) * square(TIMECONST) * DT) + ((angle - last) * 2 * TIMECONST) + rate) * DT) + angle;
 }
 
 int main(void) {
     xyInit();
-    Vector v;
     xyLed(4, 0);
 
     fdevopen(&output, NULL); // stdout & stderr
@@ -86,26 +90,31 @@ int main(void) {
     double filteredPitch = 0;
 
     for(;;) {
+        time_t start = getSystemTime();
+
         xyLed(2, 2);
         xyLed(3, 2); // Toggle Green LEDs
 
-        gyroRead(&v);
-        normalize(&v);
+        Vector g, a;
+        accRead(&a); // Read Accelerometer
+        gyroRead(&g); // Read Gyroscope
+        normalize(&g); // Normalize Gyroscope Data
 
-        Vector a;
-        accRead(&a);
+        // Calculate Pitch & Roll from Accelerometer Data
         double roll = atan((double)a.y / hypot((double)a.x, (double)a.z));
         double pitch = atan((double)a.x / hypot((double)a.y, (double)a.z));
-        roll = (roll * 180) / M_PI;
-        pitch = (pitch * 180) / M_PI;
-        filteredAngle = complementary(roll, v.x, filteredAngle);
-        filteredPitch = complementary(pitch, v.y, filteredPitch);
+        roll = TODEG(roll);
+        pitch = TODEG(pitch); // As Degree, not radians!
+
+        // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
+        filteredAngle = complementary(roll, g.x, filteredAngle);
+        filteredPitch = complementary(pitch, g.y, filteredPitch);
 
         printf("Roll:  %f\n", filteredAngle);
         printf("Pitch: %f\n", filteredPitch);
         printf("\n");
 
-        _delay_ms(200);
+        while ((getSystemTime() - start) < DELAY);
     }
 
     return 0;
