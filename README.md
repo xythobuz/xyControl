@@ -22,10 +22,12 @@ This gives us 8 banks with 56KB each, resulting in 448KB external RAM.
 
 The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.
 
-## Sensors
+## Supported Hardware
 
 + Gyroscope L3GD20, code based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
-+ Accelerometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
++ Accelerometer and Magnetometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
++ I got both of these Sensors on the [MinIMU-9 v2](http://www.pololu.com/catalog/product/1268)
++ Brushless Motor Driver [BL-Ctrl V1.2](http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2) with eg. the [Robbe Roxxy Outrunner 2824-34](http://www.conrad.de/ce/de/product/231867) Brushless Motor.
 
 # Software used
 
