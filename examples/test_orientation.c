@@ -83,6 +83,8 @@ int main(void) {
     fdevopen(&output, NULL); // stdout & stderr
     fdevopen(NULL, &input); // stdin
 
+    _delay_ms(100); // Wait for Sensors
+
     gyroInit(r250DPS);
     accInit(r2G);
 
