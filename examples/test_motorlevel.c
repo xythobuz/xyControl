@@ -1,5 +1,5 @@
 /*
- * test_mag.c
+ * test_motorlevel.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,48 +29,39 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 #include <util/delay.h>
 
 #include <xycontrol.h>
-#include <serial.h>
-#include <mag.h>
-
-// Out of lazyness, we use stdio
-int output(char c, FILE *f) {
-    serialWrite(c);
-    return 0;
-}
-
-int input(FILE *f) {
-    while (!serialHasChar());
-    return serialGet();
-}
+#include <motor.h>
+#include <tasks.h>
+#include <time.h>
 
 int main(void) {
     xyInit();
     xyLed(4, 0);
+    xyLed(2, 1);
+    xyLed(3, 1);
 
-    fdevopen(&output, NULL); // stdout & stderr
-    fdevopen(NULL, &input); // stdin
-
-    magInit(r1g9);
+    motorInit();
 
     for(;;) {
-        xyLed(2, 2);
-        xyLed(3, 2); // Toggle Green LEDs
-        Vector v;
-        magRead(&v);
+        xyLed(4, 2); // Red LEDs on
+        for (uint8_t i = 0; i < 4; i++) {
+            motorSet(i, 0x00);
+        }
+        time_t start = getSystemTime();
+        while ((getSystemTime() - start) < 2500) {
+            tasks();
+        }
 
-        double x = (double)v.x;
-        double y = (double)v.y;
-        double z = (double)v.z;
-
-        printf("X: %f\nY: %f\nZ: %f\n", x, y, z);
-
-        _delay_ms(500);
+        xyLed(4, 2); // Green LEDs on
+        for (uint8_t i = 0; i < 4; i++) {
+            motorSet(i, 0x50);
+        }
+        start = getSystemTime();
+        while ((getSystemTime() - start) < 2500) {
+            tasks();
+        }
     }
 
     return 0;

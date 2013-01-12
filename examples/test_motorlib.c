@@ -1,5 +1,5 @@
 /*
- * minimal.c
+ * test_motorlib.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -34,6 +34,7 @@
 #include <xycontrol.h>
 #include <motor.h>
 #include <tasks.h>
+#include <time.h>
 
 int main(void) {
     xyInit();
@@ -41,18 +42,26 @@ int main(void) {
     xyLed(2, 1);
     xyLed(3, 1);
 
+    motorInit();
+
     for(;;) {
         xyLed(4, 2); // Red LEDs on
         for (uint8_t i = 0; i < 4; i++) {
             motorSet(i, 0x00);
         }
-        _delay_ms(2500);
+        time_t start = getSystemTime();
+        while ((getSystemTime() - start) < 2500) {
+            tasks();
+        }
 
         xyLed(4, 2); // Green LEDs on
         for (uint8_t i = 0; i < 4; i++) {
             motorSet(i, 0x50);
         }
-        _delay_ms(2500);
+        start = getSystemTime();
+        while ((getSystemTime() - start) < 2500) {
+            tasks();
+        }
     }
 
     return 0;
