@@ -40,9 +40,9 @@
 #define MOTORDELAY 10 // Update every MOTORDELAY milliseconds
 
 uint8_t motorSpeed[MOTORCOUNT];
-time_t lastTaskExec = 0;
 
 void motorTask(void) {
+    static time_t lastTaskExec = 0;
     if ((getSystemTime() - lastTaskExec) >= MOTORDELAY) {
         for (uint8_t i = 0; i < MOTORCOUNT; i++) {
             twiStart(MOTOR_BASEADDRESS | (i << 1) | TWI_WRITE);
