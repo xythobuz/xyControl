@@ -26,7 +26,7 @@
 
 MCU = atmega2560
 F_CPU = 16000000
-RM = rm -f
+RM = rm -rf
 EXTRAINCDIR = ../include
 CSTANDARD = gnu99
 
@@ -40,6 +40,7 @@ SRC += ../lib/twi.c
 SRC += ../lib/gyro.c
 SRC += ../lib/acc.c
 SRC += ../lib/mag.c
+SRC += ../lib/motor.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -62,12 +63,14 @@ PROGRAMMER = stk500v2
 ISPPORT = /dev/tty.usbmodem641
 BOOTLOADER = /dev/tty.usbserial-AE01539L
 
-all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyro.hex visualizer.hex test_orientation.hex test_mag.hex test_blctrl.hex
+all: minimal.hex test_ram.hex test_servo.hex test_uart.hex test_acc.hex test_gyro.hex visualizer.hex test_orientation.hex test_mag.hex test_blctrl.hex test_motorlib.hex
 	$(RM) $(OBJ)
 	$(RM) *.o
 	$(RM) *.elf
 	$(RM) *.lss
 	$(RM) *.map
+	mkdir bin
+	mv *.hex bin
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)
@@ -93,3 +96,4 @@ clean:
 	$(RM) *.hex
 	$(RM) *.lss
 	$(RM) *.map
+	$(RM) ./bin/

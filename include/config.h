@@ -31,6 +31,15 @@
 #define _config_h
 
 //  -----------------
+// |       TWI       |
+//  -----------------
+
+#define ACC_ADDRESS 0x32 // 0011001r
+#define GYRO_ADDRESS 0xD6 // 110101xr, x = 1
+#define MAG_ADDRESS 0x3C
+#define MOTOR_BASEADDRESS 0x52
+
+//  -----------------
 // |     MMC/SD      |
 //  -----------------
 

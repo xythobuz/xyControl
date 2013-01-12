@@ -39,8 +39,6 @@ typedef enum {
     r16G, // +- 16G
 } AccRange;
 
-#define ACC_ADDRESS 0x32 // 0011001r
-
 uint8_t accInit(AccRange r);
 void accRead(Vector *v);
 

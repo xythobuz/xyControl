@@ -1,5 +1,5 @@
 /*
- * serial.h
+ * motor.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,19 +27,10 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _motor_h
+#define _motor_h
 
-// Open the serial port. Return file handle on success, -1 on error.
-int serialOpen(char *port, int baud, int flowcontrol, int vmin, int vtime);
-void serialClose(int fd);
+void motorInit(void);
+void motorSet(uint8_t id, uint8_t speed);
 
-int serialHasChar(int fd); // Returns 1 if char is available, 0 if not.
-
-void serialWriteChar(int fd, char c);
-void serialReadChar(int fd, char *c);
-void serialWriteString(int fd, char *s);
-
-int serialReadRaw(int fd, char *d, int len);
-int serialWriteRaw(int fd, char *d, int len);
-
-// String array with serial port names. Free after use!
-char** getSerialPorts(void);
+#endif

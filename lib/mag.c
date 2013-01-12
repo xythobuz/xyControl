@@ -32,6 +32,7 @@
 
 #include <twi.h>
 #include <mag.h>
+#include <config.h>
 
 #define MAGREG_CRA 0x00
 #define MAGREG_CRB 0x01

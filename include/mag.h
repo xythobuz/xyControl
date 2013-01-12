@@ -42,8 +42,6 @@ typedef enum {
     r8g1 = 7, // +- 8.1 gauss
 } MagRange;
 
-#define MAG_ADDRESS 0x3C
-
 uint8_t magInit(MagRange r);
 void magRead(Vector *v);
 

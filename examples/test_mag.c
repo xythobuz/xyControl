@@ -69,7 +69,6 @@ int main(void) {
         double z = (double)v.z;
 
         printf("X: %f\nY: %f\nZ: %f\n", x, y, z);
-        printf("Temp: %i C\n", getTemperature());
 
         _delay_ms(500);
     }

@@ -33,6 +33,7 @@
 
 #include <twi.h>
 #include <gyro.h>
+#include <config.h>
 
 #define GYROREG_CTRL1 0x20
 #define GYROREG_CTRL4 0x23

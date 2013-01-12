@@ -38,8 +38,6 @@ typedef enum {
     r2000DPS,
 } GyroRange;
 
-#define GYRO_ADDRESS 0xD6 // 110101xr, x = 1
-
 uint8_t gyroInit(GyroRange r);
 void gyroRead(Vector *v);
 

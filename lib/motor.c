@@ -1,5 +1,5 @@
 /*
- * acc.c
+ * motor.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,55 +27,40 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
 #include <stdint.h>
+#include <avr/io.h>
 
 #include <twi.h>
-#include <acc.h>
+#include <motor.h>
+#include <tasks.h>
+#include <time.h>
 #include <config.h>
 
-#define ACCREG_CTRL1 0x20
-#define ACCREG_CTRL4 0x23
-#define ACCREG_XL 0x28
+#define MOTORCOUNT 4
+#define MOTORDELAY 10 // Update every MOTORDELAY milliseconds
 
-void accWriteRegister(uint8_t reg, uint8_t val) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiWrite(val);
-    twiStop();
-}
+uint8_t motorSpeed[MOTORCOUNT];
+time_t lastTaskExec = 0;
 
-uint8_t accInit(AccRange r) {
-    accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
-    switch (r) {
-        case r2G:
-            accWriteRegister(ACCREG_CTRL4, 0x00);
-            break;
-        case r4G:
-            accWriteRegister(ACCREG_CTRL4, 0x10);
-            break;
-        case r8G:
-            accWriteRegister(ACCREG_CTRL4, 0x20);
-            break;
-        case r16G:
-            accWriteRegister(ACCREG_CTRL4, 0x30);
-            break;
+void motorTask(void) {
+    if ((getSystemTime() - lastTaskExec) >= MOTORDELAY) {
+        for (uint8_t i = 0; i < MOTORCOUNT; i++) {
+            twiStart(MOTOR_BASEADDRESS | (i << 1) | TWI_WRITE);
+            twiWrite(motorSpeed[i]);
+            twiStop();
+        }
+        lastTaskExec = getSystemTime();
     }
-    return 0;
 }
 
-void accRead(Vector *v) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(ACCREG_XL | (1 << 7)); // Auto Increment
-    twiRepStart(ACC_ADDRESS | TWI_READ);
-    uint8_t xl = twiReadAck();
-    uint8_t xh = twiReadAck();
-    uint8_t yl = twiReadAck();
-    uint8_t yh = twiReadAck();
-    uint8_t zl = twiReadAck();
-    uint8_t zh = twiReadNak();
+void motorInit(void) {
+    for (uint8_t i = 0; i < MOTORCOUNT; i++) {
+        motorSpeed[i] = 0;
+    }
+    addTask(&motorTask);
+}
 
-    v->x = ((int16_t)(xh << 8 | xl)) >> 4;
-    v->y = ((int16_t)(yh << 8 | yl)) >> 4;
-    v->z = ((int16_t)(zh << 8 | zl)) >> 4;
+void motorSet(uint8_t id, uint8_t speed) {
+    if (id < MOTORCOUNT)
+        motorSpeed[id] = speed;
 }
