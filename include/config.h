@@ -31,6 +31,13 @@
 #define _config_h
 
 //  -----------------
+// |       ADC       |
+//  -----------------
+
+#define BATT_MAX 15 // 5V at ADC --> 15V Battery
+#define BATT_CHANNEL 0
+
+//  -----------------
 // |       TWI       |
 //  -----------------
 

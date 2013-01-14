@@ -40,4 +40,6 @@ void xyInit(void);
 // v: 0 off, 1 on, 2 toggle
 void xyLed(uint8_t l, uint8_t v);
 
+double getVoltage(void);
+
 #endif

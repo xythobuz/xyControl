@@ -1,5 +1,5 @@
 /*
- * xycontrol.c
+ * adc.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -29,65 +29,68 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
-#include <avr/interrupt.h>
 
-#include <serial.h>
-#include <spi.h>
-#include <time.h>
-#include <xmem.h>
-#include <xycontrol.h>
-#include <twi.h>
 #include <adc.h>
-#include <config.h>
 
-void xyInit(void) {
-    xmemInit(); // Most important!
+void adcInit(uint8_t ref) {
+    // Enable ADC Module, start one conversion, wait for finish
+    PRR0 &= ~(1 << PRADC); // Disable ADC Power Reduction (Enable it...)
+    ADMUX = (1 << ADLAR); // Left adjust result
+    switch(ref) {
+        case AVCC:
+            ADMUX |= (1 << REFS0);
+            break;
 
-    // LEDs
-    LED0DDR |= (1 << LED0PIN);
-    LED1DDR |= (1 << LED1PIN);
-    LED2DDR |= (1 << LED2PIN);
-    LED3DDR |= (1 << LED3PIN);
-    xyLed(4, 1);
-
-    initSystemTimer();
-    serialInit(BAUD(38400, F_CPU));
-    twiInit();
-    adcInit(AVCC);
-
-    sei();
+        case AINT1:
+            ADMUX |= (1 << REFS1);
+            break;
+        case AINT2:
+            ADMUX |= (1 << REFS1) | (1 << REFS0);
+            break;
+    }
+    ADCSRA |= (1 << ADEN) | (1 << ADSC); // Enable ADC, start conversion
+    while (!adcReady());
+    adcGet(0); // Don't start another conversion
 }
 
-void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
-    if (v == 0) {
-        *port &= ~(1 << pin);
-    } else if (v == 1) {
-        *port |= (1 << pin);
+void adcStart(uint8_t channel) {
+    // Start a measurement on channel
+    if (channel > 15) {
+        channel = 0;
+    }
+    if (channel > 7) {
+        channel -= 8;
+        ADCSRB |= (1 << MUX5);
+    }
+    ADMUX |= channel;
+    ADCSRA |= (1 << ADSC);
+}
+
+uint8_t adcReady() {
+    // Is the measurement finished
+    if ((ADCSRA & (1 << ADSC)) != 0) {
+        // ADSC bit is set
+        return 0;
     } else {
-        *port ^= (1 << pin);
+        return 1;
     }
 }
 
-void xyLed(uint8_t l, uint8_t v) {
-    if (l == 0) {
-        xyLedInternal(v, &LED0PORT, LED0PIN);
-    } else if (l == 1) {
-        xyLedInternal(v, &LED1PORT, LED1PIN);
-    } else if (l == 2) {
-        xyLedInternal(v, &LED2PORT, LED2PIN);
-    } else if (l == 3) {
-        xyLedInternal(v, &LED3PORT, LED3PIN);
-    } else {
-        xyLed(0, v);
-        xyLed(1, v);
-        xyLed(2, v);
-        xyLed(3, v);
+uint8_t adcGet(uint8_t next) {
+    // Return measurements result
+    // Start next conversion
+    uint8_t temp = 0;
+    if (adcReady()) {
+        temp = ADCH;
+        if (next)
+            ADCSRA |= (1 << ADSC); // Start next conversion
     }
+    return temp;
 }
 
-double getVoltage(void) {
-    adcStart(BATT_CHANNEL);
-    while(!adcReady());
-    uint16_t v = adcGet(0) * BATT_MAX;
-    return ((double)v / 255.0);
+void adcClose() {
+    // deactivate adc
+    ADCSRA &= ~(1 << ADSC);
+    PRR0 |= (1 << PRADC);
+    ADCSRA &= ~(1 << ADEN);
 }
