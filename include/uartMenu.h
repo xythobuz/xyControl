@@ -1,5 +1,5 @@
 /*
- * xycontrol.h
+ * uartMenu.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,21 +27,13 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _xycontrol_h
-#define _xycontrol_h
+#ifndef _uartMenu_h
+#define _uartMenu_h
 
-typedef struct {
-    float x, y, z;
-} Vector;
+#include <tasks.h>
 
-void xyInit(void);
-
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
-
-double getVoltage(void);
-
-void resetSelf(void);
+uint8_t addMenuCommand(char cmd, PGM_P help, Task f);
+void uartMenuPrintHelp(void);
+void uartMenuTask(void);
 
 #endif

@@ -31,6 +31,7 @@
 #include <stdint.h>
 #include <util/delay.h>
 
+#include <tasks.h>
 #include <xycontrol.h>
 
 int main(void) {
@@ -38,22 +39,7 @@ int main(void) {
     xyLed(4, 0); // All LEDs off
 
     for(;;) {
-        xyLed(0, 1);
-        _delay_ms(1000);
-        xyLed(1, 1);
-        _delay_ms(1000);
-        xyLed(2, 1);
-        _delay_ms(1000);
-        xyLed(3, 1);
-        _delay_ms(1000);
-        xyLed(3, 0);
-        _delay_ms(1000);
-        xyLed(2, 0);
-        _delay_ms(1000);
-        xyLed(1, 0);
-        _delay_ms(1000);
-        xyLed(0, 0);
-        _delay_ms(1000);
+        tasks();
     }
 
     return 0;

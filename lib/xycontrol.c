@@ -30,6 +30,8 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
+#include <avr/wdt.h>
 
 #include <serial.h>
 #include <spi.h>
@@ -38,7 +40,11 @@
 #include <xycontrol.h>
 #include <twi.h>
 #include <adc.h>
+#include <uartMenu.h>
 #include <config.h>
+
+char helpText[] PROGMEM = "Print this Help";
+char resetText[] PROGMEM = "Reset MCU";
 
 void xyInit(void) {
     xmemInit(); // Most important!
@@ -54,6 +60,10 @@ void xyInit(void) {
     serialInit(BAUD(38400, F_CPU));
     twiInit();
     adcInit(AVCC);
+
+    addMenuCommand('q', resetText, &resetSelf);
+    addMenuCommand('h', helpText, &uartMenuPrintHelp);
+    addTask(&uartMenuTask);
 
     sei();
 }
@@ -90,4 +100,9 @@ double getVoltage(void) {
     while(!adcReady());
     uint16_t v = adcGet(0) * BATT_MAX;
     return ((double)v / 1024.0);
+}
+
+void resetSelf(void) {
+    wdt_enable(WDTO_15MS);
+    for(;;);
 }
