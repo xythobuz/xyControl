@@ -89,5 +89,5 @@ double getVoltage(void) {
     adcStart(BATT_CHANNEL);
     while(!adcReady());
     uint16_t v = adcGet(0) * BATT_MAX;
-    return ((double)v / 255.0);
+    return ((double)v / 1024.0);
 }

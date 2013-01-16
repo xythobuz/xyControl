@@ -38,7 +38,7 @@
 void adcInit(uint8_t ref); // AREF, AVCC, AINT1 (1.1V) or AINT2 (2.56V)
 void adcStart(uint8_t channel); // Start Conversion on Channel channel (0 - 15)
 uint8_t adcReady(void); // 1 if result is ready
-uint8_t adcGet(uint8_t next); // Start next conversion if next != 0
+uint16_t adcGet(uint8_t next); // Start next conversion if next != 0
 void adcClose(void); // Disable ADC to save energy
 
 #endif
