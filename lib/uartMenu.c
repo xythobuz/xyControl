@@ -40,7 +40,7 @@
 
 typedef struct MenuEntry MenuEntry;
 struct MenuEntry{
-    char cmd;
+    uint8_t cmd;
     PGM_P helpText;
     Task f;
     MenuEntry *next;
@@ -50,7 +50,7 @@ MenuEntry *listsort(MenuEntry *list);
 
 MenuEntry *uartMenu = NULL;
 
-MenuEntry *findEntry(char cmd) {
+MenuEntry *findEntry(uint8_t cmd) {
     MenuEntry *p = uartMenu;
     while (p != NULL) {
         if (p->cmd == cmd) {
@@ -61,7 +61,7 @@ MenuEntry *findEntry(char cmd) {
     return NULL;
 }
 
-uint8_t addMenuCommand(char cmd, PGM_P help, Task f) {
+uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f) {
     uint8_t lastBank = xmemGetBank();
     xmemSetBank(BANK_GENERIC);
     if (findEntry(cmd) != NULL) {
@@ -108,7 +108,7 @@ void uartMenuTask(void) {
     if (serialHasChar()) {
         uint8_t lastBank = xmemGetBank();
         xmemSetBank(BANK_GENERIC);
-        char c = serialGet();
+        uint8_t c = serialGet();
         MenuEntry *p = uartMenu;
         while (p != NULL) {
             if (p->cmd == c) {

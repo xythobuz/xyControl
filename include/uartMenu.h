@@ -32,7 +32,7 @@
 
 #include <tasks.h>
 
-uint8_t addMenuCommand(char cmd, PGM_P help, Task f);
+uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f); // 0 on success
 void uartMenuPrintHelp(void);
 void uartMenuTask(void);
 
