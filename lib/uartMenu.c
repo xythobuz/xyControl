@@ -46,6 +46,8 @@ struct MenuEntry{
     MenuEntry *next;
 };
 
+MenuEntry *listsort(MenuEntry *list);
+
 MenuEntry *uartMenu = NULL;
 
 MenuEntry *findEntry(char cmd) {
@@ -87,6 +89,7 @@ void uartMenuPrintHelp(void) {
         serialWrite('!');
         return;
     }
+    uartMenu = listsort(uartMenu);
     MenuEntry *p = uartMenu;
     while (p != NULL) {
         serialWrite(p->cmd);
@@ -117,5 +120,69 @@ void uartMenuTask(void) {
         }
         serialWrite('?');
         xmemSetBank(lastBank);
+    }
+}
+
+// Mergesort for linked list
+// Copyright 2001 Simon Tatham
+// http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+// And, before you ask, yes. All this flash space is wasted to display
+// the UART Help Menu in alphabetical order... :)
+MenuEntry *listsort(MenuEntry *list) {
+    MenuEntry *p, *q, *e, *tail;
+    int insize, nmerges, psize, qsize, i;
+    if (list == NULL) {
+        return NULL;
+    }
+    insize = 1;
+    while (1) {
+        p = list;
+        list = NULL;
+        tail = NULL;
+        nmerges = 0;
+        while (p != NULL) {
+            nmerges++;
+            q = p;
+            psize = 0;
+            for (i = 0; i < insize; i++) {
+                psize++;
+                q = q->next;
+                if (!q) {
+                    break;
+                }
+            }
+            qsize = insize;
+            while (psize > 0 || (qsize > 0 && q)) {
+                if (psize == 0) {
+                    e = q;
+                    q = q->next;
+                    qsize--;
+                } else if (qsize == 0 || !q) {
+                    e = p;
+                    p = p->next;
+                    psize--;
+                } else if (p->cmd <= q->cmd) {
+                    e = p;
+                    p = p->next;
+                    psize--;
+                } else {
+                    e = q;
+                    q = q->next;
+                    qsize--;
+                }
+                if (tail) {
+                    tail->next = e;
+                } else {
+                    list = e;
+                }
+                tail = e;
+            }
+            p = q;
+        }
+        tail->next = NULL;
+        if (nmerges <= 1) {
+            return list;
+        }
+        insize *= 2;
     }
 }
