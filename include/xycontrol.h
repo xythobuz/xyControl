@@ -30,6 +30,19 @@
 #ifndef _xycontrol_h
 #define _xycontrol_h
 
+#define LED_RED0 0
+#define LED_RED1 1
+#define LED_GREEN0 2
+#define LED_GREEN1 3
+#define LED_ALL 4
+#define LED_BITMAP 5
+#define LED_RED 6
+#define LED_GREEN 7
+
+#define LED_OFF 0
+#define LED_ON 1
+#define LED_TOGGLE 2
+
 typedef struct {
     float x, y, z;
 } Vector;

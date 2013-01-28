@@ -29,6 +29,8 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
@@ -41,10 +43,21 @@
 #include <twi.h>
 #include <adc.h>
 #include <uartMenu.h>
+#include <tasks.h>
 #include <config.h>
 
 char helpText[] PROGMEM = "Print this Help";
 char resetText[] PROGMEM = "Reset MCU";
+
+int uartoutput(char c, FILE *f) {
+    serialWrite(c);
+    return 0;
+}
+
+int uartinput(FILE *f) {
+    while (!serialHasChar());
+    return serialGet();
+}
 
 void xyInit(void) {
     xmemInit(); // Most important!
@@ -59,11 +72,15 @@ void xyInit(void) {
     initSystemTimer();
     serialInit(BAUD(38400, F_CPU));
     twiInit();
+    spiInit(SPI_MODE0, SPI_SPEED2);
     adcInit(AVCC);
 
     addMenuCommand('q', resetText, &resetSelf);
     addMenuCommand('h', helpText, &uartMenuPrintHelp);
     addTask(&uartMenuTask);
+
+    fdevopen(&uartoutput, NULL); // stdout & stderr
+    fdevopen(NULL, &uartinput); // stdin
 
     sei();
 }
@@ -79,19 +96,30 @@ void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
 }
 
 void xyLed(uint8_t l, uint8_t v) {
-    if (l == 0) {
+    if (l == LED_RED0) {
         xyLedInternal(v, &LED0PORT, LED0PIN);
-    } else if (l == 1) {
+    } else if (l == LED_RED1) {
         xyLedInternal(v, &LED1PORT, LED1PIN);
-    } else if (l == 2) {
+    } else if (l == LED_GREEN0) {
         xyLedInternal(v, &LED2PORT, LED2PIN);
-    } else if (l == 3) {
+    } else if (l == LED_GREEN1) {
         xyLedInternal(v, &LED3PORT, LED3PIN);
-    } else {
+    } else if (l == LED_ALL){
         xyLed(0, v);
         xyLed(1, v);
         xyLed(2, v);
         xyLed(3, v);
+    } else if (l == LED_BITMAP) {
+        xyLed(0, v & 0x01);
+        xyLed(1, (v & 0x02) >> 1);
+        xyLed(2, (v & 0x04) >> 2);
+        xyLed(3, (v & 0x08) >> 3);
+    } else if (l == LED_GREEN) {
+        xyLed(LED_GREEN0, v);
+        xyLed(LED_GREEN1, v);
+    } else if (l == LED_RED) {
+        xyLed(LED_RED0, v);
+        xyLed(LED_RED1, v);
     }
 }
 

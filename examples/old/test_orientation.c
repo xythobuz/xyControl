@@ -83,10 +83,12 @@ int main(void) {
     fdevopen(&output, NULL); // stdout & stderr
     fdevopen(NULL, &input); // stdin
 
+    printf("Orientation Test\n");
     _delay_ms(100); // Wait for Sensors
-
     gyroInit(r250DPS);
+    printf("Gyroscope initialized!\n");
     accInit(r2G);
+    printf("Accelerometer initialized!\n");
 
     double filteredAngle = 0;
     double filteredPitch = 0;

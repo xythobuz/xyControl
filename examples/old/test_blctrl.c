@@ -1,5 +1,5 @@
 /*
- * test_motorlib.c
+ * test_blctrl.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -32,9 +32,16 @@
 #include <util/delay.h>
 
 #include <xycontrol.h>
-#include <motor.h>
-#include <tasks.h>
-#include <time.h>
+#include <twi.h>
+
+#define NUMBER 2
+#define ADDRESS (0x52 | (NUMBER << 1))
+
+void setSpeed(uint8_t v) {
+    twiStart(ADDRESS | TWI_WRITE);
+    twiWrite(v);
+    twiStop();
+}
 
 int main(void) {
     xyInit();
@@ -42,26 +49,16 @@ int main(void) {
     xyLed(2, 1);
     xyLed(3, 1);
 
-    motorInit();
-
     for(;;) {
-        xyLed(4, 2); // Red LEDs on
-        for (uint8_t i = 0; i < 4; i++) {
-            motorSet(i, 0x00);
-        }
-        time_t start = getSystemTime();
-        while ((getSystemTime() - start) < 2500) {
-            tasks();
+        xyLed(4, 2);
+        for (uint16_t i = 0; i < 256; i++) {
+            setSpeed((uint8_t)i);
+            _delay_ms(10);
         }
 
-        xyLed(4, 2); // Green LEDs on
-        for (uint8_t i = 0; i < 4; i++) {
-            motorSet(i, 0x50);
-        }
-        start = getSystemTime();
-        while ((getSystemTime() - start) < 2500) {
-            tasks();
-        }
+        xyLed(4, 2);
+        setSpeed(0);
+        _delay_ms(2500);
     }
 
     return 0;

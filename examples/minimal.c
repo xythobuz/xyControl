@@ -33,10 +33,24 @@
 
 #include <tasks.h>
 #include <xycontrol.h>
+#include <time.h>
+#include <tasks.h>
+
+void ledTask(void) {
+    static time_t last = 0;
+    if ((getSystemTime() - last) > 500) {
+        xyLed(4, 2);
+        last = getSystemTime();
+    }
+}
 
 int main(void) {
     xyInit();
     xyLed(4, 0); // All LEDs off
+    xyLed(0, 1);
+    xyLed(1, 1);
+
+    addTask(&ledTask);
 
     for(;;) {
         tasks();

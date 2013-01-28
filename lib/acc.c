@@ -34,18 +34,44 @@
 #include <acc.h>
 #include <config.h>
 
+#define DEBUG 0
+#include <debug.h>
+
+#if DEBUG >= 2
+#include <stdio.h>
+#endif
+
 #define ACCREG_CTRL1 0x20
 #define ACCREG_CTRL4 0x23
 #define ACCREG_XL 0x28
 
 void accWriteRegister(uint8_t reg, uint8_t val) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiWrite(val);
+#if DEBUG >= 2
+    printf("  ACC: 0x%x to 0x%x...", val, reg);
+#endif
+    if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
+#if DEBUG >= 2
+        printf(" No Answer!\n");
+#endif
+    }
+    if (twiWrite(reg)) {
+#if DEBUG >= 2
+        printf(" Could not write 1\n");
+#endif
+    }
+    if (twiWrite(val)) {
+#if DEBUG >= 2
+        printf(" Could not write 2\n");
+#endif
+    }
     twiStop();
+#if DEBUG >= 2
+    printf(" Done!\n");
+#endif
 }
 
 uint8_t accInit(AccRange r) {
+    debugPrint("Acc Init...\n");
     accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
     switch (r) {
         case r2G:
@@ -61,6 +87,7 @@ uint8_t accInit(AccRange r) {
             accWriteRegister(ACCREG_CTRL4, 0x30);
             break;
     }
+    debugPrint("Acc Initialized!\n");
     return 0;
 }
 

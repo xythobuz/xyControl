@@ -14,6 +14,17 @@ In the current PCB layout, the SD-Card holder is rotated 180 degrees. This preve
 
 You can compile each example into it's own hex, using "make all". To compile just one example, call make with the examples filename, ending in .hex instead of .c. So, to create minimal.hex from minimal.c and the library, call "make minimal.hex".
 
+## Old Examples
+
+These example projects don't use the Task Scheduler.
+
+# Supported Hardware
+
++ Gyroscope L3GD20, code based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
++ Accelerometer and Magnetometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
++ I got both of these Sensors on the [MinIMU-9 v2](http://www.pololu.com/catalog/product/1268)
++ Brushless Motor Driver [BL-Ctrl V1.2](http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2) with eg. the [Robbe Roxxy Outrunner 2824-34](http://www.conrad.de/ce/de/product/231867) Brushless Motor.
+
 ## External Memory
 
 The external memory consists of a 512Kx8 SRAM, bank-switched onto the 16bit avr address space.
@@ -22,20 +33,13 @@ This gives us 8 banks with 56KB each, resulting in 448KB external RAM.
 
 The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.
 
-## Supported Hardware
+# PC Tools
 
-+ Gyroscope L3GD20, code based on the [Adafruit Example](https://github.com/adafruit/Adafruit_L3GD20).
-+ Accelerometer and Magnetometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
-+ I got both of these Sensors on the [MinIMU-9 v2](http://www.pololu.com/catalog/product/1268)
-+ Brushless Motor Driver [BL-Ctrl V1.2](http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2) with eg. the [Robbe Roxxy Outrunner 2824-34](http://www.conrad.de/ce/de/product/231867) Brushless Motor.
+You can find some PC Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
 
 # Software used
 
  + [Peter Fleurys TWI Library](http://homepage.hispeed.ch/peterfleury/avr-software.html)
-
-# PC Tools
-
-You can find some PC Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
 
 # License
 
