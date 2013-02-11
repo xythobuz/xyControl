@@ -31,6 +31,16 @@
 #define _config_h
 
 //  -----------------
+// |   Orientation   |
+//  -----------------
+
+#define FREQ 10 // how often task is executed (hz)
+#define NORMALIZE 7 // Move Gyro data to zero (y)
+#define NORMVAL 550 // Gyro reads 550 when NORMVALSPEED DPS are applied.
+#define NORMVALSPEED 90
+#define TIMECONST (1.0)
+
+//  -----------------
 // |       ADC       |
 //  -----------------
 

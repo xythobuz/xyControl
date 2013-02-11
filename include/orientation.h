@@ -1,5 +1,5 @@
 /*
- * xmem.h
+ * orientation.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,17 +27,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _xmem_h
-#define _xmem_h
 
-#define MEMSWITCH(x) uint8_t oldMemBank=xmemGetBank();if(oldMemBank!=x)xmemSetBank(x);
-#define MEMSWITCHBACK(x) if(oldMemBank!=x)xmemSetBank(oldMemBank);
+#ifndef _orientation_h
+#define _orientation_h
 
-#define MEMBANKS 8
-#define BANK_GENERIC 0
+typedef struct {
+    int16_t pitch;
+    int16_t roll;
+    // int16_t yaw;
+} Angles;
 
-void xmemInit(void);
-void xmemSetBank(uint8_t bank);
-uint8_t xmemGetBank(void);
+extern Angles orientation;
+
+void orientationTask(void);
 
 #endif

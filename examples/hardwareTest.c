@@ -43,6 +43,7 @@
 #include <gyro.h>
 #include <mag.h>
 #include <motor.h>
+#include <orientation.h>
 
 /*
  * This aims to be a small walk through the inner
@@ -55,11 +56,15 @@
  */
 void ledTask(void);
 void printVoltage(void);
+void printRaw(void);
+void printOrientation(void);
 
 /*
  * Strings for UART menu, stored in Flash.
  */
 char voltageString[] PROGMEM = "Battery Voltage";
+char sensorString[] PROGMEM = "Raw Sensor Data";
+char orientationString[] PROGMEM = "Orientation Angles";
 
 int main(void) {
 
@@ -74,7 +79,7 @@ int main(void) {
     printf("Initializing Hardware Test...\n");
 
     /*
-     * This will toggle all LEDs
+     * This will blink the LEDs
      */
     xyLed(LED_GREEN, LED_OFF);
     xyLed(LED_RED, LED_ON);
@@ -94,6 +99,14 @@ int main(void) {
     gyroInit(r250DPS);
     magInit(r1g9);
     motorInit();
+
+    addMenuCommand('r', sensorString, &printRaw);
+
+    /*
+     *
+     */
+    addTask(&orientationTask);
+    addMenuCommand('o', orientationString, &printOrientation);
 
     printf("Hardware Test Initialized!\n");
 
@@ -121,4 +134,18 @@ void ledTask(void) {
 
 void printVoltage(void) {
     printf("Battery: %fV\n", getVoltage());
+}
+
+void printRaw(void) {
+    Vector v;
+    accRead(&v);
+    printf("Ax: %f Ay: %f Az: %f\n", v.x, v.y, v.z);
+    gyroRead(&v);
+    printf("Gx: %f Gy: %f Gz: %f\n", v.x, v.y, v.z);
+    magRead(&v);
+    printf("Mx: %f My: %f Mz: %f\n", v.x, v.y, v.z);
+}
+
+void printOrientation(void) {
+    printf("Pitch: %i Roll: %i\n", orientation.pitch, orientation.roll);
 }

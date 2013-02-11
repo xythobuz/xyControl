@@ -41,7 +41,7 @@
 // Count to 250
 // => 1 Interrupt per millisecond
 
-volatile time_t systemTime = 0; // Unix Timestamp, Overflows in 500 million years...
+volatile time_t systemTime = 0; // Overflows in 500 million years...
 
 #define TCRA TCCR2A
 #define TCRB TCCR2B

@@ -43,6 +43,7 @@ SRC += ../lib/mag.c
 SRC += ../lib/motor.c
 SRC += ../lib/adc.c
 SRC += ../lib/uartMenu.c
+SRC += ../lib/orientation.c
 
 OBJ = $(SRC:.c=.o)
 

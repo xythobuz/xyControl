@@ -43,38 +43,30 @@ TaskElement *taskList = NULL;
 
 uint8_t tasksRegistered(void) {
     uint8_t c = 0;
-    uint8_t oldBank = xmemGetBank();
-    xmemSetBank(BANK_GENERIC);
-
+    MEMSWITCH(BANK_GENERIC);
     for (TaskElement *p = taskList; p != NULL; p = p->next) {
         c++;
     }
-
-    xmemSetBank(oldBank);
+    MEMSWITCHBACK(BANK_GENERIC);
     return c;
 }
 
 uint8_t addTask(Task func) {
-    uint8_t oldBank = xmemGetBank();
-    xmemSetBank(BANK_GENERIC);
-
+    MEMSWITCH(BANK_GENERIC);
     TaskElement *p = (TaskElement *)malloc(sizeof(TaskElement));
     if (p == NULL) {
-        xmemSetBank(oldBank);
+        MEMSWITCHBACK(BANK_GENERIC);
         return 1;
     }
     p->task = func;
     p->next = taskList;
     taskList = p;
-
-    xmemSetBank(oldBank);
+    MEMSWITCHBACK(BANK_GENERIC);
     return 0;
 }
 
 uint8_t removeTask(Task func) {
-    uint8_t oldBank = xmemGetBank();
-    xmemSetBank(BANK_GENERIC);
-
+    MEMSWITCH(BANK_GENERIC);
     TaskElement *p = taskList;
     TaskElement *prev = NULL;
     while (p != NULL) {
@@ -85,21 +77,18 @@ uint8_t removeTask(Task func) {
                 prev->next = p->next;
             }
             free(p);
-            xmemSetBank(oldBank);
+            MEMSWITCHBACK(BANK_GENERIC);
             return 0;
         }
         prev = p;
         p = p->next;
     }
-
-    xmemSetBank(oldBank);
+    MEMSWITCHBACK(BANK_GENERIC);
     return 1;
 }
 
 void tasks(void) {
-    uint8_t oldBank = xmemGetBank();
-    xmemSetBank(BANK_GENERIC);
-
+    MEMSWITCH(BANK_GENERIC);
     static TaskElement *p = NULL;
     if (p == NULL) {
         p = taskList;
@@ -108,6 +97,5 @@ void tasks(void) {
         p->task();
         p = p->next;
     }
-
-    xmemSetBank(oldBank);
+    MEMSWITCHBACK(BANK_GENERIC);
 }

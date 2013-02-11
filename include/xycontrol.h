@@ -44,7 +44,7 @@
 #define LED_TOGGLE 2
 
 typedef struct {
-    float x, y, z;
+    double x, y, z;
 } Vector;
 
 void xyInit(void);
