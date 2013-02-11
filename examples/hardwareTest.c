@@ -60,6 +60,7 @@ void printVoltage(void);
 void printRaw(void);
 void printOrientation(void);
 void ramTest(void);
+void motorTest(void);
 
 /*
  * Strings for UART menu, stored in Flash.
@@ -68,6 +69,7 @@ char voltageString[] PROGMEM = "Battery Voltage";
 char sensorString[] PROGMEM = "Raw Sensor Data";
 char orientationString[] PROGMEM = "Orientation Angles";
 char ramString[] PROGMEM = "Test external RAM";
+char motorString[] PROGMEM = "Motor Test";
 
 int main(void) {
 
@@ -114,6 +116,7 @@ int main(void) {
     addMenuCommand('o', orientationString, &printOrientation);
 
     addMenuCommand('t', ramString, &ramTest);
+    addMenuCommand('m', motorString, &motorTest);
 
     printf("Hardware Test Initialized!\n");
 
@@ -202,4 +205,16 @@ void ramTest(void) {
     printf("Finished!\n");
 
     xmemSetBank(oldBank);
+}
+
+void motorTest(void) {
+    static uint8_t v = 0;
+    v = !v;
+    if (v) {
+        motorSet(5, 25);
+        printf("Motor ON!\n");
+    } else {
+        motorSet(5, 0);
+        printf("Motor OFF!\n");
+    }
 }

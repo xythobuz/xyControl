@@ -45,7 +45,7 @@ void motorTask(void) {
     static time_t lastTaskExec = 0;
     if ((getSystemTime() - lastTaskExec) >= MOTORDELAY) {
         for (uint8_t i = 0; i < MOTORCOUNT; i++) {
-            twiStart(MOTOR_BASEADDRESS | (i << 1) | TWI_WRITE);
+            twiStart(MOTOR_BASEADDRESS + (i << 1) + TWI_WRITE);
             twiWrite(motorSpeed[i]);
             twiStop();
         }
@@ -61,6 +61,11 @@ void motorInit(void) {
 }
 
 void motorSet(uint8_t id, uint8_t speed) {
-    if (id < MOTORCOUNT)
+    if (id < MOTORCOUNT) {
         motorSpeed[id] = speed;
+    } else {
+        for (id = 0; id < MOTORCOUNT; id++) {
+            motorSpeed[id] = speed;
+        }
+    }
 }
