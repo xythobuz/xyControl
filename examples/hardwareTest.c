@@ -44,6 +44,7 @@
 #include <mag.h>
 #include <motor.h>
 #include <orientation.h>
+#include <xmem.h>
 
 /*
  * This aims to be a small walk through the inner
@@ -58,6 +59,7 @@ void ledTask(void);
 void printVoltage(void);
 void printRaw(void);
 void printOrientation(void);
+void ramTest(void);
 
 /*
  * Strings for UART menu, stored in Flash.
@@ -65,6 +67,7 @@ void printOrientation(void);
 char voltageString[] PROGMEM = "Battery Voltage";
 char sensorString[] PROGMEM = "Raw Sensor Data";
 char orientationString[] PROGMEM = "Orientation Angles";
+char ramString[] PROGMEM = "Test external RAM";
 
 int main(void) {
 
@@ -103,10 +106,14 @@ int main(void) {
     addMenuCommand('r', sensorString, &printRaw);
 
     /*
-     *
+     * Adds Task to calculate the current heading
+     * (pitch and roll angles). Also add a menu command
+     * to print these angles.
      */
     addTask(&orientationTask);
     addMenuCommand('o', orientationString, &printOrientation);
+
+    addMenuCommand('t', ramString, &ramTest);
 
     printf("Hardware Test Initialized!\n");
 
@@ -148,4 +155,51 @@ void printRaw(void) {
 
 void printOrientation(void) {
     printf("Pitch: %i Roll: %i\n", orientation.pitch, orientation.roll);
+}
+
+#define CHECKSIZE 53248 // 52KB
+void ramTest(void) {
+    uint8_t *blocks[MEMBANKS];
+    uint8_t oldBank = xmemGetBank();
+
+    printf("Allocating Test Memory...\n");
+    for (uint8_t i = 0; i < MEMBANKS; i++) {
+        xmemSetBank(i);
+        blocks[i] = (uint8_t *)malloc(CHECKSIZE);
+        if (blocks[i] == NULL) {
+            printf("  Error: Couldn't allocate %liKB in Bank %i!\n", (CHECKSIZE / 1024), i);
+        } else {
+            printf("  Bank %i ready!\n", i);
+        }
+    }
+    printf("Filling with data...\n");
+    for (uint8_t i = 0; i < MEMBANKS; i++) {
+        xmemSetBank(i);
+        for (uint16_t j = 0; j < CHECKSIZE; j++) {
+            blocks[i][j] = (j & 0xFF);
+        }
+        printf("  Filled Bank %i!\n", i);
+    }
+    printf("Checking data...\n");
+    for (uint8_t i = 0; i < MEMBANKS; i++) {
+        xmemSetBank(i);
+        uint8_t error = 0;
+        for (uint16_t j = 0; ((j < CHECKSIZE) && (!error)); j++) {
+            if (blocks[i][j] != (j & 0xFF)) {
+                printf("  Error at %i in %i!\n", j, i);
+                error = 1;
+            }
+        }
+        if (!error) {
+            printf("  Block %i okay!\n", i);
+        }
+    }
+    printf("Freeing memory...\n");
+    for (uint8_t i = 0; i < MEMBANKS; i++) {
+        xmemSetBank(i);
+        free(blocks[i]);
+    }
+    printf("Finished!\n");
+
+    xmemSetBank(oldBank);
 }

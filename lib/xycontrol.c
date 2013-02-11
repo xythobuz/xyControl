@@ -49,6 +49,9 @@
 char helpText[] PROGMEM = "Print this Help";
 char resetText[] PROGMEM = "Reset MCU";
 
+FILE inFile;
+FILE outFile;
+
 int uartoutput(char c, FILE *f) {
     serialWrite(c);
     return 0;
@@ -79,8 +82,18 @@ void xyInit(void) {
     addMenuCommand('h', helpText, &uartMenuPrintHelp);
     addTask(&uartMenuTask);
 
-    fdevopen(&uartoutput, NULL); // stdout & stderr
-    fdevopen(NULL, &uartinput); // stdin
+    // fdevopen() is using malloc, so printf in a different
+    // memory bank will not work!
+    //   fdevopen(&uartoutput, NULL); // stdout & stderr
+    //   fdevopen(NULL, &uartinput); // stdin
+    // Instead we have the FILE structs as static variables
+    // and assign them to stdin, stdout and stderr
+
+    fdev_setup_stream(&outFile, &uartoutput, NULL, _FDEV_SETUP_WRITE);
+    fdev_setup_stream(&inFile, NULL, &uartinput, _FDEV_SETUP_READ);
+    stdin = &inFile;
+    stdout = &outFile;
+    stderr = &outFile;
 
     sei();
 }
