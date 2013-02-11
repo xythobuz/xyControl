@@ -2,6 +2,8 @@
 
 Visualizer is a small Java Swing GUI capable of talking to a serial port and visualizing raw IMU data. It utilizes my own serial library and it's JNI Interface. This is only a small test, succeeded by the Telemetry App.
 
+Put the visualizer.c in exmaples and flash it onto the target to use this App!
+
 ## Protocol
 <table>
 <tr><th>PC</th><th>Length</th><th>Direction</th><th>xyControl</th><th>Length</th></tr>
