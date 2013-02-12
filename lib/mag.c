@@ -29,35 +29,56 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <twi.h>
 #include <mag.h>
+#include <error.h>
 #include <config.h>
 
-#define MAGREG_CRA 0x00
 #define MAGREG_CRB 0x01
 #define MAGREG_MR 0x02
 #define MAGREG_XH 0x03
-#define MAGREG_TEMPH 0x31
-#define MAGREG_TEMPL 0x32
 
-void magWriteRegister(uint8_t reg, uint8_t val) {
-    twiStart(MAG_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiWrite(val);
+Error magWriteRegister(uint8_t reg, uint8_t val) {
+    if (twiStart(MAG_ADDRESS | TWI_WRITE)) {
+        return TWI_NO_ANSWER;
+    }
+    if (twiWrite(reg)) {
+        return TWI_WRITE_ERROR;
+    }
+    if (twiWrite(val)) {
+        return TWI_WRITE_ERROR;
+    }
     twiStop();
+    return SUCCESS;
 }
 
-uint8_t magInit(MagRange r) {
-    magWriteRegister(MAGREG_MR, 0x00); // Continuous Conversion
-    magWriteRegister(MAGREG_CRB, (r << 5)); // Set Range
-    return 0;
+Error magInit(MagRange r) {
+    if ((r <= 0) || (r >= 8)) {
+        return ARGUMENT_ERROR;
+    }
+    Error e = magWriteRegister(MAGREG_MR, 0x00); // Continuous Conversion
+    if (e != SUCCESS) {
+        return e;
+    }
+    e = magWriteRegister(MAGREG_CRB, (r << 5)); // Set Range
+    return e;
 }
 
-void magRead(Vector *v) {
-    twiStart(MAG_ADDRESS | TWI_WRITE);
-    twiWrite(MAGREG_XH);
-    twiRepStart(MAG_ADDRESS | TWI_READ);
+Error magRead(Vector *v) {
+    if (v == NULL) {
+        return ARGUMENT_ERROR;
+    }
+    if (twiStart(MAG_ADDRESS | TWI_WRITE)) {
+        return TWI_NO_ANSWER;
+    }
+    if (twiWrite(MAGREG_XH)) {
+        return TWI_WRITE_ERROR;
+    }
+    if (twiRepStart(MAG_ADDRESS | TWI_READ)) {
+        return TWI_NO_ANSWER;
+    }
     uint8_t xh = twiReadAck();
     uint8_t xl = twiReadAck();
     uint8_t zh = twiReadAck();
@@ -68,4 +89,5 @@ void magRead(Vector *v) {
     v->x = (int16_t)(xh << 8 | xl);
     v->y = (int16_t)(yh << 8 | yl);
     v->z = (int16_t)(zh << 8 | zl);
+    return SUCCESS;
 }

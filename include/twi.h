@@ -15,10 +15,10 @@
 
 void twiInit(void);
 void twiStop(void);
-unsigned char twiStart(unsigned char addr);
-unsigned char twiRepStart(unsigned char addr);
+unsigned char twiStart(unsigned char addr); // 1 = failed to access device
+unsigned char twiRepStart(unsigned char addr); // 1 = failed to access device
 void twiStartWait(unsigned char addr);
-unsigned char twiWrite(unsigned char data);
+unsigned char twiWrite(unsigned char data); // 1 = write failed
 unsigned char twiReadAck(void);
 unsigned char twiReadNak(void);
 #define twiRead(ack)  ((ack) ? i2c_readAck() : i2c_readNak())

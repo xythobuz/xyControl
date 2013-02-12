@@ -29,72 +29,71 @@
  */
 #include <avr/io.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <twi.h>
 #include <acc.h>
+#include <error.h>
+#include <stdlib.h>
 #include <config.h>
-
-#define DEBUG 0
-#include <debug.h>
-
-#if DEBUG >= 2
-#include <stdio.h>
-#endif
 
 #define ACCREG_CTRL1 0x20
 #define ACCREG_CTRL4 0x23
 #define ACCREG_XL 0x28
 
-void accWriteRegister(uint8_t reg, uint8_t val) {
-#if DEBUG >= 2
-    printf("  ACC: 0x%x to 0x%x...", val, reg);
-#endif
+Error accWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
-#if DEBUG >= 2
-        printf(" No Answer!\n");
-#endif
+        return TWI_NO_ANSWER;
     }
     if (twiWrite(reg)) {
-#if DEBUG >= 2
-        printf(" Could not write 1\n");
-#endif
+        return TWI_WRITE_ERROR;
     }
     if (twiWrite(val)) {
-#if DEBUG >= 2
-        printf(" Could not write 2\n");
-#endif
+        return TWI_WRITE_ERROR;
     }
     twiStop();
-#if DEBUG >= 2
-    printf(" Done!\n");
-#endif
+    return SUCCESS;
 }
 
-uint8_t accInit(AccRange r) {
-    debugPrint("Acc Init...\n");
-    accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
+Error accInit(AccRange r) {
+    uint8_t v;
     switch (r) {
         case r2G:
-            accWriteRegister(ACCREG_CTRL4, 0x00);
+            v = 0x00;
             break;
         case r4G:
-            accWriteRegister(ACCREG_CTRL4, 0x10);
+            v = 0x10;
             break;
         case r8G:
-            accWriteRegister(ACCREG_CTRL4, 0x20);
+            v = 0x20;
             break;
         case r16G:
-            accWriteRegister(ACCREG_CTRL4, 0x30);
+            v = 0x30;
             break;
+        default:
+            return ARGUMENT_ERROR;
     }
-    debugPrint("Acc Initialized!\n");
-    return 0;
+    Error e = accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
+    if (e != SUCCESS) {
+        return e;
+    }
+    e = accWriteRegister(ACCREG_CTRL4, v);
+    return e;
 }
 
-void accRead(Vector *v) {
-    twiStart(ACC_ADDRESS | TWI_WRITE);
-    twiWrite(ACCREG_XL | (1 << 7)); // Auto Increment
-    twiRepStart(ACC_ADDRESS | TWI_READ);
+Error accRead(Vector *v) {
+    if (v == NULL) {
+        return ARGUMENT_ERROR;
+    }
+    if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
+        return TWI_NO_ANSWER;
+    }
+    if (twiWrite(ACCREG_XL | (1 << 7))) { // Auto Increment
+        return TWI_WRITE_ERROR;
+    }
+    if (twiRepStart(ACC_ADDRESS | TWI_READ)) {
+        return TWI_NO_ANSWER;
+    }
     uint8_t xl = twiReadAck();
     uint8_t xh = twiReadAck();
     uint8_t yl = twiReadAck();
@@ -105,4 +104,5 @@ void accRead(Vector *v) {
     v->x = ((int16_t)(xh << 8 | xl)) >> 4;
     v->y = ((int16_t)(yh << 8 | yl)) >> 4;
     v->z = ((int16_t)(zh << 8 | zl)) >> 4;
+    return SUCCESS;
 }

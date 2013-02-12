@@ -30,6 +30,7 @@
 #ifndef _mag_h
 #define _mag_h
 
+#include <error.h>
 #include <xycontrol.h>
 
 typedef enum {
@@ -42,7 +43,7 @@ typedef enum {
     r8g1 = 7, // +- 8.1 gauss
 } MagRange;
 
-uint8_t magInit(MagRange r);
-void magRead(Vector *v);
+Error magInit(MagRange r);
+Error magRead(Vector *v);
 
 #endif

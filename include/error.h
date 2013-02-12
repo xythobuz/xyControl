@@ -1,5 +1,5 @@
 /*
- * acc.h
+ * error.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,20 +27,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _acc_h
-#define _acc_h
-
-#include <error.h>
-#include <xycontrol.h>
+#ifndef _error_h
+#define _error_h
 
 typedef enum {
-    r2G, // +- 2G
-    r4G, // +- 4G
-    r8G, // +- 8G
-    r16G, // +- 16G
-} AccRange;
+    SUCCESS = 0,
+    TWI_NO_ANSWER,
+    TWI_WRITE_ERROR,
+    MALLOC_FAIL,
+    ERROR,
+    ARGUMENT_ERROR
+} Error;
 
-Error accInit(AccRange r);
-Error accRead(Vector *v);
+char *getErrorString(Error e); // free string after use!
 
 #endif

@@ -44,6 +44,7 @@ SRC += ../lib/motor.c
 SRC += ../lib/adc.c
 SRC += ../lib/uartMenu.c
 SRC += ../lib/orientation.c
+SRC += ../lib/error.c
 
 OBJ = $(SRC:.c=.o)
 

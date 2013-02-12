@@ -30,6 +30,7 @@
 #ifndef _gyro_h
 #define _gyro_h
 
+#include <error.h>
 #include <xycontrol.h>
 
 typedef enum {
@@ -38,7 +39,7 @@ typedef enum {
     r2000DPS,
 } GyroRange;
 
-uint8_t gyroInit(GyroRange r);
-void gyroRead(Vector *v);
+Error gyroInit(GyroRange r);
+Error gyroRead(Vector *v);
 
 #endif

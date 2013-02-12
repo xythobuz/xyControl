@@ -1,5 +1,5 @@
 /*
- * acc.h
+ * error.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,20 +27,29 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _acc_h
-#define _acc_h
+#include <avr/io.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <avr/pgmspace.h>
 
 #include <error.h>
-#include <xycontrol.h>
 
-typedef enum {
-    r2G, // +- 2G
-    r4G, // +- 4G
-    r8G, // +- 8G
-    r16G, // +- 16G
-} AccRange;
+char error0[] PROGMEM = "Success";
+char error1[] PROGMEM = "TWI doesn't answer";
+char error2[] PROGMEM = "TWI could not write";
+char error3[] PROGMEM = "Not enough memory";
+char error4[] PROGMEM = "General Error";
+char error5[] PROGMEM = "Argument Error";
 
-Error accInit(AccRange r);
-Error accRead(Vector *v);
+PGM_P errorTable[] PROGMEM = {
+    error0, error1, error2, error3, error4, error5
+};
 
-#endif
+char *getErrorString(Error e) {
+    char *buff = (char *)malloc(strlen_P((PGM_P)pgm_read_word(&(errorTable[e]))));
+    if (buff == NULL) {
+        return NULL;
+    }
+    strcpy_P(buff, (PGM_P)pgm_read_word(&(errorTable[e])));
+    return buff;
+}

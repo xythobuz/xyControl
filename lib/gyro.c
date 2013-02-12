@@ -33,39 +33,63 @@
 
 #include <twi.h>
 #include <gyro.h>
+#include <error.h>
 #include <config.h>
 
 #define GYROREG_CTRL1 0x20
 #define GYROREG_CTRL4 0x23
 #define GYROREG_OUTXL 0x28
 
-void gyroWriteByte(uint8_t reg, uint8_t val) {
-    twiStart(GYRO_ADDRESS | TWI_WRITE);
-    twiWrite(reg);
-    twiWrite(val);
+Error gyroWriteByte(uint8_t reg, uint8_t val) {
+    if (twiStart(GYRO_ADDRESS | TWI_WRITE)) {
+        return TWI_NO_ANSWER;
+    }
+    if (twiWrite(reg)) {
+        return TWI_WRITE_ERROR;
+    }
+    if (twiWrite(val)) {
+        return TWI_WRITE_ERROR;
+    }
     twiStop();
+    return SUCCESS;
 }
 
-uint8_t gyroInit(GyroRange r) {
-    gyroWriteByte(GYROREG_CTRL1, 0x0F);
+Error gyroInit(GyroRange r) {
+    uint8_t v;
     switch (r) {
         case r250DPS:
-            gyroWriteByte(GYROREG_CTRL4, 0x00);
+            v = 0x00;
             break;
         case r500DPS:
-            gyroWriteByte(GYROREG_CTRL4, 0x10);
+            v = 0x10;
             break;
         case r2000DPS:
-            gyroWriteByte(GYROREG_CTRL4, 0x20);
+            v = 0x20;
             break;
+        default:
+            return ARGUMENT_ERROR;
     }
-    return 0;
+    Error e = gyroWriteByte(GYROREG_CTRL1, 0x0F);
+    if (e != SUCCESS) {
+        return e;
+    }
+    e = gyroWriteByte(GYROREG_CTRL4, v);
+    return e;
 }
 
-void gyroRead(Vector *v) {
-    twiStart(GYRO_ADDRESS | TWI_WRITE);
-    twiWrite(GYROREG_OUTXL | 0x80); // Auto Increment
-    twiRepStart(GYRO_ADDRESS | TWI_READ);
+Error gyroRead(Vector *v) {
+    if (v == NULL) {
+        return ARGUMENT_ERROR;
+    }
+    if (twiStart(GYRO_ADDRESS | TWI_WRITE)) {
+        return TWI_NO_ANSWER;
+    }
+    if (twiWrite(GYROREG_OUTXL | 0x80)) { // Auto Increment
+        return TWI_WRITE_ERROR;
+    }
+    if (twiRepStart(GYRO_ADDRESS | TWI_READ)) {
+        return TWI_NO_ANSWER;
+    }
     uint8_t xl = twiReadAck();
     uint8_t xh = twiReadAck();
     uint8_t yl = twiReadAck();
@@ -76,4 +100,5 @@ void gyroRead(Vector *v) {
     v->x = ((int16_t)(xh << 8 | xl)) >> 4;
     v->y = ((int16_t)(yh << 8 | yl)) >> 4;
     v->z = ((int16_t)(zh << 8 | zl)) >> 4;
+    return SUCCESS;
 }
