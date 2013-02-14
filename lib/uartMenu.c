@@ -30,6 +30,7 @@
 #include <avr/io.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <avr/pgmspace.h>
 
 #include <xycontrol.h>
@@ -86,18 +87,14 @@ void uartMenuPrintHelp(void) {
     xmemSetBank(BANK_GENERIC);
     char *buffer = (char *)malloc(35);
     if (buffer == NULL) {
-        serialWrite('!');
+        printf("!");
         return;
     }
     uartMenu = listsort(uartMenu);
     MenuEntry *p = uartMenu;
     while (p != NULL) {
-        serialWrite(p->cmd);
-        serialWrite(':');
-        serialWrite(' ');
         strcpy_P(buffer, p->helpText);
-        serialWriteString(buffer);
-        serialWrite('\n');
+        printf("%c: %s\n", p->cmd, buffer);
         p = p->next;
     }
     free(buffer);

@@ -45,6 +45,7 @@
 #include <motor.h>
 #include <orientation.h>
 #include <xmem.h>
+#include <error.h>
 
 /*
  * This aims to be a small walk through the inner
@@ -60,7 +61,14 @@ void printVoltage(void);
 void printRaw(void);
 void printOrientation(void);
 void ramTest(void);
-void motorTest(void);
+void errorTest(void);
+void motorToggle(void);
+void moveW(void);
+void moveA(void);
+void moveS(void);
+void moveD(void);
+void moveUp(void);
+void moveDown(void);
 
 /*
  * Strings for UART menu, stored in Flash.
@@ -69,7 +77,14 @@ char voltageString[] PROGMEM = "Battery Voltage";
 char sensorString[] PROGMEM = "Raw Sensor Data";
 char orientationString[] PROGMEM = "Orientation Angles";
 char ramString[] PROGMEM = "Test external RAM";
-char motorString[] PROGMEM = "Motor Test";
+char errorString[] PROGMEM = "Print Test Error";
+char motorToggleString[] PROGMEM = "Toggle Motor";
+char motorWString[] PROGMEM = "Forward";
+char motorAString[] PROGMEM = "Left";
+char motorSString[] PROGMEM = "Backward";
+char motorDString[] PROGMEM = "Right";
+char motorPlusString[] PROGMEM = "Throttle";
+char motorMinusString[] PROGMEM = "Break";
 
 int main(void) {
 
@@ -84,39 +99,37 @@ int main(void) {
     printf("Initializing Hardware Test...\n");
 
     /*
-     * This will blink the LEDs
+     * Initialize Hardware
      */
     xyLed(LED_GREEN, LED_OFF);
     xyLed(LED_RED, LED_ON);
-    addTask(&ledTask);
-
-    /*
-     * ADC Test, reading the battery voltage.
-     * A new command for the UART menu is registered.
-     */
-    addMenuCommand('v', voltageString, &printVoltage);
-
-    /*
-     * Initialize the MinIMU9-v2 Accelerometer, Gyroscope and
-     * Magnetometer and the Motor Task.
-     */
     accInit(r2G);
     gyroInit(r250DPS);
     magInit(r1g9);
     motorInit();
 
-    addMenuCommand('r', sensorString, &printRaw);
+    /*
+     * Register Tasks in the Scheduler. A motor task and a UART task
+     * are already registered by xyInit()
+     */
+    addTask(&orientationTask); // Calculate orientation
+    addTask(&ledTask); // Blink LED
 
     /*
-     * Adds Task to calculate the current heading
-     * (pitch and roll angles). Also add a menu command
-     * to print these angles.
+     * Add commands for the UART menu
      */
-    addTask(&orientationTask);
+    addMenuCommand('e', errorString, &errorTest);
     addMenuCommand('o', orientationString, &printOrientation);
-
+    addMenuCommand('r', sensorString, &printRaw);
     addMenuCommand('t', ramString, &ramTest);
-    addMenuCommand('m', motorString, &motorTest);
+    addMenuCommand('v', voltageString, &printVoltage);
+    addMenuCommand('m', motorToggleString, &motorToggle);
+    addMenuCommand('w', motorWString, &moveW);
+    addMenuCommand('a', motorAString, &moveA);
+    addMenuCommand('s', motorSString, &moveS);
+    addMenuCommand('d', motorDString, &moveD);
+    addMenuCommand('+', motorPlusString, &moveUp);
+    addMenuCommand('-', motorMinusString, &moveDown);
 
     printf("Hardware Test Initialized!\n");
 
@@ -161,6 +174,7 @@ void printOrientation(void) {
 }
 
 #define CHECKSIZE 53248 // 52KB
+
 void ramTest(void) {
     uint8_t *blocks[MEMBANKS];
     uint8_t oldBank = xmemGetBank();
@@ -194,7 +208,7 @@ void ramTest(void) {
             }
         }
         if (!error) {
-            printf("  Block %i okay!\n", i);
+            printf("  Bank %i okay!\n", i);
         }
     }
     printf("Freeing memory...\n");
@@ -207,7 +221,13 @@ void ramTest(void) {
     xmemSetBank(oldBank);
 }
 
-void motorTest(void) {
+void errorTest(void) {
+    char *s = getErrorString(ERROR);
+    printf("Test: %s\n", s);
+    free(s);
+}
+
+void motorToggle(void) {
     static uint8_t v = 0;
     v = !v;
     if (v) {
@@ -217,4 +237,28 @@ void motorTest(void) {
         motorSet(5, 0);
         printf("Motor OFF!\n");
     }
+}
+
+void moveW(void) {
+
+}
+
+void moveA(void) {
+
+}
+
+void moveS(void) {
+
+}
+
+void moveD(void) {
+
+}
+
+void moveUp(void) {
+
+}
+
+void moveDown(void) {
+
 }

@@ -53,7 +53,14 @@ FILE inFile;
 FILE outFile;
 
 int uartoutput(char c, FILE *f) {
-    serialWrite(c);
+    // Inject CR here, instead of in the serial library,
+    // so we can still do binary transfers with serialWrite()...
+    if (c == '\n') {
+        serialWrite('\r');
+    }
+    if (c != '\r') {
+        serialWrite(c);
+    }
     return 0;
 }
 

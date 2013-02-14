@@ -32,6 +32,7 @@
 
 #include <avr/wdt.h>
 #include <serial.h>
+#include <stdio.h>
 
 /*
  * Usage:
@@ -50,21 +51,13 @@
 
 // #define NDEBUG // Uncomment to disable debug and assert output
 
-#define DEBUGOUT(x) serialWriteString(x) // Debug Output Function
+#define DEBUGOUT(x) printf(x) // Debug Output Function
 
 // assert Implementation
 #define ASSERTFUNC(x) ({                            \
     if (!(x)) {                                     \
         if (DEBUG != 0) {                           \
-            debugPrint("\nError: ");                \
-            debugPrint(__FILE__);                   \
-            debugPrint(":");                        \
-            debugPrint(timeToString(__LINE__));     \
-            debugPrint(" in ");                     \
-            debugPrint(__func__);                   \
-            debugPrint("(): Assertion '");          \
-            debugPrint(#x);                         \
-            debugPrint("' failed!\n");              \
+            printf("\nError: %s:%i in %s(): Assert '%s' failed!\n", __FILE__, __LINE__, __func__, #x);                                    \
             wdt_enable(WDTO_1S);                    \
             while (!serialTxBufferEmpty())          \
                 wdt_reset();                        \
