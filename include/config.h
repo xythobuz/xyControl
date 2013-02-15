@@ -31,10 +31,36 @@
 #define _config_h
 
 //  -----------------
+// |       Set       |
+//  -----------------
+
+#define SET_FREQ 250
+#define SET_OFFSET 2 // Third Task Executed
+
+//  -----------------
+// |     Control     |
+//  -----------------
+
+#define CON_FREQ 250
+#define CON_OFFSET 1 // Second Task Executed
+#define CON_P 5.0
+#define CON_I 0.03
+#define CON_D -13.0
+
+//  -----------------
+// |      Motor      |
+//  -----------------
+
+#define MOT_FREQ 250
+#define MOT_OFFSET 3 // Fourth task executed
+#define MOTORCOUNT 4
+
+//  -----------------
 // |   Orientation   |
 //  -----------------
 
 #define O_FREQ 250 // how often task is executed (hz)
+#define O_OFFSET 0 // First task executed
 #define O_NORMALIZE 7 // Move Gyro data to zero (y)
 #define O_NORMVAL 550 // Gyro reads 550 when NORMVALSPEED DPS are applied.
 #define O_NORMVALSPEED 90

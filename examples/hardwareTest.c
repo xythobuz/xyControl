@@ -171,7 +171,7 @@ void printRaw(void) {
 }
 
 void printOrientation(void) {
-    printf("Pitch: %i Roll: %i\n", orientation.pitch, orientation.roll);
+    printf("Pitch: %f\nRoll: %f\n", orientation.pitch, orientation.roll);
 }
 
 #define CHECKSIZE 53248 // 52KB

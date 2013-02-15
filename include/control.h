@@ -1,5 +1,5 @@
 /*
- * orientation.h
+ * control.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,18 +27,16 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _control_h
+#define _control_h
 
-#ifndef _orientation_h
-#define _orientation_h
+#define ROLL 0
+#define PITCH 1
 
-typedef struct {
-    double pitch;
-    double roll;
-    // int16_t yaw;
-} Angles;
+extern double o_should[2]; // Target Value
+extern double o_output[2]; // PID Output
 
-extern Angles orientation;
-
-void orientationTask(void);
+void controlInit(void);
+void controlTask(void);
 
 #endif

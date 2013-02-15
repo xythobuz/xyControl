@@ -1,5 +1,5 @@
 /*
- * orientation.h
+ * pid.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,18 +27,20 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdint.h>
+#include <avr/io.h>
 
-#ifndef _orientation_h
-#define _orientation_h
+#include <time.h>
+#include <pid.h>
 
-typedef struct {
-    double pitch;
-    double roll;
-    // int16_t yaw;
-} Angles;
-
-extern Angles orientation;
-
-void orientationTask(void);
-
-#endif
+double pidExecute(double should, double is, PIDState *state) {
+    time_t now = getSystemTime();
+    double timeChange = (double)(now - state->last);
+    double error = should - is;
+    state->sumError += (error * timeChange);
+    double dError = (error - state->lastError) / timeChange;
+    double output = (state->kp * error) + (state->ki * state->sumError) + (state->kd * dError);
+    state->lastError = error;
+    state->last = now;
+    return output;
+}

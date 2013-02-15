@@ -1,5 +1,5 @@
 /*
- * orientation.h
+ * set.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,18 +27,56 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdint.h>
+#include <avr/io.h>
 
-#ifndef _orientation_h
-#define _orientation_h
+#include <twi.h>
+#include <motor.h>
+#include <tasks.h>
+#include <time.h>
+#include <control.h>
+#include <config.h>
 
-typedef struct {
-    double pitch;
-    double roll;
-    // int16_t yaw;
-} Angles;
+#define SETDELAY (1000 / SET_FREQ)
+uint8_t baseSpeed;
 
-extern Angles orientation;
+void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
+    if (axis == ROLL) {
+        motorSet(1, vals[0]);
+        motorSet(3, vals[1]);
+    } else if (axis == PITCH) {
+        motorSet(0, vals[0]);
+        motorSet(2, vals[1]);
+    }
+}
 
-void orientationTask(void);
-
-#endif
+void setTask(void) {
+    static time_t lastTaskExec = SET_OFFSET;
+    if ((getSystemTime() - lastTaskExec) >= SETDELAY) {
+        for (uint8_t i = 0; i < 2; i++) {
+            double diff = o_output[i];
+            if (diff > 0) {
+                if (diff > (baseSpeed / 2)) {
+                    diff = baseSpeed / 2;
+                }
+            } else if (diff < 0) {
+                if (diff < (-1 * (baseSpeed / 2))) {
+                    diff = -1 * (baseSpeed / 2);
+                }
+            }
+            uint8_t v[2];
+            if ((baseSpeed + diff) > 255) {
+                v[0] = 255;
+            } else {
+                v[0] = baseSpeed + diff;
+            }
+            if ((baseSpeed - diff) < 0) {
+                v[1] = 0;
+            } else {
+                v[1] = baseSpeed - diff;
+            }
+            setMotorSpeeds(i, v);
+        }
+        lastTaskExec = getSystemTime();
+    }
+}

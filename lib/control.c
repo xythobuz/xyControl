@@ -1,5 +1,5 @@
 /*
- * orientation.c
+ * control.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,51 +27,50 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
 #include <stdint.h>
-#include <math.h>
+#include <avr/io.h>
 
-#include <xycontrol.h>
-#include <gyro.h>
-#include <acc.h>
+#include <twi.h>
+#include <motor.h>
+#include <tasks.h>
 #include <time.h>
+#include <pid.h>
 #include <orientation.h>
 #include <config.h>
 
-#define NORMFACTOR (O_NORMVAL / O_NORMVALSPEED)
-#define DT (1 / O_FREQ) // s
-#define DELAY (1000 / O_FREQ) // ms
-#define TODEG(x) ((x * 180) / M_PI)
+#define CONTROLDELAY (1000 / CON_FREQ)
 
-Angles orientation = {.pitch = 0, .roll = 0};
+#define ROLL 0
+#define PITCH 1
 
-void normalize(Vector *v) {
-    v->x = ((v->x + O_NORMALIZE) / NORMFACTOR);
-    v->y = ((v->y + O_NORMALIZE) / NORMFACTOR);
-    v->z = ((v->z + O_NORMALIZE) / NORMFACTOR);
+PIDState o_pids[2];
+double o_should[2];
+double o_output[2];
+
+void controlInit(void) {
+    for (uint8_t i = 0; i < 2; i++) {
+        o_pids[i].kp = CON_P;
+        o_pids[i].ki = CON_I;
+        o_pids[i].kd = CON_D;
+        o_pids[i].lastError = 0;
+        o_pids[i].sumError = 0;
+        o_pids[i].last = 0;
+        o_should[i] = 0.0;
+    }
 }
 
-double complementary(double angle, double rate, double last) {
-    return ((((angle - last) * square(O_TIMECONST) * DT) + ((angle - last) * 2 * O_TIMECONST) + rate) * DT) + angle;
-}
-
-void orientationTask(void) {
-    static time_t last = O_OFFSET;
-    if ((getSystemTime() - last) >= DELAY) {
-
-        Vector g, a;
-        accRead(&a); // Read Accelerometer
-        gyroRead(&g); // Read Gyroscope
-        normalize(&g); // Normalize Gyroscope Data
-
-        // Calculate Pitch & Roll from Accelerometer Data
-        double roll = atan((double)a.x / hypot((double)a.y, (double)a.z));
-        double pitch = atan((double)a.y / hypot((double)a.x, (double)a.z));
-        roll = TODEG(roll);
-        pitch = TODEG(pitch); // As Degree, not radians!
-
-        // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
-        orientation.roll = complementary(roll, g.y, orientation.roll);
-        orientation.pitch = complementary(pitch, g.x, orientation.pitch);
+void controlTask(void) {
+    static time_t lastTaskExec = CON_OFFSET;
+    if ((getSystemTime() - lastTaskExec) >= CONTROLDELAY) {
+        for (uint8_t i = 0; i < 2; i++) {
+            double is;
+            if (i == ROLL) {
+                is = orientation.roll;
+            } else if (i == PITCH) {
+                is = orientation.pitch;
+            }
+            o_output[i] = pidExecute(o_should[i], is, &o_pids[i]);
+        }
+        lastTaskExec = getSystemTime();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * orientation.h
+ * set.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,18 +27,9 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef _set_h
+#define _set_h
 
-#ifndef _orientation_h
-#define _orientation_h
-
-typedef struct {
-    double pitch;
-    double roll;
-    // int16_t yaw;
-} Angles;
-
-extern Angles orientation;
-
-void orientationTask(void);
+void setTask(void);
 
 #endif

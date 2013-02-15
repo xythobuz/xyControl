@@ -1,5 +1,5 @@
 /*
- * orientation.c
+ * hardwareTest.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,51 +27,41 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
 #include <stdint.h>
-#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
+#include <avr/io.h>
+#include <avr/pgmspace.h>
+
+#include <tasks.h>
 #include <xycontrol.h>
-#include <gyro.h>
-#include <acc.h>
 #include <time.h>
+#include <uartMenu.h>
+#include <serial.h>
+#include <acc.h>
+#include <gyro.h>
+#include <mag.h>
+#include <motor.h>
 #include <orientation.h>
-#include <config.h>
+#include <control.h>
+#include <set.h>
 
-#define NORMFACTOR (O_NORMVAL / O_NORMVALSPEED)
-#define DT (1 / O_FREQ) // s
-#define DELAY (1000 / O_FREQ) // ms
-#define TODEG(x) ((x * 180) / M_PI)
+int main(void) {
+    xyInit();
+    xyLed(LED_ALL, LED_ON);
+    accInit(r2G);
+    gyroInit(r250DPS);
+    magInit(r1g9);
 
-Angles orientation = {.pitch = 0, .roll = 0};
+    addTask(&orientationTask);
+    addTask(&controlTask);
+    addTask(&setTask);
+    motorInit();
 
-void normalize(Vector *v) {
-    v->x = ((v->x + O_NORMALIZE) / NORMFACTOR);
-    v->y = ((v->y + O_NORMALIZE) / NORMFACTOR);
-    v->z = ((v->z + O_NORMALIZE) / NORMFACTOR);
-}
-
-double complementary(double angle, double rate, double last) {
-    return ((((angle - last) * square(O_TIMECONST) * DT) + ((angle - last) * 2 * O_TIMECONST) + rate) * DT) + angle;
-}
-
-void orientationTask(void) {
-    static time_t last = O_OFFSET;
-    if ((getSystemTime() - last) >= DELAY) {
-
-        Vector g, a;
-        accRead(&a); // Read Accelerometer
-        gyroRead(&g); // Read Gyroscope
-        normalize(&g); // Normalize Gyroscope Data
-
-        // Calculate Pitch & Roll from Accelerometer Data
-        double roll = atan((double)a.x / hypot((double)a.y, (double)a.z));
-        double pitch = atan((double)a.y / hypot((double)a.x, (double)a.z));
-        roll = TODEG(roll);
-        pitch = TODEG(pitch); // As Degree, not radians!
-
-        // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
-        orientation.roll = complementary(roll, g.y, orientation.roll);
-        orientation.pitch = complementary(pitch, g.x, orientation.pitch);
+    for(;;) {
+        tasks();
     }
+
+    return 0;
 }

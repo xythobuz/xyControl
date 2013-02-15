@@ -45,6 +45,9 @@ SRC += ../lib/adc.c
 SRC += ../lib/uartMenu.c
 SRC += ../lib/orientation.c
 SRC += ../lib/error.c
+SRC += ../lib/pid.c
+SRC += ../lib/control.c
+SRC += ../lib/set.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -67,7 +70,7 @@ PROGRAMMER = stk500v2
 ISPPORT = /dev/tty.usbmodem641
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
-all: minimal.hex hardwareTest.hex
+all: minimal.hex hardwareTest.hex flight.hex
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)

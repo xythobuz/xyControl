@@ -36,13 +36,12 @@
 #include <time.h>
 #include <config.h>
 
-#define MOTORCOUNT 4
-#define MOTORDELAY 10 // Update every MOTORDELAY milliseconds
+#define MOTORDELAY (1000 / MOT_FREQ) // Update every MOTORDELAY milliseconds
 
 uint8_t motorSpeed[MOTORCOUNT];
 
 void motorTask(void) {
-    static time_t lastTaskExec = 0;
+    static time_t lastTaskExec = MOT_OFFSET;
     if ((getSystemTime() - lastTaskExec) >= MOTORDELAY) {
         for (uint8_t i = 0; i < MOTORCOUNT; i++) {
             twiStart(MOTOR_BASEADDRESS + (i << 1) + TWI_WRITE);
