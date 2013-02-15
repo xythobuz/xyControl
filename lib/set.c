@@ -38,7 +38,8 @@
 #include <config.h>
 
 #define SETDELAY (1000 / SET_FREQ)
-uint8_t baseSpeed;
+
+uint8_t baseSpeed = 0;
 
 void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     if (axis == ROLL) {

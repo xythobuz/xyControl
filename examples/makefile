@@ -70,7 +70,7 @@ PROGRAMMER = stk500v2
 ISPPORT = /dev/tty.usbmodem641
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
-all: minimal.hex hardwareTest.hex flight.hex
+all: minimal.hex hardwareTest.hex uartFlight.hex
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)

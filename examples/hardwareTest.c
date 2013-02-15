@@ -63,12 +63,6 @@ void printOrientation(void);
 void ramTest(void);
 void bluetoothTest(void);
 void motorToggle(void);
-void moveW(void);
-void moveA(void);
-void moveS(void);
-void moveD(void);
-void moveUp(void);
-void moveDown(void);
 
 /*
  * Strings for UART menu, stored in Flash.
@@ -79,12 +73,6 @@ char orientationString[] PROGMEM = "Orientation Angles";
 char ramString[] PROGMEM = "Test external RAM";
 char bluetoothString[] PROGMEM = "Test Bluetooth Module";
 char motorToggleString[] PROGMEM = "Toggle Motor";
-char motorWString[] PROGMEM = "Forward";
-char motorAString[] PROGMEM = "Left";
-char motorSString[] PROGMEM = "Backward";
-char motorDString[] PROGMEM = "Right";
-char motorPlusString[] PROGMEM = "Throttle";
-char motorMinusString[] PROGMEM = "Break";
 
 int main(void) {
 
@@ -123,14 +111,7 @@ int main(void) {
     addMenuCommand('r', sensorString, &printRaw);
     addMenuCommand('t', ramString, &ramTest);
     addMenuCommand('v', voltageString, &printVoltage);
-
     addMenuCommand('m', motorToggleString, &motorToggle);
-    addMenuCommand('w', motorWString, &moveW);
-    addMenuCommand('a', motorAString, &moveA);
-    addMenuCommand('s', motorSString, &moveS);
-    addMenuCommand('d', motorDString, &moveD);
-    addMenuCommand('+', motorPlusString, &moveUp);
-    addMenuCommand('-', motorMinusString, &moveDown);
 
     printf("Hardware Test Initialized!\n");
 
@@ -243,28 +224,4 @@ void motorToggle(void) {
         motorSet(5, 0);
         printf("Motor OFF!\n");
     }
-}
-
-void moveW(void) {
-
-}
-
-void moveA(void) {
-
-}
-
-void moveS(void) {
-
-}
-
-void moveD(void) {
-
-}
-
-void moveUp(void) {
-
-}
-
-void moveDown(void) {
-
 }

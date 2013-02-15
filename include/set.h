@@ -30,6 +30,8 @@
 #ifndef _set_h
 #define _set_h
 
+extern uint8_t baseSpeed;
+
 void setTask(void);
 
 #endif
