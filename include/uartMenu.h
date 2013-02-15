@@ -34,6 +34,7 @@
 
 uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f); // 0 on success
 void uartMenuPrintHelp(void);
+void uartMenuRegisterHandler(void (*handler)(char)); // Gets called when no command
 void uartMenuTask(void);
 
 #endif

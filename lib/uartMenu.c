@@ -47,9 +47,8 @@ struct MenuEntry{
     MenuEntry *next;
 };
 
-MenuEntry *listsort(MenuEntry *list);
-
 MenuEntry *uartMenu = NULL;
+void (*unHandler)(char) = NULL;
 
 MenuEntry *findEntry(uint8_t cmd) {
     MenuEntry *p = uartMenu;
@@ -82,7 +81,19 @@ uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f) {
     xmemSetBank(lastBank);
 }
 
+MenuEntry *reverseList(MenuEntry *root) {
+    MenuEntry *new = NULL;
+    while (root != NULL) {
+        MenuEntry *next = root->next;
+        root->next = new;
+        new = root;
+        root = next;
+    }
+    return new;
+}
+
 void uartMenuPrintHelp(void) {
+    static uint8_t reversed = 0;
     uint8_t lastBank = xmemGetBank();
     xmemSetBank(BANK_GENERIC);
     char *buffer = (char *)malloc(35);
@@ -90,7 +101,10 @@ void uartMenuPrintHelp(void) {
         printf("!");
         return;
     }
-    uartMenu = listsort(uartMenu);
+    if (!reversed) {
+        reversed = 1;
+        uartMenu = reverseList(uartMenu);
+    }
     MenuEntry *p = uartMenu;
     while (p != NULL) {
         strcpy_P(buffer, p->helpText);
@@ -99,6 +113,10 @@ void uartMenuPrintHelp(void) {
     }
     free(buffer);
     xmemSetBank(lastBank);
+}
+
+void uartMenuRegisterHandler(void (*handler)(char)) {
+    unHandler = handler;
 }
 
 void uartMenuTask(void) {
@@ -115,71 +133,8 @@ void uartMenuTask(void) {
             }
             p = p->next;
         }
-        serialWrite('?');
+        if (unHandler != NULL)
+            unHandler(c);
         xmemSetBank(lastBank);
-    }
-}
-
-// Mergesort for linked list
-// Copyright 2001 Simon Tatham
-// http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
-// And, before you ask, yes. All this flash space is wasted to display
-// the UART Help Menu in alphabetical order... :)
-MenuEntry *listsort(MenuEntry *list) {
-    MenuEntry *p, *q, *e, *tail;
-    int insize, nmerges, psize, qsize, i;
-    if (list == NULL) {
-        return NULL;
-    }
-    insize = 1;
-    while (1) {
-        p = list;
-        list = NULL;
-        tail = NULL;
-        nmerges = 0;
-        while (p != NULL) {
-            nmerges++;
-            q = p;
-            psize = 0;
-            for (i = 0; i < insize; i++) {
-                psize++;
-                q = q->next;
-                if (!q) {
-                    break;
-                }
-            }
-            qsize = insize;
-            while (psize > 0 || (qsize > 0 && q)) {
-                if (psize == 0) {
-                    e = q;
-                    q = q->next;
-                    qsize--;
-                } else if (qsize == 0 || !q) {
-                    e = p;
-                    p = p->next;
-                    psize--;
-                } else if (p->cmd <= q->cmd) {
-                    e = p;
-                    p = p->next;
-                    psize--;
-                } else {
-                    e = q;
-                    q = q->next;
-                    qsize--;
-                }
-                if (tail) {
-                    tail->next = e;
-                } else {
-                    list = e;
-                }
-                tail = e;
-            }
-            p = q;
-        }
-        tail->next = NULL;
-        if (nmerges <= 1) {
-            return list;
-        }
-        insize *= 2;
     }
 }

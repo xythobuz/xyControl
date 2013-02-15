@@ -118,8 +118,8 @@
 // Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
 // #define FLOWCONTROL
 
-#define RX_BUFFER_SIZE 64
-#define TX_BUFFER_SIZE 64
+#define RX_BUFFER_SIZE 128
+#define TX_BUFFER_SIZE 128
 
 // Select the used UART module, from 0 to 3
 //#define UART 0 // USB

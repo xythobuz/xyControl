@@ -61,7 +61,7 @@ void printVoltage(void);
 void printRaw(void);
 void printOrientation(void);
 void ramTest(void);
-void errorTest(void);
+void bluetoothTest(void);
 void motorToggle(void);
 void moveW(void);
 void moveA(void);
@@ -77,7 +77,7 @@ char voltageString[] PROGMEM = "Battery Voltage";
 char sensorString[] PROGMEM = "Raw Sensor Data";
 char orientationString[] PROGMEM = "Orientation Angles";
 char ramString[] PROGMEM = "Test external RAM";
-char errorString[] PROGMEM = "Print Test Error";
+char bluetoothString[] PROGMEM = "Test Bluetooth Module";
 char motorToggleString[] PROGMEM = "Toggle Motor";
 char motorWString[] PROGMEM = "Forward";
 char motorAString[] PROGMEM = "Left";
@@ -118,11 +118,12 @@ int main(void) {
     /*
      * Add commands for the UART menu
      */
-    addMenuCommand('e', errorString, &errorTest);
+    addMenuCommand('b', bluetoothString, &bluetoothTest);
     addMenuCommand('o', orientationString, &printOrientation);
     addMenuCommand('r', sensorString, &printRaw);
     addMenuCommand('t', ramString, &ramTest);
     addMenuCommand('v', voltageString, &printVoltage);
+
     addMenuCommand('m', motorToggleString, &motorToggle);
     addMenuCommand('w', motorWString, &moveW);
     addMenuCommand('a', motorAString, &moveA);
@@ -221,10 +222,15 @@ void ramTest(void) {
     xmemSetBank(oldBank);
 }
 
-void errorTest(void) {
-    char *s = getErrorString(ERROR);
-    printf("Test: %s\n", s);
-    free(s);
+void bluetoothTest(void) {
+    printf("Please disconnect, wait 10s, then reconnect!\n");
+    printf("All data will be logged, then printed after 15s.\n");
+    time_t start = getSystemTime();
+    while ((getSystemTime() - start) <= 15000);
+    while (serialHasChar()) {
+        serialWrite(serialGet());
+    }
+    printf("\n\nDone!\n");
 }
 
 void motorToggle(void) {
