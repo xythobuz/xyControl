@@ -53,25 +53,32 @@
 
 #define FLOWMARK 5 // Space remaining to trigger xoff/xon
 
-#define SERIALRECIEVEINTERRUPT USART0_RX_vect
-#define SERIALTRANSMITINTERRUPT USART0_UDRE_vect
-#define SERIALDATA UDR0
-#define SERIALB UCSR0B
-#define SERIALIE UDRIE0
-#define SERIALC UCSR0C
-#define SERIALUPM1 UPM01
-#define SERIALUPM0 UPM00
-#define SERIALUSBS USBS0
-#define SERIALUCSZ0 UCSZ00
-#define SERIALUCSZ1 UCSZ01
-#define SERIALUCSZ2 UCSZ02
-#define SERIALRXCIE RXCIE0
-#define SERIALRXEN RXEN0
-#define SERIALTXEN TXEN0
-#define SERIALA UCSR0A
-#define SERIALUDRIE UDRIE0
-#define SERIALUDRE UDRE0
-#define SERIALUBRR UBRR0
+// Macro concatenation magic
+#define CAT_X(A, B, C) A ## B ## C
+#define CAT(A, B, C) CAT_X(A, B, C)
+#define CATB_X(A, B) A ## B
+#define CATB(A, B) CATB_X(A, B)
+
+// Register definitions
+#define SERIALRECIEVEINTERRUPT      CAT(USART, UART, _RX_vect)
+#define SERIALTRANSMITINTERRUPT     CAT(USART, UART, _UDRE_vect)
+#define SERIALB                     CAT(UCSR, UART, B)
+#define SERIALC                     CAT(UCSR, UART, C)
+#define SERIALUPM1                  CAT(UPM, UART, 1)
+#define SERIALUPM0                  CAT(UPM, UART, 0)
+#define SERIALUCSZ0                 CAT(UCSZ, UART, 0)
+#define SERIALUCSZ1                 CAT(UCSZ, UART, 1)
+#define SERIALUCSZ2                 CAT(UCSZ, UART, 2)
+#define SERIALA                     CAT(UCSR, UART, A)
+#define SERIALDATA                  CATB(UDR, UART)
+#define SERIALIE                    CATB(UDRIE, UART)
+#define SERIALUSBS                  CATB(USBS, UART)
+#define SERIALRXCIE                 CATB(RXCIE, UART)
+#define SERIALRXEN                  CATB(RXEN, UART)
+#define SERIALTXEN                  CATB(TXEN, UART)
+#define SERIALUDRIE                 CATB(UDRIE, UART)
+#define SERIALUDRE                  CATB(UDRE, UART)
+#define SERIALUBRR                  CATB(UBRR, UART)
 
 uint8_t volatile rxBuffer[RX_BUFFER_SIZE];
 uint8_t volatile txBuffer[TX_BUFFER_SIZE];

@@ -34,11 +34,11 @@
 // |   Orientation   |
 //  -----------------
 
-#define FREQ 10 // how often task is executed (hz)
-#define NORMALIZE 7 // Move Gyro data to zero (y)
-#define NORMVAL 550 // Gyro reads 550 when NORMVALSPEED DPS are applied.
-#define NORMVALSPEED 90
-#define TIMECONST (1.0)
+#define O_FREQ 250 // how often task is executed (hz)
+#define O_NORMALIZE 7 // Move Gyro data to zero (y)
+#define O_NORMVAL 550 // Gyro reads 550 when NORMVALSPEED DPS are applied.
+#define O_NORMVALSPEED 90
+#define O_TIMECONST (1.0)
 
 //  -----------------
 // |       ADC       |
@@ -120,5 +120,9 @@
 
 #define RX_BUFFER_SIZE 64
 #define TX_BUFFER_SIZE 64
+
+// Select the used UART module, from 0 to 3
+//#define UART 0 // USB
+#define UART 1 // Bluetooth
 
 #endif

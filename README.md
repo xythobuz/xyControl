@@ -25,13 +25,17 @@ These example projects don't use the Task Scheduler.
 + I got both of these Sensors on the [MinIMU-9 v2](http://www.pololu.com/catalog/product/1268)
 + Brushless Motor Driver [BL-Ctrl V1.2](http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2) with eg. the [Robbe Roxxy Outrunner 2824-34](http://www.conrad.de/ce/de/product/231867) Brushless Motor.
 
-## External Memory
+## External Memory (xmem.h)
 
 The external memory consists of a 512Kx8 SRAM, bank-switched onto the 16bit avr address space.
 This gives us 8 memory banks, consisting of 56KB. All memory from 0x0000 to 0x21FF is the AVRs internal memory. The memory banks are switched into 0x2200 to 0xFFFF.
 This gives us 8 banks with 56KB each, resulting in 448KB external RAM.
 
 The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.
+
+## Orientation Calculation (orientation.h)
+
+Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a complementary filter. For more informations on the theory, see this [Slideshow](http://web.mit.edu/scolton/www/filter.pdf) (PDF!).
 
 # PC Tools
 

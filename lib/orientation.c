@@ -38,21 +38,21 @@
 #include <orientation.h>
 #include <config.h>
 
-#define NORMFACTOR (NORMVAL / NORMVALSPEED)
-#define DT (1 / FREQ) // s
-#define DELAY (1000 / FREQ) // ms
+#define NORMFACTOR (O_NORMVAL / O_NORMVALSPEED)
+#define DT (1 / O_FREQ) // s
+#define DELAY (1000 / O_FREQ) // ms
 #define TODEG(x) ((x * 180) / M_PI)
 
 Angles orientation = {.pitch = 0, .roll = 0};
 
 void normalize(Vector *v) {
-    v->x = ((v->x + NORMALIZE) / NORMFACTOR);
-    v->y = ((v->y + NORMALIZE) / NORMFACTOR);
-    v->z = ((v->z + NORMALIZE) / NORMFACTOR);
+    v->x = ((v->x + O_NORMALIZE) / NORMFACTOR);
+    v->y = ((v->y + O_NORMALIZE) / NORMFACTOR);
+    v->z = ((v->z + O_NORMALIZE) / NORMFACTOR);
 }
 
 double complementary(double angle, double rate, double last) {
-    return ((((angle - last) * square(TIMECONST) * DT) + ((angle - last) * 2 * TIMECONST) + rate) * DT) + angle;
+    return ((((angle - last) * square(O_TIMECONST) * DT) + ((angle - last) * 2 * O_TIMECONST) + rate) * DT) + angle;
 }
 
 void orientationTask(void) {
