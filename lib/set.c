@@ -43,11 +43,11 @@ uint8_t baseSpeed = 0;
 
 void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     if (axis == ROLL) {
-        motorSet(1, vals[0]);
-        motorSet(3, vals[1]);
+        motorSet(SET_ROLLPLUS, vals[0]);
+        motorSet(SET_ROLLMINUS, vals[1]);
     } else if (axis == PITCH) {
-        motorSet(0, vals[0]);
-        motorSet(2, vals[1]);
+        motorSet(SET_PITCHPLUS, vals[0]);
+        motorSet(SET_PITCHMINUS, vals[1]);
     }
 }
 

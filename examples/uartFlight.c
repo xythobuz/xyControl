@@ -93,8 +93,8 @@ int main(void) {
     addMenuCommand('a', motorLeftString, &motorLeft);
     addMenuCommand('s', motorBackwardString, &motorBackward);
     addMenuCommand('d', motorRightString, &motorRight);
-    addMenuCommand('+', motorUpString, &motorUp);
-    addMenuCommand('-', motorDownString, &motorDown);
+    addMenuCommand('x', motorUpString, &motorUp);
+    addMenuCommand('y', motorDownString, &motorDown);
 
     for(;;) {
         tasks();
@@ -106,7 +106,7 @@ int main(void) {
 void motorToggle(void) {
     motorState = !motorState;
     if (motorState) {
-        baseSpeed = speed;
+        baseSpeed = speed = 10;
         printf("On!\n");
     } else {
         baseSpeed = 0;
@@ -117,16 +117,18 @@ void motorToggle(void) {
 void motorUp(void) {
     if (speed <= 250) {
         speed += 5;
-        baseSpeed = speed;
         printf("%i\n", speed);
+        if (motorState)
+            baseSpeed = speed;
     }
 }
 
 void motorDown(void) {
     if (speed >= 5) {
         speed -= 5;
-        baseSpeed = speed;
         printf("%i\n", speed);
+        if (motorState)
+            baseSpeed = speed;
     }
 }
 

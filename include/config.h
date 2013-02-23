@@ -36,6 +36,10 @@
 
 #define SET_FREQ 250
 #define SET_OFFSET 2 // Third Task Executed
+#define SET_ROLLPLUS 1
+#define SET_ROLLMINUS 3
+#define SET_PITCHPLUS 0
+#define SET_PITCHMINUS 2
 
 //  -----------------
 // |     Control     |

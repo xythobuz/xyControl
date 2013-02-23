@@ -24,6 +24,7 @@ These example projects don't use the Task Scheduler.
 + Accelerometer and Magnetometer LSM303DLHC, code based on the [Pololu Example](https://github.com/pololu/LSM303).
 + I got both of these Sensors on the [MinIMU-9 v2](http://www.pololu.com/catalog/product/1268)
 + Brushless Motor Driver [BL-Ctrl V1.2](http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2) with eg. the [Robbe Roxxy Outrunner 2824-34](http://www.conrad.de/ce/de/product/231867) Brushless Motor.
++ BTM-222 Bluetooth UART Bridge ([PCB](http://xythobuz.org/index.php?p=bt))
 
 ## External Memory (xmem.h)
 
@@ -37,7 +38,7 @@ The data and bss memory sections, as well as the Stack are located in the intern
 
 Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a complementary filter. For more informations on the theory, see this [Slideshow](http://web.mit.edu/scolton/www/filter.pdf) (PDF!).
 
-# PC Tools
+# PC and Android Tools
 
 You can find some PC Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
 
