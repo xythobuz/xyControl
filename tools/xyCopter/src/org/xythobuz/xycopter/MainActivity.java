@@ -1,11 +1,12 @@
 package org.xythobuz.xycopter;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -16,25 +17,48 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.ScrollingMovementMethod;
 import android.util.TypedValue;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+@SuppressLint("HandlerLeak")
 public class MainActivity extends Activity {
 
-	public static int REQUEST_ENABLE_BT = 1;
-	public static int MESSAGE_READ = 2;
+	public final static int REQUEST_ENABLE_BT = 1;
+	public final static int MESSAGE_READ = 2;
+	public final static int MESSAGE_READ_FAIL = 3;
+	public final static int MESSAGE_WRITE_FAIL = 4;
 	
-	private static final float TEXT_SIZE = 14;
+	private static final float TEXT_SIZE = 16;
 	private static final UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
 	
 	private BluetoothAdapter bluetoothAdapter = null;
 	private BluetoothDevice pairedDevice = null;
 	private BluetoothSocket socket = null;
 	private ConnectedThread connectedThread = null;
-
-	public final Handler handler = new Handler();
+	
+	private Button[] buttons = new Button[10];
+	private byte[] commands = new byte[10];
+	private final static int B_LEFT = 0;
+	private final static int B_FORW = 1;
+	private final static int B_BACK = 2;
+	private final static int B_RIGHT = 3;
+	private final static int B_UP = 4;
+	private final static int B_DOWN = 5;
+	private final static int B_TOGGLE = 6;
+	private final static int B_BATTERY = 7;
+	private final static int B_ANGLES = 8;
+	private final static int B_RESET = 9;
+	
+	public Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			messageHandler(msg);
+		}
+	};
 	
 	@Override
 	protected void onDestroy() {
@@ -64,6 +88,39 @@ public class MainActivity extends Activity {
 		}
 		
 		setContentView(R.layout.activity_main);
+		
+		buttons[B_LEFT] = (Button)findViewById(R.id.bLeft);
+		buttons[B_FORW] = (Button)findViewById(R.id.bForw);
+		buttons[B_BACK] = (Button)findViewById(R.id.bBack);
+		buttons[B_RIGHT] = (Button)findViewById(R.id.bRight);
+		buttons[B_UP] = (Button)findViewById(R.id.bUp);
+		buttons[B_DOWN] = (Button)findViewById(R.id.bDown);
+		buttons[B_TOGGLE] = (Button)findViewById(R.id.bTog);
+		buttons[B_BATTERY] = (Button)findViewById(R.id.bVolt);
+		buttons[B_ANGLES] = (Button)findViewById(R.id.bAng);
+		buttons[B_RESET] = (Button)findViewById(R.id.bReset);
+		commands[B_LEFT] = 'a';
+		commands[B_FORW] = 'w';
+		commands[B_BACK] = 's';
+		commands[B_RIGHT] = 'd';
+		commands[B_UP] = 'x';
+		commands[B_DOWN] = 'y';
+		commands[B_TOGGLE] = 'm';
+		commands[B_BATTERY] = 'v';
+		commands[B_ANGLES] = 'o';
+		commands[B_RESET] = 'q';
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i].setOnClickListener(new View.OnClickListener() {
+	             public void onClick(View v) {
+	                 for (int i = 0; i < buttons.length; i++) {
+	                	 if (buttons[i].equals(v)) {
+	                		 buttonHandler(i);
+	                		 return;
+	                	 }
+	                 }
+	             }
+	         });
+		}
 	}
 	
 	@Override
@@ -148,42 +205,43 @@ public class MainActivity extends Activity {
 
 		connectedThread = new ConnectedThread();
 		connectedThread.start();
-		
-		byte[] test = {'v'};
-		connectedThread.write(test);
 	}};
 	
-	public void handleMessage(Message msg) {
+	public void messageHandler(Message msg) {
 		if (msg.what == MESSAGE_READ) {
 			dataReceived((byte[])msg.obj);
+		} else if ((msg.what == MESSAGE_READ_FAIL) || (msg.what == MESSAGE_WRITE_FAIL)) {
+			IOException e = (IOException)msg.obj;
+			e.printStackTrace();
+			showErrorAndExit(R.string.bluetooth_error_title, e.getMessage());
 		}
 	}
 	
 	private class ConnectedThread extends Thread {
-	    private BufferedInputStream mmInStream;
-	    private BufferedOutputStream mmOutStream;
+	    private InputStream mmInStream;
+	    private OutputStream mmOutStream;
 	 
 	    public ConnectedThread() {
 	        try {
-	        	mmInStream = new BufferedInputStream(socket.getInputStream());
-	        	mmOutStream = new BufferedOutputStream(socket.getOutputStream());
+	        	mmInStream = socket.getInputStream();
+	        	mmOutStream = socket.getOutputStream();
 	        } catch (IOException e) {
 	        	e.printStackTrace();
 	        }
 	    }
 	 
 	    public void run() {
-	        byte[] buffer = new byte[1024];  // buffer store for the stream
-	 
-	        // Keep listening to the InputStream until an exception occurs
+	        byte[] buffer = new byte[1024];
+	        
 	        while (true) {
 	            try {
 	                // Read from the InputStream
 	            	mmInStream.read(buffer);
-	                System.out.println("Received data!");
-	                handler.obtainMessage(MESSAGE_READ, -1, -1, buffer).sendToTarget();
+	                Message msg = handler.obtainMessage(MESSAGE_READ, -1, -1, buffer);
+	                handler.sendMessage(msg);
 	            } catch (IOException e) {
-	            	e.printStackTrace();
+	            	Message msg = handler.obtainMessage(MESSAGE_READ_FAIL, -1, -1, e);
+	            	handler.sendMessage(msg);
 	                break;
 	            }
 	        }
@@ -193,7 +251,8 @@ public class MainActivity extends Activity {
 	        try {
 	            mmOutStream.write(bytes);
 	        } catch (IOException e) {
-	        	e.printStackTrace();
+	        	Message msg = handler.obtainMessage(MESSAGE_WRITE_FAIL, -1, -1, e);
+            	handler.sendMessage(msg);
 	        }
 	    }
 	}
@@ -203,13 +262,19 @@ public class MainActivity extends Activity {
 		final TextView t = (TextView)findViewById(R.id.intro_text);
 		t.setText(t.getText() + dat);
 		
-		// Scroll to bottom
+		// scroll to bottom
 		final ScrollView s = (ScrollView)findViewById(R.id.intro_scroll);
 		s.post(new Runnable() { 
 	        public void run() { 
 	            s.smoothScrollTo(0, t.getBottom());
 	        }
 	    });
+	}
+	
+	public void buttonHandler(int id) {
+		byte[] d = new byte[1];
+		d[0] = commands[id];
+		connectedThread.write(d);
 	}
 	
 	@Override

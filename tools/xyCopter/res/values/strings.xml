@@ -7,7 +7,7 @@
 
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
 	<string name="intro_connecting">Connecting&#8230;</string>
-	<string name="intro_ready">Ready\n</string>
+	<string name="intro_ready"></string>
 
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>
@@ -15,5 +15,15 @@
     <string name="bluetooth_select">Select Device</string>
     <string name="bluetooth_no_devices">No paired devices!</string>
     <string name="bluetooth_no_connect">Couldn\'t connect!</string>
+    <string name="bLeft">Left</string>
+    <string name="bRight">Right</string>
+    <string name="bUp">Up</string>
+    <string name="bDown">Down</string>
+    <string name="bForw">Forward</string>
+    <string name="bBack">Back</string>
+    <string name="bTog">Toggle</string>
+    <string name="bAng">Angles</string>
+    <string name="bReset">Reset</string>
+    <string name="bVolt">Battery</string>
 
 </resources>
