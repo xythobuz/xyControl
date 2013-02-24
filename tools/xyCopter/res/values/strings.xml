@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">xyCopter</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_disconnect">Disconnect</string>
     <string name="button_ok">OK</string>
 
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
@@ -25,5 +25,6 @@
     <string name="bAng">Angles</string>
     <string name="bReset">Reset</string>
     <string name="bVolt">Battery</string>
+    <string name="app_desc">Remote control App for xyControl based Quadrocopters, communicating with an BTM-222 via Bluetooth.\nSee http://www.xythobuz.org for more Informations.\nSee https://github.com/xythobuz/xyControl for the Source Code of this App.</string>
 
 </resources>

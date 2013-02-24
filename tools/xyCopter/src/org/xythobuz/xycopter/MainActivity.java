@@ -17,9 +17,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.method.ScrollingMovementMethod;
 import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -63,10 +63,16 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		try {
-			socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (socket != null) {
+			if (connectedThread != null) {
+				connectedThread.interrupt();
+				connectedThread = null;
+			}
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -134,11 +140,23 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menu_disconnect:
+	        menuDisconnect();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 	private void bluetoothEnabled() {
 		// List paired devices
 		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
 		// If there are paired devices
-		if (pairedDev.size() > 0) {
+		if (pairedDev.size() > 1) {
 		    // Loop through paired devices
 			int i = 0;
 			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
@@ -160,6 +178,10 @@ public class MainActivity extends Activity {
 	        	}
 	        });
 	        builder.show();
+		} else if (pairedDev.size() > 0) {
+			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
+			pairedDevice = pairedDevices[0];
+			new ConnectThread(pairedDevice).start();
 		} else {
 			showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_devices);
 		}
@@ -213,8 +235,21 @@ public class MainActivity extends Activity {
 		} else if ((msg.what == MESSAGE_READ_FAIL) || (msg.what == MESSAGE_WRITE_FAIL)) {
 			IOException e = (IOException)msg.obj;
 			e.printStackTrace();
-			showErrorAndExit(R.string.bluetooth_error_title, e.getMessage());
+			//showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
 		}
+	}
+	
+	public void menuDisconnect() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			showErrorAndExit(R.string.bluetooth_error_title, e.getMessage());
+			return;
+		}
+		connectedThread.interrupt();
+		connectedThread = null;
+		bluetoothEnabled();
 	}
 	
 	private class ConnectedThread extends Thread {
@@ -320,7 +355,8 @@ public class MainActivity extends Activity {
 		builder.setCancelable(false);
 		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-				f.execute();
+				if (f != null)
+					f.execute();
 			}
 	    });
 		builder.show();
