@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="intro_dimension">42px</dimen>
+    <dimen name="intro_dimension">16px</dimen>
 </resources>

@@ -1,12 +1,12 @@
 package org.xythobuz.xycopter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +24,6 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-@SuppressLint("HandlerLeak")
 public class MainActivity extends Activity {
 
 	public final static int REQUEST_ENABLE_BT = 1;
@@ -33,7 +31,6 @@ public class MainActivity extends Activity {
 	public final static int MESSAGE_READ_FAIL = 3;
 	public final static int MESSAGE_WRITE_FAIL = 4;
 	
-	private static final float TEXT_SIZE = 16;
 	private static final UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
 	
 	private BluetoothAdapter bluetoothAdapter = null;
@@ -54,11 +51,12 @@ public class MainActivity extends Activity {
 	private final static int B_ANGLES = 8;
 	private final static int B_RESET = 9;
 	
-	public Handler handler = new Handler() {
-		public void handleMessage(Message msg) {
+	public Handler handler = new Handler(new Handler.Callback() {
+		public boolean handleMessage(Message msg) {
 			messageHandler(msg);
+			return true;
 		}
-	};
+	});
 	
 	@Override
 	protected void onDestroy() {
@@ -222,8 +220,7 @@ public class MainActivity extends Activity {
 	
 	private final Runnable bluetoothConnected = new Runnable() { public void run() {
 		TextView t = (TextView)findViewById(R.id.intro_text);
-		t.setTextSize(TypedValue.COMPLEX_UNIT_PX, TEXT_SIZE);
-		t.setText(R.string.intro_ready);
+		t.setText(getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")");
 
 		connectedThread = new ConnectedThread();
 		connectedThread.start();
@@ -231,7 +228,7 @@ public class MainActivity extends Activity {
 	
 	public void messageHandler(Message msg) {
 		if (msg.what == MESSAGE_READ) {
-			dataReceived((byte[])msg.obj);
+			dataReceived((String)msg.obj);
 		} else if ((msg.what == MESSAGE_READ_FAIL) || (msg.what == MESSAGE_WRITE_FAIL)) {
 			IOException e = (IOException)msg.obj;
 			e.printStackTrace();
@@ -253,12 +250,12 @@ public class MainActivity extends Activity {
 	}
 	
 	private class ConnectedThread extends Thread {
-	    private InputStream mmInStream;
+	    private BufferedReader in;
 	    private OutputStream mmOutStream;
 	 
 	    public ConnectedThread() {
 	        try {
-	        	mmInStream = socket.getInputStream();
+	        	in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	        	mmOutStream = socket.getOutputStream();
 	        } catch (IOException e) {
 	        	e.printStackTrace();
@@ -266,13 +263,11 @@ public class MainActivity extends Activity {
 	    }
 	 
 	    public void run() {
-	        byte[] buffer = new byte[1024];
-	        
 	        while (true) {
 	            try {
 	                // Read from the InputStream
-	            	mmInStream.read(buffer);
-	                Message msg = handler.obtainMessage(MESSAGE_READ, -1, -1, buffer);
+	            	String line = in.readLine();
+	                Message msg = handler.obtainMessage(MESSAGE_READ, -1, -1, line);
 	                handler.sendMessage(msg);
 	            } catch (IOException e) {
 	            	Message msg = handler.obtainMessage(MESSAGE_READ_FAIL, -1, -1, e);
@@ -292,10 +287,9 @@ public class MainActivity extends Activity {
 	    }
 	}
 
-	private void dataReceived(byte[] data) {
-		String dat = new String(data);
+	private void dataReceived(String dat) {
 		final TextView t = (TextView)findViewById(R.id.intro_text);
-		t.setText(t.getText() + dat);
+		t.setText(t.getText() + "\n" + dat);
 		
 		// scroll to bottom
 		final ScrollView s = (ScrollView)findViewById(R.id.intro_scroll);

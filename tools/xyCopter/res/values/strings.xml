@@ -7,7 +7,7 @@
 
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
 	<string name="intro_connecting">Connecting&#8230;</string>
-	<string name="intro_ready"></string>
+	<string name="intro_ready">Connected to </string>
 
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>
