@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 		    // Device does not support Bluetooth
 			showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_adapter);
 		}
-		
+
 		if (!bluetoothAdapter.isEnabled()) {
 		    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 		    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
