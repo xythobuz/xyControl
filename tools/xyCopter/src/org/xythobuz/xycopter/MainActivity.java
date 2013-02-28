@@ -1,9 +1,6 @@
 package org.xythobuz.xycopter;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,26 +17,29 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
 	public final static int REQUEST_ENABLE_BT = 1;
 	public final static int MESSAGE_READ = 2;
 	public final static int MESSAGE_READ_FAIL = 3;
 	public final static int MESSAGE_WRITE_FAIL = 4;
+	public final static int MESSAGE_BLUETOOTH_CONNECTED = 5;
+	public final static int MESSAGE_BLUETOOTH_CONNECTION_FAIL = 6;
 	
-	private static final UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
+	public final static UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
 	
 	private BluetoothAdapter bluetoothAdapter = null;
 	private BluetoothDevice pairedDevice = null;
 	private BluetoothSocket socket = null;
 	private ConnectedThread connectedThread = null;
 	
+	private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'm', 'v', 'o', 'q'};
 	private Button[] buttons = new Button[10];
-	private byte[] commands = new byte[10];
 	private final static int B_LEFT = 0;
 	private final static int B_FORW = 1;
 	private final static int B_BACK = 2;
@@ -103,29 +103,19 @@ public class MainActivity extends Activity {
 		buttons[B_BATTERY] = (Button)findViewById(R.id.bVolt);
 		buttons[B_ANGLES] = (Button)findViewById(R.id.bAng);
 		buttons[B_RESET] = (Button)findViewById(R.id.bReset);
-		commands[B_LEFT] = 'a';
-		commands[B_FORW] = 'w';
-		commands[B_BACK] = 's';
-		commands[B_RIGHT] = 'd';
-		commands[B_UP] = 'x';
-		commands[B_DOWN] = 'y';
-		commands[B_TOGGLE] = 'm';
-		commands[B_BATTERY] = 'v';
-		commands[B_ANGLES] = 'o';
-		commands[B_RESET] = 'q';
 		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].setOnClickListener(new View.OnClickListener() {
-	             public void onClick(View v) {
-	                 for (int i = 0; i < buttons.length; i++) {
-	                	 if (buttons[i].equals(v)) {
-	                		 buttonHandler(i);
-	                		 return;
-	                	 }
-	                 }
-	             }
-	         });
+			buttons[i].setOnClickListener(this);
 		}
 	}
+	
+	public void onClick(View v) {
+		for (int i = 0; i < buttons.length; i++) {
+			if (buttons[i].equals(v)) {
+				buttonHandler(i);
+				return;
+			}
+		}
+    }
 	
 	@Override
 	protected void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -172,59 +162,22 @@ public class MainActivity extends Activity {
 	        		TextView intro = (TextView)findViewById(R.id.intro_text);
 	        		intro.setText(R.string.intro_connecting);
 	        		pairedDevice = pairedDevices[which];
-	        		new ConnectThread(pairedDevice).start();
+	        		newConnectThread();
 	        	}
 	        });
 	        builder.show();
 		} else if (pairedDev.size() > 0) {
 			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
 			pairedDevice = pairedDevices[0];
-			new ConnectThread(pairedDevice).start();
+			newConnectThread();
 		} else {
 			showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_devices);
 		}
 	}
 	
-	private class ConnectThread extends Thread {
-	    public ConnectThread(BluetoothDevice device) {
-	        try {
-	            socket = device.createRfcommSocketToServiceRecord(BLUETOOTH_UUID);
-	        } catch (IOException e) {
-	        	showErrorAndExit(R.string.bluetooth_error_title, e.getMessage());
-	        }
-	    }
-	 
-	    public void run() {
-	        // Cancel discovery because it will slow down the connection
-	        bluetoothAdapter.cancelDiscovery();
-	        try {
-	            socket.connect();
-	        } catch (IOException e) {
-	        	e.printStackTrace();
-	            handler.post(bluetoothConnectionFailed);
-	            return;
-	        }
-	        handler.post(bluetoothConnected);
-	    }
+	private void newConnectThread() {
+		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
 	}
-	
-	private final Runnable bluetoothConnectionFailed = new Runnable() { public void run() {
-		TextView t = (TextView)findViewById(R.id.intro_text);
-		t.setText(R.string.bluetooth_no_connect);
-		showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, new Function() {
-			public void execute() {
-				bluetoothEnabled();
-			}
-		});
-	}};
-	
-	private final Runnable bluetoothConnected = new Runnable() { public void run() {
-		TextView t = (TextView)findViewById(R.id.intro_text);
-		t.setText(getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")");
-
-		connectedThread = new ConnectedThread();
-		connectedThread.start();
-	}};
 	
 	public void messageHandler(Message msg) {
 		if (msg.what == MESSAGE_READ) {
@@ -233,6 +186,20 @@ public class MainActivity extends Activity {
 			IOException e = (IOException)msg.obj;
 			e.printStackTrace();
 			//showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
+			TextView t = (TextView)findViewById(R.id.intro_text);
+			t.setText(getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")");
+			socket = (BluetoothSocket)msg.obj;
+			connectedThread = new ConnectedThread(socket, this);
+			connectedThread.start();
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
+			TextView t = (TextView)findViewById(R.id.intro_text);
+			t.setText(R.string.bluetooth_no_connect);
+			showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, new Function() {
+				public void execute() {
+					bluetoothEnabled();
+				}
+			});
 		}
 	}
 	
@@ -247,44 +214,6 @@ public class MainActivity extends Activity {
 		connectedThread.interrupt();
 		connectedThread = null;
 		bluetoothEnabled();
-	}
-	
-	private class ConnectedThread extends Thread {
-	    private BufferedReader in;
-	    private OutputStream mmOutStream;
-	 
-	    public ConnectedThread() {
-	        try {
-	        	in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	        	mmOutStream = socket.getOutputStream();
-	        } catch (IOException e) {
-	        	e.printStackTrace();
-	        }
-	    }
-	 
-	    public void run() {
-	        while (true) {
-	            try {
-	                // Read from the InputStream
-	            	String line = in.readLine();
-	                Message msg = handler.obtainMessage(MESSAGE_READ, -1, -1, line);
-	                handler.sendMessage(msg);
-	            } catch (IOException e) {
-	            	Message msg = handler.obtainMessage(MESSAGE_READ_FAIL, -1, -1, e);
-	            	handler.sendMessage(msg);
-	                break;
-	            }
-	        }
-	    }
-	 
-	    public void write(byte[] bytes) {
-	        try {
-	            mmOutStream.write(bytes);
-	        } catch (IOException e) {
-	        	Message msg = handler.obtainMessage(MESSAGE_WRITE_FAIL, -1, -1, e);
-            	handler.sendMessage(msg);
-	        }
-	    }
 	}
 
 	private void dataReceived(String dat) {
