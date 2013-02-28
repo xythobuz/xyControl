@@ -14,8 +14,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -128,18 +126,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.menu_disconnect:
-	        menuDisconnect();
-	        return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
-	}
-	
 	private void bluetoothEnabled() {
 		// List paired devices
 		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
@@ -181,11 +167,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	
 	public void messageHandler(Message msg) {
 		if (msg.what == MESSAGE_READ) {
-			dataReceived((String)msg.obj);
+			String dat = (String)msg.obj;
+			// Append Text
+			final TextView t = (TextView)findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + dat);
+			// scroll to bottom
+			final ScrollView s = (ScrollView)findViewById(R.id.intro_scroll);
+			s.post(new Runnable() { 
+		        public void run() { 
+		            s.smoothScrollTo(0, t.getBottom());
+		        }
+		    });
 		} else if ((msg.what == MESSAGE_READ_FAIL) || (msg.what == MESSAGE_WRITE_FAIL)) {
 			IOException e = (IOException)msg.obj;
 			e.printStackTrace();
-			//showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
+			showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
 		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
 			TextView t = (TextView)findViewById(R.id.intro_text);
 			t.setText(getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")");
@@ -203,54 +199,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	public void menuDisconnect() {
-		try {
-			socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			showErrorAndExit(R.string.bluetooth_error_title, e.getMessage());
-			return;
-		}
-		connectedThread.interrupt();
-		connectedThread = null;
-		bluetoothEnabled();
-	}
-
-	private void dataReceived(String dat) {
-		final TextView t = (TextView)findViewById(R.id.intro_text);
-		t.setText(t.getText() + "\n" + dat);
-		
-		// scroll to bottom
-		final ScrollView s = (ScrollView)findViewById(R.id.intro_scroll);
-		s.post(new Runnable() { 
-	        public void run() { 
-	            s.smoothScrollTo(0, t.getBottom());
-	        }
-	    });
-	}
-	
 	public void buttonHandler(int id) {
 		byte[] d = new byte[1];
 		d[0] = commands[id];
 		connectedThread.write(d);
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-	
 	private void showErrorAndExit(int title, int message) {
-		showErrorAndDo(title, message, new Function() {
-			public void execute() {
-				finish();
-			}
-		});
-	}
-	
-	private void showErrorAndExit(int title, String message) {
 		showErrorAndDo(title, message, new Function() {
 			public void execute() {
 				finish();
