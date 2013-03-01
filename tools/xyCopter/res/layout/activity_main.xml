@@ -6,8 +6,8 @@
     <ScrollView
         android:id="@+id/intro_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bLayout"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bWholeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
 
@@ -121,5 +121,4 @@
                 android:text="@string/bReset" />
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>

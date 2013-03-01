@@ -22,14 +22,14 @@ public final class R {
         public static final int bBack=0x7f070007;
         public static final int bDown=0x7f07000a;
         public static final int bForw=0x7f070006;
-        public static final int bLayout=0x7f070002;
+        public static final int bLayout=0x7f070004;
         public static final int bLeft=0x7f070005;
         public static final int bReset=0x7f07000f;
         public static final int bRight=0x7f070008;
         public static final int bTog=0x7f07000c;
         public static final int bUp=0x7f070009;
         public static final int bVolt=0x7f07000d;
-        public static final int bWholeLayout=0x7f070004;
+        public static final int bWholeLayout=0x7f070002;
         public static final int intro_scroll=0x7f070001;
         public static final int intro_text=0x7f070003;
         public static final int mainGrid=0x7f070000;
