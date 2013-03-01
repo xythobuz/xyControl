@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -106,14 +107,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	public void onClick(View v) {
-		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i].equals(v)) {
-				buttonHandler(i);
-				return;
-			}
-		}
-    }
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	}
 	
 	@Override
 	protected void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -126,11 +123,20 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 	
+	public void onClick(View v) {
+		for (int i = 0; i < buttons.length; i++) {
+			if (buttons[i].equals(v)) {
+				buttonHandler(i);
+				return;
+			}
+		}
+    }
+	
 	private void bluetoothEnabled() {
 		// List paired devices
 		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
 		// If there are paired devices
-		if (pairedDev.size() > 1) {
+		if (pairedDev.size() > 0) {
 		    // Loop through paired devices
 			int i = 0;
 			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
@@ -152,17 +158,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	        	}
 	        });
 	        builder.show();
-		} else if (pairedDev.size() > 0) {
-			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
-			pairedDevice = pairedDevices[0];
-			newConnectThread();
 		} else {
 			showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_devices);
 		}
-	}
-	
-	private void newConnectThread() {
-		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
 	}
 	
 	public void messageHandler(Message msg) {
@@ -203,6 +201,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		byte[] d = new byte[1];
 		d[0] = commands[id];
 		connectedThread.write(d);
+	}
+	
+	private void newConnectThread() {
+		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
 	}
 	
 	private void showErrorAndExit(int title, int message) {
