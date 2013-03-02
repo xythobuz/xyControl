@@ -58,7 +58,7 @@ double complementary(double angle, double rate, double last) {
 }
 
 void orientationInit(void) {
-    accInit(r2G);
+    accInit(r4G);
     gyroInit(r250DPS);
     magInit(r1g9);
     addTask(&orientationTask);
