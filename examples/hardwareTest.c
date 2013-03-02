@@ -91,16 +91,13 @@ int main(void) {
      */
     xyLed(LED_GREEN, LED_OFF);
     xyLed(LED_RED, LED_ON);
-    accInit(r2G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
     motorInit();
+    orientationInit();
 
     /*
-     * Register Tasks in the Scheduler. A motor task and a UART task
-     * are already registered by xyInit()
+     * Register Tasks in the Scheduler. A motor task, a UART task
+     * and a Orientation Task are already registered...
      */
-    addTask(&orientationTask); // Calculate orientation
     addTask(&ledTask); // Blink LED
 
     /*

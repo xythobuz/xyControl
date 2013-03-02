@@ -39,6 +39,7 @@ typedef struct {
 
 extern Angles orientation;
 
+void orientationInit(void);
 void orientationTask(void);
 
 #endif

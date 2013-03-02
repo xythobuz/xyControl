@@ -35,6 +35,7 @@
 #include <tasks.h>
 #include <time.h>
 #include <control.h>
+#include <set.h>
 #include <config.h>
 
 #define SETDELAY (1000 / SET_FREQ)
@@ -49,6 +50,10 @@ void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
         motorSet(SET_PITCHPLUS, vals[0]);
         motorSet(SET_PITCHMINUS, vals[1]);
     }
+}
+
+void setInit(void) {
+    addTask(&setTask);
 }
 
 void setTask(void) {

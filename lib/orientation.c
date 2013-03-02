@@ -34,6 +34,8 @@
 #include <xycontrol.h>
 #include <gyro.h>
 #include <acc.h>
+#include <mag.h>
+#include <tasks.h>
 #include <time.h>
 #include <orientation.h>
 #include <config.h>
@@ -55,6 +57,13 @@ double complementary(double angle, double rate, double last) {
     return ((((angle - last) * square(O_TIMECONST) * DT) + ((angle - last) * 2 * O_TIMECONST) + rate) * DT) + angle;
 }
 
+void orientationInit(void) {
+    accInit(r2G);
+    gyroInit(r250DPS);
+    magInit(r1g9);
+    addTask(&orientationTask);
+}
+
 void orientationTask(void) {
     static time_t last = O_OFFSET;
     if ((getSystemTime() - last) >= DELAY) {
@@ -65,8 +74,8 @@ void orientationTask(void) {
         normalize(&g); // Normalize Gyroscope Data
 
         // Calculate Pitch & Roll from Accelerometer Data
-        double roll = atan((double)a.x / hypot((double)a.y, (double)a.z));
-        double pitch = atan((double)a.y / hypot((double)a.x, (double)a.z));
+        double roll = atan(a.x / hypot(a.y, a.z));
+        double pitch = atan(a.y / hypot(a.x, a.z));
         roll = TODEG(roll);
         pitch = TODEG(pitch); // As Degree, not radians!
 

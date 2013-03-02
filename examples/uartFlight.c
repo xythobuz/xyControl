@@ -75,15 +75,11 @@ int16_t targetPitch = 0;
 
 int main(void) {
     xyInit();
-    xyLed(LED_ALL, LED_ON);
-    accInit(r2G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
-
-    addTask(&orientationTask);
-    addTask(&controlTask);
-    addTask(&setTask);
+    orientationInit();
+    controlInit();
+    setInit();
     motorInit();
+
     addTask(&batteryWarner);
 
     addMenuCommand('o', orientationString, &printOrientation);
@@ -95,6 +91,8 @@ int main(void) {
     addMenuCommand('d', motorRightString, &motorRight);
     addMenuCommand('x', motorUpString, &motorUp);
     addMenuCommand('y', motorDownString, &motorDown);
+
+    xyLed(LED_ALL, LED_ON);
 
     for(;;) {
         tasks();

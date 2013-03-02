@@ -36,6 +36,7 @@
 #include <time.h>
 #include <pid.h>
 #include <orientation.h>
+#include <control.h>
 #include <config.h>
 
 #define CONTROLDELAY (1000 / CON_FREQ)
@@ -57,6 +58,7 @@ void controlInit(void) {
         o_pids[i].last = 0;
         o_should[i] = 0.0;
     }
+    addTask(&controlTask);
 }
 
 void controlTask(void) {
