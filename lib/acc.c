@@ -41,6 +41,8 @@
 #define ACCREG_CTRL4 0x23
 #define ACCREG_XL 0x28
 
+AccRange accRange;
+
 Error accWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;
@@ -73,6 +75,7 @@ Error accInit(AccRange r) {
         default:
             return ARGUMENT_ERROR;
     }
+    accRange = r;
     Error e = accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
     if (e != SUCCESS) {
         return e;
@@ -94,6 +97,7 @@ Error accRead(Vector *v) {
     if (twiRepStart(ACC_ADDRESS | TWI_READ)) {
         return TWI_NO_ANSWER;
     }
+
     uint8_t xl = twiReadAck();
     uint8_t xh = twiReadAck();
     uint8_t yl = twiReadAck();
@@ -101,8 +105,42 @@ Error accRead(Vector *v) {
     uint8_t zl = twiReadAck();
     uint8_t zh = twiReadNak();
 
-    v->x = ((int16_t)(xh << 8 | xl)) >> 4;
-    v->y = ((int16_t)(yh << 8 | yl)) >> 4;
-    v->z = ((int16_t)(zh << 8 | zl)) >> 4;
+    int16_t x = *(int8_t *)(&xh);
+    x *= (1 << 8);
+    x |= xl;
+
+    int16_t y = *(int8_t *)(&yh);
+    y *= (1 << 8);
+    y |= yl;
+
+    int16_t z = *(int8_t *)(&zh);
+    z *= (1 << 8);
+    z |= zl;
+
+    switch (accRange) {
+        case r2G:
+            v->x = (((double)x) * 2 / 0x8000);
+            v->y = (((double)y) * 2 / 0x8000);
+            v->z = (((double)z) * 2 / 0x8000);
+            break;
+        case r4G:
+            v->x = (((double)x) * 4 / 0x8000);
+            v->y = (((double)y) * 4 / 0x8000);
+            v->z = (((double)z) * 4 / 0x8000);
+            break;
+        case r8G:
+            v->x = (((double)x) * 8 / 0x8000);
+            v->y = (((double)y) * 8 / 0x8000);
+            v->z = (((double)z) * 8 / 0x8000);
+            break;
+        case r16G:
+            v->x = (((double)x) * 16 / 0x8000);
+            v->y = (((double)y) * 16 / 0x8000);
+            v->z = (((double)z) * 16 / 0x8000);
+            break;
+        default:
+            return ARGUMENT_ERROR;
+    }
+
     return SUCCESS;
 }

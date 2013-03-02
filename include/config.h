@@ -65,9 +65,6 @@
 
 #define O_FREQ 250 // how often task is executed (hz)
 #define O_OFFSET 0 // First task executed
-#define O_NORMALIZE 7 // Move Gyro data to zero (y)
-#define O_NORMVAL 550 // Gyro reads 550 when NORMVALSPEED DPS are applied.
-#define O_NORMVALSPEED 90
 #define O_TIMECONST (1.0)
 
 //  -----------------
@@ -152,7 +149,6 @@
 #define TX_BUFFER_SIZE 128
 
 // Select the used UART module, from 0 to 3
-//#define UART 0 // USB
-#define UART 1 // Bluetooth
+#define UART 1
 
 #endif

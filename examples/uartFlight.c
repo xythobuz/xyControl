@@ -57,6 +57,7 @@ void motorRight(void);
 void printOrientation(void);
 void printVoltage(void);
 void batteryWarner(void);
+void printRaw(void);
 
 char motorToggleString[] PROGMEM = "Motor On/Off";
 char motorUpString[] PROGMEM = "Up";
@@ -67,6 +68,7 @@ char motorForwardString[] PROGMEM = "Forwards";
 char motorBackwardString[] PROGMEM = "Backwards";
 char orientationString[] PROGMEM = "Print Orientation";
 char voltageString[] PROGMEM = "Battery Voltage";
+char sensorString[] PROGMEM = "Raw Sensor Data";
 
 uint8_t motorState = 0;
 uint8_t speed = 10;
@@ -91,6 +93,7 @@ int main(void) {
     addMenuCommand('d', motorRightString, &motorRight);
     addMenuCommand('x', motorUpString, &motorUp);
     addMenuCommand('y', motorDownString, &motorDown);
+    addMenuCommand('r', sensorString, &printRaw);
 
     xyLed(LED_ALL, LED_ON);
 
@@ -167,7 +170,7 @@ void printVoltage(void) {
 }
 
 void printOrientation(void) {
-    printf("Pitch: %f\nRoll: %f\n", orientation.pitch, orientation.roll);
+    printf("Pitch: %f\nRoll: %f\nYaw: %f\n\n", orientation.pitch, orientation.roll, orientation.yaw);
 }
 
 void batteryWarner(void) {
@@ -178,9 +181,19 @@ void batteryWarner(void) {
             if (v > 9.0) {
                 printf("Battery empty: %fV\n", v);
             } else {
-                printf("!!WARNING!!\nBATTERY EMPTY: %fV\n!!CHARGE NOW!!\n", v);
+                printf("!!WARNING!!\nBATTERY EMPTY: %fV\n!!CHARGE NOW!!\n\n", v);
             }
         }
         last = getSystemTime();
     }
+}
+
+void printRaw(void) {
+    Vector v;
+    accRead(&v);
+    printf("Ax: %f Ay: %f Az: %f\n", v.x, v.y, v.z);
+    gyroRead(&v);
+    printf("Gx: %f Gy: %f Gz: %f\n", v.x, v.y, v.z);
+    magRead(&v);
+    printf("Mx: %f My: %f Mz: %f\n\n", v.x, v.y, v.z);
 }

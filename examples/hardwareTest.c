@@ -63,6 +63,7 @@ void printOrientation(void);
 void ramTest(void);
 void bluetoothTest(void);
 void motorToggle(void);
+void uartSpeed(void);
 
 /*
  * Strings for UART menu, stored in Flash.
@@ -73,6 +74,7 @@ char orientationString[] PROGMEM = "Orientation Angles";
 char ramString[] PROGMEM = "Test external RAM";
 char bluetoothString[] PROGMEM = "Test Bluetooth Module";
 char motorToggleString[] PROGMEM = "Toggle Motor";
+char uartSpeedString[] PROGMEM = "Test UART speed";
 
 int main(void) {
 
@@ -109,6 +111,7 @@ int main(void) {
     addMenuCommand('t', ramString, &ramTest);
     addMenuCommand('v', voltageString, &printVoltage);
     addMenuCommand('m', motorToggleString, &motorToggle);
+    addMenuCommand('u', uartSpeedString, &uartSpeed);
 
     printf("Hardware Test Initialized!\n");
 
@@ -221,4 +224,17 @@ void motorToggle(void) {
         motorSet(5, 0);
         printf("Motor OFF!\n");
     }
+}
+
+void uartSpeed(void) {
+    printf("Sending 1000 bytes...\n");
+    while (!serialTxBufferEmpty());
+    time_t start = getSystemTime();
+    for (uint16_t i = 0; i < 1000; i++)
+        serialWrite('.');
+    time_t stop = getSystemTime();
+    printf("\nTook %li ms...\n", (long int)(stop - start));
+    long int bps = 8000000;
+    bps /= (stop - start);
+    printf("That's %li bps!\n", bps);
 }

@@ -34,7 +34,7 @@
 typedef struct {
     double pitch;
     double roll;
-    // int16_t yaw;
+    double yaw;
 } Angles;
 
 extern Angles orientation;
