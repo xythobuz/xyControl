@@ -39,6 +39,15 @@ typedef struct {
     time_t last;
 } PIDState;
 
+#define ROLL 0
+#define PITCH 1
+
+extern double o_should[2]; // Target Value
+extern double o_output[2]; // PID Output
+
+void pidInit(void);
+void pidTask(void);
+
 double pidExecute(double should, double is, PIDState *state);
 
 #endif

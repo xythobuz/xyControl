@@ -30,8 +30,17 @@
 #include <stdint.h>
 #include <avr/io.h>
 
+#include <twi.h>
+#include <motor.h>
+#include <tasks.h>
 #include <time.h>
 #include <pid.h>
+#include <orientation.h>
+#include <config.h>
+
+PIDState o_pids[2];
+double o_should[2];
+double o_output[2];
 
 double pidExecute(double should, double is, PIDState *state) {
     time_t now = getSystemTime();
@@ -43,4 +52,21 @@ double pidExecute(double should, double is, PIDState *state) {
     state->lastError = error;
     state->last = now;
     return output;
+}
+
+void pidInit(void) {
+    for (uint8_t i = 0; i < 2; i++) {
+        o_pids[i].kp = PID_P;
+        o_pids[i].ki = PID_I;
+        o_pids[i].kd = PID_D;
+        o_pids[i].lastError = 0;
+        o_pids[i].sumError = 0;
+        o_pids[i].last = 0;
+        o_should[i] = 0.0;
+    }
+}
+
+void pidTask(void) {
+    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]);
+    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]);
 }

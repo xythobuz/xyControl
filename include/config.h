@@ -42,14 +42,14 @@
 #define SET_PITCHMINUS 2
 
 //  -----------------
-// |     Control     |
+// |       PID       |
 //  -----------------
 
-#define CON_FREQ 250
-#define CON_OFFSET 1 // Second Task Executed
-#define CON_P 5.0
-#define CON_I 0.03
-#define CON_D -13.0
+#define PID_FREQ 250
+#define PID_OFFSET 1 // Second Task Executed
+#define PID_P 5.0
+#define PID_I 0.03
+#define PID_D -13.0
 
 //  -----------------
 // |      Motor      |

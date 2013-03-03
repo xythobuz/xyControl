@@ -10,13 +10,14 @@ The Board can be powered from an external stable 5V supply, USB or 7V or more, v
 
 In the current PCB layout, the SD-Card holder is rotated 180 degrees. This prevents an SD-Card from being inserted!
 
-# Examples
+## Flight Control Software Flow
 
-You can compile each example into it's own hex, using "make all". To compile just one example, call make with the examples filename, ending in .hex instead of .c. So, to create minimal.hex from minimal.c and the library, call "make minimal.hex".
+Three tasks are controlling the Quadrocopter Orientation in Space.
 
-## Old Examples
-
-These example projects don't use the Task Scheduler.
++ The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation".
++ The PID Task is then feeding these angles into two PID controllers. Their output is then used by...
++ The Set Task, which calculates the motor speeds and gives them to...
++ The motor task, which sends the new values via TWI to the motor controllers.
 
 # Supported Hardware
 

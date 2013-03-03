@@ -37,8 +37,31 @@ class ConnectedThread extends Thread {
             try {
                 // Read from the InputStream
                 String line = mmIn.readLine();
-                // Send the obtained bytes to the UI activity
-                mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ, -1, -1, line).sendToTarget();
+                // Send to MainActivity
+                if (line.length() < 1) {
+                	continue;
+                }
+                char first = line.charAt(0);
+                switch (first) {
+                case 'v':
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_MOTOR_READ, -1, -1, line.substring(1)).sendToTarget();
+                	break;
+                case 'w':
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_PITCH_READ, -1, -1, line.substring(1)).sendToTarget();
+                	break;
+                case 'x':
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_ROLL_READ, -1, -1, line.substring(1)).sendToTarget();
+                	break;
+                case 'y':
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_YAW_READ, -1, -1, line.substring(1)).sendToTarget();
+                	break;
+                case 'z':
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_VOLT_READ, -1, -1, line.substring(1)).sendToTarget();
+                	break;
+                default:
+                	mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ, -1, -1, line).sendToTarget();
+                	break;
+                }
             } catch (IOException e) {
             	mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ_FAIL, -1, -1, e).sendToTarget();
                 break;

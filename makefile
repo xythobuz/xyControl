@@ -27,27 +27,26 @@
 MCU = atmega2560
 F_CPU = 16000000
 RM = rm -rf
-EXTRAINCDIR = ../include
+EXTRAINCDIR = include
 CSTANDARD = gnu99
 
-SRC = ../lib/time.c
-SRC += ../lib/spi.c
-SRC += ../lib/serial.c
-SRC += ../lib/xmem.c
-SRC += ../lib/xycontrol.c
-SRC += ../lib/tasks.c
-SRC += ../lib/twi.c
-SRC += ../lib/gyro.c
-SRC += ../lib/acc.c
-SRC += ../lib/mag.c
-SRC += ../lib/motor.c
-SRC += ../lib/adc.c
-SRC += ../lib/uartMenu.c
-SRC += ../lib/orientation.c
-SRC += ../lib/error.c
-SRC += ../lib/pid.c
-SRC += ../lib/control.c
-SRC += ../lib/set.c
+SRC = lib/time.c
+SRC += lib/spi.c
+SRC += lib/serial.c
+SRC += lib/xmem.c
+SRC += lib/xycontrol.c
+SRC += lib/tasks.c
+SRC += lib/twi.c
+SRC += lib/gyro.c
+SRC += lib/acc.c
+SRC += lib/mag.c
+SRC += lib/motor.c
+SRC += lib/adc.c
+SRC += lib/uartMenu.c
+SRC += lib/orientation.c
+SRC += lib/error.c
+SRC += lib/pid.c
+SRC += lib/set.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -71,7 +70,14 @@ ISPPORT = /dev/tty.usbmodem641
 #BOOTLOADER = /dev/tty.usbserial-AE01539L
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
-all: minimal.hex hardwareTest.hex uartFlight.hex
+all: uartFlight.hex
+	make clean
+
+flash: uartFlight.flash
+	make clean
+
+program: uartFlight.program
+	make clean
 
 %.o: %.c
 	avr-gcc -c $< -o $@ $(CARGS)

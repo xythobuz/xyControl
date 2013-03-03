@@ -9,6 +9,12 @@
 	<string name="intro_connecting">Connecting&#8230;</string>
 	<string name="intro_ready">Connected to </string>
 
+	<string name="firstText">Roll: </string>
+	<string name="secondText">Pitch: </string>
+	<string name="thirdText">Yaw: </string>
+	<string name="fourthText">Voltage: </string>
+	<string name="fifthText">Motors: </string>
+	
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>
     <string name="bluetooth_turned_off">Couldn\'t turn on Bluetooth!</string>
@@ -22,9 +28,9 @@
     <string name="bForw">Forward</string>
     <string name="bBack">Back</string>
     <string name="bTog">Toggle</string>
-    <string name="bAng">Angles</string>
+    <string name="bAng">Raw</string>
     <string name="bReset">Reset</string>
-    <string name="bVolt">Battery</string>
+
     <string name="app_desc">Remote control App for xyControl based Quadrocopters, communicating with an BTM-222 via Bluetooth.\nSee http://www.xythobuz.org for more Informations.\nSee https://github.com/xythobuz/xyControl for the Source Code of this App.</string>
 
 </resources>

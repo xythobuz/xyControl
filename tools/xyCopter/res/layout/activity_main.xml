@@ -3,21 +3,108 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ScrollView
-        android:id="@+id/intro_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+    <LinearLayout
+        android:id="@+id/upperLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/bWholeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
 
-        <TextView
-            android:id="@+id/intro_text"
+        <ScrollView
+            android:id="@+id/intro_scroll"
             android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/intro_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_enabling"
+                android:textSize="@dimen/intro_dimension" />
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/upperMiddleLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/intro_enabling"
-            android:textSize="@dimen/intro_dimension" />
-    </ScrollView>
+            android:layout_marginLeft="@dimen/intro_dimension"
+            android:layout_marginRight="@dimen/intro_dimension"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstText"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/secondText"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thirdText"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fourthText"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fifthText"
+                android:textSize="@dimen/intro_dimension" />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/upperRightLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/firstText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:id="@+id/secondText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:id="@+id/thirdText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:id="@+id/fourthText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/intro_dimension" />
+            
+            <TextView
+                android:id="@+id/fifthText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/intro_dimension" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bWholeLayout"
@@ -31,7 +118,7 @@
             android:id="@+id/bLayout"
             style="?android:attr/buttonBarStyle"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <Button
                 android:id="@+id/bLeft"
@@ -40,6 +127,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bLeft" />
+            
+            <Button
+                android:id="@+id/bRight"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bRight" />
 
             <Button
                 android:id="@+id/bForw"
@@ -56,14 +151,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bBack" />
-
-            <Button
-                android:id="@+id/bRight"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/bRight" />
 
             <Button
                 android:id="@+id/bUp"
@@ -89,28 +176,20 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/bTog"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/bTog" />
-
-            <Button
-                android:id="@+id/bVolt"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/bVolt" />
-
-            <Button
                 android:id="@+id/bAng"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bAng" />
+            
+            <Button
+                android:id="@+id/bTog"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bTog" />
 
             <Button
                 android:id="@+id/bReset"
@@ -121,4 +200,5 @@
                 android:text="@string/bReset" />
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

@@ -32,7 +32,6 @@
 
 extern uint8_t baseSpeed;
 
-void setInit(void);
 void setTask(void);
 
 #endif

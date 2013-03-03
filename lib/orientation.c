@@ -41,7 +41,6 @@
 #include <config.h>
 
 #define DT (1 / O_FREQ) // s
-#define DELAY (1000 / O_FREQ) // ms
 #define TODEG(x) ((x * 180) / M_PI)
 
 Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
@@ -54,25 +53,20 @@ void orientationInit(void) {
     accInit(r4G);
     gyroInit(r250DPS);
     magInit(r1g9);
-    addTask(&orientationTask);
 }
 
 void orientationTask(void) {
-    static time_t last = O_OFFSET;
-    if ((getSystemTime() - last) >= DELAY) {
+    Vector g, a;
+    accRead(&a); // Read Accelerometer
+    gyroRead(&g); // Read Gyroscope
 
-        Vector g, a;
-        accRead(&a); // Read Accelerometer
-        gyroRead(&g); // Read Gyroscope
+    // Calculate Pitch & Roll from Accelerometer Data
+    double roll = atan(a.x / hypot(a.y, a.z));
+    double pitch = atan(a.y / hypot(a.x, a.z));
+    roll = TODEG(roll);
+    pitch = TODEG(pitch); // As Degree, not radians!
 
-        // Calculate Pitch & Roll from Accelerometer Data
-        double roll = atan(a.x / hypot(a.y, a.z));
-        double pitch = atan(a.y / hypot(a.x, a.z));
-        roll = TODEG(roll);
-        pitch = TODEG(pitch); // As Degree, not radians!
-
-        // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
-        orientation.roll = complementary(roll, g.y, orientation.roll);
-        orientation.pitch = complementary(pitch, g.x, orientation.pitch);
-    }
+    // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
+    orientation.roll = complementary(roll, g.y, orientation.roll);
+    orientation.pitch = complementary(pitch, g.x, orientation.pitch);
 }

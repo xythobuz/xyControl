@@ -30,7 +30,12 @@
 #ifndef _motor_h
 #define _motor_h
 
+#include <config.h>
+
+extern uint8_t motorSpeed[MOTORCOUNT];
+
 void motorInit(void);
 void motorSet(uint8_t id, uint8_t speed);
+void motorTask(void);
 
 #endif

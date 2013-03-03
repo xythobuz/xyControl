@@ -34,11 +34,11 @@
 #include <motor.h>
 #include <tasks.h>
 #include <time.h>
-#include <control.h>
+#include <pid.h>
 #include <set.h>
 #include <config.h>
 
-#define SETDELAY (1000 / SET_FREQ)
+#define MAXDIFF (baseSpeed / 2)
 
 uint8_t baseSpeed = 0;
 
@@ -52,37 +52,29 @@ void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     }
 }
 
-void setInit(void) {
-    addTask(&setTask);
-}
-
 void setTask(void) {
-    static time_t lastTaskExec = SET_OFFSET;
-    if ((getSystemTime() - lastTaskExec) >= SETDELAY) {
-        for (uint8_t i = 0; i < 2; i++) {
-            double diff = o_output[i];
-            if (diff > 0) {
-                if (diff > (baseSpeed / 2)) {
-                    diff = baseSpeed / 2;
-                }
-            } else if (diff < 0) {
-                if (diff < (-1 * (baseSpeed / 2))) {
-                    diff = -1 * (baseSpeed / 2);
-                }
+    for (uint8_t i = 0; i < 2; i++) {
+        double diff = o_output[i];
+        if (diff > 0) {
+            if (diff > MAXDIFF) {
+                diff = MAXDIFF;
             }
-            uint8_t v[2];
-            if ((baseSpeed + diff) > 255) {
-                v[0] = 255;
-            } else {
-                v[0] = baseSpeed + diff;
+        } else if (diff < 0) {
+            if (diff < (-1 * MAXDIFF)) {
+                diff = -1 * MAXDIFF;
             }
-            if ((baseSpeed - diff) < 0) {
-                v[1] = 0;
-            } else {
-                v[1] = baseSpeed - diff;
-            }
-            setMotorSpeeds(i, v);
         }
-        lastTaskExec = getSystemTime();
+        uint8_t v[2];
+        if ((baseSpeed + diff) > 255) {
+            v[0] = 255;
+        } else {
+            v[0] = baseSpeed + diff;
+        }
+        if ((baseSpeed - diff) < 0) {
+            v[1] = 0;
+        } else {
+            v[1] = baseSpeed - diff;
+        }
+        setMotorSpeeds(i, v);
     }
 }

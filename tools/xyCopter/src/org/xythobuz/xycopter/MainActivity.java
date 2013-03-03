@@ -29,6 +29,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_WRITE_FAIL = 4;
 	public final static int MESSAGE_BLUETOOTH_CONNECTED = 5;
 	public final static int MESSAGE_BLUETOOTH_CONNECTION_FAIL = 6;
+	public final static int MESSAGE_ROLL_READ = 7;
+	public final static int MESSAGE_PITCH_READ = 8;
+	public final static int MESSAGE_YAW_READ = 9;
+	public final static int MESSAGE_VOLT_READ = 10;
+	public final static int MESSAGE_MOTOR_READ = 11;
 	
 	public final static UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
 	
@@ -37,18 +42,17 @@ public class MainActivity extends Activity implements OnClickListener {
 	private BluetoothSocket socket = null;
 	private ConnectedThread connectedThread = null;
 	
-	private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'm', 'v', 'o', 'q'};
-	private Button[] buttons = new Button[10];
+	private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'r', 'm', 'q'};
+	private Button[] buttons = new Button[9];
 	private final static int B_LEFT = 0;
 	private final static int B_FORW = 1;
 	private final static int B_BACK = 2;
 	private final static int B_RIGHT = 3;
 	private final static int B_UP = 4;
 	private final static int B_DOWN = 5;
-	private final static int B_TOGGLE = 6;
-	private final static int B_BATTERY = 7;
-	private final static int B_ANGLES = 8;
-	private final static int B_RESET = 9;
+	private final static int B_ANGLES = 6;
+	private final static int B_TOGGLE = 7;
+	private final static int B_RESET = 8;
 	
 	public Handler handler = new Handler(new Handler.Callback() {
 		public boolean handleMessage(Message msg) {
@@ -98,9 +102,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		buttons[B_RIGHT] = (Button)findViewById(R.id.bRight);
 		buttons[B_UP] = (Button)findViewById(R.id.bUp);
 		buttons[B_DOWN] = (Button)findViewById(R.id.bDown);
-		buttons[B_TOGGLE] = (Button)findViewById(R.id.bTog);
-		buttons[B_BATTERY] = (Button)findViewById(R.id.bVolt);
 		buttons[B_ANGLES] = (Button)findViewById(R.id.bAng);
+		buttons[B_TOGGLE] = (Button)findViewById(R.id.bTog);
 		buttons[B_RESET] = (Button)findViewById(R.id.bReset);
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].setOnClickListener(this);
@@ -194,6 +197,21 @@ public class MainActivity extends Activity implements OnClickListener {
 					bluetoothEnabled();
 				}
 			});
+		} else if (msg.what == MESSAGE_ROLL_READ) {
+			TextView t = (TextView)findViewById(R.id.firstText);
+			t.setText((String)msg.obj + " " + (char)0x00B0);
+		} else if (msg.what == MESSAGE_PITCH_READ) {
+			TextView t = (TextView)findViewById(R.id.secondText);
+			t.setText((String)msg.obj + " " + (char)0x00B0);
+		} else if (msg.what == MESSAGE_YAW_READ) {
+			TextView t = (TextView)findViewById(R.id.thirdText);
+			t.setText((String)msg.obj + " " + (char)0x00B0);
+		} else if (msg.what == MESSAGE_VOLT_READ) {
+			TextView t = (TextView)findViewById(R.id.fourthText);
+			t.setText((String)msg.obj + " V");
+		} else if (msg.what == MESSAGE_MOTOR_READ) {
+			TextView t = (TextView)findViewById(R.id.fifthText);
+			t.setText((String)msg.obj);
 		}
 	}
 	

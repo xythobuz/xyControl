@@ -30,13 +30,5 @@
 #ifndef _control_h
 #define _control_h
 
-#define ROLL 0
-#define PITCH 1
-
-extern double o_should[2]; // Target Value
-extern double o_output[2]; // PID Output
-
-void controlInit(void);
-void controlTask(void);
 
 #endif
