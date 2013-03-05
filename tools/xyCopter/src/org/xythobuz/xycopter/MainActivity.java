@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements OnClickListener {
         rollSeries = new GraphViewSeries("Roll", new GraphViewSeriesStyle(Color.rgb(200, 50, 0), 3), a);
         pitchSeries = new GraphViewSeries("Pitch", new GraphViewSeriesStyle(Color.rgb(0, 200, 50), 3), b);
         yawSeries = new GraphViewSeries("Yaw", new GraphViewSeriesStyle(Color.rgb(50, 0, 200), 3), c);
-        graphView = new LineGraphView(this, "Angle");
+        graphView = new LineGraphView(this, "Angles");
         graphView.addSeries(rollSeries);
         graphView.addSeries(pitchSeries);
         graphView.addSeries(yawSeries);

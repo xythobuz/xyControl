@@ -30,6 +30,10 @@
 #ifndef _config_h
 #define _config_h
 
+#define SOFTWARELOWPASS 8
+#define ACCFILTERFACTOR SOFTWARELOWPASS
+#define GYROFILTERFACTOR SOFTWARELOWPASS
+
 //  -----------------
 // |       Set       |
 //  -----------------

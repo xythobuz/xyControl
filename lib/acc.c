@@ -76,13 +76,17 @@ Error accInit(AccRange r) {
             return ARGUMENT_ERROR;
     }
     accRange = r;
-    Error e = accWriteRegister(ACCREG_CTRL1, 0x27); // Enable all axes, 10Hz
+    Error e = accWriteRegister(ACCREG_CTRL1, 0x57); // Enable all axes, 100Hz
     if (e != SUCCESS) {
         return e;
     }
     e = accWriteRegister(ACCREG_CTRL4, v);
     return e;
 }
+
+// Simple Software Low-Pass
+double accSumX = 0, accSumY = 0, accSumZ = 0;
+double accFilterX = 0, accFilterY = 0, accFilterZ = 0;
 
 Error accRead(Vector *v) {
     if (v == NULL) {
@@ -141,6 +145,18 @@ Error accRead(Vector *v) {
         default:
             return ARGUMENT_ERROR;
     }
+
+    accSumX = accSumX - accFilterX + v->x;
+    accFilterX = accSumX / ACCFILTERFACTOR;
+    v->x = accFilterX;
+
+    accSumY = accSumY - accFilterY + v->y;
+    accFilterY = accSumY / ACCFILTERFACTOR;
+    v->y = accFilterY;
+
+    accSumZ = accSumZ - accFilterZ + v->z;
+    accFilterZ = accSumZ / ACCFILTERFACTOR;
+    v->z = accFilterZ;
 
     return SUCCESS;
 }

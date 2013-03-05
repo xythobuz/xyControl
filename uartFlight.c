@@ -47,7 +47,7 @@
 #include <pid.h>
 #include <set.h>
 
-#define QUADFREQ 10
+#define QUADFREQ 100
 #define QUADDELAY (1000 / QUADFREQ)
 
 #define STATUSFREQ 5

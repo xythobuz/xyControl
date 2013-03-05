@@ -80,6 +80,10 @@ Error gyroInit(GyroRange r) {
     return e;
 }
 
+// Simple Software Low-Pass
+double gyroSumX = 0, gyroSumY = 0, gyroSumZ = 0;
+double gyroFilterX = 0, gyroFilterY = 0, gyroFilterZ = 0;
+
 Error gyroRead(Vector *v) {
     if (v == NULL) {
         return ARGUMENT_ERROR;
@@ -132,6 +136,18 @@ Error gyroRead(Vector *v) {
         default:
             return ARGUMENT_ERROR;
     }
+
+    gyroSumX = gyroSumX - gyroFilterX + v->x;
+    gyroFilterX = gyroSumX / GYROFILTERFACTOR;
+    v->x = gyroFilterX;
+
+    gyroSumY = gyroSumY - gyroFilterY + v->y;
+    gyroFilterY = gyroSumY / GYROFILTERFACTOR;
+    v->y = gyroFilterY;
+
+    gyroSumZ = gyroSumZ - gyroFilterZ + v->z;
+    gyroFilterZ = gyroSumZ / GYROFILTERFACTOR;
+    v->z = gyroFilterZ;
 
     return SUCCESS;
 }
