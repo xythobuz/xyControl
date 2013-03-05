@@ -47,6 +47,9 @@
 #include <pid.h>
 #include <set.h>
 
+#define QUADFREQ 10
+#define QUADDELAY (1000 / QUADFREQ)
+
 #define STATUSFREQ 5
 #define STATUSDELAY (1000 / STATUSFREQ)
 
@@ -77,9 +80,9 @@ int16_t targetPitch = 0;
 
 int main(void) {
     xyInit();
-    orientationInit();
     pidInit();
     motorInit();
+    orientationInit();
 
     addTask(&flightTask);
     addTask(&statusTask);
@@ -103,10 +106,14 @@ int main(void) {
 }
 
 void flightTask(void) {
-    orientationTask();
-    pidTask();
-    setTask();
-    motorTask();
+    static time_t last = 0;
+    if ((getSystemTime() - last) >= QUADDELAY) {
+        orientationTask();
+        pidTask();
+        setTask();
+        motorTask();
+        last = getSystemTime();
+    }
 }
 
 void statusTask(void) {

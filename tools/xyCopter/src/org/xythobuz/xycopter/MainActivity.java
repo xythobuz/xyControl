@@ -45,6 +45,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -124,7 +127,8 @@ public class MainActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
+        
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
             // Device does not support Bluetooth
@@ -135,10 +139,9 @@ public class MainActivity extends Activity implements OnClickListener {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
-            bluetoothEnabled();
+        	TextView t = (TextView)findViewById(R.id.intro_text);
+        	t.setText(R.string.intro_wait);
         }
-
-        setContentView(R.layout.activity_main);
 
         buttons[B_LEFT] = (Button)findViewById(R.id.bLeft);
         buttons[B_FORW] = (Button)findViewById(R.id.bForw);
@@ -172,7 +175,7 @@ public class MainActivity extends Activity implements OnClickListener {
         graphView.setScalable(true);
         graphView.setShowLegend(true);
         graphView.setLegendAlign(LegendAlign.BOTTOM);
-        graphView.setViewPort(0.0, 3.0);
+        graphView.setViewPort(0.0, 10.0);
         LinearLayout layout = (LinearLayout)findViewById(R.id.upperOuterLayout);
         layout.addView(graphView);
     }
@@ -188,25 +191,55 @@ public class MainActivity extends Activity implements OnClickListener {
             if (resultCode != Activity.RESULT_OK) {
                 showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_turned_off);
             } else {
-                bluetoothEnabled();
+            	TextView t = (TextView)findViewById(R.id.intro_text);
+            	t.setText(R.string.intro_wait);
             }
+        }
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.disconnect:
+            if (connectedThread != null) {
+            	connectedThread.cancel();
+            	connectedThread.interrupt();
+            	connectedThread = null;
+            	item.setTitle(R.string.menu_connect);
+            } else {
+            	startConnection();
+            	item.setTitle(R.string.menu_disconnect);
+            }
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
         }
     }
 
     public void onClick(View v) {
-        for (int i = 0; i < buttons.length; i++) {
-            if (buttons[i].equals(v)) {
-                buttonHandler(i);
-                return;
-            }
-        }
+    	if (connectedThread != null) {
+    		for (int i = 0; i < buttons.length; i++) {
+    			if (buttons[i].equals(v)) {
+    				buttonHandler(i);
+                	return;
+    			}
+        	}
+    	}
     }
 
-    private void bluetoothEnabled() {
+    private void startConnection() {
         // List paired devices
         Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
         // If there are paired devices
-        if (pairedDev.size() > 0) {
+        if (pairedDev.size() > 1) {
             // Loop through paired devices
             int i = 0;
             final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
@@ -222,12 +255,18 @@ public class MainActivity extends Activity implements OnClickListener {
             builder.setItems(pairedName, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     TextView intro = (TextView)findViewById(R.id.intro_text);
-                    intro.setText(R.string.intro_connecting);
+                    intro.setText(R.string.intro_connect);
                     pairedDevice = pairedDevices[which];
                     newConnectThread();
                 }
             });
             builder.show();
+        } else if (pairedDev.size() > 0) {
+        	TextView t = (TextView)findViewById(R.id.intro_text);
+            t.setText(R.string.intro_connect);
+        	BluetoothDevice[] pairedDevices = (BluetoothDevice[])pairedDev.toArray(new BluetoothDevice[0]);
+            pairedDevice = pairedDevices[0];
+            newConnectThread();
         } else {
             showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_devices);
         }
@@ -259,11 +298,7 @@ public class MainActivity extends Activity implements OnClickListener {
         } else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
             TextView t = (TextView)findViewById(R.id.intro_text);
             t.setText(R.string.bluetooth_no_connect);
-            showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, new Function() {
-                public void execute() {
-                    bluetoothEnabled();
-                }
-            });
+            showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, null);
         } else if (msg.what == MESSAGE_ROLL_READ) {
             TextView t = (TextView)findViewById(R.id.firstText);
             t.setText((String)msg.obj + " " + (char)0x00B0);

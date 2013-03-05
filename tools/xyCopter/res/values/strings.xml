@@ -3,10 +3,12 @@
 
     <string name="app_name">xyCopter</string>
     <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_connect">Connect</string>
     <string name="button_ok">OK</string>
 
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
-	<string name="intro_connecting">Connecting&#8230;</string>
+    <string name="intro_wait">Ready&#8230;</string>
+	<string name="intro_connect">Connecting&#8230;</string>
 	<string name="intro_ready">Connected to </string>
 
 	<string name="firstText">Roll: </string>

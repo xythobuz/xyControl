@@ -42,6 +42,7 @@ class ConnectedThread extends Thread {
     private final BufferedReader mmIn;
     private final OutputStream mmOutStream;
     private final MainActivity mmMain;
+    private boolean cancled = false;
 
     public ConnectedThread(BluetoothSocket socket, MainActivity main) {
         mmSocket = socket;
@@ -92,7 +93,8 @@ class ConnectedThread extends Thread {
                         break;
                 }
             } catch (IOException e) {
-                mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ_FAIL, -1, -1, e).sendToTarget();
+            	if (!cancled)
+            		mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ_FAIL, -1, -1, e).sendToTarget();
                 break;
             }
         }
@@ -109,6 +111,7 @@ class ConnectedThread extends Thread {
 
     /* Call this from the main activity to shutdown the connection */
     public void cancel() {
+    	cancled = true;
         try {
             mmSocket.close();
         } catch (IOException e) {}
