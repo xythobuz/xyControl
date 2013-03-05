@@ -41,14 +41,23 @@ import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphView.LegendAlign;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
+import com.jjoe64.graphview.LineGraphView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -70,6 +79,12 @@ public class MainActivity extends Activity implements OnClickListener {
     private BluetoothDevice pairedDevice = null;
     private BluetoothSocket socket = null;
     private ConnectedThread connectedThread = null;
+    private GraphView graphView = null;
+    private GraphViewSeries rollSeries = null;
+    private GraphViewSeries pitchSeries = null;
+    private GraphViewSeries yawSeries = null;
+    private double graphIncrement = 0.2;
+    private double rollX = graphIncrement, pitchX = graphIncrement, yawX = graphIncrement;
 
     private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'r', 'm', 'q'};
     private Button[] buttons = new Button[9];
@@ -137,6 +152,29 @@ public class MainActivity extends Activity implements OnClickListener {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setOnClickListener(this);
         }
+        
+        int dataSize = 1;
+        GraphViewData[] a = new GraphViewData[dataSize], b = new GraphViewData[dataSize], c = new GraphViewData[dataSize];
+        for (int i = 0; i < dataSize; i++) {
+        	a[i] = new GraphViewData(0.0, 0.0);
+        	b[i] = new GraphViewData(0.0, 0.0);
+        	c[i] = new GraphViewData(0.0, 0.0);
+        }
+        
+        rollSeries = new GraphViewSeries("Roll", new GraphViewSeriesStyle(Color.rgb(200, 50, 0), 3), a);
+        pitchSeries = new GraphViewSeries("Pitch", new GraphViewSeriesStyle(Color.rgb(0, 200, 50), 3), b);
+        yawSeries = new GraphViewSeries("Yaw", new GraphViewSeriesStyle(Color.rgb(50, 0, 200), 3), c);
+        graphView = new LineGraphView(this, "Angle");
+        graphView.addSeries(rollSeries);
+        graphView.addSeries(pitchSeries);
+        graphView.addSeries(yawSeries);
+        graphView.setScrollable(true);
+        graphView.setScalable(true);
+        graphView.setShowLegend(true);
+        graphView.setLegendAlign(LegendAlign.BOTTOM);
+        graphView.setViewPort(0.0, 3.0);
+        LinearLayout layout = (LinearLayout)findViewById(R.id.upperOuterLayout);
+        layout.addView(graphView);
     }
 
     @Override
@@ -229,12 +267,21 @@ public class MainActivity extends Activity implements OnClickListener {
         } else if (msg.what == MESSAGE_ROLL_READ) {
             TextView t = (TextView)findViewById(R.id.firstText);
             t.setText((String)msg.obj + " " + (char)0x00B0);
+            double y = Double.parseDouble((String)msg.obj);
+            rollSeries.appendData(new GraphViewData(rollX, y), true);
+            rollX += graphIncrement;
         } else if (msg.what == MESSAGE_PITCH_READ) {
             TextView t = (TextView)findViewById(R.id.secondText);
             t.setText((String)msg.obj + " " + (char)0x00B0);
+            double y = Double.parseDouble((String)msg.obj);
+            pitchSeries.appendData(new GraphViewData(pitchX, y), true);
+            pitchX += graphIncrement;
         } else if (msg.what == MESSAGE_YAW_READ) {
             TextView t = (TextView)findViewById(R.id.thirdText);
             t.setText((String)msg.obj + " " + (char)0x00B0);
+            double y = Double.parseDouble((String)msg.obj);
+            yawSeries.appendData(new GraphViewData(yawX, y), true);
+            yawX += graphIncrement;
         } else if (msg.what == MESSAGE_VOLT_READ) {
             TextView t = (TextView)findViewById(R.id.fourthText);
             t.setText((String)msg.obj + " V");

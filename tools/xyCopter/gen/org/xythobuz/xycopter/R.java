@@ -17,29 +17,31 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int b2Layout=0x7f070013;
-        public static final int bAng=0x7f070014;
-        public static final int bBack=0x7f070010;
-        public static final int bDown=0x7f070012;
-        public static final int bForw=0x7f07000f;
-        public static final int bLayout=0x7f07000c;
-        public static final int bLeft=0x7f07000d;
-        public static final int bReset=0x7f070016;
-        public static final int bRight=0x7f07000e;
-        public static final int bTog=0x7f070015;
-        public static final int bUp=0x7f070011;
+        public static final int b2Layout=0x7f070015;
+        public static final int bAng=0x7f070016;
+        public static final int bBack=0x7f070012;
+        public static final int bDown=0x7f070014;
+        public static final int bForw=0x7f070011;
+        public static final int bLayout=0x7f07000e;
+        public static final int bLeft=0x7f07000f;
+        public static final int bReset=0x7f070018;
+        public static final int bRight=0x7f070010;
+        public static final int bTog=0x7f070017;
+        public static final int bUp=0x7f070013;
         public static final int bWholeLayout=0x7f070002;
-        public static final int fifthText=0x7f07000b;
-        public static final int firstText=0x7f070007;
-        public static final int fourthText=0x7f07000a;
+        public static final int fifthText=0x7f07000d;
+        public static final int firstText=0x7f070009;
+        public static final int fourthText=0x7f07000c;
         public static final int intro_scroll=0x7f070003;
         public static final int intro_text=0x7f070004;
         public static final int mainGrid=0x7f070000;
-        public static final int secondText=0x7f070008;
-        public static final int thirdText=0x7f070009;
+        public static final int secondText=0x7f07000a;
+        public static final int thirdText=0x7f07000b;
+        public static final int upperInnerLayout=0x7f070006;
         public static final int upperLayout=0x7f070001;
-        public static final int upperMiddleLayout=0x7f070005;
-        public static final int upperRightLayout=0x7f070006;
+        public static final int upperMiddleLayout=0x7f070007;
+        public static final int upperOuterLayout=0x7f070005;
+        public static final int upperRightLayout=0x7f070008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

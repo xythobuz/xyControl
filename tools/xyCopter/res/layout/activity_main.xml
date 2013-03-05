@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bWholeLayout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:baselineAligned="false">
 
         <ScrollView
             android:id="@+id/intro_scroll"
@@ -26,84 +27,95 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@+id/upperMiddleLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/intro_dimension"
-            android:layout_marginRight="@dimen/intro_dimension"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/firstText"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/secondText"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/thirdText"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fourthText"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fifthText"
-                android:textSize="@dimen/intro_dimension" />
-            
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/upperRightLayout"
+            android:id="@+id/upperOuterLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.4"
+            android:layout_weight="1.3"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/firstText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:id="@+id/secondText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:id="@+id/thirdText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:id="@+id/fourthText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/intro_dimension" />
-            
-            <TextView
-                android:id="@+id/fifthText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/intro_dimension" />
-            
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/upperInnerLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
 
+                <LinearLayout
+                    android:id="@+id/upperMiddleLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/intro_dimension"
+                    android:layout_marginRight="@dimen/intro_dimension"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/firstText"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/secondText"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/thirdText"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fourthText"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fifthText"
+                        android:textSize="@dimen/intro_dimension" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/upperRightLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/firstText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:id="@+id/secondText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:id="@+id/thirdText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:id="@+id/fourthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+
+                    <TextView
+                        android:id="@+id/fifthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -127,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bLeft" />
-            
+
             <Button
                 android:id="@+id/bRight"
                 style="?android:attr/buttonBarButtonStyle"
@@ -182,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bAng" />
-            
+
             <Button
                 android:id="@+id/bTog"
                 style="?android:attr/buttonBarButtonStyle"
