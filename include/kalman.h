@@ -1,8 +1,10 @@
 /*
- * orientation.c
+ * kalman.h
+ *
+ * Copyright Linus Helgesson
+ * http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
- * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,48 +29,26 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <avr/io.h>
-#include <stdint.h>
-#include <math.h>
+#ifndef _kalman_h
+#define _kalman_h
 
-#include <xycontrol.h>
-#include <gyro.h>
-#include <acc.h>
-#include <mag.h>
-#include <tasks.h>
-#include <time.h>
-#include <orientation.h>
-#include <kalman.h>
-#include <config.h>
+#define DT 0.01f // 100Hz
 
-#define TODEG(x) ((x * 180) / M_PI)
+// Q diagonal 3x3 with these elements on diagonal
+#define Q1 5.0f
+#define Q2 100.0f
+#define Q3 0.01f
 
-Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
-kalman_data pitchData;
-kalman_data rollData;
+// R diagonal 2x2 with these elements on diagonal
+#define R1 1000.0f
+#define R2 1000.0f
 
-void orientationInit(void) {
-    accInit(r4G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
-    kalman_init(&pitchData);
-    kalman_init(&rollData);
-}
+typedef struct {
+    double x1, x2, x3;
+    double p11, p12, p13, p21, p22, p23, p31, p32, p33;
+} kalman_data;
 
-void orientationTask(void) {
-    Vector g, a;
-    accRead(&a); // Read Accelerometer
-    gyroRead(&g); // Read Gyroscope
+void kalman_innovate(kalman_data *data, double z1, double z2);
+void kalman_init(kalman_data *data);
 
-    // Calculate Pitch & Roll from Accelerometer Data
-    double roll = atan(a.x / hypot(a.y, a.z));
-    double pitch = atan(a.y / hypot(a.x, a.z));
-    roll = TODEG(roll);
-    pitch = TODEG(pitch); // As Degree, not radians!
-
-    // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
-    kalman_innovate(&pitchData, pitch, g.x);
-    kalman_innovate(&rollData, roll, g.y);
-    orientation.roll = rollData.x1;
-    orientation.pitch = pitchData.x1;
-}
+#endif

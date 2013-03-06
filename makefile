@@ -47,6 +47,7 @@ SRC += lib/orientation.c
 SRC += lib/error.c
 SRC += lib/pid.c
 SRC += lib/set.c
+SRC += lib/kalman.c
 
 OBJ = $(SRC:.c=.o)
 

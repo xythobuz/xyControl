@@ -14,7 +14,7 @@ In the current PCB layout, the SD-Card holder is rotated 180 degrees. This preve
 
 Three tasks are controlling the Quadrocopter Orientation in Space.
 
-+ The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation".
++ The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation". This is using a modified version of this [Kalman Filter Implementation](http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/).
 + The PID Task is then feeding these angles into two PID controllers. Their output is then used by...
 + The Set Task, which calculates the motor speeds and gives them to...
 + The motor task, which sends the new values via TWI to the motor controllers.
