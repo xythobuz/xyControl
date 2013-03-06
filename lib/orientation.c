@@ -32,6 +32,7 @@
 #include <math.h>
 
 #include <xycontrol.h>
+#include <error.h>
 #include <gyro.h>
 #include <acc.h>
 #include <mag.h>
@@ -47,18 +48,24 @@ Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
 Kalman pitchData;
 Kalman rollData;
 
-void orientationInit(void) {
-    accInit(r4G);
-    gyroInit(r250DPS);
-    magInit(r1g9);
+Error orientationInit(void) {
+    Error e = accInit(r4G);
+    CHECKERROR(e);
+    e = gyroInit(r250DPS);
+    CHECKERROR(e);
+    e = magInit(r1g9);
+    CHECKERROR(e);
     kalmanInit(&pitchData);
     kalmanInit(&rollData);
+    return SUCCESS;
 }
 
-void orientationTask(void) {
+Error orientationTask(void) {
     Vector g, a;
-    accRead(&a); // Read Accelerometer
-    gyroRead(&g); // Read Gyroscope
+    Error e = accRead(&a); // Read Accelerometer
+    CHECKERROR(e);
+    e = gyroRead(&g); // Read Gyroscope
+    CHECKERROR(e);
 
     // Calculate Pitch & Roll from Accelerometer Data
     double roll = atan(a.x / hypot(a.y, a.z));
@@ -71,4 +78,6 @@ void orientationTask(void) {
     kalmanInnovate(&rollData, roll, g.y);
     orientation.roll = rollData.x1;
     orientation.pitch = pitchData.x1;
+
+    return SUCCESS;
 }

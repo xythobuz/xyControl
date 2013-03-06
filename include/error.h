@@ -39,6 +39,15 @@ typedef enum {
     ARGUMENT_ERROR
 } Error;
 
+#define CHECKERROR(x) if(x!=SUCCESS){return x;}
+#define REPORTERROR(x) {                \
+    if (x != SUCCESS) {                 \
+        char *s = getErrorString(x);    \
+        printf("Error: %s\n", s);       \
+        free(s);                        \
+    }                                   \
+}
+
 char *getErrorString(Error e); // free string after use!
 
 #endif

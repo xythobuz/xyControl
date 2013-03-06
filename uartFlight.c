@@ -34,6 +34,7 @@
 #include <avr/pgmspace.h>
 
 #include <tasks.h>
+#include <error.h>
 #include <xycontrol.h>
 #include <time.h>
 #include <uartMenu.h>
@@ -56,7 +57,7 @@
 #define QUADDELAY (1000 / QUADFREQ)
 #define STATUSDELAY (1000 / STATUSFREQ)
 
-#define QUADDELAY_ERR 5
+#define QUADDELAY_ERR (QUADDELAY - 2)
 
 void flightTask(void);
 void statusTask(void);
@@ -108,10 +109,11 @@ int main(void) {
 }
 
 void flightTask(void) {
-    static time_t last = 0;
+    static time_t last = 100; // Don't begin immediately
     if ((getSystemTime() - last) >= QUADDELAY) {
         last = getSystemTime();
-        orientationTask();
+        Error e = orientationTask();
+        REPORTERROR(e);
         pidTask();
         setTask();
         motorTask();
@@ -123,7 +125,7 @@ void flightTask(void) {
 }
 
 void statusTask(void) {
-    static time_t last = 0;
+    static time_t last = 100; // Don't begin immediately
     if ((getSystemTime() - last) >= STATUSDELAY) {
         last = getSystemTime();
         printf("u%f & %f\n", o_output[1], o_output[0]); // Pitch + Roll

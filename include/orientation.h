@@ -31,6 +31,8 @@
 #ifndef _orientation_h
 #define _orientation_h
 
+#include <error.h>
+
 typedef struct {
     double pitch;
     double roll;
@@ -39,7 +41,7 @@ typedef struct {
 
 extern Angles orientation;
 
-void orientationInit(void);
-void orientationTask(void);
+Error orientationInit(void);
+Error orientationTask(void);
 
 #endif
