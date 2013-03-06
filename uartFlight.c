@@ -61,6 +61,7 @@
 
 void flightTask(void);
 void statusTask(void);
+void controlToggle(void);
 void motorToggle(void);
 void motorUp(void);
 void motorDown(void);
@@ -76,8 +77,9 @@ char motorLeftString[] PROGMEM = "Left";
 char motorRightString[] PROGMEM = "Right";
 char motorForwardString[] PROGMEM = "Forwards";
 char motorBackwardString[] PROGMEM = "Backwards";
+char controlToggleString[] PROGMEM = "Toggle PID";
 
-uint8_t motorState = 0;
+uint8_t state = 0; // Bit 0: Motor, Bit 1: PID
 uint8_t speed = 10;
 int16_t targetRoll = 0;
 int16_t targetPitch = 0;
@@ -98,6 +100,7 @@ int main(void) {
     addMenuCommand('d', motorRightString, &motorRight);
     addMenuCommand('x', motorUpString, &motorUp);
     addMenuCommand('y', motorDownString, &motorDown);
+    addMenuCommand('p', controlToggleString, &controlToggle);
 
     xyLed(LED_ALL, LED_ON);
 
@@ -114,7 +117,11 @@ void flightTask(void) {
         last = getSystemTime();
         Error e = orientationTask();
         REPORTERROR(e);
-        pidTask();
+        if (state & 0x02) {
+            pidTask();
+        } else {
+            o_output[0] = o_output[1] = 0;
+        }
         setTask();
         motorTask();
         long int diff = getSystemTime() - last;
@@ -137,32 +144,45 @@ void statusTask(void) {
     }
 }
 
-void motorToggle(void) {
-    motorState = !motorState;
-    if (motorState) {
-        baseSpeed = speed = 10;
-        printf("Activated!\n");
+void controlToggle(void) {
+    if (state & 0x02) {
+        state &= ~0x02;
+        printf("PID Off!\n");
     } else {
+        state |= 0x02;
+        printf("PID On!\n");
+    }
+}
+
+void motorToggle(void) {
+    if (state & 0x01) {
+        state &= ~0x01;
         baseSpeed = 0;
-        printf("Deactivated!\n");
+        printf("Motor Off!\n");
+    } else {
+        state |= 0x01;
+        baseSpeed = speed = 10;
+        printf("Motor On!\n");
     }
 }
 
 void motorUp(void) {
     if (speed <= (MAXMOTOR - MOTORSTEP)) {
-        speed += MOTORSTEP;
-        printf("Throttle up to %i\n", speed);
-        if (motorState)
+        if (state & 0x01) {
+            speed += MOTORSTEP;
             baseSpeed = speed;
+            printf("Throttle up to %i\n", speed);
+        }
     }
 }
 
 void motorDown(void) {
     if (speed >= MOTORSTEP) {
-        speed -= MOTORSTEP;
-        printf("Throttle down to %i\n", speed);
-        if (motorState)
+        if (state & 0x01) {
+            speed -= MOTORSTEP;
             baseSpeed = speed;
+            printf("Throttle down to %i\n", speed);
+        }
     }
 }
 

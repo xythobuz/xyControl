@@ -90,7 +90,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private double graphIncrement = 0.2;
     private double rollX = graphIncrement, pitchX = graphIncrement, yawX = graphIncrement;
 
-    private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'r', 'm', 'q'};
+    private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'p', 'm', 'q'};
     private Button[] buttons = new Button[9];
     private final static int B_LEFT = 0;
     private final static int B_FORW = 1;

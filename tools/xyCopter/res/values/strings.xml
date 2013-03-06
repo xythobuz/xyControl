@@ -30,8 +30,8 @@
     <string name="bDown">Down</string>
     <string name="bForw">Forward</string>
     <string name="bBack">Back</string>
-    <string name="bTog">Toggle</string>
-    <string name="bAng">Raw</string>
+    <string name="bTog">Motor</string>
+    <string name="bAng">PID</string>
     <string name="bReset">Reset</string>
 
     <string name="app_desc">Remote control App for xyControl based Quadrocopters, communicating with an BTM-222 via Bluetooth.\nSee http://www.xythobuz.org for more Informations.\nSee https://github.com/xythobuz/xyControl for the Source Code of this App.</string>
