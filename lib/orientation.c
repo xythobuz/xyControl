@@ -44,15 +44,15 @@
 #define TODEG(x) ((x * 180) / M_PI)
 
 Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
-kalman_data pitchData;
-kalman_data rollData;
+Kalman pitchData;
+Kalman rollData;
 
 void orientationInit(void) {
     accInit(r4G);
     gyroInit(r250DPS);
     magInit(r1g9);
-    kalman_init(&pitchData);
-    kalman_init(&rollData);
+    kalmanInit(&pitchData);
+    kalmanInit(&rollData);
 }
 
 void orientationTask(void) {
@@ -67,8 +67,8 @@ void orientationTask(void) {
     pitch = TODEG(pitch); // As Degree, not radians!
 
     // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
-    kalman_innovate(&pitchData, pitch, g.x);
-    kalman_innovate(&rollData, roll, g.y);
+    kalmanInnovate(&pitchData, pitch, g.x);
+    kalmanInnovate(&rollData, roll, g.y);
     orientation.roll = rollData.x1;
     orientation.pitch = pitchData.x1;
 }

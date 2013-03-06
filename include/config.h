@@ -39,6 +39,20 @@
 #define GYROFILTERFACTOR SOFTWARELOWPASS
 #define PIDDIVISOR 2
 
+//  -----------------
+// |    Kalman      |
+//  -----------------
+
+#define DT 0.01f // 100Hz
+
+// Q (3x3 Matrix) with these elements on diagonal
+#define Q1 5.0f
+#define Q2 100.0f
+#define Q3 0.01f
+
+// R (2x2 Matrix) with these elements on diagonal
+#define R1 1000.0f
+#define R2 1000.0f
 
 //  -----------------
 // |       Set       |

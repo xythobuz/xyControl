@@ -32,23 +32,12 @@
 #ifndef _kalman_h
 #define _kalman_h
 
-#define DT 0.01f // 100Hz
-
-// Q diagonal 3x3 with these elements on diagonal
-#define Q1 5.0f
-#define Q2 100.0f
-#define Q3 0.01f
-
-// R diagonal 2x2 with these elements on diagonal
-#define R1 1000.0f
-#define R2 1000.0f
-
 typedef struct {
     double x1, x2, x3;
     double p11, p12, p13, p21, p22, p23, p31, p32, p33;
-} kalman_data;
+} Kalman;
 
-void kalman_innovate(kalman_data *data, double z1, double z2);
-void kalman_init(kalman_data *data);
+void kalmanInnovate(Kalman *data, double z1, double z2);
+void kalmanInit(Kalman *data);
 
 #endif

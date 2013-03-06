@@ -56,6 +56,8 @@
 #define QUADDELAY (1000 / QUADFREQ)
 #define STATUSDELAY (1000 / STATUSFREQ)
 
+#define QUADDELAY_ERR 5
+
 void flightTask(void);
 void statusTask(void);
 void motorToggle(void);
@@ -108,25 +110,28 @@ int main(void) {
 void flightTask(void) {
     static time_t last = 0;
     if ((getSystemTime() - last) >= QUADDELAY) {
+        last = getSystemTime();
         orientationTask();
         pidTask();
         setTask();
         motorTask();
-        last = getSystemTime();
+        long int diff = getSystemTime() - last;
+        if (diff >= (QUADDELAY_ERR)) {
+            printf("Flight Task took %lims!\n", diff);
+        }
     }
 }
 
 void statusTask(void) {
     static time_t last = 0;
     if ((getSystemTime() - last) >= STATUSDELAY) {
+        last = getSystemTime();
         printf("u%f & %f\n", o_output[1], o_output[0]); // Pitch + Roll
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
         printf("w%f\n", orientation.pitch);
         printf("x%f\n", orientation.roll);
         printf("y%f\n", orientation.yaw);
         printf("z%f\n", getVoltage());
-
-        last = getSystemTime();
     }
 }
 

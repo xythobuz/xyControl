@@ -36,7 +36,7 @@
 #include <config.h>
 
 // Setup the kalman data struct
-void kalman_init(kalman_data *data) {
+void kalmanInit(Kalman *data) {
     data->x1 = 0.0f;
     data->x2 = 0.0f;
     data->x3 = 0.0f;
@@ -54,7 +54,7 @@ void kalman_init(kalman_data *data) {
     data->p33 = 1000.0f;
 }
 
-void kalman_innovate(kalman_data *data, double z1, double z2) {
+void kalmanInnovate(Kalman *data, double z1, double z2) {
     double y1, y2;
     double a, b, c;
     double sDet;
