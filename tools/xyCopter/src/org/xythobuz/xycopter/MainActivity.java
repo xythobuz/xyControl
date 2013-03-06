@@ -141,7 +141,7 @@ public class MainActivity extends Activity implements OnClickListener {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
         	TextView t = (TextView)findViewById(R.id.intro_text);
-        	t.setText(R.string.intro_wait);
+        	t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
         }
 
         buttons[B_LEFT] = (Button)findViewById(R.id.bLeft);
@@ -193,7 +193,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_turned_off);
             } else {
             	TextView t = (TextView)findViewById(R.id.intro_text);
-            	t.setText(R.string.intro_wait);
+            	t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
             }
         }
     }
@@ -209,15 +209,15 @@ public class MainActivity extends Activity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.disconnect:
+        case R.id.disconnect: case R.id.connect:
             if (connectedThread != null) {
             	connectedThread.cancel();
             	connectedThread.interrupt();
             	connectedThread = null;
-            	item.setTitle(R.string.menu_connect);
+            	TextView t = (TextView)findViewById(R.id.intro_text);
+                t.setText(t.getText() + "\n" + getString(R.string.intro_disconnect));
             } else {
             	startConnection();
-            	item.setTitle(R.string.menu_disconnect);
             }
             return true;
         default:
@@ -256,7 +256,7 @@ public class MainActivity extends Activity implements OnClickListener {
             builder.setItems(pairedName, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     TextView intro = (TextView)findViewById(R.id.intro_text);
-                    intro.setText(R.string.intro_connect);
+                    intro.setText(intro.getText() + "\n" + getString(R.string.intro_connect));
                     pairedDevice = pairedDevices[which];
                     newConnectThread();
                 }
@@ -264,7 +264,7 @@ public class MainActivity extends Activity implements OnClickListener {
             builder.show();
         } else if (pairedDev.size() > 0) {
         	TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(R.string.intro_connect);
+            t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
         	BluetoothDevice[] pairedDevices = (BluetoothDevice[])pairedDev.toArray(new BluetoothDevice[0]);
             pairedDevice = pairedDevices[0];
             newConnectThread();
@@ -292,13 +292,13 @@ public class MainActivity extends Activity implements OnClickListener {
             showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
         } else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
             TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")");
+            t.setText(t.getText() + "\n" + getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")\n");
             socket = (BluetoothSocket)msg.obj;
             connectedThread = new ConnectedThread(socket, this);
             connectedThread.start();
         } else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
             TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(R.string.bluetooth_no_connect);
+            t.setText(t.getText() + "\n" + getString(R.string.bluetooth_no_connect));
             showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, null);
         } else if (msg.what == MESSAGE_ROLL_READ) {
             TextView t = (TextView)findViewById(R.id.firstText);

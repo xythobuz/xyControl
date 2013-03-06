@@ -7,9 +7,10 @@
     <string name="button_ok">OK</string>
 
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
-    <string name="intro_wait">Ready&#8230;</string>
+    <string name="intro_wait">Ready!</string>
 	<string name="intro_connect">Connecting&#8230;</string>
 	<string name="intro_ready">Connected to </string>
+	<string name="intro_disconnect">\nDisconnected!</string>
 
 	<string name="firstText">Roll: </string>
 	<string name="secondText">Pitch: </string>

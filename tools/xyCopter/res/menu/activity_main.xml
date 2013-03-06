@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" ><item
-        android:id="@+id/disconnect"
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/connect"
         android:title="@string/menu_connect"
         android:showAsAction="ifRoom"/>
-    
+    <item
+        android:id="@+id/disconnect"
+        android:title="@string/menu_disconnect"
+        android:showAsAction="ifRoom"/>
 </menu>
