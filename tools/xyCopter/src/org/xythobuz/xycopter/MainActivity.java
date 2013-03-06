@@ -75,6 +75,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public final static int MESSAGE_YAW_READ = 9;
     public final static int MESSAGE_VOLT_READ = 10;
     public final static int MESSAGE_MOTOR_READ = 11;
+    public final static int MESSAGE_PID_READ = 12;
 
     public final static UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
 
@@ -323,6 +324,9 @@ public class MainActivity extends Activity implements OnClickListener {
         } else if (msg.what == MESSAGE_MOTOR_READ) {
             TextView t = (TextView)findViewById(R.id.fifthText);
             t.setText((String)msg.obj);
+        } else if (msg.what == MESSAGE_PID_READ) {
+        	TextView t = (TextView)findViewById(R.id.sixthText);
+        	t.setText((String)msg.obj);
         }
     }
 

@@ -67,6 +67,6 @@ void pidInit(void) {
 }
 
 void pidTask(void) {
-    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]);
-    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]);
+    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]) / PIDDIVISOR;
+    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]) / PIDDIVISOR;
 }

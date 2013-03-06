@@ -30,16 +30,20 @@
 #ifndef _config_h
 #define _config_h
 
-#define SOFTWARELOWPASS 8
+//  -----------------
+// |    Filtering    |
+//  -----------------
+
+#define SOFTWARELOWPASS 25
 #define ACCFILTERFACTOR SOFTWARELOWPASS
 #define GYROFILTERFACTOR SOFTWARELOWPASS
+#define PIDDIVISOR 2
+
 
 //  -----------------
 // |       Set       |
 //  -----------------
 
-#define SET_FREQ 250
-#define SET_OFFSET 2 // Third Task Executed
 #define SET_ROLLPLUS 1
 #define SET_ROLLMINUS 3
 #define SET_PITCHPLUS 0
@@ -58,13 +62,6 @@
 //  -----------------
 
 #define MOTORCOUNT 4
-
-//  -----------------
-// |   Orientation   |
-//  -----------------
-
-#define O_FREQ 10 // how often task is executed (hz)
-#define O_TIMECONST 1.0
 
 //  -----------------
 // |       ADC       |

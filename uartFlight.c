@@ -30,7 +30,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
-
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 
@@ -47,10 +46,14 @@
 #include <pid.h>
 #include <set.h>
 
+#define MAXANGLE 45
+#define ANGLESTEP 10
+#define MAXMOTOR 255
+#define MOTORSTEP 10
 #define QUADFREQ 100
-#define QUADDELAY (1000 / QUADFREQ)
-
 #define STATUSFREQ 5
+
+#define QUADDELAY (1000 / QUADFREQ)
 #define STATUSDELAY (1000 / STATUSFREQ)
 
 void flightTask(void);
@@ -62,7 +65,6 @@ void motorForward(void);
 void motorBackward(void);
 void motorLeft(void);
 void motorRight(void);
-void printRaw(void);
 
 char motorToggleString[] PROGMEM = "Motor On/Off";
 char motorUpString[] PROGMEM = "Up";
@@ -71,7 +73,6 @@ char motorLeftString[] PROGMEM = "Left";
 char motorRightString[] PROGMEM = "Right";
 char motorForwardString[] PROGMEM = "Forwards";
 char motorBackwardString[] PROGMEM = "Backwards";
-char sensorString[] PROGMEM = "Raw Sensor Data";
 
 uint8_t motorState = 0;
 uint8_t speed = 10;
@@ -94,7 +95,6 @@ int main(void) {
     addMenuCommand('d', motorRightString, &motorRight);
     addMenuCommand('x', motorUpString, &motorUp);
     addMenuCommand('y', motorDownString, &motorDown);
-    addMenuCommand('r', sensorString, &printRaw);
 
     xyLed(LED_ALL, LED_ON);
 
@@ -119,6 +119,7 @@ void flightTask(void) {
 void statusTask(void) {
     static time_t last = 0;
     if ((getSystemTime() - last) >= STATUSDELAY) {
+        printf("u%f & %f\n", o_output[1], o_output[0]); // Pitch + Roll
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
         printf("w%f\n", orientation.pitch);
         printf("x%f\n", orientation.roll);
@@ -141,8 +142,8 @@ void motorToggle(void) {
 }
 
 void motorUp(void) {
-    if (speed <= 250) {
-        speed += 5;
+    if (speed <= (MAXMOTOR - MOTORSTEP)) {
+        speed += MOTORSTEP;
         printf("Throttle up to %i\n", speed);
         if (motorState)
             baseSpeed = speed;
@@ -150,8 +151,8 @@ void motorUp(void) {
 }
 
 void motorDown(void) {
-    if (speed >= 5) {
-        speed -= 5;
+    if (speed >= MOTORSTEP) {
+        speed -= MOTORSTEP;
         printf("Throttle down to %i\n", speed);
         if (motorState)
             baseSpeed = speed;
@@ -159,43 +160,33 @@ void motorDown(void) {
 }
 
 void motorForward(void) {
-    if (targetPitch >= -40) {
-        targetPitch -= 5;
+    if (targetPitch >= (-1 * (MAXANGLE - ANGLESTEP))) {
+        targetPitch -= ANGLESTEP;
         o_should[PITCH] = targetPitch;
         printf("Pitch Forward %i\n", targetPitch);
     }
 }
 
 void motorBackward(void) {
-    if (targetPitch <= 40) {
-        targetPitch += 5;
+    if (targetPitch <= (MAXANGLE - ANGLESTEP)) {
+        targetPitch += ANGLESTEP;
         o_should[PITCH] = targetPitch;
         printf("Pitch Backwards %i\n", targetPitch);
     }
 }
 
 void motorLeft(void) {
-    if (targetRoll <= 40) {
-        targetRoll += 5;
+    if (targetRoll <= (MAXANGLE - ANGLESTEP)) {
+        targetRoll += ANGLESTEP;
         o_should[ROLL] = targetRoll;
         printf("Roll Left %i\n", targetRoll);
     }
 }
 
 void motorRight(void) {
-    if (targetRoll >= -40) {
-        targetRoll -= 5;
+    if (targetRoll >= (-1 * (MAXANGLE - ANGLESTEP))) {
+        targetRoll -= ANGLESTEP;
         o_should[ROLL] = targetRoll;
         printf("Roll Right %i\n", targetRoll);
     }
-}
-
-void printRaw(void) {
-    Vector v;
-    accRead(&v);
-    printf("Ax: %f Ay: %f Az: %f\n", v.x, v.y, v.z);
-    gyroRead(&v);
-    printf("Gx: %f Gy: %f Gz: %f\n", v.x, v.y, v.z);
-    magRead(&v);
-    printf("Mx: %f My: %f Mz: %f\n\n", v.x, v.y, v.z);
 }

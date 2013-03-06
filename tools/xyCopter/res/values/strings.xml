@@ -16,6 +16,7 @@
 	<string name="thirdText">Yaw: </string>
 	<string name="fourthText">Voltage: </string>
 	<string name="fifthText">Motors: </string>
+	<string name="sixthText">PID: </string>
 	
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>

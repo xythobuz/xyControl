@@ -75,6 +75,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fifthText"
                         android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sixthText"
+                        android:textSize="@dimen/intro_dimension" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -110,6 +116,12 @@
 
                     <TextView
                         android:id="@+id/fifthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:id="@+id/sixthText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/intro_dimension" />

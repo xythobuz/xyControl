@@ -73,6 +73,9 @@ class ConnectedThread extends Thread {
                 }
                 char first = line.charAt(0);
                 switch (first) {
+                	case 'u':
+                		mmMain.handler.obtainMessage(MainActivity.MESSAGE_PID_READ, -1, -1, line.substring(1)).sendToTarget();
+                		break;
                     case 'v':
                         mmMain.handler.obtainMessage(MainActivity.MESSAGE_MOTOR_READ, -1, -1, line.substring(1)).sendToTarget();
                         break;
