@@ -44,10 +44,12 @@ typedef struct {
 
 extern double o_should[2]; // Target Value
 extern double o_output[2]; // PID Output
+extern PIDState o_pids[2];
 
 void pidInit(void);
 void pidTask(void);
 
+void pidSet(PIDState *pid, double kp, double ki, double kd);
 double pidExecute(double should, double is, PIDState *state);
 
 #endif

@@ -30,6 +30,8 @@
 package org.xythobuz.xycopter;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Set;
 import java.util.UUID;
 
@@ -50,7 +52,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -64,314 +68,421 @@ import com.jjoe64.graphview.LineGraphView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    public final static int REQUEST_ENABLE_BT = 1;
-    public final static int MESSAGE_READ = 2;
-    public final static int MESSAGE_READ_FAIL = 3;
-    public final static int MESSAGE_WRITE_FAIL = 4;
-    public final static int MESSAGE_BLUETOOTH_CONNECTED = 5;
-    public final static int MESSAGE_BLUETOOTH_CONNECTION_FAIL = 6;
-    public final static int MESSAGE_ROLL_READ = 7;
-    public final static int MESSAGE_PITCH_READ = 8;
-    public final static int MESSAGE_YAW_READ = 9;
-    public final static int MESSAGE_VOLT_READ = 10;
-    public final static int MESSAGE_MOTOR_READ = 11;
-    public final static int MESSAGE_PID_READ = 12;
+	public final static int REQUEST_ENABLE_BT = 1;
+	public final static int MESSAGE_READ = 2;
+	public final static int MESSAGE_READ_FAIL = 3;
+	public final static int MESSAGE_WRITE_FAIL = 4;
+	public final static int MESSAGE_BLUETOOTH_CONNECTED = 5;
+	public final static int MESSAGE_BLUETOOTH_CONNECTION_FAIL = 6;
+	public final static int MESSAGE_ROLL_READ = 7;
+	public final static int MESSAGE_PITCH_READ = 8;
+	public final static int MESSAGE_YAW_READ = 9;
+	public final static int MESSAGE_VOLT_READ = 10;
+	public final static int MESSAGE_MOTOR_READ = 11;
+	public final static int MESSAGE_PID_READ = 12;
+	public final static int MESSAGE_PIDVAL_READ = 13;
 
-    public final static UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP UUID
+	public final static UUID BLUETOOTH_UUID = UUID
+			.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP
+																	// UUID
 
-    private BluetoothAdapter bluetoothAdapter = null;
-    private BluetoothDevice pairedDevice = null;
-    private BluetoothSocket socket = null;
-    private ConnectedThread connectedThread = null;
-    private GraphView graphView = null;
-    private GraphViewSeries rollSeries = null;
-    private GraphViewSeries pitchSeries = null;
-    private GraphViewSeries yawSeries = null;
-    private double graphIncrement = 0.2;
-    private double rollX = graphIncrement, pitchX = graphIncrement, yawX = graphIncrement;
+	private BluetoothAdapter bluetoothAdapter = null;
+	private BluetoothDevice pairedDevice = null;
+	private BluetoothSocket socket = null;
+	private ConnectedThread connectedThread = null;
+	private GraphView graphView = null;
+	private GraphViewSeries rollSeries = null;
+	private GraphViewSeries pitchSeries = null;
+	private GraphViewSeries yawSeries = null;
+	private double graphIncrement = 0.2;
+	private double rollX = graphIncrement, pitchX = graphIncrement,
+			yawX = graphIncrement;
 
-    private byte[] commands = {'a', 'w', 's', 'd', 'x', 'y', 'p', 'm', 'q'};
-    private Button[] buttons = new Button[9];
-    private final static int B_LEFT = 0;
-    private final static int B_FORW = 1;
-    private final static int B_BACK = 2;
-    private final static int B_RIGHT = 3;
-    private final static int B_UP = 4;
-    private final static int B_DOWN = 5;
-    private final static int B_ANGLES = 6;
-    private final static int B_TOGGLE = 7;
-    private final static int B_RESET = 8;
+	private final String ParameterCommand = "n";
+	private final byte[] commands = { 'a', 'w', 's', 'd', 'x', 'y', 'p', 'm',
+			'q' };
+	private final Button[] buttons = new Button[9];
+	private final static int B_LEFT = 0;
+	private final static int B_FORW = 1;
+	private final static int B_BACK = 2;
+	private final static int B_RIGHT = 3;
+	private final static int B_UP = 4;
+	private final static int B_DOWN = 5;
+	private final static int B_ANGLES = 6;
+	private final static int B_TOGGLE = 7;
+	private final static int B_RESET = 8;
 
-    public Handler handler = new Handler(new Handler.Callback() {
-        public boolean handleMessage(Message msg) {
-            messageHandler(msg);
-            return true;
-        }
-    });
+	private TestGraphThread testGraphThread = null;
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (socket != null) {
-            if (connectedThread != null) {
-                connectedThread.interrupt();
-                connectedThread = null;
-            }
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	public Handler handler = new Handler(new Handler.Callback() {
+		public boolean handleMessage(Message msg) {
+			messageHandler(msg);
+			return true;
+		}
+	});
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (bluetoothAdapter == null) {
-            // Device does not support Bluetooth
-            showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_adapter);
-        }
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (socket != null) {
+			if (connectedThread != null) {
+				connectedThread.interrupt();
+				connectedThread = null;
+			}
+			try {
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-        if (!bluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        } else {
-        	TextView t = (TextView)findViewById(R.id.intro_text);
-        	t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
-        }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-        buttons[B_LEFT] = (Button)findViewById(R.id.bLeft);
-        buttons[B_FORW] = (Button)findViewById(R.id.bForw);
-        buttons[B_BACK] = (Button)findViewById(R.id.bBack);
-        buttons[B_RIGHT] = (Button)findViewById(R.id.bRight);
-        buttons[B_UP] = (Button)findViewById(R.id.bUp);
-        buttons[B_DOWN] = (Button)findViewById(R.id.bDown);
-        buttons[B_ANGLES] = (Button)findViewById(R.id.bAng);
-        buttons[B_TOGGLE] = (Button)findViewById(R.id.bTog);
-        buttons[B_RESET] = (Button)findViewById(R.id.bReset);
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setOnClickListener(this);
-        }
-        
-        int dataSize = 1;
-        GraphViewData[] a = new GraphViewData[dataSize], b = new GraphViewData[dataSize], c = new GraphViewData[dataSize];
-        for (int i = 0; i < dataSize; i++) {
-        	a[i] = new GraphViewData(0.0, 0.0);
-        	b[i] = new GraphViewData(0.0, 0.0);
-        	c[i] = new GraphViewData(0.0, 0.0);
-        }
-        
-        rollSeries = new GraphViewSeries("Roll", new GraphViewSeriesStyle(Color.rgb(200, 50, 0), 3), a);
-        pitchSeries = new GraphViewSeries("Pitch", new GraphViewSeriesStyle(Color.rgb(0, 200, 50), 3), b);
-        yawSeries = new GraphViewSeries("Yaw", new GraphViewSeriesStyle(Color.rgb(50, 0, 200), 3), c);
-        graphView = new LineGraphView(this, "Angles");
-        graphView.addSeries(rollSeries);
-        graphView.addSeries(pitchSeries);
-        graphView.addSeries(yawSeries);
-        graphView.setScrollable(true);
-        graphView.setScalable(true);
-        graphView.setShowLegend(true);
-        graphView.setLegendAlign(LegendAlign.BOTTOM);
-        graphView.setViewPort(0.0, 10.0);
-        LinearLayout layout = (LinearLayout)findViewById(R.id.upperOuterLayout);
-        layout.addView(graphView);
-    }
+		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		if (bluetoothAdapter == null) {
+			// Device does not support Bluetooth
+			showErrorAndExit(R.string.bluetooth_error_title,
+					R.string.bluetooth_no_adapter);
+		}
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
+		if (!bluetoothAdapter.isEnabled()) {
+			Intent enableBtIntent = new Intent(
+					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+		} else {
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
+		}
 
-    @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode != Activity.RESULT_OK) {
-                showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_turned_off);
-            } else {
-            	TextView t = (TextView)findViewById(R.id.intro_text);
-            	t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
-            }
-        }
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_main, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-        case R.id.disconnect: case R.id.connect:
-            if (connectedThread != null) {
-            	connectedThread.cancel();
-            	connectedThread.interrupt();
-            	connectedThread = null;
-            	TextView t = (TextView)findViewById(R.id.intro_text);
-                t.setText(t.getText() + "\n" + getString(R.string.intro_disconnect));
-            } else {
-            	startConnection();
-            }
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
+		buttons[B_LEFT] = (Button) findViewById(R.id.bLeft);
+		buttons[B_FORW] = (Button) findViewById(R.id.bForw);
+		buttons[B_BACK] = (Button) findViewById(R.id.bBack);
+		buttons[B_RIGHT] = (Button) findViewById(R.id.bRight);
+		buttons[B_UP] = (Button) findViewById(R.id.bUp);
+		buttons[B_DOWN] = (Button) findViewById(R.id.bDown);
+		buttons[B_ANGLES] = (Button) findViewById(R.id.bAng);
+		buttons[B_TOGGLE] = (Button) findViewById(R.id.bTog);
+		buttons[B_RESET] = (Button) findViewById(R.id.bReset);
+		for (int i = 0; i < buttons.length; i++) {
+			buttons[i].setOnClickListener(this);
+		}
 
-    public void onClick(View v) {
-    	if (connectedThread != null) {
-    		for (int i = 0; i < buttons.length; i++) {
-    			if (buttons[i].equals(v)) {
-    				buttonHandler(i);
-                	return;
-    			}
-        	}
-    	}
-    }
+		GraphViewData[] a = new GraphViewData[1], b = new GraphViewData[1], c = new GraphViewData[1];
+		a[0] = new GraphViewData(0.0, 0.0);
+		b[0] = new GraphViewData(0.0, 0.0);
+		c[0] = new GraphViewData(0.0, 0.0);
+		rollSeries = new GraphViewSeries("Roll", new GraphViewSeriesStyle(
+				Color.rgb(200, 50, 0), 3), a);
+		pitchSeries = new GraphViewSeries("Pitch", new GraphViewSeriesStyle(
+				Color.rgb(0, 200, 50), 3), b);
+		yawSeries = new GraphViewSeries("Yaw", new GraphViewSeriesStyle(
+				Color.rgb(50, 0, 200), 3), c);
+		graphView = new LineGraphView(this, "Angles");
+		graphView.addSeries(rollSeries);
+		graphView.addSeries(pitchSeries);
+		graphView.addSeries(yawSeries);
+		graphView.setScrollable(true);
+		graphView.setScalable(true);
+		graphView.setShowLegend(true);
+		graphView.setLegendAlign(LegendAlign.BOTTOM);
+		graphView.setViewPort(0.0, 10.0);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.upperOuterLayout);
+		layout.addView(graphView);
+	}
 
-    private void startConnection() {
-        // List paired devices
-        Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
-        // If there are paired devices
-        if (pairedDev.size() > 1) {
-            // Loop through paired devices
-            int i = 0;
-            final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev.toArray(new BluetoothDevice[0]);
-            String[] pairedName = new String[pairedDev.size()];
-            for (BluetoothDevice device : pairedDevices) {
-                pairedName[i] = device.getName() + " (" + device.getAddress() + ")";
-            }
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
 
-            // List AlertDialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.bluetooth_select);
-            builder.setCancelable(false);
-            builder.setItems(pairedName, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    TextView intro = (TextView)findViewById(R.id.intro_text);
-                    intro.setText(intro.getText() + "\n" + getString(R.string.intro_connect));
-                    pairedDevice = pairedDevices[which];
-                    newConnectThread();
-                }
-            });
-            builder.show();
-        } else if (pairedDev.size() > 0) {
-        	TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
-        	BluetoothDevice[] pairedDevices = (BluetoothDevice[])pairedDev.toArray(new BluetoothDevice[0]);
-            pairedDevice = pairedDevices[0];
-            newConnectThread();
-        } else {
-            showErrorAndExit(R.string.bluetooth_error_title, R.string.bluetooth_no_devices);
-        }
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_ENABLE_BT) {
+			if (resultCode != Activity.RESULT_OK) {
+				showErrorAndExit(R.string.bluetooth_error_title,
+						R.string.bluetooth_turned_off);
+			} else {
+				TextView t = (TextView) findViewById(R.id.intro_text);
+				t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
+			}
+		}
+	}
 
-    public void messageHandler(Message msg) {
-        if (msg.what == MESSAGE_READ) {
-            String dat = (String)msg.obj;
-            // Append Text
-            final TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(t.getText() + "\n" + dat);
-            // scroll to bottom
-            final ScrollView s = (ScrollView)findViewById(R.id.intro_scroll);
-            s.post(new Runnable() {
-                public void run() {
-                    s.smoothScrollTo(0, t.getBottom());
-                }
-            });
-        } else if ((msg.what == MESSAGE_READ_FAIL) || (msg.what == MESSAGE_WRITE_FAIL)) {
-            IOException e = (IOException)msg.obj;
-            e.printStackTrace();
-            showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
-        } else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
-            TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(t.getText() + "\n" + getString(R.string.intro_ready) + " " + pairedDevice.getName() + " (" + pairedDevice.getAddress() + ")\n");
-            socket = (BluetoothSocket)msg.obj;
-            connectedThread = new ConnectedThread(socket, this);
-            connectedThread.start();
-        } else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
-            TextView t = (TextView)findViewById(R.id.intro_text);
-            t.setText(t.getText() + "\n" + getString(R.string.bluetooth_no_connect));
-            showErrorAndDo(R.string.bluetooth_error_title, R.string.bluetooth_no_connect, null);
-        } else if (msg.what == MESSAGE_ROLL_READ) {
-            TextView t = (TextView)findViewById(R.id.firstText);
-            t.setText((String)msg.obj + " " + (char)0x00B0);
-            double y = Double.parseDouble((String)msg.obj);
-            rollSeries.appendData(new GraphViewData(rollX, y), true);
-            rollX += graphIncrement;
-        } else if (msg.what == MESSAGE_PITCH_READ) {
-            TextView t = (TextView)findViewById(R.id.secondText);
-            t.setText((String)msg.obj + " " + (char)0x00B0);
-            double y = Double.parseDouble((String)msg.obj);
-            pitchSeries.appendData(new GraphViewData(pitchX, y), true);
-            pitchX += graphIncrement;
-        } else if (msg.what == MESSAGE_YAW_READ) {
-            TextView t = (TextView)findViewById(R.id.thirdText);
-            t.setText((String)msg.obj + " " + (char)0x00B0);
-            double y = Double.parseDouble((String)msg.obj);
-            yawSeries.appendData(new GraphViewData(yawX, y), true);
-            yawX += graphIncrement;
-        } else if (msg.what == MESSAGE_VOLT_READ) {
-            TextView t = (TextView)findViewById(R.id.fourthText);
-            t.setText((String)msg.obj + " V");
-        } else if (msg.what == MESSAGE_MOTOR_READ) {
-            TextView t = (TextView)findViewById(R.id.fifthText);
-            t.setText((String)msg.obj);
-        } else if (msg.what == MESSAGE_PID_READ) {
-        	TextView t = (TextView)findViewById(R.id.sixthText);
-        	t.setText((String)msg.obj);
-        }
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_main, menu);
+		return true;
+	}
 
-    public void buttonHandler(int id) {
-        byte[] d = new byte[1];
-        d[0] = commands[id];
-        connectedThread.write(d);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		TextView intro = (TextView) findViewById(R.id.intro_text);
 
-    private void newConnectThread() {
-        new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
-    }
+		switch (item.getItemId()) {
+		case R.id.clear:
+			intro.setText("");
+			GraphViewData[] a = new GraphViewData[1],
+			b = new GraphViewData[1],
+			c = new GraphViewData[1];
+			a[0] = new GraphViewData(0.0, 0.0);
+			b[0] = new GraphViewData(0.0, 0.0);
+			c[0] = new GraphViewData(0.0, 0.0);
+			rollSeries.resetData(a);
+			pitchSeries.resetData(b);
+			yawSeries.resetData(c);
+			return true;
+		case R.id.parameters:
+			displayPIDAlert();
+			return true;
+		case R.id.disconnect:
+		case R.id.connect:
+			if (connectedThread != null) {
+				connectedThread.cancel();
+				connectedThread.interrupt();
+				connectedThread = null;
+				intro.setText(intro.getText() + "\n"
+						+ getString(R.string.intro_disconnect));
+			} else {
+				startConnection();
+			}
+			return true;
+		case R.id.testgraph:
+			if (testGraphThread == null) {
+				testGraphThread = new TestGraphThread(this);
+				testGraphThread.start();
+			} else {
+				testGraphThread.cancel();
+				testGraphThread.interrupt();
+				testGraphThread = null;
+			}
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
-    private void showErrorAndExit(int title, int message) {
-        showErrorAndDo(title, message, new Function() {
-            public void execute() {
-                finish();
-            }
-        });
-    }
+	public void onClick(View v) {
+		if (connectedThread != null) {
+			for (int i = 0; i < buttons.length; i++) {
+				if (buttons[i].equals(v)) {
+					buttonHandler(i);
+					return;
+				}
+			}
+		}
+	}
 
-    private interface Function {
-        public void execute();
-    }
+	private void displayPIDAlert() {
+		final LinearLayout layout = new LinearLayout(this);
+		final EditText p = new EditText(this);
+		final EditText i = new EditText(this);
+		final EditText d = new EditText(this);
+		layout.setOrientation(LinearLayout.VERTICAL);
+		p.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		i.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		d.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		layout.addView(p);
+		layout.addView(i);
+		layout.addView(d);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.pid_title);
+		builder.setCancelable(true);
+		builder.setPositiveButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						try {
+							double pVal = Double.parseDouble(p.getText()
+									.toString());
+							double iVal = Double.parseDouble(i.getText()
+									.toString());
+							double dVal = Double.parseDouble(d.getText()
+									.toString());
+							sendPIDValues(pVal, iVal, dVal);
+						} catch (NumberFormatException e) {
+							showErrorAndDo(R.string.pid_title, e.getMessage(),
+									null);
+						}
+					}
+				});
+		builder.setNegativeButton(R.string.button_cancel, null);
+		builder.setView(layout);
+		builder.show();
+	}
 
-    private void showErrorAndDo(int title, int message, Function func) {
-        showErrorAndDo(getString(title), getString(message), func);
-    }
+	private void sendPIDValues(double p, double i, double d) {
+		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+		decimalFormatSymbols.setDecimalSeparator('.');
+		DecimalFormat decimalFormat = new DecimalFormat("0.000",
+				decimalFormatSymbols);
+		String pString = decimalFormat.format(p);
+		String iString = decimalFormat.format(i);
+		String dString = decimalFormat.format(d);
+		if (connectedThread != null)
+			connectedThread.write(ParameterCommand + pString + " " + iString
+					+ " " + dString);
+	}
 
-    private void showErrorAndDo(int title, String message, Function func) {
-        showErrorAndDo(getString(title), message, func);
-    }
+	private void startConnection() {
+		// List paired devices
+		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
+		// If there are paired devices
+		if (pairedDev.size() > 1) {
+			// Loop through paired devices
+			int i = 0;
+			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
+					.toArray(new BluetoothDevice[0]);
+			String[] pairedName = new String[pairedDev.size()];
+			for (BluetoothDevice device : pairedDevices) {
+				pairedName[i] = device.getName() + " (" + device.getAddress()
+						+ ")";
+			}
 
-    private void showErrorAndDo(String title, String message, Function func) {
-        final Function f = func;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.setCancelable(false);
-        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                if (f != null)
-            f.execute();
-            }
-        });
-        builder.show();
-    }
+			// List AlertDialog
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.bluetooth_select);
+			builder.setCancelable(false);
+			builder.setItems(pairedName, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					TextView intro = (TextView) findViewById(R.id.intro_text);
+					intro.setText(intro.getText() + "\n"
+							+ getString(R.string.intro_connect));
+					pairedDevice = pairedDevices[which];
+					newConnectThread();
+				}
+			});
+			builder.show();
+		} else if (pairedDev.size() > 0) {
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
+			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
+					.toArray(new BluetoothDevice[0]);
+			pairedDevice = pairedDevices[0];
+			newConnectThread();
+		} else {
+			showErrorAndExit(R.string.bluetooth_error_title,
+					R.string.bluetooth_no_devices);
+		}
+	}
+
+	public void messageHandler(Message msg) {
+		if (msg.what == MESSAGE_READ) {
+			String dat = (String) msg.obj;
+			// Append Text
+			final TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + dat);
+			// scroll to bottom
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
+		} else if ((msg.what == MESSAGE_READ_FAIL)
+				|| (msg.what == MESSAGE_WRITE_FAIL)) {
+			IOException e = (IOException) msg.obj;
+			e.printStackTrace();
+			showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + getString(R.string.intro_ready)
+					+ " " + pairedDevice.getName() + " ("
+					+ pairedDevice.getAddress() + ")\n");
+			socket = (BluetoothSocket) msg.obj;
+			connectedThread = new ConnectedThread(socket, this);
+			connectedThread.start();
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n"
+					+ getString(R.string.bluetooth_no_connect));
+			showErrorAndDo(R.string.bluetooth_error_title,
+					R.string.bluetooth_no_connect, null);
+		} else if (msg.what == MESSAGE_ROLL_READ) {
+			TextView t = (TextView) findViewById(R.id.firstText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			rollSeries.appendData(new GraphViewData(rollX, y), true);
+			rollX += graphIncrement;
+		} else if (msg.what == MESSAGE_PITCH_READ) {
+			TextView t = (TextView) findViewById(R.id.secondText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			pitchSeries.appendData(new GraphViewData(pitchX, y), true);
+			pitchX += graphIncrement;
+		} else if (msg.what == MESSAGE_YAW_READ) {
+			TextView t = (TextView) findViewById(R.id.thirdText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			yawSeries.appendData(new GraphViewData(yawX, y), true);
+			yawX += graphIncrement;
+		} else if (msg.what == MESSAGE_VOLT_READ) {
+			TextView t = (TextView) findViewById(R.id.fourthText);
+			t.setText((String) msg.obj + " V");
+		} else if (msg.what == MESSAGE_MOTOR_READ) {
+			TextView t = (TextView) findViewById(R.id.fifthText);
+			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_PID_READ) {
+			TextView t = (TextView) findViewById(R.id.sixthText);
+			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_PIDVAL_READ) {
+			TextView t = (TextView) findViewById(R.id.seventhText);
+			t.setText((String) msg.obj);
+		}
+	}
+
+	public void buttonHandler(int id) {
+		byte[] d = new byte[1];
+		d[0] = commands[id];
+		connectedThread.write(d);
+	}
+
+	private void newConnectThread() {
+		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
+	}
+
+	private void showErrorAndExit(int title, int message) {
+		showErrorAndDo(title, message, new Function() {
+			public void execute() {
+				finish();
+			}
+		});
+	}
+
+	private interface Function {
+		public void execute();
+	}
+
+	private void showErrorAndDo(int title, int message, Function func) {
+		showErrorAndDo(getString(title), getString(message), func);
+	}
+
+	private void showErrorAndDo(int title, String message, Function func) {
+		showErrorAndDo(getString(title), message, func);
+	}
+
+	private void showErrorAndDo(String title, String message, Function func) {
+		final Function f = func;
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(title);
+		builder.setMessage(message);
+		builder.setCancelable(false);
+		builder.setPositiveButton(R.string.button_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						if (f != null)
+							f.execute();
+					}
+				});
+		builder.show();
+	}
 }

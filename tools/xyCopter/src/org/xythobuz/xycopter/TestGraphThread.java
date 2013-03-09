@@ -1,5 +1,5 @@
 /*
- * pid.c
+ * ConnectThread.java
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,56 +27,41 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <stdint.h>
-#include <avr/io.h>
+package org.xythobuz.xycopter;
 
-#include <twi.h>
-#include <motor.h>
-#include <tasks.h>
-#include <time.h>
-#include <pid.h>
-#include <orientation.h>
-#include <config.h>
+class TestGraphThread extends Thread {
 
-PIDState o_pids[2];
-double o_should[2];
-double o_output[2];
+	private MainActivity m;
+	private boolean keepRunning = true;
 
-double pidExecute(double should, double is, PIDState *state) {
-    time_t now = getSystemTime();
-    double timeChange = (double)(now - state->last);
-    double error = should - is;
-    state->sumError += (error * timeChange);
-    double dError = (error - state->lastError) / timeChange;
-    double output = (state->kp * error) + (state->ki * state->sumError) + (state->kd * dError);
-    state->lastError = error;
-    state->last = now;
-    if (output > PID_OUTMAX) {
-        output = PID_OUTMAX;
-    }
-    if (output < PID_OUTMIN) {
-        output = PID_OUTMIN;
-    }
-    return output;
-}
+	public TestGraphThread(MainActivity main) {
+		m = main;
+	}
 
-void pidInit(void) {
-    for (uint8_t i = 0; i < 2; i++) {
-        pidSet(&o_pids[i], PID_P, PID_I, PID_D);
-        o_should[i] = 0.0;
-    }
-}
+	public void run() {
+		while (keepRunning) {
+			for (double x = 0; (x <= Math.PI * 2) && keepRunning; x += 0.1) {
+				double a = Math.sin(x);
+				double b = Math.cos(x);
+				double c = 0.0;
+				a = Math.toDegrees(a);
+				b = Math.toDegrees(b);
+				c = Math.toDegrees(c);
+				m.handler.obtainMessage(MainActivity.MESSAGE_PITCH_READ, -1,
+						-1, Double.toString(a)).sendToTarget();
+				m.handler.obtainMessage(MainActivity.MESSAGE_ROLL_READ, -1, -1,
+						Double.toString(b)).sendToTarget();
+				m.handler.obtainMessage(MainActivity.MESSAGE_YAW_READ, -1, -1,
+						Double.toString(c)).sendToTarget();
+				try {
+					sleep(50);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+	}
 
-void pidSet(PIDState *pid, double kp, double ki, double kd) {
-    pid->kp = kp;
-    pid->ki = ki;
-    pid->kd = kd;
-    pid->lastError = 0;
-    pid->sumError = 0;
-    pid->last = 0;
-}
-
-void pidTask(void) {
-    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]) / PIDDIVISOR;
-    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]) / PIDDIVISOR;
+	public void cancel() {
+		keepRunning = false;
+	}
 }

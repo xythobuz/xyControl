@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <item
         android:id="@+id/connect"
-        android:title="@string/menu_connect"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_connect"/>
     <item
         android:id="@+id/disconnect"
-        android:title="@string/menu_disconnect"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_disconnect"/>
+    <item
+        android:id="@+id/parameters"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_parameters"/>
+    <item
+        android:id="@+id/clear"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_clear"/>
+    <item
+        android:id="@+id/testgraph"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_testgraph"/>
+
 </menu>

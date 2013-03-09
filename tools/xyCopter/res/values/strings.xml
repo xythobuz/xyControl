@@ -2,10 +2,18 @@
 <resources>
 
     <string name="app_name">xyCopter</string>
+    <string name="app_desc">Remote control App for xyControl based Quadrocopters, communicating with an BTM-222 via Bluetooth.\nSee http://www.xythobuz.org for more Informations.\nSee https://github.com/xythobuz/xyControl for the Source Code of this App.</string>
+
     <string name="menu_disconnect">Disconnect</string>
     <string name="menu_connect">Connect</string>
-    <string name="button_ok">OK</string>
+    <string name="menu_parameters">PID Parameters</string>
+    <string name="menu_testgraph">Test Graph</string>
+    <string name="menu_clear">Clear</string>
 
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+	<string name="pid_title">PID Parameters</string>
+    
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
     <string name="intro_wait">Ready!</string>
 	<string name="intro_connect">Connecting&#8230;</string>
@@ -18,6 +26,7 @@
 	<string name="fourthText">Voltage: </string>
 	<string name="fifthText">Motors: </string>
 	<string name="sixthText">PID: </string>
+	<string name="seventhText">Params: </string>
 	
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>
@@ -25,6 +34,7 @@
     <string name="bluetooth_select">Select Device</string>
     <string name="bluetooth_no_devices">No paired devices!</string>
     <string name="bluetooth_no_connect">Couldn\'t connect!</string>
+    
     <string name="bLeft">Left</string>
     <string name="bRight">Right</string>
     <string name="bUp">Up</string>
@@ -34,7 +44,5 @@
     <string name="bTog">Motor</string>
     <string name="bAng">PID</string>
     <string name="bReset">Reset</string>
-
-    <string name="app_desc">Remote control App for xyControl based Quadrocopters, communicating with an BTM-222 via Bluetooth.\nSee http://www.xythobuz.org for more Informations.\nSee https://github.com/xythobuz/xyControl for the Source Code of this App.</string>
 
 </resources>

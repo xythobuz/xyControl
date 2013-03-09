@@ -69,6 +69,7 @@ void motorForward(void);
 void motorBackward(void);
 void motorLeft(void);
 void motorRight(void);
+void parameterChange(void);
 
 char motorToggleString[] PROGMEM = "Motor On/Off";
 char motorUpString[] PROGMEM = "Up";
@@ -78,6 +79,7 @@ char motorRightString[] PROGMEM = "Right";
 char motorForwardString[] PROGMEM = "Forwards";
 char motorBackwardString[] PROGMEM = "Backwards";
 char controlToggleString[] PROGMEM = "Toggle PID";
+char parameterChangeString[] PROGMEM = "Change PID Params";
 
 uint8_t state = 0; // Bit 0: Motor, Bit 1: PID
 uint8_t speed = 10;
@@ -101,6 +103,7 @@ int main(void) {
     addMenuCommand('x', motorUpString, &motorUp);
     addMenuCommand('y', motorDownString, &motorDown);
     addMenuCommand('p', controlToggleString, &controlToggle);
+    addMenuCommand('n', parameterChangeString, &parameterChange);
 
     xyLed(LED_ALL, LED_ON);
 
@@ -135,12 +138,14 @@ void statusTask(void) {
     static time_t last = 100; // Don't begin immediately
     if ((getSystemTime() - last) >= STATUSDELAY) {
         last = getSystemTime();
-        printf("u%f & %f\n", o_output[1], o_output[0]); // Pitch + Roll
+        printf("t%.2f %.2f %.2f\n",
+                o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
+        printf("u%.2f & %.2f\n", o_output[1], o_output[0]); // Pitch + Roll
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
-        printf("w%f\n", orientation.pitch);
-        printf("x%f\n", orientation.roll);
-        printf("y%f\n", orientation.yaw);
-        printf("z%f\n", getVoltage());
+        printf("w%.2f\n", orientation.pitch);
+        printf("x%.2f\n", orientation.roll);
+        printf("y%.2f\n", orientation.yaw);
+        printf("z%.2f\n", getVoltage());
     }
 }
 
@@ -215,5 +220,13 @@ void motorRight(void) {
         targetRoll -= ANGLESTEP;
         o_should[ROLL] = targetRoll;
         printf("Roll Right %i\n", targetRoll);
+    }
+}
+
+void parameterChange(void) {
+    double p, i, d;
+    if (scanf("%lf %lf %lf", &p, &i, &d) == 3) {
+        pidSet(&o_pids[0], p, i, d);
+        pidSet(&o_pids[1], p, i, d);
     }
 }

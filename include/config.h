@@ -71,6 +71,9 @@
 #define PID_I 0.03
 #define PID_D -13.0
 
+#define PID_OUTMAX 255
+#define PID_OUTMIN -255
+
 //  -----------------
 // |      Motor      |
 //  -----------------

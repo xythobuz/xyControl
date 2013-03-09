@@ -36,7 +36,8 @@
             <LinearLayout
                 android:id="@+id/upperInnerLayout"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:id="@+id/upperMiddleLayout"
@@ -81,6 +82,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sixthText"
                         android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seventhText"
+                        android:textSize="@dimen/intro_dimension" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,6 +129,12 @@
                     
                     <TextView
                         android:id="@+id/sixthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:id="@+id/seventhText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/intro_dimension" />
