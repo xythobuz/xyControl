@@ -7,6 +7,8 @@ This is using my fork of the [GraphView Library](https://github.com/Lauszus/Grap
 
 Also included are the official Dropbox Android Core SDK libraries, Version 1.5.3.
 You should register your own Dropbox App and replace the Dropbox Key and Secret in the AndroidManifest.xml and the MainActivity.java...
+You can then send Firmware HEX Files from Dropbox to the [YASAB](https://github.com/xythobuz/yasab) Bootloader running on the Quadrocopter.
 
+![xyCopter Flashing Firmware](http://www.xythobuz.org/img/xyCopterFirmware.png)
 ![xyCopter Screenshot](http://www.xythobuz.org/img/xyCopterNew.png)
 ![Old xyCopter Screenshot](http://www.xythobuz.org/img/xyCopter.png)

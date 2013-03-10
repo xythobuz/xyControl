@@ -29,9 +29,6 @@
  */
 package org.xythobuz.xycopter;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -64,9 +61,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.DropboxAPI.Entry;
 import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.session.AccessTokenPair;
 import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session.AccessType;
@@ -92,15 +87,16 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_MOTOR_READ = 11;
 	public final static int MESSAGE_PID_READ = 12;
 	public final static int MESSAGE_PIDVAL_READ = 13;
-	public final static int MESSAGE_BOOTLOADER_READ = 14;
-	public final static int MESSAGE_DROPBOX_CALLBACK = 15;
+	public final static int MESSAGE_HEX_ERROR = 15;
 	public final static int MESSAGE_DROPBOX_FAIL = 16;
-	public final static int MESSAGE_DROPBOX_RECEIVED = 17;
+	public final static int MESSAGE_ERROR = 17;
+	public final static int MESSAGE_HEX_PARSED = 18;
+	public final static int MESSAGE_ALERT_DIALOG = 19;
 
 	private final static String APP_KEY = "gnbnnowfgpv5jej";
 	private final static String APP_SECRET = "uxy6uf661xyd46q";
 	private final static AccessType ACCESS_TYPE = AccessType.DROPBOX;
-	private DropboxAPI<AndroidAuthSession> mDBApi;
+	public DropboxAPI<AndroidAuthSession> mDBApi;
 
 	private final static String PREFS_NAME = "xyDropboxPrefs";
 	private final static String PREF_KEY = "DropboxKey";
@@ -110,6 +106,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP
 																	// UUID
 
+	public boolean connected = false;
 	private BluetoothAdapter bluetoothAdapter = null;
 	private BluetoothDevice pairedDevice = null;
 	private BluetoothSocket socket = null;
@@ -137,6 +134,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private final static int B_RESET = 8;
 
 	private TestGraphThread testGraphThread = null;
+	private FlashThread flashThread = null;
+	private YASAB yasab = null;
 
 	public Handler handler = new Handler(new Handler.Callback() {
 		public boolean handleMessage(Message msg) {
@@ -293,7 +292,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				intro.setText(intro.getText() + "\n"
 						+ getString(R.string.intro_disconnect));
 			} else {
-				startConnection();
+				startConnection(new Function() {
+					public void execute() {
+						newConnectThread();
+					}
+				});
 			}
 			return true;
 		case R.id.testgraph:
@@ -340,244 +343,150 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private class DropboxThread extends Thread {
-		public void run() {
-			try {
-				Entry root = mDBApi.metadata("/", 1000, null, true, null);
-				String[] files = new String[root.contents.size()];
-				int i = 0;
-				for (Entry ent : root.contents) {
-					files[i++] = ent.path;
-				}
-				handler.obtainMessage(MESSAGE_DROPBOX_CALLBACK, files)
-						.sendToTarget();
-			} catch (DropboxException e) {
-				handler.obtainMessage(MESSAGE_DROPBOX_FAIL, e.getMessage())
-						.sendToTarget();
-			}
-		}
-	}
-
-	private class DropboxReceiveThread extends Thread {
-
-		String file;
-		FileOutputStream out;
-
-		public DropboxReceiveThread(String f, FileOutputStream s) {
-			file = f;
-			out = s;
-		}
-
-		public void run() {
-			try {
-				mDBApi.getFile(file, null, out, null);
-				handler.obtainMessage(MESSAGE_DROPBOX_RECEIVED).sendToTarget();
-			} catch (DropboxException e) {
-				handler.obtainMessage(MESSAGE_DROPBOX_FAIL, e.getMessage())
-						.sendToTarget();
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void getDropboxFiles() {
-		new DropboxThread().start();
-	}
-
-	private String[] filterOnlyHexFiles(String[] all) {
-		int c = 0;
-		for (int i = 0; i < all.length; i++) {
-			if (all[i].endsWith(".hex")) {
-				c++;
-			}
-		}
-		String[] hex = new String[c];
-		c = 0;
-		for (int i = 0; i < all.length; i++) {
-			if (all[i].endsWith(".hex")) {
-				hex[c++] = all[i];
-			}
-		}
-		return hex;
-	}
-
-	private void selectFirmwareFile(final String[] files) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.hex_select);
-		builder.setCancelable(false);
-		String[] fileNames = new String[files.length];
-		for (int i = 0; i < files.length; i++) {
-			fileNames[i] = files[i].substring(1);
-		}
-		builder.setItems(fileNames, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				getFirmwareFile(files[which]);
-			}
-		});
-		builder.show();
-	}
-
 	private void flashFirmware() {
-		getDropboxFiles();
+		flashThread = new FlashThread(this);
+		flashThread.start();
 	}
 
-	public void dropboxFirmwareCallback(String[] files) {
-		if (files != null) {
-			files = filterOnlyHexFiles(files);
-			selectFirmwareFile(files);
-		}
-	}
-
-	FileOutputStream outputStream = null;
-	File file = null;
-	
-	private void getFirmwareFile(String f) {
-		try {
-			file = File.createTempFile("xycopter_", ".hex", getCacheDir());
-			outputStream = new FileOutputStream(file);
-			new DropboxReceiveThread(f, outputStream).start();
-		} catch (Exception e) {
-			showErrorAndDo(R.string.general_error, e.getMessage(), null);
-			e.printStackTrace();
-		}
-	}
-
-	public void dropboxFileReceived() {
-		try {
-			parseFirmwareFile(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (outputStream != null) {
-			try {
-				outputStream.close();
-			} catch (IOException e) { }
-		}
-		if (file != null) {
-			file.delete();
-		}
-	}
-
-	private void parseFirmwareFile(File f) throws Exception {
-		FileInputStream in = new FileInputStream(f);
-		HexParser h = new HexParser(in, f.length());
-		if (h.read()) {
-			showErrorAndDo(R.string.hex_title, R.string.hex_read, null);
-			return;
-		}
-		if (h.parse()) {
-			showErrorAndDo(R.string.hex_title, R.string.hex_invalid, null);
-			return;
-		}
-		int min = h.minAddress();
-		int[] firmware = h.extract();
-		if (firmware != null) {
-			firmwareBlob = firmware;
-			hexStart = min;
-			hexLen = firmware.length;
-			if (connectedThread != null) {
-				flashFirmwareFile();
-			} else {
-				showErrorAndDo(R.string.bluetooth_error_title,
-						"Please connect!", null);
+	private void startConnection(final Function f) {
+		// List paired devices
+		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
+		// If there are paired devices
+		if (pairedDev.size() > 1) {
+			// Loop through paired devices
+			int i = 0;
+			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
+					.toArray(new BluetoothDevice[0]);
+			String[] pairedName = new String[pairedDev.size()];
+			for (BluetoothDevice device : pairedDevices) {
+				pairedName[i] = device.getName() + " (" + device.getAddress()
+						+ ")";
 			}
-		}
-	}
 
-	private void addToLog(String l) {
-		final TextView t = (TextView) findViewById(R.id.intro_text);
-		t.setText(t.getText() + "\n" + l);
-		final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
-		s.post(new Runnable() {
-			public void run() {
-				s.smoothScrollTo(0, t.getBottom());
-			}
-		});
-	}
-
-	private int flashState = 0;
-	private int[] firmwareBlob;
-	int hexStart, hexLen, pagesWritten;
-
-	private void flashFirmwareFile() {
-		addToLog("\nResetting Target...!");
-		connectedThread.write("q");
-		addToLog("Trying to connect...!");
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-		}
-		connectedThread.setTarget(true); // Reroute Output
-		connectedThread.write("q");
-		flashState = 1;
-	}
-
-	private void gotBootloaderPing() {
-		addToLog("Got answer. Acknowledging...");
-		connectedThread.write("c");
-		flashState = 2;
-	}
-
-	private void gotAcknowledge() {
-		addToLog("Connected! Sending address...");
-		byte[] tmp = { (byte) ((hexStart & 0xFF000000) >>> 24),
-				(byte) ((hexStart & 0x00FF0000) >>> 16),
-				(byte) ((hexStart & 0x0000FF00) >>> 8),
-				(byte) (hexStart & 0x000000FF) };
-		connectedThread.write(tmp);
-		flashState = 3;
-	}
-
-	private void gotStartAck() {
-		addToLog("Done. Sending length...");
-		byte[] tmp = { (byte) ((hexLen & 0xFF000000) >>> 24),
-				(byte) ((hexLen & 0x00FF0000) >>> 16),
-				(byte) ((hexLen & 0x0000FF00) >>> 8),
-				(byte) (hexLen & 0x000000FF) };
-		connectedThread.write(tmp);
-		flashState = 4;
-	}
-
-	private void gotLengthAck() {
-		byte[] data = new byte[firmwareBlob.length];
-		for (int i = 0; i < data.length; i++) {
-			data[i] = (byte) firmwareBlob[i];
-		}
-		addToLog("Done. Sending Firmware Blob...");
-		connectedThread.write(data);
-		flashState = 5;
-		pagesWritten = 0;
-	}
-
-	private void dataFromBootloader(int c) {
-		if ((flashState == 1) && (c == 'o')) {
-			gotBootloaderPing();
-		} else if ((flashState == 2) && (c == 'a')) {
-			gotAcknowledge();
-		} else if ((flashState == 3) && (c == 'o')) {
-			gotStartAck();
-		} else if ((flashState == 4) && (c == 'o')) {
-			gotLengthAck();
-		} else if (flashState == 5) {
-			if (c == 'o') {
-				pagesWritten++;
-				addToLog("Next page written (" + pagesWritten + ")!");
-				if ((pagesWritten * 256) >= hexLen) {
-					addToLog("Upload finished...!");
-					connectedThread.setTarget(false);
+			// List AlertDialog
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.bluetooth_select);
+			builder.setCancelable(false);
+			builder.setItems(pairedName, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					TextView intro = (TextView) findViewById(R.id.intro_text);
+					intro.setText(intro.getText() + "\n"
+							+ getString(R.string.intro_connect));
+					pairedDevice = pairedDevices[which];
+					f.execute();
 				}
-			} else if (c == 'e') {
-				addToLog("Interrupted by target!");
-			} else {
-				addToLog("Unknown response... (" + c + ")");
-			}
+			});
+			builder.show();
+		} else if (pairedDev.size() > 0) {
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
+			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
+					.toArray(new BluetoothDevice[0]);
+			pairedDevice = pairedDevices[0];
+			f.execute();
 		} else {
-			addToLog("Invalid (" + flashState + "/" + c + ")? Trying again!");
-			flashState = 1;
-			connectedThread.write("q");
+			showErrorAndExit(R.string.bluetooth_error_title,
+					R.string.bluetooth_no_devices);
 		}
 	}
 
+	public void messageHandler(Message msg) {
+		if (msg.what == MESSAGE_READ) {
+			String dat = (String) msg.obj;
+			// Append Text
+			final TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + dat);
+			// scroll to bottom
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
+		} else if ((msg.what == MESSAGE_READ_FAIL)
+				|| (msg.what == MESSAGE_WRITE_FAIL)) {
+			IOException e = (IOException) msg.obj;
+			e.printStackTrace();
+			showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
+			connected = true;
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n" + getString(R.string.intro_ready)
+					+ " " + pairedDevice.getName() + " ("
+					+ pairedDevice.getAddress() + ")\n");
+			socket = (BluetoothSocket) msg.obj;
+			connectedThread = new ConnectedThread(socket, this);
+			connectedThread.start();
+		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
+			connected = false;
+			TextView t = (TextView) findViewById(R.id.intro_text);
+			t.setText(t.getText() + "\n"
+					+ getString(R.string.bluetooth_no_connect));
+			showErrorAndDo(R.string.bluetooth_error_title,
+					R.string.bluetooth_no_connect, null);
+		} else if (msg.what == MESSAGE_ROLL_READ) {
+			TextView t = (TextView) findViewById(R.id.firstText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			rollSeries.appendData(new GraphViewData(rollX, y), true);
+			rollX += graphIncrement;
+		} else if (msg.what == MESSAGE_PITCH_READ) {
+			TextView t = (TextView) findViewById(R.id.secondText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			pitchSeries.appendData(new GraphViewData(pitchX, y), true);
+			pitchX += graphIncrement;
+		} else if (msg.what == MESSAGE_YAW_READ) {
+			TextView t = (TextView) findViewById(R.id.thirdText);
+			t.setText((String) msg.obj + " " + (char) 0x00B0);
+			double y = Double.parseDouble((String) msg.obj);
+			yawSeries.appendData(new GraphViewData(yawX, y), true);
+			yawX += graphIncrement;
+		} else if (msg.what == MESSAGE_VOLT_READ) {
+			TextView t = (TextView) findViewById(R.id.fourthText);
+			t.setText((String) msg.obj + " V");
+		} else if (msg.what == MESSAGE_MOTOR_READ) {
+			TextView t = (TextView) findViewById(R.id.fifthText);
+			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_PID_READ) {
+			TextView t = (TextView) findViewById(R.id.sixthText);
+			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_PIDVAL_READ) {
+			TextView t = (TextView) findViewById(R.id.seventhText);
+			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_HEX_ERROR) {
+			showErrorAndDo(R.string.hex_title, (String)msg.obj, null);
+		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
+			showErrorAndDo(R.string.dropbox_title, (String) msg.obj, null);
+		} else if (msg.what == MESSAGE_ERROR) {
+			showErrorAndDo(R.string.general_error, (String)msg.obj, null);
+		} else if (msg.what == MESSAGE_HEX_PARSED) {
+			startConnection(new Function() {
+				public void execute() {
+					newYASAB();
+				}
+			});
+		} else if (msg.what == MESSAGE_ALERT_DIALOG) {
+			AlertDialog.Builder builder = (AlertDialog.Builder)msg.obj;
+			builder.show();
+		}
+	}
+
+	public void buttonHandler(int id) {
+		byte[] d = new byte[1];
+		d[0] = commands[id];
+		connectedThread.write(d);
+	}
+
+	private void newYASAB() {
+		yasab = new YASAB(flashThread.minAddress, flashThread.firmware, pairedDevice, bluetoothAdapter, this);
+		yasab.start();
+	}
+	
+	private void newConnectThread() {
+		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
+	}
+	
 	public void onClick(View v) {
 		if (connectedThread != null) {
 			for (int i = 0; i < buttons.length; i++) {
@@ -643,131 +552,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		if (connectedThread != null)
 			connectedThread.write(ParameterCommand + pString + " " + iString
 					+ " " + dString);
-	}
-
-	private void startConnection() {
-		// List paired devices
-		Set<BluetoothDevice> pairedDev = bluetoothAdapter.getBondedDevices();
-		// If there are paired devices
-		if (pairedDev.size() > 1) {
-			// Loop through paired devices
-			int i = 0;
-			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
-					.toArray(new BluetoothDevice[0]);
-			String[] pairedName = new String[pairedDev.size()];
-			for (BluetoothDevice device : pairedDevices) {
-				pairedName[i] = device.getName() + " (" + device.getAddress()
-						+ ")";
-			}
-
-			// List AlertDialog
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.bluetooth_select);
-			builder.setCancelable(false);
-			builder.setItems(pairedName, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					TextView intro = (TextView) findViewById(R.id.intro_text);
-					intro.setText(intro.getText() + "\n"
-							+ getString(R.string.intro_connect));
-					pairedDevice = pairedDevices[which];
-					newConnectThread();
-				}
-			});
-			builder.show();
-		} else if (pairedDev.size() > 0) {
-			TextView t = (TextView) findViewById(R.id.intro_text);
-			t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
-			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
-					.toArray(new BluetoothDevice[0]);
-			pairedDevice = pairedDevices[0];
-			newConnectThread();
-		} else {
-			showErrorAndExit(R.string.bluetooth_error_title,
-					R.string.bluetooth_no_devices);
-		}
-	}
-
-	public void messageHandler(Message msg) {
-		if (msg.what == MESSAGE_READ) {
-			String dat = (String) msg.obj;
-			// Append Text
-			final TextView t = (TextView) findViewById(R.id.intro_text);
-			t.setText(t.getText() + "\n" + dat);
-			// scroll to bottom
-			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
-			s.post(new Runnable() {
-				public void run() {
-					s.smoothScrollTo(0, t.getBottom());
-				}
-			});
-		} else if ((msg.what == MESSAGE_READ_FAIL)
-				|| (msg.what == MESSAGE_WRITE_FAIL)) {
-			IOException e = (IOException) msg.obj;
-			e.printStackTrace();
-			showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
-		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
-			TextView t = (TextView) findViewById(R.id.intro_text);
-			t.setText(t.getText() + "\n" + getString(R.string.intro_ready)
-					+ " " + pairedDevice.getName() + " ("
-					+ pairedDevice.getAddress() + ")\n");
-			socket = (BluetoothSocket) msg.obj;
-			connectedThread = new ConnectedThread(socket, this);
-			connectedThread.start();
-		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
-			TextView t = (TextView) findViewById(R.id.intro_text);
-			t.setText(t.getText() + "\n"
-					+ getString(R.string.bluetooth_no_connect));
-			showErrorAndDo(R.string.bluetooth_error_title,
-					R.string.bluetooth_no_connect, null);
-		} else if (msg.what == MESSAGE_ROLL_READ) {
-			TextView t = (TextView) findViewById(R.id.firstText);
-			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			rollSeries.appendData(new GraphViewData(rollX, y), true);
-			rollX += graphIncrement;
-		} else if (msg.what == MESSAGE_PITCH_READ) {
-			TextView t = (TextView) findViewById(R.id.secondText);
-			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			pitchSeries.appendData(new GraphViewData(pitchX, y), true);
-			pitchX += graphIncrement;
-		} else if (msg.what == MESSAGE_YAW_READ) {
-			TextView t = (TextView) findViewById(R.id.thirdText);
-			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			yawSeries.appendData(new GraphViewData(yawX, y), true);
-			yawX += graphIncrement;
-		} else if (msg.what == MESSAGE_VOLT_READ) {
-			TextView t = (TextView) findViewById(R.id.fourthText);
-			t.setText((String) msg.obj + " V");
-		} else if (msg.what == MESSAGE_MOTOR_READ) {
-			TextView t = (TextView) findViewById(R.id.fifthText);
-			t.setText((String) msg.obj);
-		} else if (msg.what == MESSAGE_PID_READ) {
-			TextView t = (TextView) findViewById(R.id.sixthText);
-			t.setText((String) msg.obj);
-		} else if (msg.what == MESSAGE_PIDVAL_READ) {
-			TextView t = (TextView) findViewById(R.id.seventhText);
-			t.setText((String) msg.obj);
-		} else if (msg.what == MESSAGE_BOOTLOADER_READ) {
-			dataFromBootloader(msg.arg1);
-		} else if (msg.what == MESSAGE_DROPBOX_CALLBACK) {
-			dropboxFirmwareCallback((String[]) msg.obj);
-		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
-			showErrorAndDo(R.string.dropbox_title, (String) msg.obj, null);
-		} else if (msg.what == MESSAGE_DROPBOX_RECEIVED) {
-			dropboxFileReceived();
-		}
-	}
-
-	public void buttonHandler(int id) {
-		byte[] d = new byte[1];
-		d[0] = commands[id];
-		connectedThread.write(d);
-	}
-
-	private void newConnectThread() {
-		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
 	}
 
 	private void showErrorAndExit(int title, int message) {
