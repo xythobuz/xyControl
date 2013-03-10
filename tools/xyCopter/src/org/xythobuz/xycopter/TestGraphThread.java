@@ -1,5 +1,5 @@
 /*
- * ConnectThread.java
+ * TestGraphThread.java
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.

@@ -29,6 +29,9 @@
  */
 package org.xythobuz.xycopter;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -42,6 +45,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -59,6 +63,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.DropboxAPI.Entry;
+import com.dropbox.client2.android.AndroidAuthSession;
+import com.dropbox.client2.exception.DropboxException;
+import com.dropbox.client2.session.AccessTokenPair;
+import com.dropbox.client2.session.AppKeyPair;
+import com.dropbox.client2.session.Session.AccessType;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphView.LegendAlign;
@@ -81,6 +92,19 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_MOTOR_READ = 11;
 	public final static int MESSAGE_PID_READ = 12;
 	public final static int MESSAGE_PIDVAL_READ = 13;
+	public final static int MESSAGE_BOOTLOADER_READ = 14;
+	public final static int MESSAGE_DROPBOX_CALLBACK = 15;
+	public final static int MESSAGE_DROPBOX_FAIL = 16;
+	public final static int MESSAGE_DROPBOX_RECEIVED = 17;
+
+	private final static String APP_KEY = "gnbnnowfgpv5jej";
+	private final static String APP_SECRET = "uxy6uf661xyd46q";
+	private final static AccessType ACCESS_TYPE = AccessType.DROPBOX;
+	private DropboxAPI<AndroidAuthSession> mDBApi;
+
+	private final static String PREFS_NAME = "xyDropboxPrefs";
+	private final static String PREF_KEY = "DropboxKey";
+	private final static String PREF_SECRET = "DropboxSecret";
 
 	public final static UUID BLUETOOTH_UUID = UUID
 			.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Default SPP
@@ -192,6 +216,27 @@ public class MainActivity extends Activity implements OnClickListener {
 		graphView.setViewPort(0.0, 10.0);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.upperOuterLayout);
 		layout.addView(graphView);
+
+		AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
+		AndroidAuthSession session = new AndroidAuthSession(appKeys,
+				ACCESS_TYPE);
+		mDBApi = new DropboxAPI<AndroidAuthSession>(session);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (mDBApi.getSession().authenticationSuccessful()) {
+			try {
+				mDBApi.getSession().finishAuthentication();
+				AccessTokenPair tokens = mDBApi.getSession()
+						.getAccessTokenPair();
+				storeKeys(tokens.key, tokens.secret);
+				flashFirmware();
+			} catch (IllegalStateException e) {
+				showErrorAndDo(R.string.dropbox_title, e.getMessage(), null);
+			}
+		}
 	}
 
 	@Override
@@ -261,8 +306,275 @@ public class MainActivity extends Activity implements OnClickListener {
 				testGraphThread = null;
 			}
 			return true;
+		case R.id.firmware:
+			AccessTokenPair atp = getStoredKeys();
+			if (atp == null) {
+				mDBApi.getSession().startAuthentication(this);
+			} else {
+				mDBApi.getSession().setAccessTokenPair(atp);
+				flashFirmware();
+			}
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void storeKeys(String key, String secret) {
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString(PREF_KEY, key);
+		editor.putString(PREF_SECRET, secret);
+		editor.commit();
+	}
+
+	private AccessTokenPair getStoredKeys() {
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		String key = settings.getString(PREF_KEY, null);
+		String secret = settings.getString(PREF_SECRET, null);
+		if ((key != null) && (secret != null)) {
+			AccessTokenPair atp = new AccessTokenPair(key, secret);
+			return atp;
+		} else {
+			return null;
+		}
+	}
+
+	private class DropboxThread extends Thread {
+		public void run() {
+			try {
+				Entry root = mDBApi.metadata("/", 1000, null, true, null);
+				String[] files = new String[root.contents.size()];
+				int i = 0;
+				for (Entry ent : root.contents) {
+					files[i++] = ent.path;
+				}
+				handler.obtainMessage(MESSAGE_DROPBOX_CALLBACK, files)
+						.sendToTarget();
+			} catch (DropboxException e) {
+				handler.obtainMessage(MESSAGE_DROPBOX_FAIL, e.getMessage())
+						.sendToTarget();
+			}
+		}
+	}
+
+	private class DropboxReceiveThread extends Thread {
+
+		String file;
+		FileOutputStream out;
+
+		public DropboxReceiveThread(String f, FileOutputStream s) {
+			file = f;
+			out = s;
+		}
+
+		public void run() {
+			try {
+				mDBApi.getFile(file, null, out, null);
+				handler.obtainMessage(MESSAGE_DROPBOX_RECEIVED).sendToTarget();
+			} catch (DropboxException e) {
+				handler.obtainMessage(MESSAGE_DROPBOX_FAIL, e.getMessage())
+						.sendToTarget();
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void getDropboxFiles() {
+		new DropboxThread().start();
+	}
+
+	private String[] filterOnlyHexFiles(String[] all) {
+		int c = 0;
+		for (int i = 0; i < all.length; i++) {
+			if (all[i].endsWith(".hex")) {
+				c++;
+			}
+		}
+		String[] hex = new String[c];
+		c = 0;
+		for (int i = 0; i < all.length; i++) {
+			if (all[i].endsWith(".hex")) {
+				hex[c++] = all[i];
+			}
+		}
+		return hex;
+	}
+
+	private void selectFirmwareFile(final String[] files) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.hex_select);
+		builder.setCancelable(false);
+		String[] fileNames = new String[files.length];
+		for (int i = 0; i < files.length; i++) {
+			fileNames[i] = files[i].substring(1);
+		}
+		builder.setItems(fileNames, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				getFirmwareFile(files[which]);
+			}
+		});
+		builder.show();
+	}
+
+	private void flashFirmware() {
+		getDropboxFiles();
+	}
+
+	public void dropboxFirmwareCallback(String[] files) {
+		if (files != null) {
+			files = filterOnlyHexFiles(files);
+			selectFirmwareFile(files);
+		}
+	}
+
+	FileOutputStream outputStream = null;
+	File file = null;
+	
+	private void getFirmwareFile(String f) {
+		try {
+			file = File.createTempFile("xycopter_", ".hex", getCacheDir());
+			outputStream = new FileOutputStream(file);
+			new DropboxReceiveThread(f, outputStream).start();
+		} catch (Exception e) {
+			showErrorAndDo(R.string.general_error, e.getMessage(), null);
+			e.printStackTrace();
+		}
+	}
+
+	public void dropboxFileReceived() {
+		try {
+			parseFirmwareFile(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (outputStream != null) {
+			try {
+				outputStream.close();
+			} catch (IOException e) { }
+		}
+		if (file != null) {
+			file.delete();
+		}
+	}
+
+	private void parseFirmwareFile(File f) throws Exception {
+		FileInputStream in = new FileInputStream(f);
+		HexParser h = new HexParser(in, f.length());
+		if (h.read()) {
+			showErrorAndDo(R.string.hex_title, R.string.hex_read, null);
+			return;
+		}
+		if (h.parse()) {
+			showErrorAndDo(R.string.hex_title, R.string.hex_invalid, null);
+			return;
+		}
+		int min = h.minAddress();
+		int[] firmware = h.extract();
+		if (firmware != null) {
+			firmwareBlob = firmware;
+			hexStart = min;
+			hexLen = firmware.length;
+			if (connectedThread != null) {
+				flashFirmwareFile();
+			} else {
+				showErrorAndDo(R.string.bluetooth_error_title,
+						"Please connect!", null);
+			}
+		}
+	}
+
+	private void addToLog(String l) {
+		final TextView t = (TextView) findViewById(R.id.intro_text);
+		t.setText(t.getText() + "\n" + l);
+		final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+		s.post(new Runnable() {
+			public void run() {
+				s.smoothScrollTo(0, t.getBottom());
+			}
+		});
+	}
+
+	private int flashState = 0;
+	private int[] firmwareBlob;
+	int hexStart, hexLen, pagesWritten;
+
+	private void flashFirmwareFile() {
+		addToLog("\nResetting Target...!");
+		connectedThread.write("q");
+		addToLog("Trying to connect...!");
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+		}
+		connectedThread.setTarget(true); // Reroute Output
+		connectedThread.write("q");
+		flashState = 1;
+	}
+
+	private void gotBootloaderPing() {
+		addToLog("Got answer. Acknowledging...");
+		connectedThread.write("c");
+		flashState = 2;
+	}
+
+	private void gotAcknowledge() {
+		addToLog("Connected! Sending address...");
+		byte[] tmp = { (byte) ((hexStart & 0xFF000000) >>> 24),
+				(byte) ((hexStart & 0x00FF0000) >>> 16),
+				(byte) ((hexStart & 0x0000FF00) >>> 8),
+				(byte) (hexStart & 0x000000FF) };
+		connectedThread.write(tmp);
+		flashState = 3;
+	}
+
+	private void gotStartAck() {
+		addToLog("Done. Sending length...");
+		byte[] tmp = { (byte) ((hexLen & 0xFF000000) >>> 24),
+				(byte) ((hexLen & 0x00FF0000) >>> 16),
+				(byte) ((hexLen & 0x0000FF00) >>> 8),
+				(byte) (hexLen & 0x000000FF) };
+		connectedThread.write(tmp);
+		flashState = 4;
+	}
+
+	private void gotLengthAck() {
+		byte[] data = new byte[firmwareBlob.length];
+		for (int i = 0; i < data.length; i++) {
+			data[i] = (byte) firmwareBlob[i];
+		}
+		addToLog("Done. Sending Firmware Blob...");
+		connectedThread.write(data);
+		flashState = 5;
+		pagesWritten = 0;
+	}
+
+	private void dataFromBootloader(int c) {
+		if ((flashState == 1) && (c == 'o')) {
+			gotBootloaderPing();
+		} else if ((flashState == 2) && (c == 'a')) {
+			gotAcknowledge();
+		} else if ((flashState == 3) && (c == 'o')) {
+			gotStartAck();
+		} else if ((flashState == 4) && (c == 'o')) {
+			gotLengthAck();
+		} else if (flashState == 5) {
+			if (c == 'o') {
+				pagesWritten++;
+				addToLog("Next page written (" + pagesWritten + ")!");
+				if ((pagesWritten * 256) >= hexLen) {
+					addToLog("Upload finished...!");
+					connectedThread.setTarget(false);
+				}
+			} else if (c == 'e') {
+				addToLog("Interrupted by target!");
+			} else {
+				addToLog("Unknown response... (" + c + ")");
+			}
+		} else {
+			addToLog("Invalid (" + flashState + "/" + c + ")? Trying again!");
+			flashState = 1;
+			connectedThread.write("q");
 		}
 	}
 
@@ -437,6 +749,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (msg.what == MESSAGE_PIDVAL_READ) {
 			TextView t = (TextView) findViewById(R.id.seventhText);
 			t.setText((String) msg.obj);
+		} else if (msg.what == MESSAGE_BOOTLOADER_READ) {
+			dataFromBootloader(msg.arg1);
+		} else if (msg.what == MESSAGE_DROPBOX_CALLBACK) {
+			dropboxFirmwareCallback((String[]) msg.obj);
+		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
+			showErrorAndDo(R.string.dropbox_title, (String) msg.obj, null);
+		} else if (msg.what == MESSAGE_DROPBOX_RECEIVED) {
+			dropboxFileReceived();
 		}
 	}
 

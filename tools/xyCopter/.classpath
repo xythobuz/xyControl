@@ -5,5 +5,13 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="libs/GraphView-3.0.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/dropbox-android-sdk-1.5.3.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpmime-4.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="libs/extra/android.jar"/>
+	<classpathentry kind="lib" path="libs/test/junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

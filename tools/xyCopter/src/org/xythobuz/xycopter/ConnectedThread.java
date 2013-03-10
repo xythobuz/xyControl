@@ -43,6 +43,7 @@ class ConnectedThread extends Thread {
 	private final OutputStream mmOutStream;
 	private final MainActivity mmMain;
 	private boolean cancled = false;
+	private boolean routing = false;
 
 	public ConnectedThread(BluetoothSocket socket, MainActivity main) {
 		mmSocket = socket;
@@ -66,51 +67,59 @@ class ConnectedThread extends Thread {
 		// Keep listening to the InputStream until an exception occurs
 		while (true) {
 			try {
-				// Read from the InputStream
-				String line = mmIn.readLine();
-				// Send to MainActivity
-				if (line.length() < 1) {
-					continue;
-				}
-				char first = line.charAt(0);
-				switch (first) {
-				case 't':
-					mmMain.handler.obtainMessage(
-							MainActivity.MESSAGE_PIDVAL_READ, -1, -1,
-							line.substring(1)).sendToTarget();
-					break;
-				case 'u':
-					mmMain.handler.obtainMessage(MainActivity.MESSAGE_PID_READ,
-							-1, -1, line.substring(1)).sendToTarget();
-					break;
-				case 'v':
-					mmMain.handler.obtainMessage(
-							MainActivity.MESSAGE_MOTOR_READ, -1, -1,
-							line.substring(1)).sendToTarget();
-					break;
-				case 'w':
-					mmMain.handler.obtainMessage(
-							MainActivity.MESSAGE_PITCH_READ, -1, -1,
-							line.substring(1)).sendToTarget();
-					break;
-				case 'x':
-					mmMain.handler.obtainMessage(
-							MainActivity.MESSAGE_ROLL_READ, -1, -1,
-							line.substring(1)).sendToTarget();
-					break;
-				case 'y':
-					mmMain.handler.obtainMessage(MainActivity.MESSAGE_YAW_READ,
-							-1, -1, line.substring(1)).sendToTarget();
-					break;
-				case 'z':
-					mmMain.handler.obtainMessage(
-							MainActivity.MESSAGE_VOLT_READ, -1, -1,
-							line.substring(1)).sendToTarget();
-					break;
-				default:
-					mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ, -1,
-							-1, line).sendToTarget();
-					break;
+				if (!routing) {
+					// Read from the InputStream
+					String line = mmIn.readLine();
+					// Send to MainActivity
+					if (line.length() < 1) {
+						continue;
+					}
+					char first = line.charAt(0);
+					switch (first) {
+					case 't':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_PIDVAL_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'u':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_PID_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'v':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_MOTOR_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'w':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_PITCH_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'x':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_ROLL_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'y':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_YAW_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					case 'z':
+						mmMain.handler.obtainMessage(
+								MainActivity.MESSAGE_VOLT_READ, -1, -1,
+								line.substring(1)).sendToTarget();
+						break;
+					default:
+						mmMain.handler.obtainMessage(MainActivity.MESSAGE_READ,
+								-1, -1, line).sendToTarget();
+						break;
+					}
+				} else {
+					// reroute incoming data for firmware flashing
+					int c = mmIn.read();
+					mmMain.handler.obtainMessage(MainActivity.MESSAGE_BOOTLOADER_READ, c, -1, null).sendToTarget();
 				}
 			} catch (IOException e) {
 				if (!cancled)
@@ -120,6 +129,10 @@ class ConnectedThread extends Thread {
 				break;
 			}
 		}
+	}
+
+	public void setTarget(boolean reroute) {
+		routing = reroute;
 	}
 
 	/* Call this from the main activity to send data to the remote device */

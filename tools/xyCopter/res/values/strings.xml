@@ -9,11 +9,20 @@
     <string name="menu_parameters">PID Parameters</string>
     <string name="menu_testgraph">Test Graph</string>
     <string name="menu_clear">Clear</string>
+    <string name="menu_firmware">Flash</string>
 
     <string name="button_ok">OK</string>
     <string name="button_cancel">Cancel</string>
 	<string name="pid_title">PID Parameters</string>
+	<string name="dropbox_title">Dropbox Error</string>
     
+	<string name="general_error">Error</string>
+	
+	<string name="hex_title">HEX Error</string>
+	<string name="hex_invalid">HEX File invalid!</string>
+	<string name="hex_read">HEX read error!</string>
+	<string name="hex_select">Select HEX File</string>
+	
     <string name="intro_enabling">Enabling Bluetooth&#8230;</string>
     <string name="intro_wait">Ready!</string>
 	<string name="intro_connect">Connecting&#8230;</string>

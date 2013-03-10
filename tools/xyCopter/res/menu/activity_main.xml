@@ -14,6 +14,10 @@
         android:showAsAction="ifRoom"
         android:title="@string/menu_parameters"/>
     <item
+        android:id="@+id/firmware"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_firmware"/>
+    <item
         android:id="@+id/clear"
         android:showAsAction="ifRoom"
         android:title="@string/menu_clear"/>

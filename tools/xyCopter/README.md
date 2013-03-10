@@ -5,5 +5,8 @@ You can find the latest version as unsigned APK in the parent directory.
 
 This is using my fork of the [GraphView Library](https://github.com/Lauszus/GraphView). I hacked it a bit, so now zero is always the center of the Y-Axis and the legend is displayed on the left.
 
+Also included are the official Dropbox Android Core SDK libraries, Version 1.5.3.
+You should register your own Dropbox App and replace the Dropbox Key and Secret in the AndroidManifest.xml and the MainActivity.java...
+
 ![xyCopter Screenshot](http://www.xythobuz.org/img/xyCopterNew.png)
 ![Old xyCopter Screenshot](http://www.xythobuz.org/img/xyCopter.png)
