@@ -116,6 +116,7 @@ int main(void) {
 
 void flightTask(void) {
     static time_t last = 100; // Don't begin immediately
+    static uint8_t anglesCorrected = 0;
     if ((getSystemTime() - last) >= QUADDELAY) {
         last = getSystemTime();
         Error e = orientationTask();
@@ -127,6 +128,12 @@ void flightTask(void) {
         }
         setTask();
         motorTask();
+        if (anglesCorrected < 25) {
+            anglesCorrected++;
+            if (anglesCorrected == 25) {
+                zeroOrientation();
+            }
+        }
         long int diff = getSystemTime() - last;
         if (diff >= (QUADDELAY_ERR)) {
             printf("Flight Task took %lims!\n", diff);
@@ -225,8 +232,11 @@ void motorRight(void) {
 
 void parameterChange(void) {
     double p, i, d;
-    if (scanf("%lf %lf %lf", &p, &i, &d) == 3) {
+    int c = scanf("%lf %lf %lf", &p, &i, &d);
+    if (c == 3) {
         pidSet(&o_pids[0], p, i, d);
         pidSet(&o_pids[1], p, i, d);
+    } else {
+        printf("Only got %i (%lf %lf %lf)!\n", c, p, i, d);
     }
 }

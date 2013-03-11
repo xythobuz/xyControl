@@ -45,6 +45,7 @@
 #define TODEG(x) ((x * 180) / M_PI)
 
 Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
+Angles orientationError = {.pitch = 0, .roll = 0, .yaw = 0};
 Kalman pitchData;
 Kalman rollData;
 
@@ -76,8 +77,14 @@ Error orientationTask(void) {
     // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
     kalmanInnovate(&pitchData, pitch, g.x);
     kalmanInnovate(&rollData, roll, g.y);
-    orientation.roll = rollData.x1;
-    orientation.pitch = pitchData.x1;
+    orientation.roll = rollData.x1 - orientationError.roll;
+    orientation.pitch = pitchData.x1 - orientationError.pitch;
 
     return SUCCESS;
+}
+
+void zeroOrientation(void) {
+    orientationError.roll = orientation.roll;
+    orientationError.pitch = orientation.pitch;
+    orientationError.yaw = orientation.yaw;
 }

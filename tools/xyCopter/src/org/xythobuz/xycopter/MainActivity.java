@@ -177,8 +177,14 @@ public class MainActivity extends Activity implements OnClickListener {
 					BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		} else {
-			TextView t = (TextView) findViewById(R.id.intro_text);
+			final TextView t = (TextView) findViewById(R.id.intro_text);
 			t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
 		}
 
 		buttons[B_LEFT] = (Button) findViewById(R.id.bLeft);
@@ -213,6 +219,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.BOTTOM);
 		graphView.setViewPort(0.0, 10.0);
+		graphView.setCenterZero(false);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.upperOuterLayout);
 		layout.addView(graphView);
 
@@ -250,8 +257,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				showErrorAndExit(R.string.bluetooth_error_title,
 						R.string.bluetooth_turned_off);
 			} else {
-				TextView t = (TextView) findViewById(R.id.intro_text);
+				final TextView t = (TextView) findViewById(R.id.intro_text);
 				t.setText(t.getText() + "\n" + getString(R.string.intro_wait));
+				final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+				s.post(new Runnable() {
+					public void run() {
+						s.smoothScrollTo(0, t.getBottom());
+					}
+				});
 			}
 		}
 	}
@@ -265,11 +278,17 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		TextView intro = (TextView) findViewById(R.id.intro_text);
+		final TextView intro = (TextView) findViewById(R.id.intro_text);
+		final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
 
 		switch (item.getItemId()) {
 		case R.id.clear:
 			intro.setText("");
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, intro.getBottom());
+				}
+			});
 			GraphViewData[] a = new GraphViewData[1],
 			b = new GraphViewData[1],
 			c = new GraphViewData[1];
@@ -291,6 +310,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				connectedThread = null;
 				intro.setText(intro.getText() + "\n"
 						+ getString(R.string.intro_disconnect));
+				s.post(new Runnable() {
+					public void run() {
+						s.smoothScrollTo(0, intro.getBottom());
+					}
+				});
 			} else {
 				startConnection(new Function() {
 					public void execute() {
@@ -369,17 +393,29 @@ public class MainActivity extends Activity implements OnClickListener {
 			builder.setCancelable(false);
 			builder.setItems(pairedName, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					TextView intro = (TextView) findViewById(R.id.intro_text);
+					final TextView intro = (TextView) findViewById(R.id.intro_text);
 					intro.setText(intro.getText() + "\n"
 							+ getString(R.string.intro_connect));
+					final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+					s.post(new Runnable() {
+						public void run() {
+							s.smoothScrollTo(0, intro.getBottom());
+						}
+					});
 					pairedDevice = pairedDevices[which];
 					f.execute();
 				}
 			});
 			builder.show();
 		} else if (pairedDev.size() > 0) {
-			TextView t = (TextView) findViewById(R.id.intro_text);
+			final TextView t = (TextView) findViewById(R.id.intro_text);
 			t.setText(t.getText() + "\n" + getString(R.string.intro_connect));
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
 			BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
 					.toArray(new BluetoothDevice[0]);
 			pairedDevice = pairedDevices[0];
@@ -410,18 +446,30 @@ public class MainActivity extends Activity implements OnClickListener {
 			showErrorAndDo(R.string.bluetooth_error_title, e.getMessage(), null);
 		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTED) {
 			connected = true;
-			TextView t = (TextView) findViewById(R.id.intro_text);
+			final TextView t = (TextView) findViewById(R.id.intro_text);
 			t.setText(t.getText() + "\n" + getString(R.string.intro_ready)
 					+ " " + pairedDevice.getName() + " ("
 					+ pairedDevice.getAddress() + ")\n");
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
 			socket = (BluetoothSocket) msg.obj;
 			connectedThread = new ConnectedThread(socket, this);
 			connectedThread.start();
 		} else if (msg.what == MESSAGE_BLUETOOTH_CONNECTION_FAIL) {
 			connected = false;
-			TextView t = (TextView) findViewById(R.id.intro_text);
+			final TextView t = (TextView) findViewById(R.id.intro_text);
 			t.setText(t.getText() + "\n"
 					+ getString(R.string.bluetooth_no_connect));
+			final ScrollView s = (ScrollView) findViewById(R.id.intro_scroll);
+			s.post(new Runnable() {
+				public void run() {
+					s.smoothScrollTo(0, t.getBottom());
+				}
+			});
 			showErrorAndDo(R.string.bluetooth_error_title,
 					R.string.bluetooth_no_connect, null);
 		} else if (msg.what == MESSAGE_ROLL_READ) {
@@ -551,7 +599,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		String dString = decimalFormat.format(d);
 		if (connectedThread != null)
 			connectedThread.write(ParameterCommand + pString + " " + iString
-					+ " " + dString);
+					+ " " + dString + "\n");
 	}
 
 	private void showErrorAndExit(int title, int message) {

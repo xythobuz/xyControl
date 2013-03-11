@@ -34,10 +34,13 @@
 // |    Filtering    |
 //  -----------------
 
-#define SOFTWARELOWPASS 25
+#define SOFTWARELOWPASS 50
 #define ACCFILTERFACTOR SOFTWARELOWPASS
 #define GYROFILTERFACTOR SOFTWARELOWPASS
-#define PIDDIVISOR 2
+
+#define PIDDIVISOR 15
+#define PID_OUTMAX (255 * PIDDIVISOR)
+#define PID_OUTMIN (-255 * PIDDIVISOR)
 
 //  -----------------
 // |    Kalman      |
@@ -70,9 +73,6 @@
 #define PID_P 5.0
 #define PID_I 0.03
 #define PID_D -13.0
-
-#define PID_OUTMAX 255
-#define PID_OUTMIN -255
 
 //  -----------------
 // |      Motor      |

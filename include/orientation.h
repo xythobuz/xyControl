@@ -44,4 +44,6 @@ extern Angles orientation;
 Error orientationInit(void);
 Error orientationTask(void);
 
+void zeroOrientation(void);
+
 #endif
