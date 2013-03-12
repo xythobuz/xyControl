@@ -77,6 +77,6 @@ void pidSet(PIDState *pid, double kp, double ki, double kd) {
 }
 
 void pidTask(void) {
-    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]) / PIDDIVISOR;
-    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]) / PIDDIVISOR;
+    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]);
+    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]);
 }

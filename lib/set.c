@@ -38,11 +38,11 @@
 #include <set.h>
 #include <config.h>
 
-#define MAXDIFF (baseSpeed / 2)
+#define MAXDIFF ((baseSpeed * 2) / 3)
 
 uint8_t baseSpeed = 0;
 
-void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
+inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     if (axis == ROLL) {
         motorSet(SET_ROLLPLUS, vals[0]);
         motorSet(SET_ROLLMINUS, vals[1]);
@@ -54,27 +54,8 @@ void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
 
 void setTask(void) {
     for (uint8_t i = 0; i < 2; i++) {
-        double diff = o_output[i];
-        if (diff > 0) {
-            if (diff > MAXDIFF) {
-                diff = MAXDIFF;
-            }
-        } else if (diff < 0) {
-            if (diff < (-1 * MAXDIFF)) {
-                diff = -1 * MAXDIFF;
-            }
-        }
-        uint8_t v[2];
-        if ((baseSpeed + diff) > 255) {
-            v[0] = 255;
-        } else {
-            v[0] = baseSpeed + diff;
-        }
-        if ((baseSpeed - diff) < 0) {
-            v[1] = 0;
-        } else {
-            v[1] = baseSpeed - diff;
-        }
+        double diff = (o_output[i] * MAXDIFF) / PID_OUTMAX;
+        uint8_t v[2] = { baseSpeed + diff, baseSpeed - diff };
         setMotorSpeeds(i, v);
     }
 }
