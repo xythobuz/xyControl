@@ -38,7 +38,7 @@
 #include <set.h>
 #include <config.h>
 
-#define MAXDIFF ((baseSpeed * 2) / 3)
+#define MAXDIFF (baseSpeed * PID_INFLUENCE)
 
 uint8_t baseSpeed = 0;
 

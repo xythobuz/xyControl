@@ -110,6 +110,9 @@ public class YASAB extends Thread {
 					if (c == OKAY) {
 						state = STATE_ACK;
 						addToLog("Got response!");
+					} else if (c == ACK) {
+						state = STATE_ADDRESS;
+						addToLog("Got Acknowledge?! Trying anyway...");
 					} else {
 						addToLog("Unknown response (" + c + ")...?");
 					}
@@ -123,6 +126,9 @@ public class YASAB extends Thread {
 				if (c == ACK) {
 					state = STATE_ADDRESS;
 					addToLog("Got Acknowledge!");
+				} else if (c == OKAY) {
+					state = STATE_ACK;
+					addToLog("Got response?! Trying anyway...");
 				} else {
 					addToLog("Unknown response (" + c + ")...?");
 					state = STATE_PING;

@@ -493,6 +493,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (msg.what == MESSAGE_VOLT_READ) {
 			TextView t = (TextView) findViewById(R.id.fourthText);
 			t.setText((String) msg.obj + " V");
+			double v = Double.parseDouble((String)msg.obj);
+			if (v > 11.1) {
+				t.setTextColor(Color.GREEN);
+			} else if (v > 9.9) {
+				t.setTextColor(Color.YELLOW);
+			} else {
+				t.setTextColor(Color.RED);
+			}
 		} else if (msg.what == MESSAGE_MOTOR_READ) {
 			TextView t = (TextView) findViewById(R.id.fifthText);
 			t.setText((String) msg.obj);

@@ -46,7 +46,7 @@ class FlashThread extends Thread {
 	public MainActivity mMain;
 	public int minAddress;
 	public int[] firmware;
-	public int whichFile = -1;
+	public volatile int whichFile = -1;
 	public String[] hexfiles;
 	
 	public FlashThread(MainActivity main) {
