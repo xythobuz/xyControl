@@ -14,7 +14,7 @@ In the current PCB layout, the SD-Card holder is rotated 180 degrees. This preve
 
 Three tasks are controlling the Quadrocopter Orientation in Space.
 
-+ The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation". This is using a modified version of this [Kalman Filter Implementation](http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/).
++ The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation".
 + The PID Task is then feeding these angles into two PID controllers. Their output is then used by...
 + The Set Task, which calculates the motor speeds and gives them to...
 + The motor task, which sends the new values via TWI to the motor controllers.
@@ -37,11 +37,21 @@ The data and bss memory sections, as well as the Stack are located in the intern
 
 ## Orientation Calculation (orientation.h)
 
-Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a complementary filter. For more informations on the theory, see this [Slideshow](http://web.mit.edu/scolton/www/filter.pdf) (PDF!).
+Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a Kalman Filter. It is using this slightly modified [Kalman Filter Implementation](http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/) by Linus Helgesson.
 
 # PC and Android Tools
 
 You can find some PC Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
+
+## UART-Flight Status Packet Format
+
+    printf("t%.2f %.2f %.2f\n", kp, ki, kd);
+    printf("u%.2f %.2f\n", pid_output[1], pid_output[0]); // Pitch, Roll
+    printf("v%i %i %i %i\n", motorSpeed[0], ..., motorSpeed[3]);
+    printf("w%.2f\n", orientation.pitch);
+    printf("x%.2f\n", orientation.roll);
+    printf("y%.2f\n", orientation.yaw);
+    printf("z%.2f\n", getVoltage());
 
 # Software used
 

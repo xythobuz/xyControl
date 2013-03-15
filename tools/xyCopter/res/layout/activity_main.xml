@@ -10,34 +10,27 @@
         android:layout_above="@+id/bWholeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:baselineAligned="false">
+        android:baselineAligned="false" >
 
-        <ScrollView
-            android:id="@+id/intro_scroll"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/graphLayout"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_weight="1.0" >
-
-            <TextView
-                android:id="@+id/intro_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/intro_enabling"
-                android:textSize="@dimen/intro_dimension" />
-        </ScrollView>
-
+            android:layout_weight="1.0"
+            android:orientation="vertical" />
+        
         <LinearLayout
             android:id="@+id/upperOuterLayout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:orientation="vertical" >
-
+            
             <LinearLayout
                 android:id="@+id/upperInnerLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:baselineAligned="false">
+                android:baselineAligned="false" >
 
                 <LinearLayout
                     android:id="@+id/upperMiddleLayout"
@@ -76,13 +69,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fifthText"
                         android:textSize="@dimen/intro_dimension" />
-                    
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sixthText"
                         android:textSize="@dimen/intro_dimension" />
-                    
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -126,13 +119,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/intro_dimension" />
-                    
+
                     <TextView
                         android:id="@+id/sixthText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/intro_dimension" />
-                    
+
                     <TextView
                         android:id="@+id/seventhText"
                         android:layout_width="match_parent"
@@ -140,6 +133,21 @@
                         android:textSize="@dimen/intro_dimension" />
                 </LinearLayout>
             </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/intro_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:id="@+id/intro_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/intro_enabling"
+                    android:textSize="@dimen/intro_dimension"
+                    android:layout_marginLeft="@dimen/intro_dimension"
+                    android:layout_marginRight="@dimen/intro_dimension" />
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
 

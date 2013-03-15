@@ -58,6 +58,7 @@
 #define STATUSDELAY (1000 / STATUSFREQ)
 
 #define QUADDELAY_ERR (QUADDELAY - 2)
+#define STATUSDELAY_ERR (STATUSDELAY / 2)
 
 void flightTask(void);
 void statusTask(void);
@@ -145,14 +146,17 @@ void statusTask(void) {
     static time_t last = 100; // Don't begin immediately
     if ((getSystemTime() - last) >= STATUSDELAY) {
         last = getSystemTime();
-        printf("t%.2f %.2f %.2f\n",
-                o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
-        printf("u%.2f & %.2f\n", o_output[1], o_output[0]); // Pitch + Roll
+        printf("t%.2f %.2f %.2f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
+        printf("u%.2f %.2f\n", o_output[1], o_output[0]); // Pitch, Roll
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
         printf("w%.2f\n", orientation.pitch);
         printf("x%.2f\n", orientation.roll);
         printf("y%.2f\n", orientation.yaw);
         printf("z%.2f\n", getVoltage());
+        long int diff = getSystemTime() - last;
+        if (diff >= (STATUSDELAY_ERR)) {
+            printf("Status Task took %lims!\n", diff);
+        }
     }
 }
 

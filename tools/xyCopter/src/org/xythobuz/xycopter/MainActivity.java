@@ -112,12 +112,32 @@ public class MainActivity extends Activity implements OnClickListener {
 	private BluetoothSocket socket = null;
 	private ConnectedThread connectedThread = null;
 	private GraphView graphView = null;
-	private GraphViewSeries rollSeries = null;
-	private GraphViewSeries pitchSeries = null;
-	private GraphViewSeries yawSeries = null;
+	
+	private static int SERIES_ROLL = 0;
+	private static int SERIES_PITCH = 1;
+	private static int SERIES_YAW = 2;
+	private static int SERIES_PIDROLL = 3;
+	private static int SERIES_PIDPITCH = 4;
+	private static int SERIES_M1 = 5;
+	//private static int SERIES_M2 = 6;
+	//private static int SERIES_M3 = 7;
+	//private static int SERIES_M4 = 8;
+	private GraphViewSeries[] graphViewSeries = new GraphViewSeries[9];
+	GraphViewData[][] graphViewDatas = new GraphViewData[9][];
+	private String[] graphViewName = { "Roll", "Pitch", "Yaw", "PID-Roll", "PID-Pitch", "M1", "M2", "M3", "M4" };
+	private GraphViewSeriesStyle[] graphViewStyle = {
+		new GraphViewSeriesStyle(Color.RED, 2),
+		new GraphViewSeriesStyle(Color.GREEN, 2),
+		new GraphViewSeriesStyle(Color.BLUE, 2),
+		new GraphViewSeriesStyle(Color.MAGENTA, 2),
+		new GraphViewSeriesStyle(Color.YELLOW, 2),
+		new GraphViewSeriesStyle(Color.BLACK, 1),
+		new GraphViewSeriesStyle(Color.CYAN, 1),
+		new GraphViewSeriesStyle(Color.GRAY, 1),
+		new GraphViewSeriesStyle(Color.WHITE, 1)
+	};
+	private double[] graphX = new double[9];
 	private double graphIncrement = 0.2;
-	private double rollX = graphIncrement, pitchX = graphIncrement,
-			yawX = graphIncrement;
 
 	private final String ParameterCommand = "n";
 	private final byte[] commands = { 'a', 'w', 's', 'd', 'x', 'y', 'p', 'm',
@@ -200,27 +220,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			buttons[i].setOnClickListener(this);
 		}
 
-		GraphViewData[] a = new GraphViewData[1], b = new GraphViewData[1], c = new GraphViewData[1];
-		a[0] = new GraphViewData(0.0, 0.0);
-		b[0] = new GraphViewData(0.0, 0.0);
-		c[0] = new GraphViewData(0.0, 0.0);
-		rollSeries = new GraphViewSeries("Roll", new GraphViewSeriesStyle(
-				Color.rgb(200, 50, 0), 3), a);
-		pitchSeries = new GraphViewSeries("Pitch", new GraphViewSeriesStyle(
-				Color.rgb(0, 200, 50), 3), b);
-		yawSeries = new GraphViewSeries("Yaw", new GraphViewSeriesStyle(
-				Color.rgb(50, 0, 200), 3), c);
-		graphView = new LineGraphView(this, "Angles");
-		graphView.addSeries(rollSeries);
-		graphView.addSeries(pitchSeries);
-		graphView.addSeries(yawSeries);
+		graphView = new LineGraphView(this, "xyCopter Data Dump");
+		for (int i = 0; i < graphViewDatas.length; i++) {
+			graphViewDatas[i] = new GraphViewData[1];
+			graphViewDatas[i][0] = new GraphViewData(0.0, 0.0);
+			graphViewSeries[i] = new GraphViewSeries(graphViewName[i], graphViewStyle[i], graphViewDatas[i]);
+			graphView.addSeries(graphViewSeries[i]);
+			graphX[i] = graphIncrement;
+		}
 		graphView.setScrollable(true);
 		graphView.setScalable(true);
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.BOTTOM);
 		graphView.setViewPort(0.0, 10.0);
 		graphView.setCenterZero(false);
-		LinearLayout layout = (LinearLayout) findViewById(R.id.upperOuterLayout);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
 		layout.addView(graphView);
 
 		AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
@@ -289,15 +303,10 @@ public class MainActivity extends Activity implements OnClickListener {
 					s.smoothScrollTo(0, intro.getBottom());
 				}
 			});
-			GraphViewData[] a = new GraphViewData[1],
-			b = new GraphViewData[1],
-			c = new GraphViewData[1];
-			a[0] = new GraphViewData(0.0, 0.0);
-			b[0] = new GraphViewData(0.0, 0.0);
-			c[0] = new GraphViewData(0.0, 0.0);
-			rollSeries.resetData(a);
-			pitchSeries.resetData(b);
-			yawSeries.resetData(c);
+			for (int i = 0; i < graphViewSeries.length; i++) {
+				graphViewDatas[i][0] = new GraphViewData(0.0, 0.0);
+				graphViewSeries[i].resetData(graphViewDatas[i]);
+			}
 			return true;
 		case R.id.parameters:
 			displayPIDAlert();
@@ -476,24 +485,24 @@ public class MainActivity extends Activity implements OnClickListener {
 			TextView t = (TextView) findViewById(R.id.firstText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			rollSeries.appendData(new GraphViewData(rollX, y), true);
-			rollX += graphIncrement;
+			graphViewSeries[SERIES_ROLL].appendData(new GraphViewData(graphX[SERIES_ROLL], y), true);
+			graphX[SERIES_ROLL] += graphIncrement;
 		} else if (msg.what == MESSAGE_PITCH_READ) {
 			TextView t = (TextView) findViewById(R.id.secondText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			pitchSeries.appendData(new GraphViewData(pitchX, y), true);
-			pitchX += graphIncrement;
+			graphViewSeries[SERIES_PITCH].appendData(new GraphViewData(graphX[SERIES_PITCH], y), true);
+			graphX[SERIES_PITCH] += graphIncrement;
 		} else if (msg.what == MESSAGE_YAW_READ) {
 			TextView t = (TextView) findViewById(R.id.thirdText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			yawSeries.appendData(new GraphViewData(yawX, y), true);
-			yawX += graphIncrement;
+			graphViewSeries[SERIES_YAW].appendData(new GraphViewData(graphX[SERIES_YAW], y), true);
+			graphX[SERIES_YAW] += graphIncrement;
 		} else if (msg.what == MESSAGE_VOLT_READ) {
 			TextView t = (TextView) findViewById(R.id.fourthText);
 			t.setText((String) msg.obj + " V");
-			double v = Double.parseDouble((String)msg.obj);
+			double v = Double.parseDouble((String) msg.obj);
 			if (v > 11.1) {
 				t.setTextColor(Color.GREEN);
 			} else if (v > 9.9) {
@@ -503,19 +512,38 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		} else if (msg.what == MESSAGE_MOTOR_READ) {
 			TextView t = (TextView) findViewById(R.id.fifthText);
-			t.setText((String) msg.obj);
+			String s = (String)msg.obj;
+			t.setText(s);
+			String[] mStrings = s.split("\\s+");
+			for (int i = 0; (i < 4) && (i < mStrings.length); i++) {
+				double d = Double.parseDouble(mStrings[i]);
+				graphViewSeries[SERIES_M1 + i].appendData(new GraphViewData(graphX[SERIES_M1 + i], d), true);
+				graphX[SERIES_M1 + i] += graphIncrement;
+			}
 		} else if (msg.what == MESSAGE_PID_READ) {
 			TextView t = (TextView) findViewById(R.id.sixthText);
-			t.setText((String) msg.obj);
+			String s = (String)msg.obj;
+			t.setText(s);
+			String[] mStrings = s.split("\\s+");
+			for (int i = 0; (i < 2) && (i < mStrings.length); i++) {
+				double d = Double.parseDouble(mStrings[i]);
+				int series;
+				if (i == 0)
+					series = SERIES_PIDPITCH;
+				else
+					series = SERIES_PIDROLL;
+				graphViewSeries[series].appendData(new GraphViewData(graphX[series], d), true);
+				graphX[series] += graphIncrement;
+			}
 		} else if (msg.what == MESSAGE_PIDVAL_READ) {
 			TextView t = (TextView) findViewById(R.id.seventhText);
 			t.setText((String) msg.obj);
 		} else if (msg.what == MESSAGE_HEX_ERROR) {
-			showErrorAndDo(R.string.hex_title, (String)msg.obj, null);
+			showErrorAndDo(R.string.hex_title, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
 			showErrorAndDo(R.string.dropbox_title, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_ERROR) {
-			showErrorAndDo(R.string.general_error, (String)msg.obj, null);
+			showErrorAndDo(R.string.general_error, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_HEX_PARSED) {
 			startConnection(new Function() {
 				public void execute() {
@@ -523,7 +551,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			});
 		} else if (msg.what == MESSAGE_ALERT_DIALOG) {
-			AlertDialog.Builder builder = (AlertDialog.Builder)msg.obj;
+			AlertDialog.Builder builder = (AlertDialog.Builder) msg.obj;
 			builder.show();
 		}
 	}
@@ -535,14 +563,15 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private void newYASAB() {
-		yasab = new YASAB(flashThread.minAddress, flashThread.firmware, pairedDevice, bluetoothAdapter, this);
+		yasab = new YASAB(flashThread.minAddress, flashThread.firmware,
+				pairedDevice, bluetoothAdapter, this);
 		yasab.start();
 	}
-	
+
 	private void newConnectThread() {
 		new ConnectThread(pairedDevice, bluetoothAdapter, this).start();
 	}
-	
+
 	public void onClick(View v) {
 		if (connectedThread != null) {
 			for (int i = 0; i < buttons.length; i++) {
