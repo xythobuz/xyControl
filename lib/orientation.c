@@ -80,14 +80,14 @@ Error orientationTask(void) {
     orientation.roll = rollData.x1 - orientationError.roll;
     orientation.pitch = pitchData.x1 - orientationError.pitch;
 
-    orientation.roll = round(orientation.roll);
-    orientation.pitch = round(orientation.pitch);
+    orientation.roll = round(orientation.roll * 10) / 10;
+    orientation.pitch = round(orientation.pitch * 10) / 10;
 
     return SUCCESS;
 }
 
 void zeroOrientation(void) {
-    orientationError.roll = orientation.roll;
-    orientationError.pitch = orientation.pitch;
-    orientationError.yaw = orientation.yaw;
+    //orientationError.roll = orientation.roll;
+    //orientationError.pitch = orientation.pitch;
+    //orientationError.yaw = orientation.yaw;
 }

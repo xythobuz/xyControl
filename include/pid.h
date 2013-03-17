@@ -34,6 +34,10 @@ typedef struct {
     double kp;
     double ki;
     double kd;
+    double outMin;
+    double outMax;
+    double intMin;
+    double intMax;
     double lastError;
     double sumError;
     time_t last;
@@ -49,7 +53,7 @@ extern PIDState o_pids[2];
 void pidInit(void);
 void pidTask(void);
 
-void pidSet(PIDState *pid, double kp, double ki, double kd);
+void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double max, double iMin, double iMax);
 double pidExecute(double should, double is, PIDState *state);
 
 #endif

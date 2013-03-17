@@ -48,6 +48,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,6 +57,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -87,11 +90,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_MOTOR_READ = 11;
 	public final static int MESSAGE_PID_READ = 12;
 	public final static int MESSAGE_PIDVAL_READ = 13;
+	public final static int MESSAGE_PIDRANGE_READ = 14;
 	public final static int MESSAGE_HEX_ERROR = 15;
 	public final static int MESSAGE_DROPBOX_FAIL = 16;
 	public final static int MESSAGE_ERROR = 17;
 	public final static int MESSAGE_HEX_PARSED = 18;
 	public final static int MESSAGE_ALERT_DIALOG = 19;
+	public final static int MESSAGE_PIDINTRANGE_READ = 20;
 
 	private final static String APP_KEY = "gnbnnowfgpv5jej";
 	private final static String APP_SECRET = "uxy6uf661xyd46q";
@@ -112,32 +117,32 @@ public class MainActivity extends Activity implements OnClickListener {
 	private BluetoothSocket socket = null;
 	private ConnectedThread connectedThread = null;
 	private GraphView graphView = null;
-	
+
 	private static int SERIES_ROLL = 0;
 	private static int SERIES_PITCH = 1;
 	private static int SERIES_YAW = 2;
 	private static int SERIES_PIDROLL = 3;
 	private static int SERIES_PIDPITCH = 4;
 	private static int SERIES_M1 = 5;
-	//private static int SERIES_M2 = 6;
-	//private static int SERIES_M3 = 7;
-	//private static int SERIES_M4 = 8;
+	// private static int SERIES_M2 = 6;
+	// private static int SERIES_M3 = 7;
+	// private static int SERIES_M4 = 8;
 	private GraphViewSeries[] graphViewSeries = new GraphViewSeries[9];
 	GraphViewData[][] graphViewDatas = new GraphViewData[9][];
-	private String[] graphViewName = { "Roll", "Pitch", "Yaw", "PID-Roll", "PID-Pitch", "M1", "M2", "M3", "M4" };
+	private String[] graphViewName = { "Roll", "Pitch", "Yaw", "PID-Roll",
+			"PID-Pitch", "M1", "M2", "M3", "M4" };
 	private GraphViewSeriesStyle[] graphViewStyle = {
-		new GraphViewSeriesStyle(Color.RED, 2),
-		new GraphViewSeriesStyle(Color.GREEN, 2),
-		new GraphViewSeriesStyle(Color.BLUE, 2),
-		new GraphViewSeriesStyle(Color.MAGENTA, 2),
-		new GraphViewSeriesStyle(Color.YELLOW, 2),
-		new GraphViewSeriesStyle(Color.BLACK, 1),
-		new GraphViewSeriesStyle(Color.CYAN, 1),
-		new GraphViewSeriesStyle(Color.GRAY, 1),
-		new GraphViewSeriesStyle(Color.WHITE, 1)
-	};
-	private double[] graphX = new double[9];
+			new GraphViewSeriesStyle(Color.RED, 2),
+			new GraphViewSeriesStyle(Color.GREEN, 2),
+			new GraphViewSeriesStyle(Color.BLUE, 2),
+			new GraphViewSeriesStyle(Color.MAGENTA, 2),
+			new GraphViewSeriesStyle(Color.YELLOW, 2),
+			new GraphViewSeriesStyle(Color.BLACK, 1),
+			new GraphViewSeriesStyle(Color.CYAN, 1),
+			new GraphViewSeriesStyle(Color.GRAY, 1),
+			new GraphViewSeriesStyle(Color.WHITE, 1) };
 	private double graphIncrement = 0.2;
+	private double graphX = graphIncrement;
 
 	private final String ParameterCommand = "n";
 	private final byte[] commands = { 'a', 'w', 's', 'd', 'x', 'y', 'p', 'm',
@@ -156,6 +161,14 @@ public class MainActivity extends Activity implements OnClickListener {
 	private TestGraphThread testGraphThread = null;
 	private FlashThread flashThread = null;
 	private YASAB yasab = null;
+
+	private String lastKnownP = "5.0";
+	private String lastKnownI = "0.0013";
+	private String lastKnownD = "-13.0";
+	private String lastKnownMin = "-32768";
+	private String lastKnownMax = "32767";
+	private String lastKnownIntMin = "-32768";
+	private String lastKnownIntMax = "32767";
 
 	public Handler handler = new Handler(new Handler.Callback() {
 		public boolean handleMessage(Message msg) {
@@ -224,15 +237,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		for (int i = 0; i < graphViewDatas.length; i++) {
 			graphViewDatas[i] = new GraphViewData[1];
 			graphViewDatas[i][0] = new GraphViewData(0.0, 0.0);
-			graphViewSeries[i] = new GraphViewSeries(graphViewName[i], graphViewStyle[i], graphViewDatas[i]);
+			graphViewSeries[i] = new GraphViewSeries(graphViewName[i],
+					graphViewStyle[i], graphViewDatas[i]);
 			graphView.addSeries(graphViewSeries[i]);
-			graphX[i] = graphIncrement;
 		}
 		graphView.setScrollable(true);
 		graphView.setScalable(true);
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.BOTTOM);
-		graphView.setViewPort(0.0, 10.0);
+		graphView.setViewPort(0.0, 15.0);
 		graphView.setCenterZero(false);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
 		layout.addView(graphView);
@@ -485,20 +498,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			TextView t = (TextView) findViewById(R.id.firstText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_ROLL].appendData(new GraphViewData(graphX[SERIES_ROLL], y), true);
-			graphX[SERIES_ROLL] += graphIncrement;
+			graphViewSeries[SERIES_ROLL].appendData(
+					new GraphViewData(graphX, y), true);
 		} else if (msg.what == MESSAGE_PITCH_READ) {
 			TextView t = (TextView) findViewById(R.id.secondText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_PITCH].appendData(new GraphViewData(graphX[SERIES_PITCH], y), true);
-			graphX[SERIES_PITCH] += graphIncrement;
+			graphViewSeries[SERIES_PITCH].appendData(new GraphViewData(graphX,
+					y), true);
 		} else if (msg.what == MESSAGE_YAW_READ) {
 			TextView t = (TextView) findViewById(R.id.thirdText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
 			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_YAW].appendData(new GraphViewData(graphX[SERIES_YAW], y), true);
-			graphX[SERIES_YAW] += graphIncrement;
+			graphViewSeries[SERIES_YAW].appendData(
+					new GraphViewData(graphX, y), true);
+			graphX += graphIncrement;
 		} else if (msg.what == MESSAGE_VOLT_READ) {
 			TextView t = (TextView) findViewById(R.id.fourthText);
 			t.setText((String) msg.obj + " V");
@@ -512,17 +526,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		} else if (msg.what == MESSAGE_MOTOR_READ) {
 			TextView t = (TextView) findViewById(R.id.fifthText);
-			String s = (String)msg.obj;
+			String s = (String) msg.obj;
 			t.setText(s);
 			String[] mStrings = s.split("\\s+");
 			for (int i = 0; (i < 4) && (i < mStrings.length); i++) {
 				double d = Double.parseDouble(mStrings[i]);
-				graphViewSeries[SERIES_M1 + i].appendData(new GraphViewData(graphX[SERIES_M1 + i], d), true);
-				graphX[SERIES_M1 + i] += graphIncrement;
+				graphViewSeries[SERIES_M1 + i].appendData(new GraphViewData(
+						graphX, d), true);
 			}
 		} else if (msg.what == MESSAGE_PID_READ) {
 			TextView t = (TextView) findViewById(R.id.sixthText);
-			String s = (String)msg.obj;
+			String s = (String) msg.obj;
 			t.setText(s);
 			String[] mStrings = s.split("\\s+");
 			for (int i = 0; (i < 2) && (i < mStrings.length); i++) {
@@ -532,12 +546,40 @@ public class MainActivity extends Activity implements OnClickListener {
 					series = SERIES_PIDPITCH;
 				else
 					series = SERIES_PIDROLL;
-				graphViewSeries[series].appendData(new GraphViewData(graphX[series], d), true);
-				graphX[series] += graphIncrement;
+				graphViewSeries[series].appendData(
+						new GraphViewData(graphX, d), true);
 			}
 		} else if (msg.what == MESSAGE_PIDVAL_READ) {
 			TextView t = (TextView) findViewById(R.id.seventhText);
-			t.setText((String) msg.obj);
+			String s = (String) msg.obj;
+			t.setText(s);
+			String[] mStrings = s.split("\\s+");
+			for (int i = 0; (i < 3) && (i < mStrings.length); i++) {
+				if (i == 0)
+					lastKnownP = mStrings[i];
+				else if (i == 1)
+					lastKnownI = mStrings[i];
+				else if (i == 3)
+					lastKnownD = mStrings[i];
+			}
+		} else if (msg.what == MESSAGE_PIDRANGE_READ) {
+			String s = (String) msg.obj;
+			String[] mStrings = s.split("\\s+");
+			for (int i = 0; (i < 2) && (i < mStrings.length); i++) {
+				if (i == 0)
+					lastKnownMin = mStrings[i];
+				else if (i == 1)
+					lastKnownMax = mStrings[i];
+			}
+		} else if (msg.what == MESSAGE_PIDINTRANGE_READ) {
+			String s = (String) msg.obj;
+			String[] mStrings = s.split("\\s+");
+			for (int i = 0; (i < 2) && (i < mStrings.length); i++) {
+				if (i == 0)
+					lastKnownIntMin = mStrings[i];
+				else if (i == 1)
+					lastKnownIntMax = mStrings[i];
+			}
 		} else if (msg.what == MESSAGE_HEX_ERROR) {
 			showErrorAndDo(R.string.hex_title, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
@@ -585,10 +627,19 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private void displayPIDAlert() {
 		final LinearLayout layout = new LinearLayout(this);
+		final LinearLayout layoutB = new LinearLayout(this);
+		final LinearLayout outerLayout = new LinearLayout(this);
 		final EditText p = new EditText(this);
 		final EditText i = new EditText(this);
 		final EditText d = new EditText(this);
+		final EditText min = new EditText(this);
+		final EditText max = new EditText(this);
+		final EditText intMin = new EditText(this);
+		final EditText intMax = new EditText(this);
+		final CheckBox linkRange = new CheckBox(this);
 		layout.setOrientation(LinearLayout.VERTICAL);
+		layoutB.setOrientation(LinearLayout.VERTICAL);
+		outerLayout.setOrientation(LinearLayout.HORIZONTAL);
 		p.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
 				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
 				| EditorInfo.TYPE_CLASS_NUMBER);
@@ -598,9 +649,86 @@ public class MainActivity extends Activity implements OnClickListener {
 		d.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
 				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
 				| EditorInfo.TYPE_CLASS_NUMBER);
+		min.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		max.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		intMin.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		intMax.setInputType(EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+				| EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+				| EditorInfo.TYPE_CLASS_NUMBER);
+		p.setText(lastKnownP);
+		i.setText(lastKnownI);
+		d.setText(lastKnownD);
+		min.setText(lastKnownMin);
+		max.setText(lastKnownMax);
+		intMin.setText(lastKnownIntMin);
+		intMax.setText(lastKnownIntMax);
+		linkRange.setText("Link Ranges");
+		linkRange.setChecked(true);
+		min.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				if (linkRange.isChecked()) {
+					if (min.isFocused()) {
+						intMin.setText(min.getText());
+					}
+				}
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+		});
+		max.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				if (linkRange.isChecked()) {
+					if (max.isFocused()) {
+						intMax.setText(max.getText());
+					}
+				}
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+		});
+		intMin.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				if (linkRange.isChecked()) {
+					if (intMin.isFocused()) {
+						min.setText(intMin.getText());
+					}
+				}
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+		});
+		intMax.addTextChangedListener(new TextWatcher() {
+			public void afterTextChanged(Editable s) {
+				if (intMax.isFocused()) {
+					max.setText(intMax.getText());
+				}
+			}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+		});
 		layout.addView(p);
 		layout.addView(i);
 		layout.addView(d);
+		layout.addView(linkRange);
+		layoutB.addView(min);
+		layoutB.addView(max);
+		layoutB.addView(intMin);
+		layoutB.addView(intMax);
+
+		@SuppressWarnings("deprecation")
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.FILL_PARENT,
+				LinearLayout.LayoutParams.FILL_PARENT);
+		lp.weight = 1.0f;
+
+		outerLayout.addView(layout, lp);
+		outerLayout.addView(layoutB, lp);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.pid_title);
 		builder.setCancelable(true);
@@ -614,7 +742,16 @@ public class MainActivity extends Activity implements OnClickListener {
 									.toString());
 							double dVal = Double.parseDouble(d.getText()
 									.toString());
-							sendPIDValues(pVal, iVal, dVal);
+							double minVal = Double.parseDouble(min.getText()
+									.toString());
+							double maxVal = Double.parseDouble(max.getText()
+									.toString());
+							double intMinVal = Double.parseDouble(intMin
+									.getText().toString());
+							double intMaxVal = Double.parseDouble(intMax
+									.getText().toString());
+							sendPIDValues(pVal, iVal, dVal, minVal, maxVal,
+									intMinVal, intMaxVal);
 						} catch (NumberFormatException e) {
 							showErrorAndDo(R.string.pid_title, e.getMessage(),
 									null);
@@ -622,11 +759,12 @@ public class MainActivity extends Activity implements OnClickListener {
 					}
 				});
 		builder.setNegativeButton(R.string.button_cancel, null);
-		builder.setView(layout);
+		builder.setView(outerLayout);
 		builder.show();
 	}
 
-	private void sendPIDValues(double p, double i, double d) {
+	private void sendPIDValues(double p, double i, double d, double min,
+			double max, double iMin, double iMax) {
 		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
 		decimalFormatSymbols.setDecimalSeparator('.');
 		DecimalFormat decimalFormat = new DecimalFormat("0.000",
@@ -634,9 +772,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		String pString = decimalFormat.format(p);
 		String iString = decimalFormat.format(i);
 		String dString = decimalFormat.format(d);
+		String minString = decimalFormat.format(min);
+		String maxString = decimalFormat.format(max);
+		String iMinString = decimalFormat.format(iMin);
+		String iMaxString = decimalFormat.format(iMax);
 		if (connectedThread != null)
 			connectedThread.write(ParameterCommand + pString + " " + iString
-					+ " " + dString + "\n");
+					+ " " + dString + " " + minString + " " + maxString + " "
+					+ iMinString + " " + iMaxString + "\n");
 	}
 
 	private void showErrorAndExit(int title, int message) {

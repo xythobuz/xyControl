@@ -46,31 +46,37 @@ double pidExecute(double should, double is, PIDState *state) {
     time_t now = getSystemTime();
     double timeChange = (double)(now - state->last);
     double error = should - is;
-    state->sumError += (error * timeChange);
+    double newErrorSum = state->sumError + (error * timeChange);
+    if ((newErrorSum >= state->intMin) && (newErrorSum <= state->intMax))
+        state->sumError = newErrorSum; // Prevent Integral Windup
     double dError = (error - state->lastError) / timeChange;
     double output = (state->kp * error) + (state->ki * state->sumError) + (state->kd * dError);
     state->lastError = error;
     state->last = now;
-    if (output > PID_OUTMAX) {
-        output = PID_OUTMAX;
+    if (output > state->outMax) {
+        output = state->outMax;
     }
-    if (output < PID_OUTMIN) {
-        output = PID_OUTMIN;
+    if (output < state->outMin) {
+        output = state->outMin;
     }
     return output;
 }
 
 void pidInit(void) {
     for (uint8_t i = 0; i < 2; i++) {
-        pidSet(&o_pids[i], PID_P, PID_I, PID_D);
+        pidSet(&o_pids[i], PID_P, PID_I, PID_D, PID_OUTMIN, PID_OUTMAX, PID_INTMIN, PID_INTMAX);
         o_should[i] = 0.0;
     }
 }
 
-void pidSet(PIDState *pid, double kp, double ki, double kd) {
+void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double max, double iMin, double iMax) {
     pid->kp = kp;
     pid->ki = ki;
     pid->kd = kd;
+    pid->outMin = min;
+    pid->outMax = max;
+    pid->intMin = iMin;
+    pid->intMax = iMax;
     pid->lastError = 0;
     pid->sumError = 0;
     pid->last = 0;

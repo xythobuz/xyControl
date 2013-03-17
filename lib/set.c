@@ -38,7 +38,7 @@
 #include <set.h>
 #include <config.h>
 
-#define MAXDIFF (baseSpeed * PID_INFLUENCE)
+#define MAXDIFF (baseSpeed * PID_FACTOR)
 
 uint8_t baseSpeed = 0;
 
@@ -54,7 +54,7 @@ inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
 
 void setTask(void) {
     for (uint8_t i = 0; i < 2; i++) {
-        double diff = (o_output[i] * MAXDIFF) / PID_OUTMAX;
+        double diff = (o_output[i] * MAXDIFF) / o_pids[i].outMax;
         uint8_t v[2] = { baseSpeed + diff, baseSpeed - diff };
         setMotorSpeeds(i, v);
     }

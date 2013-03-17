@@ -146,8 +146,10 @@ void statusTask(void) {
     static time_t last = 100; // Don't begin immediately
     if ((getSystemTime() - last) >= STATUSDELAY) {
         last = getSystemTime();
-        printf("t%.2f %.2f %.2f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
-        printf("u%.2f %.2f\n", o_output[1], o_output[0]); // Pitch, Roll
+        printf("r%.2f %.2f\n", o_pids[0].intMin, o_pids[0].intMax);
+        printf("s%.2f %.2f\n", o_pids[0].outMin, o_pids[0].outMax);
+        printf("t%.3f %.3f %.3f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
+        printf("u%.2f %.2f\n", o_output[PITCH], o_output[ROLL]);
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
         printf("w%.2f\n", orientation.pitch);
         printf("x%.2f\n", orientation.roll);
@@ -235,12 +237,12 @@ void motorRight(void) {
 }
 
 void parameterChange(void) {
-    double p, i, d;
-    int c = scanf("%lf %lf %lf", &p, &i, &d);
-    if (c == 3) {
-        pidSet(&o_pids[0], p, i, d);
-        pidSet(&o_pids[1], p, i, d);
+    double p, i, d, min, max, iMin, iMax;
+    int c = scanf("%lf %lf %lf %lf %lf %lf %lf", &p, &i, &d, &min, &max, &iMin, &iMax);
+    if (c == 7) {
+        pidSet(&o_pids[0], p, i, d, min, max, iMin, iMax);
+        pidSet(&o_pids[1], p, i, d, min, max, iMin, iMax);
     } else {
-        printf("Only got %i (%lf %lf %lf)!\n", c, p, i, d);
+        printf("Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\n", c, p, i, d, min, max, iMin, iMax);
     }
 }

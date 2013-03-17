@@ -38,9 +38,13 @@
 #define ACCFILTERFACTOR SOFTWARELOWPASS
 #define GYROFILTERFACTOR SOFTWARELOWPASS
 
-#define PID_OUTMAX 255
-#define PID_OUTMIN -PID_OUTMAX
-#define PID_INFLUENCE 4 / 5
+#define PID_OUTMAX UINT8_MAX
+#define PID_OUTMIN (-(PID_OUTMAX))
+#define PID_INTMAX PID_OUTMAX
+#define PID_INTMIN PID_OUTMIN
+
+// #define MAXDIFF (baseSpeed * PID_FACTOR)
+#define PID_FACTOR 4 / 5
 
 //  -----------------
 // |    Kalman      |
