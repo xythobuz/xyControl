@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/intro_dimension"
                     android:layout_marginRight="@dimen/intro_dimension"
+                    android:layout_marginTop="@dimen/intro_dimension"
                     android:orientation="vertical" >
 
                     <TextView
@@ -80,6 +81,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/seventhText"
+                        android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eigthText"
                         android:textSize="@dimen/intro_dimension" />
                 </LinearLayout>
 
@@ -131,6 +138,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/intro_dimension" />
+                    
+                    <TextView
+                        android:id="@+id/eigthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/intro_dimension" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -146,7 +159,8 @@
                     android:text="@string/intro_enabling"
                     android:textSize="@dimen/intro_dimension"
                     android:layout_marginLeft="@dimen/intro_dimension"
-                    android:layout_marginRight="@dimen/intro_dimension" />
+                    android:layout_marginRight="@dimen/intro_dimension"
+                    android:layout_marginTop="@dimen/intro_dimension" />
             </ScrollView>
         </LinearLayout>
     </LinearLayout>
@@ -235,6 +249,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/bTog" />
+            
+            <Button
+                android:id="@+id/bZero"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bZero" />
 
             <Button
                 android:id="@+id/bReset"

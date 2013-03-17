@@ -74,6 +74,11 @@ class ConnectedThread extends Thread {
 				}
 				char first = line.charAt(0);
 				switch (first) {
+				case 'q':
+					mmMain.handler.obtainMessage(
+							MainActivity.MESSAGE_FREQ_READ, -1, -1,
+							line.substring(1)).sendToTarget();
+					break;
 				case 'r':
 					mmMain.handler.obtainMessage(
 							MainActivity.MESSAGE_PIDINTRANGE_READ, -1, -1,

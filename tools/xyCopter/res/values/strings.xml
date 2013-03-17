@@ -36,6 +36,7 @@
 	<string name="fifthText">Motors: </string>
 	<string name="sixthText">PID: </string>
 	<string name="seventhText">Params: </string>
+	<string name="eigthText">Busy: </string>
 	
     <string name="bluetooth_error_title">Bluetooth Error</string>
     <string name="bluetooth_no_adapter">No Bluetooth Adapter found!</string>
@@ -52,6 +53,7 @@
     <string name="bBack">Back</string>
     <string name="bTog">Motor</string>
     <string name="bAng">PID</string>
+    <string name="bZero">Zero</string>
     <string name="bReset">Reset</string>
 
 </resources>

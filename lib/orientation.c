@@ -87,7 +87,7 @@ Error orientationTask(void) {
 }
 
 void zeroOrientation(void) {
-    //orientationError.roll = orientation.roll;
-    //orientationError.pitch = orientation.pitch;
-    //orientationError.yaw = orientation.yaw;
+    orientationError.roll = orientation.roll;
+    orientationError.pitch = orientation.pitch;
+    orientationError.yaw = orientation.yaw;
 }

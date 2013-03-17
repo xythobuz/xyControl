@@ -97,6 +97,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_HEX_PARSED = 18;
 	public final static int MESSAGE_ALERT_DIALOG = 19;
 	public final static int MESSAGE_PIDINTRANGE_READ = 20;
+	public final static int MESSAGE_FREQ_READ = 21;
 
 	private final static String APP_KEY = "gnbnnowfgpv5jej";
 	private final static String APP_SECRET = "uxy6uf661xyd46q";
@@ -146,8 +147,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private final String ParameterCommand = "n";
 	private final byte[] commands = { 'a', 'w', 's', 'd', 'x', 'y', 'p', 'm',
-			'q' };
-	private final Button[] buttons = new Button[9];
+			'q', 'z' };
+	private final Button[] buttons = new Button[10];
 	private final static int B_LEFT = 0;
 	private final static int B_FORW = 1;
 	private final static int B_BACK = 2;
@@ -157,6 +158,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private final static int B_ANGLES = 6;
 	private final static int B_TOGGLE = 7;
 	private final static int B_RESET = 8;
+	private final static int B_ZERO = 9;
 
 	private TestGraphThread testGraphThread = null;
 	private FlashThread flashThread = null;
@@ -229,6 +231,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		buttons[B_ANGLES] = (Button) findViewById(R.id.bAng);
 		buttons[B_TOGGLE] = (Button) findViewById(R.id.bTog);
 		buttons[B_RESET] = (Button) findViewById(R.id.bReset);
+		buttons[B_ZERO] = (Button) findViewById(R.id.bZero);
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].setOnClickListener(this);
 		}
@@ -497,32 +500,44 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (msg.what == MESSAGE_ROLL_READ) {
 			TextView t = (TextView) findViewById(R.id.firstText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_ROLL].appendData(
-					new GraphViewData(graphX, y), true);
+			try {
+				double y = Double.parseDouble((String) msg.obj);
+				graphViewSeries[SERIES_ROLL].appendData(new GraphViewData(
+						graphX, y), true);
+			} catch (NumberFormatException e) {
+			}
 		} else if (msg.what == MESSAGE_PITCH_READ) {
 			TextView t = (TextView) findViewById(R.id.secondText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_PITCH].appendData(new GraphViewData(graphX,
-					y), true);
+			try {
+				double y = Double.parseDouble((String) msg.obj);
+				graphViewSeries[SERIES_PITCH].appendData(new GraphViewData(
+						graphX, y), true);
+			} catch (NumberFormatException e) {
+			}
 		} else if (msg.what == MESSAGE_YAW_READ) {
 			TextView t = (TextView) findViewById(R.id.thirdText);
 			t.setText((String) msg.obj + " " + (char) 0x00B0);
-			double y = Double.parseDouble((String) msg.obj);
-			graphViewSeries[SERIES_YAW].appendData(
-					new GraphViewData(graphX, y), true);
-			graphX += graphIncrement;
+			try {
+				double y = Double.parseDouble((String) msg.obj);
+				graphViewSeries[SERIES_YAW].appendData(new GraphViewData(
+						graphX, y), true);
+				graphX += graphIncrement;
+			} catch (NumberFormatException e) {
+			}
 		} else if (msg.what == MESSAGE_VOLT_READ) {
 			TextView t = (TextView) findViewById(R.id.fourthText);
 			t.setText((String) msg.obj + " V");
-			double v = Double.parseDouble((String) msg.obj);
-			if (v > 11.1) {
-				t.setTextColor(Color.GREEN);
-			} else if (v > 9.9) {
-				t.setTextColor(Color.YELLOW);
-			} else {
-				t.setTextColor(Color.RED);
+			try {
+				double v = Double.parseDouble((String) msg.obj);
+				if (v > 11.1) {
+					t.setTextColor(Color.GREEN);
+				} else if (v > 9.9) {
+					t.setTextColor(Color.YELLOW);
+				} else {
+					t.setTextColor(Color.RED);
+				}
+			} catch (NumberFormatException e) {
 			}
 		} else if (msg.what == MESSAGE_MOTOR_READ) {
 			TextView t = (TextView) findViewById(R.id.fifthText);
@@ -530,9 +545,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			t.setText(s);
 			String[] mStrings = s.split("\\s+");
 			for (int i = 0; (i < 4) && (i < mStrings.length); i++) {
-				double d = Double.parseDouble(mStrings[i]);
-				graphViewSeries[SERIES_M1 + i].appendData(new GraphViewData(
-						graphX, d), true);
+				try {
+					double d = Double.parseDouble(mStrings[i]);
+					graphViewSeries[SERIES_M1 + i].appendData(
+							new GraphViewData(graphX, d), true);
+				} catch (NumberFormatException e) {
+				}
 			}
 		} else if (msg.what == MESSAGE_PID_READ) {
 			TextView t = (TextView) findViewById(R.id.sixthText);
@@ -540,14 +558,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			t.setText(s);
 			String[] mStrings = s.split("\\s+");
 			for (int i = 0; (i < 2) && (i < mStrings.length); i++) {
-				double d = Double.parseDouble(mStrings[i]);
-				int series;
-				if (i == 0)
-					series = SERIES_PIDPITCH;
-				else
-					series = SERIES_PIDROLL;
-				graphViewSeries[series].appendData(
-						new GraphViewData(graphX, d), true);
+				try {
+					double d = Double.parseDouble(mStrings[i]);
+					int series;
+					if (i == 0)
+						series = SERIES_PIDPITCH;
+					else
+						series = SERIES_PIDROLL;
+					graphViewSeries[series].appendData(new GraphViewData(
+							graphX, d), true);
+				} catch (NumberFormatException e) {
+				}
 			}
 		} else if (msg.what == MESSAGE_PIDVAL_READ) {
 			TextView t = (TextView) findViewById(R.id.seventhText);
@@ -580,6 +601,19 @@ public class MainActivity extends Activity implements OnClickListener {
 				else if (i == 1)
 					lastKnownIntMax = mStrings[i];
 			}
+		} else if (msg.what == MESSAGE_FREQ_READ) {
+			TextView t = (TextView) findViewById(R.id.eigthText);
+			String s = (String) msg.obj;
+			String[] mStrings = s.split("\\s+");
+			if (mStrings.length == 2) {
+				try {
+					double flight = Double.parseDouble(mStrings[0]);
+					double status = Double.parseDouble(mStrings[1]);
+					s += " (-" + (1000 - (flight * 100) - (status * 5)) + ")";
+				} catch (NumberFormatException e) {
+				}
+			}
+			t.setText(s);
 		} else if (msg.what == MESSAGE_HEX_ERROR) {
 			showErrorAndDo(R.string.hex_title, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {
@@ -599,9 +633,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	public void buttonHandler(int id) {
-		byte[] d = new byte[1];
-		d[0] = commands[id];
-		connectedThread.write(d);
+		if (id < commands.length) {
+			byte[] d = new byte[1];
+			d[0] = commands[id];
+			connectedThread.write(d);
+		}
 	}
 
 	private void newYASAB() {
@@ -678,8 +714,14 @@ public class MainActivity extends Activity implements OnClickListener {
 					}
 				}
 			}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
 		});
 		max.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -689,8 +731,14 @@ public class MainActivity extends Activity implements OnClickListener {
 					}
 				}
 			}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
 		});
 		intMin.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -700,8 +748,14 @@ public class MainActivity extends Activity implements OnClickListener {
 					}
 				}
 			}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
 		});
 		intMax.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
@@ -709,8 +763,14 @@ public class MainActivity extends Activity implements OnClickListener {
 					max.setText(intMax.getText());
 				}
 			}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
 		});
 		layout.addView(p);
 		layout.addView(i);
