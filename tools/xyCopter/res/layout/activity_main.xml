@@ -38,7 +38,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/intro_dimension"
                     android:layout_marginRight="@dimen/intro_dimension"
-                    android:layout_marginTop="@dimen/intro_dimension"
                     android:orientation="vertical" >
 
                     <TextView
@@ -95,6 +94,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.4"
+                    android:layout_marginLeft="@dimen/intro_dimension"
+                    android:layout_marginRight="@dimen/intro_dimension"
                     android:orientation="vertical" >
 
                     <TextView
@@ -159,8 +160,7 @@
                     android:text="@string/intro_enabling"
                     android:textSize="@dimen/intro_dimension"
                     android:layout_marginLeft="@dimen/intro_dimension"
-                    android:layout_marginRight="@dimen/intro_dimension"
-                    android:layout_marginTop="@dimen/intro_dimension" />
+                    android:layout_marginRight="@dimen/intro_dimension" />
             </ScrollView>
         </LinearLayout>
     </LinearLayout>

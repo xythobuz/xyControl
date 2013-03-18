@@ -119,6 +119,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private ConnectedThread connectedThread = null;
 	private GraphView graphView = null;
 
+	public final double STATUSFREQ = 10;
+	public final double FLIGHTFREQ = 100;
+
 	private static int SERIES_ROLL = 0;
 	private static int SERIES_PITCH = 1;
 	private static int SERIES_YAW = 2;
@@ -142,7 +145,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			new GraphViewSeriesStyle(Color.CYAN, 1),
 			new GraphViewSeriesStyle(Color.GRAY, 1),
 			new GraphViewSeriesStyle(Color.WHITE, 1) };
-	private double graphIncrement = 0.2;
+	private double graphIncrement = 1 / STATUSFREQ;
 	private double graphX = graphIncrement;
 
 	private final String ParameterCommand = "n";
@@ -248,8 +251,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		graphView.setScalable(true);
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.BOTTOM);
-		graphView.setViewPort(0.0, 15.0);
-		graphView.setCenterZero(false);
+		graphView.setViewPort(0.0, 5.0);
+		graphView.setCenterZero(true);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
 		layout.addView(graphView);
 
@@ -527,9 +530,19 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		} else if (msg.what == MESSAGE_VOLT_READ) {
 			TextView t = (TextView) findViewById(R.id.fourthText);
-			t.setText((String) msg.obj + " V");
+			String s = (String) msg.obj;
+			String out = s + "V";
+			t.setText(out);
 			try {
-				double v = Double.parseDouble((String) msg.obj);
+				double v = Double.parseDouble(s);
+				double accuMax = 12.6;
+				double accuMin = 9.6; // Still some buffer...
+				if ((v >= accuMin) && (v <= accuMax)) {
+					double accuDiff = accuMax - accuMin;
+					double percent = (v - accuMin) * 100 / accuDiff;
+					out += " (" + Math.round(percent) + "%)";
+					t.setText(out);
+				}
 				if (v > 11.1) {
 					t.setTextColor(Color.GREEN);
 				} else if (v > 9.9) {
@@ -609,7 +622,12 @@ public class MainActivity extends Activity implements OnClickListener {
 				try {
 					double flight = Double.parseDouble(mStrings[0]);
 					double status = Double.parseDouble(mStrings[1]);
-					s += " (-" + (1000 - (flight * 100) - (status * 5)) + ")";
+					double duration = (flight * FLIGHTFREQ) + (status * STATUSFREQ);
+					s += " ("
+							+ duration
+							+ "/1000 --> "
+							+ (1000 - duration)
+							+ " free)";
 				} catch (NumberFormatException e) {
 				}
 			}
@@ -705,7 +723,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		intMin.setText(lastKnownIntMin);
 		intMax.setText(lastKnownIntMax);
 		linkRange.setText("Link Ranges");
-		linkRange.setChecked(true);
+		linkRange.setChecked(false);
 		min.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s) {
 				if (linkRange.isChecked()) {

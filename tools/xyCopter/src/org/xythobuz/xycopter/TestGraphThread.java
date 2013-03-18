@@ -39,8 +39,9 @@ class TestGraphThread extends Thread {
 	}
 
 	public void run() {
+		int inc = 0, counter = 0;
 		while (keepRunning) {
-			for (double x = 0; (x <= Math.PI * 2) && keepRunning; x += 0.1) {
+			for (double x = 0; (x <= Math.PI * 2) && keepRunning; x += (1 / m.STATUSFREQ)) {
 				double a = Math.sin(x);
 				double b = Math.cos(x);
 				double c = 0.0;
@@ -53,8 +54,18 @@ class TestGraphThread extends Thread {
 						Double.toString(b)).sendToTarget();
 				m.handler.obtainMessage(MainActivity.MESSAGE_YAW_READ, -1, -1,
 						Double.toString(c)).sendToTarget();
+
+				inc++;
+				if (inc >= m.STATUSFREQ) {
+					inc = 0;
+					counter++;
+					String s = "Spam since " + counter + "s... :)";
+					m.handler.obtainMessage(MainActivity.MESSAGE_READ, -1, -1,
+							s).sendToTarget();
+				}
+
 				try {
-					sleep(50);
+					sleep((int)(1000 / m.STATUSFREQ));
 				} catch (InterruptedException e) {
 				}
 			}

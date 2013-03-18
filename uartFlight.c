@@ -52,15 +52,10 @@
 #define MAXMOTOR 255
 #define MOTORSTEP 10
 #define QUADFREQ 100
-#define STATUSFREQ 5
-#define AUTOANGLEZERO 100 // in ms
+#define STATUSFREQ 10
 
 #define QUADDELAY (1000 / QUADFREQ)
 #define STATUSDELAY (1000 / STATUSFREQ)
-#define AUTOZERO (AUTOANGLEZERO / QUADDELAY)
-
-#define QUADDELAY_ERR (QUADDELAY - 2)
-#define STATUSDELAY_ERR (STATUSDELAY / 2)
 
 void flightTask(void);
 void statusTask(void);
@@ -90,8 +85,7 @@ uint8_t speed = 10;
 int16_t targetRoll = 0;
 int16_t targetPitch = 0;
 
-uint32_t sumStatusTask = 0, sumFlightTask = 0;
-uint32_t sumStatusCount = 0, sumFlightCount = 0;
+uint32_t sumFlightTask = 0, sumFlightCount = 0;
 
 int main(void) {
     xyInit();
@@ -124,7 +118,6 @@ int main(void) {
 
 void flightTask(void) {
     static time_t last = 100; // Don't begin immediately
-    static uint8_t anglesCorrected = 0;
     if ((getSystemTime() - last) >= QUADDELAY) {
         last = getSystemTime();
         Error e = orientationTask();
@@ -136,29 +129,23 @@ void flightTask(void) {
         }
         setTask();
         motorTask();
-        if (anglesCorrected < AUTOZERO) {
-            anglesCorrected++;
-            if (anglesCorrected == AUTOZERO) {
-                zeroOrientation();
-            }
-        }
-        long int diff = getSystemTime() - last;
-        if (diff >= (QUADDELAY_ERR)) {
-            printf("Flight Task took %lims!\n", diff);
-        }
-        sumFlightTask += diff;
+
+        uint32_t diff = getSystemTime() - last;
         if (++sumFlightCount >= QUADFREQ) {
             sumFlightCount = 1;
             sumFlightTask = diff;
+        } else {
+            sumFlightTask += diff;
         }
     }
 }
 
 void statusTask(void) {
     static time_t last = 100; // Don't begin immediately
+    static uint32_t lastDuration = 0;
     if ((getSystemTime() - last) >= STATUSDELAY) {
         last = getSystemTime();
-        printf("q%li %li\n", sumFlightTask / sumFlightCount, sumStatusTask / sumStatusCount);
+        printf("q%li %li\n", sumFlightTask / sumFlightCount, lastDuration);
         printf("r%.2f %.2f\n", o_pids[0].intMin, o_pids[0].intMax);
         printf("s%.2f %.2f\n", o_pids[0].outMin, o_pids[0].outMax);
         printf("t%.3f %.3f %.3f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
@@ -168,15 +155,7 @@ void statusTask(void) {
         printf("x%.2f\n", orientation.roll);
         printf("y%.2f\n", orientation.yaw);
         printf("z%.2f\n", getVoltage());
-        long int diff = getSystemTime() - last;
-        if (diff >= (STATUSDELAY_ERR)) {
-            printf("Status Task took %lims!\n", diff);
-        }
-        sumStatusTask += diff;
-        if (++sumStatusCount >= STATUSFREQ) {
-            sumStatusCount = 1;
-            sumStatusTask = diff;
-        }
+        lastDuration = getSystemTime() - last;
     }
 }
 
