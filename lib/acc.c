@@ -43,6 +43,8 @@
 
 AccRange accRange;
 
+Error accWriteRegister(uint8_t reg, uint8_t val);
+
 Error accWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;

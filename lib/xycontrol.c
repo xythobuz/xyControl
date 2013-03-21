@@ -52,6 +52,10 @@ char resetText[] PROGMEM = "Reset MCU";
 FILE inFile;
 FILE outFile;
 
+int uartoutput(char c, FILE *f);
+int uartinput(FILE *f);
+void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin);
+
 int uartoutput(char c, FILE *f) {
     // Inject CR here, instead of in the serial library,
     // so we can still do binary transfers with serialWrite()...

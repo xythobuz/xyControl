@@ -47,6 +47,9 @@ uint8_t currentBank = 0;
 extern void *__brkval;
 extern void *__flp; // Internal Malloc State
 
+void saveState(uint8_t bank);
+void restoreState(uint8_t bank);
+
 void saveState(uint8_t bank) {
     states[bank].start = __malloc_heap_start;
     states[bank].end = __malloc_heap_end;

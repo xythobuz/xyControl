@@ -42,6 +42,8 @@
 
 uint8_t baseSpeed = 0;
 
+inline void setMotorSpeeds(uint8_t axis, uint8_t *vals);
+
 inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     if (axis == ROLL) {
         motorSet(SET_ROLLPLUS, vals[0]);

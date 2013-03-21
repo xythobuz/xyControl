@@ -40,6 +40,8 @@
 #define MAGREG_MR 0x02
 #define MAGREG_XH 0x03
 
+Error magWriteRegister(uint8_t reg, uint8_t val);
+
 Error magWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(MAG_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;

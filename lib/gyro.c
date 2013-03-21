@@ -42,6 +42,8 @@
 
 GyroRange gyroRange;
 
+Error gyroWriteByte(uint8_t reg, uint8_t val);
+
 Error gyroWriteByte(uint8_t reg, uint8_t val) {
     if (twiStart(GYRO_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;

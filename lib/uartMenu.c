@@ -50,6 +50,9 @@ struct MenuEntry{
 MenuEntry *uartMenu = NULL;
 void (*unHandler)(char) = NULL;
 
+MenuEntry *findEntry(uint8_t cmd);
+MenuEntry *reverseList(MenuEntry *root);
+
 MenuEntry *findEntry(uint8_t cmd) {
     MenuEntry *p = uartMenu;
     while (p != NULL) {

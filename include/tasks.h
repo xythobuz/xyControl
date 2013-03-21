@@ -37,4 +37,6 @@ uint8_t addTask(Task func); // 0 on success
 uint8_t removeTask(Task func); // 0 on success
 void tasks(void); // Call in your main loop!
 
+uint8_t tasksRegistered(void);
+
 #endif
