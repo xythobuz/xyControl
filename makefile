@@ -30,6 +30,14 @@ RM = rm -rf
 EXTRAINCDIR = include
 CSTANDARD = gnu99
 
+BASEDIR = /usr/local/CrossPack-AVR/bin
+GCC = $(BASEDIR)/avr-gcc
+SIZE = $(BASEDIR)/avr-size
+OBJCOPY = $(BASEDIR)/avr-objcopy
+OBJDUMP = $(BASEDIR)/avr-objdump
+AVRDUDE = $(BASEDIR)/avrdude
+YASAB = /Users/thomas/bin/yasab
+
 SRC = lib/time.c
 SRC += lib/spi.c
 SRC += lib/serial.c
@@ -73,11 +81,13 @@ ISPPORT = /dev/tty.usbmodem641
 #BOOTLOADER = /dev/tty.usbserial-AE01539L
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
-all: uartFlight.hex
+all: dropboxCopy
 
-dropbox: uartFlight.hex
-	cp uartFlight.hex ~/Dropbox/
+dropbox: dropboxCopy
 	make clean
+
+dropboxCopy: uartFlight.hex
+	cp uartFlight.hex ~/Dropbox/
 
 flash: uartFlight.flash
 	make clean
@@ -86,21 +96,21 @@ program: uartFlight.program
 	make clean
 
 %.o: %.c
-	avr-gcc -c $< -o $@ $(CARGS)
+	$(GCC) -c $< -o $@ $(CARGS)
 
 %.elf: %.o $(OBJ)
-	avr-gcc $(CARGS) $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
-	avr-size --mcu=$(MCU) -C $@
+	$(GCC) $(CARGS) $< $(OBJ) --output $@ $(LINKER) -Wl,-Map -Wl,$(@:.elf=.map)
+	$(SIZE) --mcu=$(MCU) -C $@
 
 %.hex: %.elf
-	avr-objcopy -O ihex $< $@
-	avr-objdump -h -S $< > $(@:.hex=.lss)
+	$(OBJCOPY) -O ihex $< $@
+	$(OBJDUMP) -h -S $< > $(@:.hex=.lss)
 
 %.program: %.hex
-	avrdude -p $(MCU) -c $(PROGRAMMER) -P $(ISPPORT) -e -U $<
+	$(AVRDUDE) -p $(MCU) -c $(PROGRAMMER) -P $(ISPPORT) -e -U $<
 
 %.flash: %.hex
-	yasab $(BOOTLOADER) $< q
+	$(YASAB) $(BOOTLOADER) $< q
 
 clean:
 	$(RM) $(OBJ)
