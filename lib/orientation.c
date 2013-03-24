@@ -62,7 +62,7 @@ Error orientationInit(void) {
 }
 
 Error orientationTask(void) {
-    Vector g, a;
+    Vector3f g, a;
     Error e = accRead(&a); // Read Accelerometer
     CHECKERROR(e);
     e = gyroRead(&g); // Read Gyroscope

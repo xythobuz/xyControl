@@ -41,6 +41,6 @@ typedef enum {
 } AccRange;
 
 Error accInit(AccRange r);
-Error accRead(Vector *v);
+Error accRead(Vector3f *v);
 
 #endif

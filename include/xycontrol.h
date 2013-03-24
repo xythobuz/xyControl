@@ -43,9 +43,11 @@
 #define LED_ON 1
 #define LED_TOGGLE 2
 
+/** The global 3-Dimensional Floating Point Vector.
+ */
 typedef struct {
     double x, y, z;
-} Vector;
+} Vector3f;
 
 void xyInit(void);
 

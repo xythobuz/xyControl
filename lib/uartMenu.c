@@ -40,11 +40,14 @@
 #include <uartMenu.h>
 
 typedef struct MenuEntry MenuEntry;
-struct MenuEntry{
-    uint8_t cmd;
-    PGM_P helpText;
-    Task f;
-    MenuEntry *next;
+/** Data Structure for Single-Linked-List for UART Menu.
+ * Stores Helptext, command and action.
+ */
+struct MenuEntry {
+    uint8_t cmd; /**< Byte that triggers the action */
+    PGM_P helpText; /**< Text (in Flash) printed with help command */
+    Task f; /**< Action that get's executed */
+    MenuEntry *next; /**< Next MenuEntry in the linked list */
 };
 
 MenuEntry *uartMenu = NULL;

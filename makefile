@@ -83,23 +83,25 @@ ISPPORT = /dev/tty.usbmodem641
 #BOOTLOADER = /dev/tty.usbserial-AE01539L
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
+TARGET = uartFlight
+
 all: dropbox
 
-docs:
-	mkdir doc
+doc: $(TARGET).c $(SRC)
+	mkdir -p doc
 	$(DOXYGEN) Doxyfile
 
 dropbox: dropboxCopy
-	make clean
+	make cleanFiles
 
-dropboxCopy: uartFlight.hex
-	cp uartFlight.hex ~/Dropbox/
+dropboxCopy: $(TARGET).hex
+	cp $(TARGET).hex ~/Dropbox/
 
-flash: uartFlight.flash
-	make clean
+flash: $(TARGET).flash
+	make cleanFiles
 
-program: uartFlight.program
-	make clean
+program: $(TARGET).program
+	make cleanFiles
 
 %.o: %.c
 	$(GCC) -c $< -o $@ $(CARGS)
@@ -118,7 +120,10 @@ program: uartFlight.program
 %.flash: %.hex
 	$(YASAB) $(BOOTLOADER) $< q
 
-clean:
+clean: cleanFiles
+	$(RM) doc
+
+cleanFiles:
 	$(RM) $(OBJ)
 	$(RM) *.o
 	$(RM) *.elf

@@ -1,5 +1,7 @@
 # xyControl
 
+![Logo](logo.png)
+
 xyControl is a Quadrocopter Flight Controller based on Atmels Atmega2560 microcontroller.
 It features 64KB SRAM on-board, using the external memory interface of this processor.
 Also included is a switched power supply as well as a USB connection to communicate with and program the target.

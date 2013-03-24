@@ -44,6 +44,6 @@ typedef enum {
 } MagRange;
 
 Error magInit(MagRange r);
-Error magRead(Vector *v);
+Error magRead(Vector3f *v);
 
 #endif

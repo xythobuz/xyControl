@@ -40,6 +40,6 @@ typedef enum {
 } GyroRange;
 
 Error gyroInit(GyroRange r);
-Error gyroRead(Vector *v);
+Error gyroRead(Vector3f *v);
 
 #endif

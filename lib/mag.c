@@ -68,7 +68,7 @@ Error magInit(MagRange r) {
     return e;
 }
 
-Error magRead(Vector *v) {
+Error magRead(Vector3f *v) {
     if (v == NULL) {
         return ARGUMENT_ERROR;
     }

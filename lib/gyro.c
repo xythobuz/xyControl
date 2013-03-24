@@ -86,7 +86,7 @@ Error gyroInit(GyroRange r) {
 double gyroSumX = 0, gyroSumY = 0, gyroSumZ = 0;
 double gyroFilterX = 0, gyroFilterY = 0, gyroFilterZ = 0;
 
-Error gyroRead(Vector *v) {
+Error gyroRead(Vector3f *v) {
     if (v == NULL) {
         return ARGUMENT_ERROR;
     }

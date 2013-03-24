@@ -30,30 +30,61 @@
 #ifndef _pid_h
 #define _pid_h
 
+/** Data Structure for a single PID Controller.
+ *  Stores all needed constants and state variables.
+ */
 typedef struct {
-    double kp;
-    double ki;
-    double kd;
-    double outMin;
-    double outMax;
-    double intMin;
-    double intMax;
-    double lastError;
-    double sumError;
-    time_t last;
+    double kp; /**< Proportional factor. Default is #PID_P. */
+    double ki; /**< Integral factor. Default is #PID_I. */
+    double kd; /**< Derivative factor. Default is #PID_D. */
+    double outMin; /**< Minimum Output. Default is #PID_OUTMIN. */
+    double outMax; /**< Maximum Output. Default is #PID_OUTMAX. */
+    double intMin; /**< Minimum Integral sum. Default is #PID_INTMIN. */
+    double intMax; /**< Maximum Integral sum. Default is #PID_INTMAX. */
+    double lastError; /**< Derivative State. */
+    double sumError; /**< Integral state. Kept in #intMin, #intMax Range. */
+    time_t last; /**< Last execution time. For dT calculation. */
 } PIDState;
 
-#define ROLL 0
-#define PITCH 1
+#define ROLL 0 /**< Roll index for #o_should, #o_output and #o_pids. */
+#define PITCH 1 /**< Pitch index for #o_should, #o_output and #o_pids. */
 
-extern double o_should[2]; // Target Value
-extern double o_output[2]; // PID Output
-extern PIDState o_pids[2];
+extern double o_should[2]; /**< Roll and Pitch target angles. */
+extern double o_output[2]; /**< Roll and Pitch PID Output. */
+extern PIDState o_pids[2]; /**< Roll and Pitch PID States. */
 
+/** Initialize Roll and Pitch PID.
+ * Stores the PID States in #o_pids.
+ * Also resets #o_should to zero.
+ */
 void pidInit(void);
+
+/** Step the Roll and Pitch PID Controllers.
+ * Placing their output in #o_output and reading the input
+ * from #o_should and the global orientation Angles.
+ */
 void pidTask(void);
 
+/** Set the parameters of a PID controller.
+ *  The state variables will be reset to zero.
+ *
+ * \param pid PIDState to be changed.
+ * \param kp New Proportional constant.
+ * \param ki New Integral constant.
+ * \param kd New Derivative constant.
+ * \param min New minimum Output.
+ * \param max New maximum Output.
+ * \param intMin New minimal Integral Sum.
+ * \param intMax New maximal Integral Sum.
+ */
 void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double max, double iMin, double iMax);
+
+/** Execute a single PID Control Step.
+ * \param should Target value
+ * \param is Measured value
+ * \param state PID State
+ * \return PID Output
+ */
 double pidExecute(double should, double is, PIDState *state);
 
 #endif

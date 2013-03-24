@@ -90,7 +90,7 @@ Error accInit(AccRange r) {
 double accSumX = 0, accSumY = 0, accSumZ = 0;
 double accFilterX = 0, accFilterY = 0, accFilterZ = 0;
 
-Error accRead(Vector *v) {
+Error accRead(Vector3f *v) {
     if (v == NULL) {
         return ARGUMENT_ERROR;
     }
