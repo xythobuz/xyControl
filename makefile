@@ -31,12 +31,14 @@ EXTRAINCDIR = include
 CSTANDARD = gnu99
 
 BASEDIR = /usr/local/CrossPack-AVR/bin
+YASABDIR = /Users/thomas/bin
 GCC = $(BASEDIR)/avr-gcc
 SIZE = $(BASEDIR)/avr-size
 OBJCOPY = $(BASEDIR)/avr-objcopy
 OBJDUMP = $(BASEDIR)/avr-objdump
 AVRDUDE = $(BASEDIR)/avrdude
-YASAB = /Users/thomas/bin/yasab
+YASAB = $(YASABDIR)/yasab
+DOXYGEN = /Applications/Doxygen.app/Contents/Resources/doxygen
 
 SRC = lib/time.c
 SRC += lib/spi.c
@@ -67,7 +69,7 @@ CARGS += -funsigned-bitfields
 CARGS += -fpack-struct
 CARGS += -fshort-enums
 CARGS += -Wall -pedantic -Wstrict-prototypes -Wshadow -Wextra
-CARGS += -Werror -Wpointer-arith -Wcast-qual -Wmissing-prototypes
+CARGS += -Wpointer-arith -Wcast-qual -Wmissing-prototypes
 CARGS += -Wno-write-strings -Wno-unused-parameter
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
@@ -81,7 +83,11 @@ ISPPORT = /dev/tty.usbmodem641
 #BOOTLOADER = /dev/tty.usbserial-AE01539L
 BOOTLOADER = /dev/tty.xyRobot-DevB
 
-all: dropboxCopy
+all: dropbox
+
+docs:
+	mkdir doc
+	$(DOXYGEN) Doxyfile
 
 dropbox: dropboxCopy
 	make clean
