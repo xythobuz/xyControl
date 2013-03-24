@@ -32,7 +32,7 @@
 
 #include <adc.h>
 
-void adcInit(uint8_t ref) {
+void adcInit(ADCRef ref) {
     // Enable ADC Module, start one conversion, wait for finish
     PRR0 &= ~(1 << PRADC); // Disable ADC Power Reduction (Enable it...)
     switch(ref) {
@@ -43,8 +43,13 @@ void adcInit(uint8_t ref) {
         case AINT1:
             ADMUX = (1 << REFS1);
             break;
+
         case AINT2:
             ADMUX = (1 << REFS1) | (1 << REFS0);
+            break;
+
+        case AREF:
+            ADMUX &= ~((1 << REFS0) | (1 << REFS1));
             break;
     }
 

@@ -68,8 +68,8 @@ CARGS += -funsigned-char
 CARGS += -funsigned-bitfields
 CARGS += -fpack-struct
 CARGS += -fshort-enums
-CARGS += -Wall -pedantic -Wstrict-prototypes -Wshadow -Wextra
-CARGS += -Wpointer-arith -Wcast-qual -Wmissing-prototypes
+CARGS += -Wall -pedantic -Wstrict-prototypes -Wshadow
+CARGS += -Wpointer-arith -Wcast-qual -Wextra
 CARGS += -Wno-write-strings -Wno-unused-parameter
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)

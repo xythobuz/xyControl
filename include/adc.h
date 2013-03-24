@@ -30,15 +30,41 @@
 #ifndef _adc_h
 #define _adc_h
 
-#define AREF 0
-#define AVCC 1
-#define AINT1 2
-#define AINT2 3
+/** \file adc.h
+ * Analog-to-Digital Converter Library.
+ * With 10bit Output and selectable Reference Voltage.
+ */
 
-void adcInit(uint8_t ref); // AREF, AVCC, AINT1 (1.1V) or AINT2 (2.56V)
-void adcStart(uint8_t channel); // Start Conversion on Channel channel (0 - 15)
-uint8_t adcReady(void); // 1 if result is ready
-uint16_t adcGet(uint8_t next); // Start next conversion if next != 0
-void adcClose(void); // Disable ADC to save energy
+/** ADC Reference Voltage options. */
+typedef enum {
+	AREF, /**< External Reference Voltage */
+	AVCC, /**< Supply Voltage */
+	AINT1, /**< Internal Reference 1 (1.1V) */
+	AINT2 /**< Internal Reference 2 (2.56V) */
+} ADCRef;
+
+/** Initialize the ADC Hardware.
+ * \param ref Reference Voltage.
+ */
+void adcInit(ADCRef ref);
+
+/** Start a conversion on a given channel.
+ * \param channel Channel (0 - 15)
+ */
+void adcStart(uint8_t channel);
+
+/** Check if a result is ready.
+ * \returns 1 if conversion is done.
+ */
+uint8_t adcReady(void);
+
+/** Get the conversion results.
+ * \param next Start next conversion if != 0
+ * \returns 10bit ADC value
+ */
+uint16_t adcGet(uint8_t next);
+
+/** Disable the ADC to save energy. */
+void adcClose(void);
 
 #endif

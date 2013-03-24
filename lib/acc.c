@@ -37,14 +37,25 @@
 #include <stdlib.h>
 #include <config.h>
 
-#define ACCREG_CTRL1 0x20
-#define ACCREG_CTRL4 0x23
-#define ACCREG_XL 0x28
+#define ACCREG_CTRL1 0x20 /**< Accelerometer Control Register 1 */
+#define ACCREG_CTRL4 0x23 /**< Accelerometer Control Register 4 */
+#define ACCREG_XL 0x28 /**< First Accelerometer Output Register */
 
-AccRange accRange;
+AccRange accRange; /**< Stored range to scale returned values. */
+double accSumX = 0; /**< Buffer for X Low-Pass. */
+double accSumY = 0; /**< Buffer for Y Low-Pass. */
+double accSumZ = 0; /**< Buffer for Z Low-Pass. */
+double accFilterX = 0; /**< Buffer for X Low-Pass. */
+double accFilterY = 0; /**< Buffer for Y Low-Pass. */
+double accFilterZ = 0; /**< Buffer for Z Low-Pass. */
 
-Error accWriteRegister(uint8_t reg, uint8_t val);
-
+/** Write an Accelerometer Register.
+ * I2C should aready be initialized!
+ *
+ * \param reg Register Address
+ * \param val New Value
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR or #SUCCESS.
+ */
 Error accWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(ACC_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;
@@ -85,10 +96,6 @@ Error accInit(AccRange r) {
     e = accWriteRegister(ACCREG_CTRL4, v);
     return e;
 }
-
-// Simple Software Low-Pass
-double accSumX = 0, accSumY = 0, accSumZ = 0;
-double accFilterX = 0, accFilterY = 0, accFilterZ = 0;
 
 Error accRead(Vector3f *v) {
     if (v == NULL) {

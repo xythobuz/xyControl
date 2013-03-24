@@ -33,14 +33,31 @@
 #include <error.h>
 #include <xycontrol.h>
 
+/** \file acc.h
+ *  LSM303DLHC Accelerometer API.
+ */
+
+/** Accelerometer Range options */
 typedef enum {
-    r2G, // +- 2G
-    r4G, // +- 4G
-    r8G, // +- 8G
-    r16G, // +- 16G
+    r2G, /**< +- 2G */
+    r4G, /**< +- 4G */
+    r8G, /**< +- 8G */
+    r16G, /**< +- 16G */
 } AccRange;
 
+/** Initialize the Accelerometer.
+ * Call before accRead(). I2C should already be initialized!
+ *
+ * \param r #AccRange to use.
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+ */
 Error accInit(AccRange r);
+
+/** Read from the Accelerometer.
+ * Accelerometer should already be initialized!
+ * \param v #Vector3f for the read values
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+ */
 Error accRead(Vector3f *v);
 
 #endif

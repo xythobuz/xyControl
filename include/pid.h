@@ -30,6 +30,11 @@
 #ifndef _pid_h
 #define _pid_h
 
+/** \file pid.h
+ * Simple implementation for multiple floating-point
+ * PID Controllers.
+ */
+
 /** Data Structure for a single PID Controller.
  *  Stores all needed constants and state variables.
  */
