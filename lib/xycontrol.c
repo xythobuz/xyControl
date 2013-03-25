@@ -46,16 +46,23 @@
 #include <tasks.h>
 #include <config.h>
 
-char helpText[] PROGMEM = "Print this Help";
-char resetText[] PROGMEM = "Reset MCU";
+/** \addtogroup xycontrol xyControl Hardware
+ *  \ingroup System
+ *  Controls xyControl On-Board Hardware like LEDs.
+ *  @{
+ */
 
-FILE inFile;
-FILE outFile;
+/** \file xycontrol.c
+ *  xyControl API Implementation.
+ */
 
-int uartoutput(char c, FILE *f);
-int uartinput(FILE *f);
-void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin);
+char PROGMEM helpText[] = "Print this Help"; /**< UART Menu Help Text */
+char PROGMEM resetText[] = "Reset MCU"; /**< UART Menu Reset Text */
 
+FILE inFile; /**< FILE for stdin */
+FILE outFile; /**< FILE for stdout and stderr */
+
+/** Method used to write to stdout and stderr. */
 int uartoutput(char c, FILE *f) {
     // Inject CR here, instead of in the serial library,
     // so we can still do binary transfers with serialWrite()...
@@ -68,6 +75,7 @@ int uartoutput(char c, FILE *f) {
     return 0;
 }
 
+/** Method used to read from stdin. */
 int uartinput(FILE *f) {
     while (!serialHasChar());
     return serialGet();
@@ -109,6 +117,11 @@ void xyInit(void) {
     sei();
 }
 
+/** Internal LED Manipulation function.
+ *  \param v New LED State (Off, On, Toggle)
+ *  \param port The Corresponding Output Port
+ *  \param pin The LED Pin
+ */
 void xyLedInternal(uint8_t v, volatile uint8_t *port, uint8_t pin) {
     if (v == 0) {
         *port &= ~(1 << pin);
@@ -158,3 +171,4 @@ void resetSelf(void) {
     wdt_enable(WDTO_15MS);
     for(;;);
 }
+/** @} */

@@ -30,14 +30,57 @@
 #ifndef _xmem_h
 #define _xmem_h
 
+/** \addtogroup xmem External Memory Interface
+ *  \ingroup System
+ *  Allows access to external RAM with bank-switching.
+ *  @{
+ */
+
+/** \file xmem.h
+ *  XMEM API Header.
+ */
+
+/** Switch the bank, if needed.
+ *  Stores the old bank in a variable oldMemBank.
+ *  \param x New Bank
+ */
 #define MEMSWITCH(x) uint8_t oldMemBank=xmemGetBank();if(oldMemBank!=x)xmemSetBank(x);
+
+/** Switch back to the last bank, if needed.
+ *  \param x New (current) Bank
+ */
 #define MEMSWITCHBACK(x) if(oldMemBank!=x)xmemSetBank(oldMemBank);
 
-#define MEMBANKS 8
-#define BANK_GENERIC 0
+#define MEMBANKS 8 /**< Available Memory Banks */
+#define BANK_GENERIC 0 /**< Generic Memory Bank */
 
+/** All Malloc related State.
+ *  The Heap is bank-switched, so this state
+ *  has to be switched with the banks to allow
+ *  different memory allocations on different banks.
+ */
+typedef struct {
+    char *start; /**< Start of Heap */
+    char *end; /**< End of Heap */
+    void *val; /**< Highest Heap Point */
+    void *fl; /**< Free List */
+} MallocState;
+
+extern MallocState states[MEMBANKS]; /**< MallocState for all Memory Banks */
+extern uint8_t currentBank; /**< Current active Memory Bank */
+
+/** Initialize the External Memory Interface */
 void xmemInit(void);
+
+/** Switch the active memory bank.
+ *  \param bank New Memory Bank
+ */
 void xmemSetBank(uint8_t bank);
+
+/** Get the current memory bank.
+ *  \returns Current Memory Bank.
+ */
 uint8_t xmemGetBank(void);
 
 #endif
+/** @} */

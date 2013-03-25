@@ -30,9 +30,15 @@
 #ifndef _adc_h
 #define _adc_h
 
+/** \addtogroup adc ADC Driver
+ *  \ingroup Hardware
+ *  Analog-to-Digital Converter Library.
+ *  With 10bit Output and selectable Reference Voltage.
+ *  @{
+ */
+
 /** \file adc.h
- * Analog-to-Digital Converter Library.
- * With 10bit Output and selectable Reference Voltage.
+ *  Analog-to-Digital Converter API Header
  */
 
 /** ADC Reference Voltage options. */
@@ -68,3 +74,4 @@ uint16_t adcGet(uint8_t next);
 void adcClose(void);
 
 #endif
+/** @} */

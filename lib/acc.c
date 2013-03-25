@@ -37,17 +37,20 @@
 #include <stdlib.h>
 #include <config.h>
 
+/** \addtogroup acc
+ *  \ingroup Hardware
+ *  @{
+ */
+
+/** \file acc.c
+ *  LSM303DLHC Accelerometer API Implementation.
+ */
+
 #define ACCREG_CTRL1 0x20 /**< Accelerometer Control Register 1 */
 #define ACCREG_CTRL4 0x23 /**< Accelerometer Control Register 4 */
 #define ACCREG_XL 0x28 /**< First Accelerometer Output Register */
 
 AccRange accRange; /**< Stored range to scale returned values. */
-double accSumX = 0; /**< Buffer for X Low-Pass. */
-double accSumY = 0; /**< Buffer for Y Low-Pass. */
-double accSumZ = 0; /**< Buffer for Z Low-Pass. */
-double accFilterX = 0; /**< Buffer for X Low-Pass. */
-double accFilterY = 0; /**< Buffer for Y Low-Pass. */
-double accFilterZ = 0; /**< Buffer for Z Low-Pass. */
 
 /** Write an Accelerometer Register.
  * I2C should aready be initialized!
@@ -98,6 +101,13 @@ Error accInit(AccRange r) {
 }
 
 Error accRead(Vector3f *v) {
+    static double accSumX = 0; /* Buffer for X Low-Pass. */
+    static double accSumY = 0; /* Buffer for Y Low-Pass. */
+    static double accSumZ = 0; /* Buffer for Z Low-Pass. */
+    static double accFilterX = 0; /* Buffer for X Low-Pass. */
+    static double accFilterY = 0; /* Buffer for Y Low-Pass. */
+    static double accFilterZ = 0; /* Buffer for Z Low-Pass. */
+
     if (v == NULL) {
         return ARGUMENT_ERROR;
     }
@@ -169,3 +179,4 @@ Error accRead(Vector3f *v) {
 
     return SUCCESS;
 }
+/** @} */

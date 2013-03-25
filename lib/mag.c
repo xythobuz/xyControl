@@ -36,12 +36,26 @@
 #include <error.h>
 #include <config.h>
 
-#define MAGREG_CRB 0x01
-#define MAGREG_MR 0x02
-#define MAGREG_XH 0x03
+/** \addtogroup mag
+ *  \ingroup Hardware
+ *  @{
+ */
 
-Error magWriteRegister(uint8_t reg, uint8_t val);
+/** \file mag.c
+ *  LSM303DLHC Magnetometer API Implementation.
+ */
 
+#define MAGREG_CRB 0x01 /**< Magnetometer Gain Register */
+#define MAGREG_MR 0x02 /**< Magnetometer Mode Register */
+#define MAGREG_XH 0x03 /**< First Magnetometer Output Register */
+
+/** Write a Magnetometer Register.
+ * I2C should aready be initialized!
+ *
+ * \param reg Register Address
+ * \param val New Value
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR or #SUCCESS.
+ */
 Error magWriteRegister(uint8_t reg, uint8_t val) {
     if (twiStart(MAG_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;
@@ -93,3 +107,4 @@ Error magRead(Vector3f *v) {
     v->z = (int16_t)(zh << 8 | zl);
     return SUCCESS;
 }
+/** @} */

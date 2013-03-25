@@ -35,6 +35,15 @@
 #include <kalman.h>
 #include <config.h>
 
+/** \addtogroup kalman Kalman-Filter
+ *  \ingroup Flight
+ *  @{
+ */
+
+/** \file kalman.c
+ *  Kalman-Filter Implementation.
+ */
+
 // Setup the kalman data struct
 void kalmanInit(Kalman *data) {
     data->x1 = 0.0f;
@@ -126,3 +135,4 @@ void kalmanInnovate(Kalman *data, double z1, double z2) {
     data->p21 = p21; data->p22 = p22; data->p23 = p23;
     data->p31 = p31; data->p32 = p32; data->p33 = p33;
 }
+/** @} */

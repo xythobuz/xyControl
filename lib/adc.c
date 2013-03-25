@@ -32,6 +32,15 @@
 
 #include <adc.h>
 
+/** \addtogroup adc ADC Driver
+ *  \ingroup Hardware
+ *  @{
+ */
+
+/** \file adc.c
+ *  Analog-to-Digital Converter API Implementation
+ */
+
 void adcInit(ADCRef ref) {
     // Enable ADC Module, start one conversion, wait for finish
     PRR0 &= ~(1 << PRADC); // Disable ADC Power Reduction (Enable it...)
@@ -101,3 +110,4 @@ void adcClose() {
     PRR0 |= (1 << PRADC);
     ADCSRA &= ~(1 << ADEN);
 }
+/** @} */

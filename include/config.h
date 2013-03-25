@@ -30,127 +30,125 @@
 #ifndef _config_h
 #define _config_h
 
+/** \addtogroup config Configuration
+ *  Various default settings.
+ *  @{
+ */
+
+ /** \file config.h
+ *  Various default settings.
+ */
+
 //  -----------------
 // |    Filtering    |
 //  -----------------
 
-#define SOFTWARELOWPASS 50
-#define ACCFILTERFACTOR SOFTWARELOWPASS
-#define GYROFILTERFACTOR SOFTWARELOWPASS
+#define SOFTWARELOWPASS 50 /**< Software Low-Pass on Gyro and ACC */
+#define ACCFILTERFACTOR SOFTWARELOWPASS /**< Accelerometer Low Pass Factor */
+#define GYROFILTERFACTOR SOFTWARELOWPASS /**< Gyroscope Low Pass Factor */
 
-#define PID_OUTMAX 256
-#define PID_OUTMIN -256
-#define PID_INTMAX PID_OUTMAX
-#define PID_INTMIN PID_OUTMIN
+#define PID_OUTMAX 256 /**< Maximum PID Output */
+#define PID_OUTMIN -256 /**< Minimum PID Output */
+#define PID_INTMAX PID_OUTMAX /**< Maximum PID Integral Sum */
+#define PID_INTMIN PID_OUTMIN /**< Minimal PID Integral Sum */
 
 // #define MAXDIFF (baseSpeed * PID_FACTOR)
-#define PID_FACTOR 4 / 5
+#define PID_FACTOR 4 / 5 /**< Influence of PID in relation to Base Speed */
 
 //  -----------------
 // |    Kalman      |
 //  -----------------
 
+/** Time Constant */
 #define DT 0.01f // 100Hz
 
 // Q (3x3 Matrix) with these elements on diagonal
-#define Q1 5.0f
-#define Q2 100.0f
-#define Q3 0.01f
+#define Q1 5.0f /**< Q Matrix Diagonal Element 1 */
+#define Q2 100.0f /**< Q Matrix Diagonal Element 2 */
+#define Q3 0.01f /**< Q Matrix Diagonal Element 3 */
 
 // R (2x2 Matrix) with these elements on diagonal
-#define R1 1000.0f
-#define R2 1000.0f
+#define R1 1000.0f /**< R Matrix Diagonal Element 1 */
+#define R2 1000.0f /**< R Matrix Diagonal Element 2 */
 
 //  -----------------
 // |       Set       |
 //  -----------------
 
-#define SET_ROLLPLUS 1
-#define SET_ROLLMINUS 3
-#define SET_PITCHPLUS 0
-#define SET_PITCHMINUS 2
+#define SET_ROLLPLUS 1 /**< Second Motor at the Right */
+#define SET_ROLLMINUS 3 /**< Fourth Motor at the Left */
+#define SET_PITCHPLUS 0 /**< First Motor at the Top */
+#define SET_PITCHMINUS 2 /**< Third Motor at the Bottom */
 
 //  -----------------
 // |       PID       |
 //  -----------------
 
-#define PID_P 5.0
-#define PID_I 0.03
-#define PID_D -13.0
+#define PID_P 5.0 /**< Default PID P Constant */
+#define PID_I 0.03 /**< Default PID I Constant */
+#define PID_D -13.0 /**< Default PID D Constant */
 
 //  -----------------
 // |      Motor      |
 //  -----------------
 
-#define MOTORCOUNT 4
+#define MOTORCOUNT 4  /**< Amount of motors */
 
 //  -----------------
 // |       ADC       |
 //  -----------------
 
-#define BATT_MAX 15 // 5V at ADC --> 15V Battery
-#define BATT_CHANNEL 0
+#define BATT_MAX 15 /**< Battery Voltage Reference (ADC 5V) */
+#define BATT_CHANNEL 0 /**< ADC Channel for Battery */
 
 //  -----------------
 // |       TWI       |
 //  -----------------
 
-#define ACC_ADDRESS 0x32 // 0011001r
-#define GYRO_ADDRESS 0xD6 // 110101xr, x = 1
-#define MAG_ADDRESS 0x3C
-#define MOTOR_BASEADDRESS 0x52
-
-//  -----------------
-// |     MMC/SD      |
-//  -----------------
-
-#define SD_CSPORT PORTJ
-#define SD_CSDDR DDRJ
-#define SD_CSPIN PJ7
-#define SD_TIMEOUT 100
+#define ACC_ADDRESS 0x32 /**< Accelerometer Address (0011001r) */
+#define GYRO_ADDRESS 0xD6 /**< Gyroscope Address (110101xr, x = 1) */
+#define MAG_ADDRESS 0x3C /**< Magnetometer Address */
+#define MOTOR_BASEADDRESS 0x52 /**< Address of first motor controller */
 
 //  -----------------
 // |    xyControl    |
 //  -----------------
 
-#define LED0PORT PORTL
-#define LED0DDR DDRL
-#define LED0PIN PL6
-#define LED1PORT PORTL
-#define LED1DDR DDRL
-#define LED1PIN PL7
-#define LED2PORT PORTG
-#define LED2DDR DDRG
-#define LED2PIN PG5
-#define LED3PORT PORTE
-#define LED3DDR DDRE
-#define LED3PIN PE2
-
+#define LED0PORT PORTL /**< First LED Port */
+#define LED0DDR DDRL /**< First LED Data Direction Register */
+#define LED0PIN PL6 /**< First LED Pin */
+#define LED1PORT PORTL /**< Second LED Port */
+#define LED1DDR DDRL /**< Second LED Data Direction Register */
+#define LED1PIN PL7 /**< Second LED Pin */
+#define LED2PORT PORTG /**< Third LED Port */
+#define LED2DDR DDRG /**< Third LED Data Direction Register */
+#define LED2PIN PG5 /**< Third LED Pin */
+#define LED3PORT PORTE /**< Fourth LED Port */
+#define LED3DDR DDRE /**< Fourth LED Data Direction Register */
+#define LED3PIN PE2 /**< Fourth LED Pin */
 
 //  -----------------
 // |      XMEM       |
 //  -----------------
 
-#define BANK0PORT PORTG
-#define BANK0DDR DDRG
-#define BANK0PIN PG3
-#define BANK1PORT PORTG
-#define BANK1DDR DDRG
-#define BANK1PIN PG4
-#define BANK2PORT PORTL
-#define BANK2DDR DDRL
-#define BANK2PIN PL5
-
+#define BANK0PORT PORTG /**< First Bank Selection Port */
+#define BANK0DDR DDRG   /**< First Bank Selection Data Direction Register */
+#define BANK0PIN PG3    /**< First Bank Selection Pin */
+#define BANK1PORT PORTG /**< Second Bank Selection Port */
+#define BANK1DDR DDRG   /**< Second Bank Selection Data Direction Register */
+#define BANK1PIN PG4    /**< Second Bank Selection Pin */
+#define BANK2PORT PORTL /**< Third Bank Selection Port */
+#define BANK2DDR DDRL   /**< Third Bank Selection Data Direction Register */
+#define BANK2PIN PL5    /**< Third Bank Selection Pin */
 
 //  -----------------
 // |       SPI       |
 //  -----------------
 
-#define SPIDDR DDRB
-#define SPIMOSI PB2
-#define SPISCK PB1
-#define SPISS PB0
-
+#define SPIDDR DDRB /** SPI Data Direction Register */
+#define SPIMOSI PB2 /** SPI MOSI Pin */
+#define SPISCK PB1 /** SPI SCK Pin */
+#define SPISS PB0 /**< SPI Slave Select Pin */
 
 //  -----------------
 // |     Serial      |
@@ -162,10 +160,12 @@
 // Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
 // #define FLOWCONTROL
 
-#define RX_BUFFER_SIZE 128
-#define TX_BUFFER_SIZE 128
+#define RX_BUFFER_SIZE 128 /**< UART Receive Buffer Size */
+#define TX_BUFFER_SIZE 128 /**< UART Transmit Buffer Size */
 
-// Select the used UART module, from 0 to 3
-#define UART 1
+#define USB 0 /**< FT232RL USB UART module */
+#define BLUETOOTH 1 /**< Bluetooth UART module */
+#define UART BLUETOOTH /**< UART module to use (0 to 3) */
 
 #endif
+/** @} */

@@ -33,13 +33,36 @@
 #include <error.h>
 #include <xycontrol.h>
 
+/** \addtogroup gyro Gyroscope Driver
+ *  \ingroup Hardware
+ *  Configuring and reading an L3GD20
+ *  @{
+ */
+
+/** \file gyro.h
+ * L3GD20 Gyroscope API Header
+ */
+
+/** Gyroscope Range options */
 typedef enum {
-    r250DPS,
-    r500DPS,
-    r2000DPS,
+    r250DPS, /**< +- 250 Degrees per Second */
+    r500DPS, /**< +- 500 Degrees per Second */
+    r2000DPS, /**< +- 2000 Degrees per Second */
 } GyroRange;
 
+/** Initializes the Gyroscope.
+ * I2C should already be initialized.
+ * \param r #GyroRange to use
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS
+ */
 Error gyroInit(GyroRange r);
+
+/** Get a set of gyroscope data.
+ * gyroInit() should already be called.
+ * \param v Data Destionation
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS
+ */
 Error gyroRead(Vector3f *v);
 
 #endif
+/** @} */

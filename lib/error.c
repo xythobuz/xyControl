@@ -34,17 +34,27 @@
 
 #include <error.h>
 
-char error0[] PROGMEM = "Success";
-char error1[] PROGMEM = "TWI doesn't answer";
-char error2[] PROGMEM = "TWI could not write";
-char error3[] PROGMEM = "Not enough memory";
-char error4[] PROGMEM = "General Error";
-char error5[] PROGMEM = "Argument Error";
+/** \file error.c
+ * Global listing of different error conditions.
+ * Can be returned to signalise error or success.
+ * Also allows to print human-readable error descriptions.
+ */
 
-PGM_P errorTable[] PROGMEM = {
+char PROGMEM error0[] = "Success"; /**< String for SUCCESS */
+char PROGMEM error1[] = "TWI doesn't answer"; /**< String for TWI_NO_ANSWER */
+char PROGMEM error2[] = "TWI could not write"; /**< String for TWI_WRITE_ERROR */
+char PROGMEM error3[] = "Not enough memory"; /**< String for MALLOC_FAIL */
+char PROGMEM error4[] = "General Error"; /**< String for ERROR */
+char PROGMEM error5[] = "Argument Error"; /**< String for ARGUMENT_ERROR */
+
+/** Array of all error descriptions in Flash Memory */
+PGM_P PROGMEM errorTable[] = {
     error0, error1, error2, error3, error4, error5
 };
 
+/** Returns a human-readable error description.
+ * Free the string after use!
+ */
 char *getErrorString(Error e) {
     char *buff = (char *)malloc(strlen_P((PGM_P)pgm_read_word(&(errorTable[e]))));
     if (buff == NULL) {

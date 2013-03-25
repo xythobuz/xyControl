@@ -36,7 +36,16 @@
 #include <time.h>
 #include <config.h>
 
-uint8_t motorSpeed[MOTORCOUNT];
+/** \addtogroup motor Motor Controller Driver
+ *  \ingroup Hardware
+ *  @{
+ */
+
+/** \file motor.c
+ *  BL-Ctrl V1.2 Controller API Implementation.
+ */
+
+uint8_t motorSpeed[MOTORCOUNT]; /**< Speed for the four motors */
 
 void motorTask(void) {
     for (uint8_t i = 0; i < MOTORCOUNT; i++) {
@@ -61,3 +70,4 @@ void motorSet(uint8_t id, uint8_t speed) {
         }
     }
 }
+/** @} */

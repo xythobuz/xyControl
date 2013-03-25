@@ -30,33 +30,61 @@
 #ifndef _xycontrol_h
 #define _xycontrol_h
 
-#define LED_RED0 0
-#define LED_RED1 1
-#define LED_GREEN0 2
-#define LED_GREEN1 3
-#define LED_ALL 4
-#define LED_BITMAP 5
-#define LED_RED 6
-#define LED_GREEN 7
-
-#define LED_OFF 0
-#define LED_ON 1
-#define LED_TOGGLE 2
-
-/** The global 3-Dimensional Floating Point Vector.
+/** \addtogroup xycontrol xyControl Hardware
+ *  \ingroup System
+ *  Controls xyControl On-Board Hardware like LEDs.
+ *  @{
  */
+
+/** \file xycontrol.h
+ *  xyControl API Header.
+ */
+
+/** Methods of addressing the LEDs */
+typedef enum {
+	LED_RED0 = 0, /**< First red LED */
+	LED_RED1 = 1, /**< Second red LED */
+	LED_GREEN0 = 2, /**< First green LED */
+	LED_GREEN1 = 3, /**< Second green LED */
+	LED_ALL = 4, /**< All LEDs */
+	LED_BITMAP = 5, /**< LEDs as Bitmap (R0, R1, G0, G1) */
+	LED_RED = 6, /**< Both red LEDs */
+	LED_GREEN = 7 /**< Both green LEDs */
+} LED;
+
+/** Possible states of the LEDs */
+typedef enum {
+	LED_OFF = 0, /**< LED Off */
+	LED_ON = 1, /**< LED On */
+	LED_TOGGLE = 2 /**< Toggle the LED */
+} LEDState;
+
+/** The global 3-Dimensional Floating Point Vector. */
 typedef struct {
-    double x, y, z;
+    double x; /**< X Part */
+  	double y; /**< Y Part */
+  	double z; /**< Z Part */
 } Vector3f;
 
+/** Initialize the xyControl Hardware.
+ *  Initializes LEDs, Timer, UART, I2C, SPI, ADC, the UART Menu
+ *  and prepares stdin and stdout.
+ */
 void xyInit(void);
 
-// l: LED No. 0 - 3
-// v: 0 off, 1 on, 2 toggle
-void xyLed(uint8_t l, uint8_t v);
+/** Set the LEDs.
+ *  \param l LEDs to set
+ *  \param v New LED State
+ */
+void xyLed(LED l, LEDState v);
 
+/** Calculate and return the Battery Voltage.
+ *  \returns Current Battery Voltage
+ */
 double getVoltage(void);
 
+/** Use the Watchdog to reset yourself after 15ms. */
 void resetSelf(void);
 
 #endif
+/** @} */

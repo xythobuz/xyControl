@@ -36,14 +36,28 @@
 #include <error.h>
 #include <config.h>
 
-#define GYROREG_CTRL1 0x20
-#define GYROREG_CTRL4 0x23
-#define GYROREG_OUTXL 0x28
+/** \addtogroup gyro Gyroscope Driver
+ *  \ingroup Hardware
+ *  @{
+ */
 
-GyroRange gyroRange;
+/** \file gyro.c
+ * L3GD20 Gyroscope API Implementation
+ */
 
-Error gyroWriteByte(uint8_t reg, uint8_t val);
+#define GYROREG_CTRL1 0x20 /**< Gyroscope Control Register 1 */
+#define GYROREG_CTRL4 0x23 /**< Gyroscope Control Register 4 */
+#define GYROREG_OUTXL 0x28 /**< First Gyroscope Output Register */
 
+GyroRange gyroRange;  /**< Stored range to scale returned values. */
+
+/** Write a Gyroscope Register.
+ * I2C should aready be initialized!
+ *
+ * \param reg Register Address
+ * \param val New Value
+ * \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR or #SUCCESS.
+ */
 Error gyroWriteByte(uint8_t reg, uint8_t val) {
     if (twiStart(GYRO_ADDRESS | TWI_WRITE)) {
         return TWI_NO_ANSWER;
@@ -82,11 +96,11 @@ Error gyroInit(GyroRange r) {
     return e;
 }
 
-// Simple Software Low-Pass
-double gyroSumX = 0, gyroSumY = 0, gyroSumZ = 0;
-double gyroFilterX = 0, gyroFilterY = 0, gyroFilterZ = 0;
-
 Error gyroRead(Vector3f *v) {
+    // Simple Software Low-Pass
+    static double gyroSumX = 0, gyroSumY = 0, gyroSumZ = 0;
+    static double gyroFilterX = 0, gyroFilterY = 0, gyroFilterZ = 0;
+
     if (v == NULL) {
         return ARGUMENT_ERROR;
     }
@@ -153,3 +167,4 @@ Error gyroRead(Vector3f *v) {
 
     return SUCCESS;
 }
+/** @} */

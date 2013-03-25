@@ -1,5 +1,5 @@
 /*
- * orientation.h
+ * doc.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -28,46 +28,24 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _orientation_h
-#define _orientation_h
-
-#include <error.h>
-
-/** \addtogroup orientation Orientation Calculation
- *  \ingroup Flight
- *  Calculate Orientation using the Kalman-Filter, Accelerometer and Gyroscope.
- *  
- *  @{
+/** \file doc.h
+ *  Contains Doxygen Group Definitions
  */
 
-/** \file orientation.h
- *  Orientation API Header.
+/** \defgroup Software Software
+ *  Software Libraries
  */
 
-/** Can store orientation in Euler Space */
-typedef struct {
-    double pitch; /**< Pitch Angle in Degrees */
-    double roll; /**< Roll Angle in Degrees */
-    double yaw; /**< Yaw Angle in Degrees */
-} Angles;
-
-extern Angles orientation; /**< Current Aircraft orientation */
-
-/** Initializes the Orientation API.
- *  Also initializes the Accelerometer, Gyroscope and Magnetometer.
- *  I2C should already be initialized!
- *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+/** \defgroup System System
+ *  \ingroup Software
+ *  System Libraries
  */
-Error orientationInit(void);
 
-/** Calculate the current orientation.
- *  It will be stored in the global #orientation Struct.
- *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+/** \defgroup Flight Flight
+ *  \ingroup Software
+ *  Flight Control Libraries
  */
-Error orientationTask(void);
 
-/** Sets the current orientation to zero. */
-void zeroOrientation(void);
-
-#endif
-/** @} */
+ /** \defgroup Hardware Hardware
+ *  Hardware Libraries
+ */

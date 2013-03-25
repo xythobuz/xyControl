@@ -34,22 +34,24 @@
 #include <xmem.h>
 #include <config.h>
 
-typedef struct {
-    char *start;
-    char *end;
-    void *val;
-    void *fl;
-} MallocState;
+/** \addtogroup xmem External Memory Interface
+ *  \ingroup System
+ *  @{
+ */
 
-MallocState states[MEMBANKS];
-uint8_t currentBank = 0;
+/** \file xmem.c
+ *  XMEM API Implementation.
+ */
 
-extern void *__brkval;
-extern void *__flp; // Internal Malloc State
+MallocState states[MEMBANKS]; /**< MallocState for all Memory Banks */
+uint8_t currentBank = 0; /**< Current active Memory Bank */
 
-void saveState(uint8_t bank);
-void restoreState(uint8_t bank);
+extern void *__brkval; /**< Internal Malloc Heap-End Pointer */
+extern void *__flp; /**< Internal Malloc Free List Pointer (State) */
 
+/** Save the current malloc state.
+ *  \param bank Current Bank Number
+ */
 void saveState(uint8_t bank) {
     states[bank].start = __malloc_heap_start;
     states[bank].end = __malloc_heap_end;
@@ -57,6 +59,9 @@ void saveState(uint8_t bank) {
     states[bank].fl = __flp;
 }
 
+/** Restore the malloc state.
+ *  \param bank Location of state to load.
+ */
 void restoreState(uint8_t bank) {
     __malloc_heap_start = states[bank].start;
     __malloc_heap_end = states[bank].end;
@@ -100,3 +105,4 @@ void xmemSetBank(uint8_t bank) {
 uint8_t xmemGetBank(void) {
     return currentBank;
 }
+/** @} */

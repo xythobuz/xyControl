@@ -1,5 +1,5 @@
 /**
- * @file i2cmaster.c
+ * @file twi.c
  * @brief I2C Master Library using hardware TWI interface.
  */
 /*************************************************************************

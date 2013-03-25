@@ -33,8 +33,14 @@
 #include <error.h>
 #include <xycontrol.h>
 
+/** \addtogroup acc Accelerometer Driver
+ *  \ingroup Hardware
+ *  Configuring and reading an LSM303DLHC Accelerometer.
+ *  @{
+ */
+
 /** \file acc.h
- *  LSM303DLHC Accelerometer API.
+ *  LSM303DLHC Accelerometer API Header.
  */
 
 /** Accelerometer Range options */
@@ -61,3 +67,4 @@ Error accInit(AccRange r);
 Error accRead(Vector3f *v);
 
 #endif
+/** @} */

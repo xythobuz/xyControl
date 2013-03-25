@@ -30,24 +30,44 @@
 #ifndef _error_h
 #define _error_h
 
+/** \addtogroup error Error Reporting
+ *  \ingroup System
+ *  Error reporting with human readable strings.
+ *  @{
+ */
+
+/** \file error.h
+ *  Global listing of different error conditions.
+ *  Can be returned to signalise error or success.
+ *  Also allows to print human-readable error descriptions.
+ */
+
+/** Error Conditions */
 typedef enum {
-    SUCCESS = 0,
-    TWI_NO_ANSWER,
-    TWI_WRITE_ERROR,
-    MALLOC_FAIL,
-    ERROR,
-    ARGUMENT_ERROR
+    SUCCESS = 0, /**< No Error */
+    TWI_NO_ANSWER, /**< No answer from TWI Slave */
+    TWI_WRITE_ERROR, /**< Error while writing to TWI Slave */
+    MALLOC_FAIL, /**< Malloc failed */
+    ERROR, /**< General Error */
+    ARGUMENT_ERROR, /**< Invalid arguments */
 } Error;
 
+/** Check an Error Code. Return it if an error occured. */
 #define CHECKERROR(x) if(x!=SUCCESS){return x;}
-#define REPORTERROR(x) {                \
-    if (x != SUCCESS) {                 \
-        char *s = getErrorString(x);    \
-        printf("Error: %s\n", s);       \
-        free(s);                        \
-    }                                   \
+
+/** Report an error, if it occured. Using printf() */
+#define REPORTERROR(x) { \
+    if (x != SUCCESS) { \
+        char *s = getErrorString(x); \
+        printf("Error: %s\n", s); \
+        free(s); \
+    } \
 }
 
-char *getErrorString(Error e); // free string after use!
+/** Returns a human-readable error description.
+ *  Free the string after use!
+ */
+char *getErrorString(Error e);
 
 #endif
+/** @} */

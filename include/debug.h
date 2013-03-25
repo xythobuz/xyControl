@@ -34,60 +34,67 @@
 #include <serial.h>
 #include <stdio.h>
 
-/*
- * Usage:
- * Before including this file, define DEBUG as the debuglevel, eg:
+/** \addtogroup debug Debug Output
+ *  \ingroup System
+ *  Allows debug ouput and assert usage.
  *
- * #define DEBUG 1
+ *  Usage:
+ *  Before including this file, define DEBUG as the debuglevel, eg:
  *
- * for debuglevel 1.
- * Then use debugPrint("Foo") in your code.
- * If you need to calculate stuff for your debug output, enclose it:
+ *  \code{.c}
+ *  #define DEBUG 1
+ *  \endcode
  *
- * #if DEBUG >= 1
- *     debugPrint("Bar");
- * #endif
+ *  for debuglevel 1.
+ *  Then use debugPrint("Foo") in your code.
+ *  If you need to calculate stuff for your debug output, enclose it:
+ *
+ *  \code{.c}
+ *  #if DEBUG >= 1
+ *      debugPrint("Bar");
+ *  #endif
+ *  \endcode
+ *  @{
  */
 
-// #define NDEBUG // Uncomment to disable debug and assert output
+/** \file debug.h
+ *  Debug and Assert Header and Implementation
+ */
 
-#define DEBUGOUT(x) printf(x) // Debug Output Function
+#define DEBUGOUT(x) printf(x) /**< Debug Output Function */
 
-// assert Implementation
-#define ASSERTFUNC(x) ({                            \
-    if (!(x)) {                                     \
-        if (DEBUG != 0) {                           \
-            printf("\nError: %s:%i in %s(): Assert '%s' failed!\n", __FILE__, __LINE__, __func__, #x);                                    \
-            wdt_enable(WDTO_1S);                    \
-            while (!serialTxBufferEmpty())          \
-                wdt_reset();                        \
-            while(1);                               \
-        } else {                                    \
-            wdt_enable(WDTO_15MS);                  \
-            while(1);                               \
-        }                                           \
-    }                                               \
+/** Simple Assert Implementation */
+#define ASSERTFUNC(x) ({ \
+    if (!(x)) { \
+        if (DEBUG != 0) { \
+            printf("\nError: %s:%i in %s(): Assert '%s' failed!\n", __FILE__, __LINE__, __func__, #x); \
+            wdt_enable(WDTO_1S); \
+            while (!serialTxBufferEmpty()) \
+                wdt_reset(); \
+            while(1); \
+        } else { \
+            wdt_enable(WDTO_15MS); \
+            while(1); \
+        } \
+    } \
 })
 
 // Macro Magic
 // Controls Debug Output with DEBUG definition.
 // Define DEBUG before including this file!
-// Disables all debug output if NDEBUG is defined
+// Disables all debug output if NODEBUG is defined
 
-#ifdef NODEBUG // Allow NODEBUG and NDEBUG
-#define NDEBUG NODEBUG
-#endif
-
-#ifndef NDEBUG
-#define assert(x) ASSERTFUNC(x)
-#else // NDEBUG defined
-#define assert(ignore)
-#endif
-
-#if (!(defined(NDEBUG))) && (DEBUG >= 1)
-#define debugPrint(x) DEBUGOUT(x)
+#ifndef NODEBUG
+#define assert(x) ASSERTFUNC(x) /**< Enable assert() */
 #else
-#define debugPrint(ignore)
+#define assert(ignore) /**< Disable assert() */
+#endif
+
+#if (!(defined(NODEBUG))) && (DEBUG >= 1)
+#define debugPrint(x) DEBUGOUT(x) /**< Enable debugPrint() */
+#else
+#define debugPrint(ignore) /**< Disable debugPrint() */
 #endif
 
 #endif // _DEBUG_H
+/** @} */

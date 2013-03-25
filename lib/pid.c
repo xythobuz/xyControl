@@ -38,6 +38,15 @@
 #include <orientation.h>
 #include <config.h>
 
+/** \addtogroup pid PID-Controller
+ *  \ingroup Flight
+ *  @{
+ */
+
+/** \file pid.c
+ *  PID Library Implementation
+ */
+
 PIDState o_pids[2];
 double o_should[2];
 double o_output[2];
@@ -86,3 +95,4 @@ void pidTask(void) {
     o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]);
     o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]);
 }
+/** @} */

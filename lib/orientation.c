@@ -42,12 +42,25 @@
 #include <kalman.h>
 #include <config.h>
 
-#define TODEG(x) ((x * 180) / M_PI)
+/** \addtogroup orientation Orientation Calculation
+ *  \ingroup Flight
+ *  @{
+ */
 
-Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
+/** \file orientation.c
+ *  Orientation API Implementation.
+ */
+
+#define TODEG(x) ((x * 180) / M_PI) /**< Convert Radians to Degrees */
+
+/** Current Aircraft orientation */
+Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0}; 
+
+/** Current Aircraft orientation offset */
 Angles orientationError = {.pitch = 0, .roll = 0, .yaw = 0};
-Kalman pitchData;
-Kalman rollData;
+
+Kalman pitchData; /**< Kalman-State for Pitch Angle */
+Kalman rollData; /**< Kalman-State for Roll Angle */
 
 Error orientationInit(void) {
     Error e = accInit(r4G);
@@ -91,3 +104,4 @@ void zeroOrientation(void) {
     orientationError.pitch = orientation.pitch + orientationError.pitch;
     orientationError.yaw = orientation.yaw + orientationError.yaw;
 }
+/** @} */

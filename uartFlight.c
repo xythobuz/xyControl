@@ -47,6 +47,10 @@
 #include <pid.h>
 #include <set.h>
 
+/** \example uartFlight.c
+ *
+ */
+
 #define MAXANGLE 45
 #define ANGLESTEP 10
 #define MAXMOTOR 255

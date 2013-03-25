@@ -32,10 +32,33 @@
 
 #include <config.h>
 
-extern uint8_t motorSpeed[MOTORCOUNT];
+/** \addtogroup motor Motor Controller Driver
+ *  \ingroup Hardware
+ *  Controlling four <a href="https://www.mikrocontroller.com/index.php?main_page=product_info&products_id=209">BL-Ctrl V1.2</a> Brushless controllers.
+ *  @{
+ */
 
+/** \file motor.h
+ *  BL-Ctrl V1.2 Controller API Header.
+ */
+
+extern uint8_t motorSpeed[MOTORCOUNT]; /**< Speed for the four motors */
+
+/** Initializes the motor control library.
+ *  Really only sets motorSpeed to zero.
+ */
 void motorInit(void);
+
+/** Set the speed of one or all motors.
+ *  \param id Motor ID (0 to 3, 4 = all)
+ *  \param speed New Speed
+ */
 void motorSet(uint8_t id, uint8_t speed);
+
+/** Send the values stored in #motorSpeed to the Controllers.
+ *  I2C already has to be initialized!
+ */
 void motorTask(void);
 
 #endif
+/** @} */

@@ -33,17 +33,41 @@
 #include <error.h>
 #include <xycontrol.h>
 
+/** \addtogroup mag Magnetometer Driver
+ *  \ingroup Hardware
+ *  Configuring and reading an LSM303DLHC Magnetometer.
+ *  @{
+ */
+
+/** \file mag.h
+ *  LSM303DLHC Magnetometer API Header.
+ */
+
+/** Magnetometer Range options */
 typedef enum {
-    r1g3 = 1, // +- 1.3 gauss
-    r1g9 = 2, // +- 1.9 gauss
-    r2g5 = 3, // +- 2.5 gauss
-    r4g = 4, // +- 4 gauss
-    r4g7 = 5, // +- 4.7 gauss
-    r5g6 = 6, // +- 5.6 gauss
-    r8g1 = 7, // +- 8.1 gauss
+    r1g3 = 1, /**< +- 1.3 Gauss */
+    r1g9 = 2, /**< +- 1.9 Gauss */
+    r2g5 = 3, /**< +- 2.5 Gauss */
+    r4g0 = 4, /**< +- 4.0 Gauss */
+    r4g7 = 5, /**< +- 4.7 Gauss */
+    r5g6 = 6, /**< +- 5.6 Gauss */
+    r8g1 = 7, /**< +- 8.1 Gauss */
 } MagRange;
 
+/** Initialize the Magnetometer.
+ *  Call before magRead(). I2C should already be initialized!
+ *
+ *  \param r #MagRange to use.
+ *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+ */
 Error magInit(MagRange r);
+
+/** Read from the Magnetometer.
+ *  Magnetometer should already be initialized!
+ *  \param v #Vector3f for the read values
+ *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+ */
 Error magRead(Vector3f *v);
 
 #endif
+/** @} */

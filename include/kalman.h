@@ -32,12 +32,34 @@
 #ifndef _kalman_h
 #define _kalman_h
 
+/** \addtogroup kalman Kalman-Filter
+ *  \ingroup Flight
+ *  Kalman-Filter from <a href="http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/">Linus Helgesson</a>
+ *  
+ *  @{
+ */
+
+/** \file kalman.h
+ *  Kalman-Filter Header.
+ */
+
+/** Kalman-Filter State data */
 typedef struct {
-    double x1, x2, x3;
-    double p11, p12, p13, p21, p22, p23, p31, p32, p33;
+    double x1, x2, x3; /**< X Vector */
+    double p11, p12, p13, p21, p22, p23, p31, p32, p33; /**< P Matrix */
 } Kalman;
 
+/** Step the Kalman Filter.
+ *  \param data Kalman-Filter State
+ *  \param z1 Angle from Accelerometer
+ *  \param z2 Corresponding Gyroscope data
+ */
 void kalmanInnovate(Kalman *data, double z1, double z2);
+
+/** Initialize a Kalman-State.
+ *  \param data Kalman-State to be initialized
+ */
 void kalmanInit(Kalman *data);
 
 #endif
+/** @} */

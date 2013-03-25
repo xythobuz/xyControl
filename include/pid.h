@@ -30,9 +30,15 @@
 #ifndef _pid_h
 #define _pid_h
 
+/** \addtogroup pid PID-Controller
+ *  \ingroup Flight
+ *  Simple implementation for multiple floating-point
+ *  PID Controllers.
+ *  @{
+ */
+
 /** \file pid.h
- * Simple implementation for multiple floating-point
- * PID Controllers.
+ *  PID Library Header
  */
 
 /** Data Structure for a single PID Controller.
@@ -79,8 +85,8 @@ void pidTask(void);
  * \param kd New Derivative constant.
  * \param min New minimum Output.
  * \param max New maximum Output.
- * \param intMin New minimal Integral Sum.
- * \param intMax New maximal Integral Sum.
+ * \param iMin New minimal Integral Sum.
+ * \param iMax New maximal Integral Sum.
  */
 void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double max, double iMin, double iMax);
 
@@ -93,3 +99,4 @@ void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double m
 double pidExecute(double should, double is, PIDState *state);
 
 #endif
+/** @} */
