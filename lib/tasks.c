@@ -33,13 +33,16 @@
 #include <xmem.h>
 #include <tasks.h>
 
-typedef struct TaskElement TaskElement;
-struct TaskElement {
-    Task task;
-    TaskElement *next;
-};
+/** \addtogroup task Task Handler
+ *  \ingroup System
+ *  @{
+ */
 
-TaskElement *taskList = NULL;
+/** \file tasks.c
+ *  Task API Implementation.
+ */
+
+TaskElement *taskList = NULL; /**< List of registered Tasks */
 
 uint8_t tasksRegistered(void) {
     uint8_t c = 0;
@@ -99,3 +102,4 @@ void tasks(void) {
     }
     MEMSWITCHBACK(BANK_GENERIC);
 }
+/** @} */

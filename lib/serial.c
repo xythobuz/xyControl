@@ -34,8 +34,17 @@
 #include <serial.h>
 #include <config.h>
 
-#define XON 0x11
-#define XOFF 0x13
+/** \addtogroup uart UART Driver
+ *  \ingroup Hardware
+ *  @{
+ */
+
+/** \file serial.c
+ *  UART API Implementation
+ */
+
+#define XON 0x11 /**< XON Byte */
+#define XOFF 0x13 /**< XOFF Byte */
 
 #if (RX_BUFFER_SIZE < 2) || (TX_BUFFER_SIZE < 2)
 #error SERIAL BUFFER TOO SMALL!
@@ -51,9 +60,9 @@
 #error SERIAL BUFFER TOO LARGE!
 #endif
 
-#define FLOWMARK 5 // Space remaining to trigger xoff/xon
+#define FLOWMARK 5 /**< Space remaining to trigger XOFF/XON */
 
-// Macro concatenation magic
+// Macro concatenation magic --> selectable uart module
 #define CAT_X(A, B, C) A ## B ## C
 #define CAT(A, B, C) CAT_X(A, B, C)
 #define CATB_X(A, B) A ## B
@@ -80,21 +89,22 @@
 #define SERIALUDRE                  CATB(UDRE, UART)
 #define SERIALUBRR                  CATB(UBRR, UART)
 
-uint8_t volatile rxBuffer[RX_BUFFER_SIZE];
-uint8_t volatile txBuffer[TX_BUFFER_SIZE];
-uint16_t volatile rxRead = 0;
-uint16_t volatile rxWrite = 0;
-uint16_t volatile txRead = 0;
-uint16_t volatile txWrite = 0;
-uint8_t volatile shouldStartTransmission = 1;
+uint8_t volatile rxBuffer[RX_BUFFER_SIZE]; /**< RX FIFO Buffer */
+uint8_t volatile txBuffer[TX_BUFFER_SIZE]; /**< TX FIFO Buffer */
+uint16_t volatile rxRead = 0; /**< RX FIFO Read Position */
+uint16_t volatile rxWrite = 0; /**< RX FIFO Write Position */
+uint16_t volatile txRead = 0; /**< TX FIFO Read Position */
+uint16_t volatile txWrite = 0; /**< TX FIFO Write Position */
+uint8_t volatile shouldStartTransmission = 1; /**< Should enable interrupt */
 
 #ifdef FLOWCONTROL
-uint8_t volatile sendThisNext = 0;
-uint8_t volatile flow = 1;
-uint8_t volatile rxBufferElements = 0;
+uint8_t volatile sendThisNext = 0; /**< Send char without FIFO */
+uint8_t volatile flow = 1; /**< Flow Control Status */
+uint8_t volatile rxBufferElements = 0; /**< Elements in RX FIFO Buffer */
 #endif
 
-ISR(SERIALRECIEVEINTERRUPT) { // Receive complete
+/** Receive Complete Interrupt */
+ISR(SERIALRECIEVEINTERRUPT) {
     rxBuffer[rxWrite] = SERIALDATA;
     if (rxWrite < (RX_BUFFER_SIZE - 1)) {
         rxWrite++;
@@ -116,7 +126,8 @@ ISR(SERIALRECIEVEINTERRUPT) { // Receive complete
 #endif
 }
 
-ISR(SERIALTRANSMITINTERRUPT) { // Data register empty
+/** Data Register Empty Interrupt */
+ISR(SERIALTRANSMITINTERRUPT) {
 #ifdef FLOWCONTROL
     if (sendThisNext) {
         SERIALDATA = sendThisNext;
@@ -171,8 +182,8 @@ void serialClose(void) {
     SREG = sreg;
 }
 
-#ifdef FLOWCONTROL
 void setFlow(uint8_t on) {
+#ifdef FLOWCONTROL
     if (flow != on) {
         if (on == 1) {
             // Send XON
@@ -197,8 +208,8 @@ void setFlow(uint8_t on) {
         // Wait till it's transmitted
         while (SERIALB & (1 << SERIALUDRIE));
     }
-}
 #endif
+}
 
 // ---------------------
 // |     Reception     |
@@ -306,3 +317,4 @@ uint8_t serialTxBufferEmpty(void) {
         return 1;
     }
 }
+/** @} */

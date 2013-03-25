@@ -33,6 +33,15 @@
 #include <spi.h>
 #include <config.h>
 
+/** \addtogroup spi SPI Driver
+ *  \ingroup Hardware
+ *  @{
+ */
+
+/** \file spi.c
+ *  SPI API Implementation
+ */
+
 void spiInit(uint8_t mode, uint8_t speed) {
     SPIDDR |= (1 << SPIMOSI) | (1 << SPISCK) | (1 << SPISS);
     SPCR = (1 << MSTR) | (1 << SPE); // Enable SPI, Master mode
@@ -47,3 +56,4 @@ uint8_t spiSendByte(uint8_t d) {
     while (!(SPSR & (1 << SPIF))); // Wait for transmission
     return SPDR;
 }
+/** @} */

@@ -38,12 +38,24 @@
 #include <set.h>
 #include <config.h>
 
-#define MAXDIFF (baseSpeed * PID_FACTOR)
+/** \addtogroup set Motor Speed Mixer
+ *  \ingroup Flight
+ *  Takes the Base Speed and PID-Output and sets Motor Speed accordingly.
+ *  @{
+ */
 
-uint8_t baseSpeed = 0;
+/** \file set.c
+ *  Motor Mixer Library Implementation
+ */
 
-inline void setMotorSpeeds(uint8_t axis, uint8_t *vals);
+#define MAXDIFF (baseSpeed * PID_FACTOR) /**< Maximum Speed difference on one axis */
 
+uint8_t baseSpeed = 0; /**< Motor Base Speed */
+
+/** Set the Motor Speeds according to the SET_* Motor Position Constants.
+ *  \param axis ROLL or PITCH
+ *  \param vals Speeds for the two Motors on this axis (+, -)
+ */
 inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
     if (axis == ROLL) {
         motorSet(SET_ROLLPLUS, vals[0]);
@@ -61,3 +73,4 @@ void setTask(void) {
         setMotorSpeeds(i, v);
     }
 }
+/** @} */

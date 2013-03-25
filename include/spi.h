@@ -30,22 +30,47 @@
 #ifndef _spi_h
 #define _spi_h
 
-#define SPI_MODE0 0 // CPOL 0, CPHA 0
-#define SPI_MODE1 1 // CPOL 0, CPHA 1
-#define SPI_MODE2 2 // CPOL 1, CPHA 0
-#define SPI_MODE3 3 // CPOL 1, CPHA 1
+/** \addtogroup spi SPI Driver
+ *  \ingroup Hardware
+ *  SPI Library for AVRs built-in SPI Hardware.
+ *  @{
+ */
 
-#define SPI_SPEED2 4
-#define SPI_SPEED4 0
-#define SPI_SPEED8 5
-#define SPI_SPEED16 1
-#define SPI_SPEED32 6
-#define SPI_SPEED64 2
-#define SPI_SPEED128 3
+/** \file spi.h
+ *  SPI API Header
+ */
 
-void spiInit(uint8_t mode, uint8_t speed);
+/** SPI Mode option */
+typedef enum {
+    MODE_0 = 0, /**< CPOL 0, CPHA 0 */
+    MODE_1 = 1, /**< CPOL 0, CPHA 1 */
+    MODE_2 = 2, /**< CPOL 1, CPHA 0 */
+    MODE_3 = 3, /**< CPOL 1, CPHA 1 */
+} SPI_MODE;
+
+/** SPI Speed options */
+typedef enum {
+    SPEED_2 = 4, /**< F_CPU / 2 */
+    SPEED_4 = 0, /**< F_CPU / 4 */
+    SPEED_8 = 5, /**< F_CPU / 8 */
+    SPEED_16 = 1, /**< F_CPU / 16 */
+    SPEED_32 = 6, /**< F_CPU / 32 */
+    SPEED_64 = 2, /**< F_CPU / 64 */
+    SPEED_128 = 3, /**< F_CPU / 128 */
+} SPI_SPEED;
+
+/** Initialize the SPI Hardware Module.
+ *  \param mode SPI Mode to use
+ *  \param speed SPI Speed to use
+ */
+void spiInit(SPI_MODE mode, SPI_SPEED speed);
+
+/** Send and Receive one byte.
+ *  Set the Chip Select Lines yourself!
+ *  \param d Data to be sent
+ *  \returns Byte read from Bus
+ */
 uint8_t spiSendByte(uint8_t d);
 
-#define spiReadByte() spiSendByte(0xFF)
-
 #endif
+/** @} */

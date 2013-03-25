@@ -30,24 +30,78 @@
 #ifndef _serial_h
 #define _serial_h
 
+/** \addtogroup uart UART Driver
+ *  \ingroup Hardware
+ *  Serial Library for AVRs built-in UART Hardware.
+ *  Allows XON/XOFF Flow Control.
+ *  FIFO Buffer for Receiving and Transmitting.
+ *  @{
+ */
+
+/** \file serial.h
+ *  UART API Header
+ */
+
+/** Calculate Baudrate Register Value */
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
 
+/** Initialize the UART Hardware.
+ *  \param baud Baudrate. Use the BAUD() macro!
+ */
 void serialInit(uint16_t baud);
+
+/** Stop the UART Hardware */
 void serialClose(void);
 
+/** Manually change the flow control.
+ *  \param on 1 of on, 0 if off
+ */
 void setFlow(uint8_t on);
 
-// Reception
+/** Check if a byte was received.
+ *  \returns 1 if a byte was received, 0 if not
+ */
 uint8_t serialHasChar(void);
-uint8_t serialGet(void); // Get a character
+
+/** Read a single byte.
+ *  \returns Received byte or 0
+ */
+uint8_t serialGet(void);
+
+/** Wait until a character is received.
+ *  \returns Received byte
+ */
 uint8_t serialGetBlocking(void);
-uint8_t serialRxBufferFull(void); // 1 if full
-uint8_t serialRxBufferEmpty(void); // 1 if empty
 
-// Transmission
+/** Check if the receive buffer is full.
+ *  \returns 1 if buffer is full, 0 if not
+ */
+uint8_t serialRxBufferFull(void);
+
+/** Check if the receive buffer is empty.
+ *  \returns 1 if buffer is empty, 0 if not.
+ */
+uint8_t serialRxBufferEmpty(void);
+
+/** Send a byte.
+ *  \param data Byte to send
+ */
 void serialWrite(uint8_t data);
-void serialWriteString(const char *data);
-uint8_t serialTxBufferFull(void); // 1 if full
-uint8_t serialTxBufferEmpty(void); // 1 if empty
 
-#endif // _serial_h
+/** Send a string.
+ *  \param data Null-Terminated String
+ */
+void serialWriteString(const char *data);
+
+/** Check if the transmit buffer is full.
+ *  \returns 1 if buffer is full, 0 if not
+ */
+uint8_t serialTxBufferFull(void);
+
+/** Check if the transmit buffer is empty.
+ *  \returns 1 if buffer is empty, 0 if not.
+ */
+uint8_t serialTxBufferEmpty(void);
+
+#endif
+/** @} */

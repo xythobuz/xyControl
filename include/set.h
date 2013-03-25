@@ -30,8 +30,20 @@
 #ifndef _set_h
 #define _set_h
 
-extern uint8_t baseSpeed;
+/** \addtogroup set Motor Speed Mixer
+ *  \ingroup Flight
+ *  Takes the Base Speed and PID-Output and sets Motor Speed accordingly.
+ *  @{
+ */
 
+/** \file set.h
+ *  Motor Mixer Library Header
+ */
+
+extern uint8_t baseSpeed; /**< Motor Base Speed */
+
+/** Read the PID Output and Set the Motor Speeds */
 void setTask(void);
 
 #endif
+/** @} */

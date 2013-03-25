@@ -94,7 +94,7 @@ void xyInit(void) {
     initSystemTimer();
     serialInit(BAUD(38400, F_CPU));
     twiInit();
-    spiInit(SPI_MODE0, SPI_SPEED2);
+    spiInit(MODE_0, SPEED_2);
     adcInit(AVCC);
 
     addMenuCommand('q', resetText, &resetSelf);

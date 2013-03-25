@@ -30,13 +30,49 @@
 #ifndef _tasks_h
 #define _tasks_h
 
-typedef void (*Task)(void);
+/** \addtogroup task Task Handler
+ *  \ingroup System
+ *  System for registering different tasks that will be called regularly,
+ *  one after another.
+ *  @{
+ */
 
-// Adds another task that will cause func() to be called regularly
-uint8_t addTask(Task func); // 0 on success
-uint8_t removeTask(Task func); // 0 on success
-void tasks(void); // Call in your main loop!
+/** \file tasks.h
+ *  Task API Header.
+ */
 
+typedef void (*Task)(void); /**< A Task has no arguments and returns nothing. */
+
+typedef struct TaskElement TaskElement;
+/** Single-Linked Task List. */
+struct TaskElement {
+    Task task; /**< Task to be executed */
+    TaskElement *next; /**< Next list element */
+};
+
+extern TaskElement *taskList; /**< List of registered Tasks */
+
+/** Adds another task that will be called regularly.
+ *  \param func Task to be executed
+ *  \returns 0 on success
+ */
+uint8_t addTask(Task func);
+
+/** Removes an already registered Task.
+ *  \param func Task to be removed
+ *  \returns 0 on success
+ */
+uint8_t removeTask(Task func);
+
+/** Executes registered Tasks.
+ *  Call this in your Main Loop!
+ */
+void tasks(void);
+
+/** Get the number of registered Tasks.
+ *  \returns Count of registered Tasks
+ */
 uint8_t tasksRegistered(void);
 
 #endif
+/** @} */
