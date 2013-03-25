@@ -35,19 +35,22 @@
 
 #include <time.h>
 
-// Uses Timer 2!
-// Interrupt:
-// Prescaler 64
-// Count to 250
-// => 1 Interrupt per millisecond
+/** \addtogroup time Time Keeping
+ *  \ingroup System
+ *  @{
+ */
 
-volatile time_t systemTime = 0; // Overflows in 500 million years...
+/** \file time.c
+ *  Time API Implementation.
+ */
 
-#define TCRA TCCR2A
-#define TCRB TCCR2B
-#define OCR OCR2A
-#define TIMS TIMSK2
-#define OCIE OCIE2A
+volatile time_t systemTime = 0; /**< Current System Uptime */
+
+#define TCRA TCCR2A /**< Timer 2 Control Register A */
+#define TCRB TCCR2B /**< Timer 2 Control Register B */
+#define OCR OCR2A /**< Timer 2 Compare Register A */
+#define TIMS TIMSK2 /**< Timer 2 Interrupt Mask */
+#define OCIE OCIE2A /**< Timer 2 Compare Match A Interrupt Enable */
 
 void initSystemTimer() {
     // Timer initialization
@@ -57,7 +60,7 @@ void initSystemTimer() {
     TIMS |= (1 << OCIE); // Enable compare match interrupt
 }
 
-// ISR Name is MCU dependent
+/** Timer 2 Compare Match A Interrupt */
 ISR(TIMER2_COMPA_vect) {
     systemTime++;
 }
@@ -65,3 +68,4 @@ ISR(TIMER2_COMPA_vect) {
 time_t getSystemTime(void) {
     return systemTime;
 }
+/** @} */

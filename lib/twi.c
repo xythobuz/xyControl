@@ -1,7 +1,3 @@
-/**
- * @file twi.c
- * @brief I2C Master Library using hardware TWI interface.
- */
 /*************************************************************************
 * Title:    I2C master library using hardware TWI interface
 * Author:   Peter Fleury <pfleury@gmx.ch>  http://jump.to/fleury

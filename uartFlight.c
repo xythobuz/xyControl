@@ -47,9 +47,7 @@
 #include <pid.h>
 #include <set.h>
 
-/** \example uartFlight.c
- *
- */
+/** \example uartFlight.c */
 
 #define MAXANGLE 45
 #define ANGLESTEP 10
@@ -73,16 +71,16 @@ void motorLeft(void);
 void motorRight(void);
 void parameterChange(void);
 
-char motorToggleString[] PROGMEM = "Motor On/Off";
-char motorUpString[] PROGMEM = "Up";
-char motorDownString[] PROGMEM = "Down";
-char motorLeftString[] PROGMEM = "Left";
-char motorRightString[] PROGMEM = "Right";
-char motorForwardString[] PROGMEM = "Forwards";
-char motorBackwardString[] PROGMEM = "Backwards";
-char controlToggleString[] PROGMEM = "Toggle PID";
-char parameterChangeString[] PROGMEM = "Change PID Params";
-char zeroString[] PROGMEM = "Angles to Zero";
+char PROGMEM motorToggleString[] = "Motor On/Off";
+char PROGMEM motorUpString[] = "Up";
+char PROGMEM motorDownString[] = "Down";
+char PROGMEM motorLeftString[] = "Left";
+char PROGMEM motorRightString[] = "Right";
+char PROGMEM motorForwardString[] = "Forwards";
+char PROGMEM motorBackwardString[] = "Backwards";
+char PROGMEM controlToggleString[] = "Toggle PID";
+char PROGMEM parameterChangeString[] = "Change PID Params";
+char PROGMEM zeroString[] = "Angles to Zero";
 
 uint8_t state = 0; // Bit 0: Motor, Bit 1: PID
 uint8_t speed = 10;

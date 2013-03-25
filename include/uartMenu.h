@@ -32,9 +32,45 @@
 
 #include <tasks.h>
 
+/** \addtogroup uartmenu UART Menu
+ *  \ingroup System
+ *  Enables user interaction with an UART Menu.
+ *  @{
+ */
+
+/** \file uartMenu.h
+ *  UART Menu API Header.
+ */
+
+typedef struct MenuEntry MenuEntry;
+/** Data Structure for Single-Linked-List for UART Menu.
+ * Stores Helptext, command and action.
+ */
+struct MenuEntry {
+    uint8_t cmd; /**< Byte that triggers the action */
+    PGM_P helpText; /**< Text (in Flash) printed with help command */
+    Task f; /**< Action that get's executed */
+    MenuEntry *next; /**< Next MenuEntry in the linked list */
+};
+
+/** Add a command to the UART Menu. 
+ *  \param cmd Byte that triggers command
+ *  \param help Help Text String in Flash
+ *  \param f Task to be executed
+ *  \return 0 on success, 1 if already registered or not enough memory.
+ */
 uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f); // 0 on success
+
+/** Print all registered commands. */
 void uartMenuPrintHelp(void);
+
+/** Register a Handler for unhandled menu commands.
+ *  \param handler Will be called if an unknown command is received.
+ */
 void uartMenuRegisterHandler(void (*handler)(char)); // Gets called when no command
+
+/** Task to work the UART Menu. */
 void uartMenuTask(void);
 
 #endif
+/** @} */

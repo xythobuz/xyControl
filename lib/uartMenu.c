@@ -39,23 +39,22 @@
 #include <serial.h>
 #include <uartMenu.h>
 
-typedef struct MenuEntry MenuEntry;
-/** Data Structure for Single-Linked-List for UART Menu.
- * Stores Helptext, command and action.
+/** \addtogroup uartmenu UART Menu
+ *  \ingroup System
+ *  @{
  */
-struct MenuEntry {
-    uint8_t cmd; /**< Byte that triggers the action */
-    PGM_P helpText; /**< Text (in Flash) printed with help command */
-    Task f; /**< Action that get's executed */
-    MenuEntry *next; /**< Next MenuEntry in the linked list */
-};
 
-MenuEntry *uartMenu = NULL;
-void (*unHandler)(char) = NULL;
+/** \file uartMenu.c
+ *  UART Menu API Implementation.
+ */
 
-MenuEntry *findEntry(uint8_t cmd);
-MenuEntry *reverseList(MenuEntry *root);
+MenuEntry *uartMenu = NULL; /**< Single-Linked-List for commands */
+void (*unHandler)(char) = NULL; /**< Handler for unhandled commands */
 
+/** Search the #uartMenu Linked List.
+ *  \param cmd Command to search for
+ *  \returns MenuEntry for command cmd, or NULL
+ */
 MenuEntry *findEntry(uint8_t cmd) {
     MenuEntry *p = uartMenu;
     while (p != NULL) {
@@ -87,6 +86,10 @@ uint8_t addMenuCommand(uint8_t cmd, PGM_P help, Task f) {
     xmemSetBank(lastBank);
 }
 
+/** Reverse the UART Menu List.
+ *  \param root Root of the Single-Linked-List.
+ *  \returns New root of reversed list.
+ */
 MenuEntry *reverseList(MenuEntry *root) {
     MenuEntry *new = NULL;
     while (root != NULL) {
@@ -144,3 +147,4 @@ void uartMenuTask(void) {
         xmemSetBank(lastBank);
     }
 }
+/** @} */

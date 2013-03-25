@@ -30,9 +30,37 @@
 #ifndef _time_h
 #define _time_h
 
+/** \addtogroup time Time Keeping
+ *  \ingroup System
+ *  Measuring Time with Millisecond Resolution.
+ *  Uses Timer 2
+ *
+ *  Prescaler 64
+ *
+ *  Count to 250
+ *
+ *  16000000 / 64 / 250 = 1000 --> 1 Interrupt per millisecond
+ *  @{
+ */
+
+/** \file time.h
+ *  Time API Header.
+ */
+
+/** Timekeeping Data Type.
+ *  Overflows after 500 million years... :)
+ */
 typedef uint64_t time_t;
 
+/** Initialize the system timer.
+ *  Execution every millisecond. Uses Timer 2.
+ */
 void initSystemTimer(void);
-time_t getSystemTime(void); // System uptime in ms
+
+/** Get the System Uptime.
+ *  \returns System Uptime in Milliseconds
+ */
+time_t getSystemTime(void);
 
 #endif
+/** @} */
