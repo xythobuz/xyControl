@@ -1,0 +1,29 @@
+\hypertarget{debug_8h}{\section{include/debug.h File Reference}
+\label{debug_8h}\index{include/debug.\-h@{include/debug.\-h}}
+}
+
+
+Debug and Assert Header and Implementation.  
+
+
+{\ttfamily \#include $<$avr/wdt.\-h$>$}\\*
+{\ttfamily \#include $<$serial.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}{D\-E\-B\-U\-G\-O\-U\-T}(x)~printf(x)
+\begin{DoxyCompactList}\small\item\em Debug Output Function. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)
+\begin{DoxyCompactList}\small\item\em Simple Assert Implementation. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{assert}(x)~\hyperlink{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)
+\begin{DoxyCompactList}\small\item\em Enable \hyperlink{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{assert()} \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print}(ignore)
+\begin{DoxyCompactList}\small\item\em Disable \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Debug and Assert Header and Implementation. 
+
+Definition in file \hyperlink{debug_8h_source}{debug.\-h}.
+

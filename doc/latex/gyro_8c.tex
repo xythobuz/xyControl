@@ -1,0 +1,45 @@
+\hypertarget{gyro_8c}{\section{lib/gyro.c File Reference}
+\label{gyro_8c}\index{lib/gyro.\-c@{lib/gyro.\-c}}
+}
+
+
+L3\-G\-D20 Gyroscope A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$gyro.\-h$>$}\\*
+{\ttfamily \#include $<$error.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__gyro_ga59d5eec860eab49733b4a814731e356c}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1}~0x20
+\begin{DoxyCompactList}\small\item\em Gyroscope Control Register 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__gyro_gae9b6f4aab3818fdb4c99970918e0a705}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4}~0x23
+\begin{DoxyCompactList}\small\item\em Gyroscope Control Register 4. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__gyro_ga8840a0f1e53e6999ddf435a61c0dc279}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L}~0x28
+\begin{DoxyCompactList}\small\item\em First Gyroscope Output Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}{gyro\-Write\-Byte} (uint8\-\_\-t reg, uint8\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Write a Gyroscope Register. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyro\-Init} (\hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} r)
+\begin{DoxyCompactList}\small\item\em Initializes the Gyroscope. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyro\-Read} (\hyperlink{struct_vector3f}{Vector3f} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Get a set of gyroscope data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} \hyperlink{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}{gyro\-Range}
+\begin{DoxyCompactList}\small\item\em Stored range to scale returned values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L3\-G\-D20 Gyroscope A\-P\-I Implementation. 
+
+Definition in file \hyperlink{gyro_8c_source}{gyro.\-c}.
+

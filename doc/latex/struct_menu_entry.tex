@@ -1,0 +1,100 @@
+\hypertarget{struct_menu_entry}{\section{Menu\-Entry Struct Reference}
+\label{struct_menu_entry}\index{Menu\-Entry@{Menu\-Entry}}
+}
+
+
+Data Structure for Single-\/\-Linked-\/\-List for U\-A\-R\-T Menu.  
+
+
+
+
+{\ttfamily \#include $<$uart\-Menu.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd}
+\begin{DoxyCompactList}\small\item\em Byte that triggers the action. \end{DoxyCompactList}\item 
+P\-G\-M\-\_\-\-P \hyperlink{struct_menu_entry_a2044142917d83a3df85815bb99dd115f}{help\-Text}
+\begin{DoxyCompactList}\small\item\em Text (in Flash) printed with help command. \end{DoxyCompactList}\item 
+\hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} \hyperlink{struct_menu_entry_afe96196d3564b9577477236d13329241}{f}
+\begin{DoxyCompactList}\small\item\em Action that get's executed. \end{DoxyCompactList}\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next}
+\begin{DoxyCompactList}\small\item\em Next \hyperlink{struct_menu_entry}{Menu\-Entry} in the linked list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data Structure for Single-\/\-Linked-\/\-List for U\-A\-R\-T Menu. 
+
+Stores Helptext, command and action. 
+
+Definition at line 49 of file uart\-Menu.\-h.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{\index{Menu\-Entry@{Menu\-Entry}!cmd@{cmd}}
+\index{cmd@{cmd}!MenuEntry@{Menu\-Entry}}
+\subsubsection[{cmd}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t cmd}}\label{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}
+
+
+Byte that triggers the action. 
+
+
+
+Definition at line 50 of file uart\-Menu.\-h.
+
+
+
+Referenced by add\-Menu\-Command(), find\-Entry(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
+
+\hypertarget{struct_menu_entry_afe96196d3564b9577477236d13329241}{\index{Menu\-Entry@{Menu\-Entry}!f@{f}}
+\index{f@{f}!MenuEntry@{Menu\-Entry}}
+\subsubsection[{f}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task} f}}\label{struct_menu_entry_afe96196d3564b9577477236d13329241}
+
+
+Action that get's executed. 
+
+
+
+Definition at line 52 of file uart\-Menu.\-h.
+
+
+
+Referenced by add\-Menu\-Command(), and uart\-Menu\-Task().
+
+\hypertarget{struct_menu_entry_a2044142917d83a3df85815bb99dd115f}{\index{Menu\-Entry@{Menu\-Entry}!help\-Text@{help\-Text}}
+\index{help\-Text@{help\-Text}!MenuEntry@{Menu\-Entry}}
+\subsubsection[{help\-Text}]{\setlength{\rightskip}{0pt plus 5cm}P\-G\-M\-\_\-\-P help\-Text}}\label{struct_menu_entry_a2044142917d83a3df85815bb99dd115f}
+
+
+Text (in Flash) printed with help command. 
+
+
+
+Definition at line 51 of file uart\-Menu.\-h.
+
+
+
+Referenced by add\-Menu\-Command(), and uart\-Menu\-Print\-Help().
+
+\hypertarget{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{\index{Menu\-Entry@{Menu\-Entry}!next@{next}}
+\index{next@{next}!MenuEntry@{Menu\-Entry}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu\-Entry}$\ast$ next}}\label{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}
+
+
+Next \hyperlink{struct_menu_entry}{Menu\-Entry} in the linked list. 
+
+
+
+Definition at line 53 of file uart\-Menu.\-h.
+
+
+
+Referenced by add\-Menu\-Command(), find\-Entry(), reverse\-List(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{uart_menu_8h}{uart\-Menu.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,279 @@
+\hypertarget{group__adc}{\section{A\-D\-C Driver}
+\label{group__adc}\index{A\-D\-C Driver@{A\-D\-C Driver}}
+}
+
+
+Analog-\/to-\/\-Digital Converter Library.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{adc_8h}{adc.\-h}
+\begin{DoxyCompactList}\small\item\em Analog-\/to-\/\-Digital Converter A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{adc_8c}{adc.\-c}
+\begin{DoxyCompactList}\small\item\em Analog-\/to-\/\-Digital Converter A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{A\-D\-C\-Ref} \{ \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}{A\-R\-E\-F}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{A\-V\-C\-C}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}{A\-I\-N\-T1}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}{A\-I\-N\-T2}
+ \}
+\begin{DoxyCompactList}\small\item\em A\-D\-C Reference Voltage options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adc\-Init} (\hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{A\-D\-C\-Ref} ref)
+\begin{DoxyCompactList}\small\item\em Initialize the A\-D\-C Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{adc\-Start} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Start a conversion on a given channel. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adc\-Ready} (void)
+\begin{DoxyCompactList}\small\item\em Check if a result is ready. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adc\-Get} (uint8\-\_\-t next)
+\begin{DoxyCompactList}\small\item\em Get the conversion results. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga60d979fb3eb0c7cc9da721671ad7f2bc}{adc\-Close} (void)
+\begin{DoxyCompactList}\small\item\em Disable the A\-D\-C to save energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Analog-\/to-\/\-Digital Converter Library. With 10bit Output and selectable Reference Voltage. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{\index{A\-D\-C Driver@{A\-D\-C Driver}!A\-D\-C\-Ref@{A\-D\-C\-Ref}}
+\index{A\-D\-C\-Ref@{A\-D\-C\-Ref}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{A\-D\-C\-Ref}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf A\-D\-C\-Ref}}}\label{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}
+
+
+A\-D\-C Reference Voltage options. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\-R\-E\-F@{A\-R\-E\-F}!A\-D\-C Driver@{A\-D\-C Driver}}\index{A\-D\-C Driver@{A\-D\-C Driver}!A\-R\-E\-F@{A\-R\-E\-F}}\item[{\em 
+\hypertarget{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}{A\-R\-E\-F}\label{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}
+}]External Reference Voltage. \index{A\-V\-C\-C@{A\-V\-C\-C}!A\-D\-C Driver@{A\-D\-C Driver}}\index{A\-D\-C Driver@{A\-D\-C Driver}!A\-V\-C\-C@{A\-V\-C\-C}}\item[{\em 
+\hypertarget{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{A\-V\-C\-C}\label{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}
+}]Supply Voltage. \index{A\-I\-N\-T1@{A\-I\-N\-T1}!A\-D\-C Driver@{A\-D\-C Driver}}\index{A\-D\-C Driver@{A\-D\-C Driver}!A\-I\-N\-T1@{A\-I\-N\-T1}}\item[{\em 
+\hypertarget{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}{A\-I\-N\-T1}\label{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}
+}]Internal Reference 1 (1.\-1\-V) \index{A\-I\-N\-T2@{A\-I\-N\-T2}!A\-D\-C Driver@{A\-D\-C Driver}}\index{A\-D\-C Driver@{A\-D\-C Driver}!A\-I\-N\-T2@{A\-I\-N\-T2}}\item[{\em 
+\hypertarget{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}{A\-I\-N\-T2}\label{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}
+}]Internal Reference 2 (2.\-56\-V) \end{description}
+\end{Desc}
+
+
+Definition at line 45 of file adc.\-h.
+
+
+\begin{DoxyCode}
+45              \{
+46     \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}{AREF}, 
+47     \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{AVCC}, 
+48     \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}{AINT1}, 
+49     \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}{AINT2} 
+50 \} \hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{ADCRef};
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__adc_ga60d979fb3eb0c7cc9da721671ad7f2bc}{\index{A\-D\-C Driver@{A\-D\-C Driver}!adc\-Close@{adc\-Close}}
+\index{adc\-Close@{adc\-Close}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{adc\-Close}]{\setlength{\rightskip}{0pt plus 5cm}void adc\-Close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__adc_ga60d979fb3eb0c7cc9da721671ad7f2bc}
+
+
+Disable the A\-D\-C to save energy. 
+
+
+
+Definition at line 107 of file adc.\-c.
+
+
+\begin{DoxyCode}
+107                 \{
+108     \textcolor{comment}{// deactivate adc}
+109     ADCSRA &= ~(1 << ADSC);
+110     PRR0 |= (1 << PRADC);
+111     ADCSRA &= ~(1 << ADEN);
+112 \}
+\end{DoxyCode}
+\hypertarget{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{\index{A\-D\-C Driver@{A\-D\-C Driver}!adc\-Get@{adc\-Get}}
+\index{adc\-Get@{adc\-Get}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{adc\-Get}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t adc\-Get (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{next}
+\end{DoxyParamCaption}
+)}}\label{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}
+
+
+Get the conversion results. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next} & Start next conversion if != 0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+10bit A\-D\-C value 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file adc.\-c.
+
+
+
+References adc\-Ready().
+
+
+
+Referenced by get\-Voltage().
+
+
+\begin{DoxyCode}
+96                               \{
+97     \textcolor{comment}{// Return measurements result}
+98     \textcolor{comment}{// Start next conversion}
+99     uint16\_t temp = 0;
+100     \textcolor{keywordflow}{while} (!\hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adcReady}());
+101     temp = ADC;
+102     \textcolor{keywordflow}{if} (next)
+103         ADCSRA |= (1 << ADSC); \textcolor{comment}{// Start next conversion}
+104     \textcolor{keywordflow}{return} temp;
+105 \}
+\end{DoxyCode}
+\hypertarget{group__adc_ga658c8b976878603187b79166345319e0}{\index{A\-D\-C Driver@{A\-D\-C Driver}!adc\-Init@{adc\-Init}}
+\index{adc\-Init@{adc\-Init}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{adc\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void adc\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-D\-C\-Ref}}]{ref}
+\end{DoxyParamCaption}
+)}}\label{group__adc_ga658c8b976878603187b79166345319e0}
+
+
+Initialize the A\-D\-C Hardware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref} & Reference Voltage. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file adc.\-c.
+
+
+
+References A\-I\-N\-T1, A\-I\-N\-T2, A\-R\-E\-F, and A\-V\-C\-C.
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+44                          \{
+45     \textcolor{comment}{// Enable ADC Module, start one conversion, wait for finish}
+46     PRR0 &= ~(1 << PRADC); \textcolor{comment}{// Disable ADC Power Reduction (Enable it...)}
+47     \textcolor{keywordflow}{switch}(ref) \{
+48         \textcolor{keywordflow}{case} \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{AVCC}:
+49             ADMUX = (1 << REFS0);
+50             \textcolor{keywordflow}{break};
+51 
+52         \textcolor{keywordflow}{case} \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}{AINT1}:
+53             ADMUX = (1 << REFS1);
+54             \textcolor{keywordflow}{break};
+55 
+56         \textcolor{keywordflow}{case} \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}{AINT2}:
+57             ADMUX = (1 << REFS1) | (1 << REFS0);
+58             \textcolor{keywordflow}{break};
+59 
+60         \textcolor{keywordflow}{case} \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}{AREF}:
+61             ADMUX &= ~((1 << REFS0) | (1 << REFS1));
+62             \textcolor{keywordflow}{break};
+63     \}
+64 
+65     ADCSRA = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); \textcolor{comment}{// Prescaler 128}
+66     ADCSRB = 0;
+67     ADCSRA |= (1 << ADEN) | (1 << ADSC); \textcolor{comment}{// Start ADC, single conversion}
+68 \}
+\end{DoxyCode}
+\hypertarget{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{\index{A\-D\-C Driver@{A\-D\-C Driver}!adc\-Ready@{adc\-Ready}}
+\index{adc\-Ready@{adc\-Ready}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{adc\-Ready}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t adc\-Ready (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}
+
+
+Check if a result is ready. 
+
+\begin{DoxyReturn}{Returns}
+1 if conversion is done. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file adc.\-c.
+
+
+
+Referenced by adc\-Get(), and get\-Voltage().
+
+
+\begin{DoxyCode}
+86                    \{
+87     \textcolor{comment}{// Is the measurement finished}
+88     \textcolor{keywordflow}{if} (ADCSRA & (1 << ADSC)) \{
+89         \textcolor{comment}{// ADSC bit is set}
+90         \textcolor{keywordflow}{return} 0;
+91     \} \textcolor{keywordflow}{else} \{
+92         \textcolor{keywordflow}{return} 1;
+93     \}
+94 \}
+\end{DoxyCode}
+\hypertarget{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{\index{A\-D\-C Driver@{A\-D\-C Driver}!adc\-Start@{adc\-Start}}
+\index{adc\-Start@{adc\-Start}!ADC Driver@{A\-D\-C Driver}}
+\subsubsection[{adc\-Start}]{\setlength{\rightskip}{0pt plus 5cm}void adc\-Start (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{group__adc_ga709f0e604f22040ae61dc7710f0adee5}
+
+
+Start a conversion on a given channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel (0 -\/ 15) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 70 of file adc.\-c.
+
+
+
+Referenced by get\-Voltage().
+
+
+\begin{DoxyCode}
+70                                \{
+71     \textcolor{comment}{// Start a measurement on channel}
+72     \textcolor{keywordflow}{if} (channel > 15) \{
+73         channel = 0;
+74     \}
+75     \textcolor{keywordflow}{if} (channel > 7) \{
+76         channel -= 8;
+77         ADCSRB |= (1 << MUX5);
+78     \} \textcolor{keywordflow}{else} \{
+79         ADCSRB &= ~(1 << MUX5);
+80     \}
+81     ADMUX &= ~0x1F; \textcolor{comment}{// Delete MUX0:4}
+82     ADMUX |= channel;
+83     ADCSRA |= (1 << ADSC);
+84 \}
+\end{DoxyCode}

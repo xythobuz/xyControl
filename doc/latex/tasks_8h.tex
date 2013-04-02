@@ -1,0 +1,41 @@
+\hypertarget{tasks_8h}{\section{include/tasks.h File Reference}
+\label{tasks_8h}\index{include/tasks.\-h@{include/tasks.\-h}}
+}
+
+
+Task A\-P\-I Header.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_task_element}{Task\-Element}
+\begin{DoxyCompactList}\small\item\em Single-\/\-Linked Task List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} )(void)
+\begin{DoxyCompactList}\small\item\em A Task has no arguments and returns nothing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{add\-Task} (\hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} func)
+\begin{DoxyCompactList}\small\item\em Adds another task that will be called regularly. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__task_ga2651e32a00e6db5b77aa1042d3c7b9c7}{remove\-Task} (\hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} func)
+\begin{DoxyCompactList}\small\item\em Removes an already registered Task. \end{DoxyCompactList}\item 
+void \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks} (void)
+\begin{DoxyCompactList}\small\item\em Executes registered Tasks. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__task_ga962f40b16f7aa5ab995593971fb6f848}{tasks\-Registered} (void)
+\begin{DoxyCompactList}\small\item\em Get the number of registered Tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_task_element}{Task\-Element} $\ast$ \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{task\-List}
+\begin{DoxyCompactList}\small\item\em List of registered Tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task A\-P\-I Header. 
+
+Definition in file \hyperlink{tasks_8h_source}{tasks.\-h}.
+

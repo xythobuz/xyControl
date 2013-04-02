@@ -1,0 +1,40 @@
+\hypertarget{mag_8c}{\section{lib/mag.c File Reference}
+\label{mag_8c}\index{lib/mag.\-c@{lib/mag.\-c}}
+}
+
+
+L\-S\-M303\-D\-L\-H\-C Magnetometer A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$mag.\-h$>$}\\*
+{\ttfamily \#include $<$error.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__mag_ga42f59dd3e4a9cb4d8d4dd4a1019b6ab5}{M\-A\-G\-R\-E\-G\-\_\-\-C\-R\-B}~0x01
+\begin{DoxyCompactList}\small\item\em Magnetometer Gain Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__mag_ga54eabf3b296f6550c9f6d9826020c623}{M\-A\-G\-R\-E\-G\-\_\-\-M\-R}~0x02
+\begin{DoxyCompactList}\small\item\em Magnetometer Mode Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__mag_ga84e94fce89f9ba26ff3f33621c3a63bd}{M\-A\-G\-R\-E\-G\-\_\-\-X\-H}~0x03
+\begin{DoxyCompactList}\small\item\em First Magnetometer Output Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__mag_gafaf03e3013fe2046847afc2518f23eed}{mag\-Write\-Register} (uint8\-\_\-t reg, uint8\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Write a Magnetometer Register. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{mag\-Init} (\hyperlink{group__mag_ga3af649d913d146d6654db2354d88c18a}{Mag\-Range} r)
+\begin{DoxyCompactList}\small\item\em Initialize the Magnetometer. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__mag_gacc0c83a48498170ef36451db2c684abb}{mag\-Read} (\hyperlink{struct_vector3f}{Vector3f} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Read from the Magnetometer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\-S\-M303\-D\-L\-H\-C Magnetometer A\-P\-I Implementation. 
+
+Definition in file \hyperlink{mag_8c_source}{mag.\-c}.
+

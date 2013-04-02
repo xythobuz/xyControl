@@ -1,0 +1,405 @@
+\hypertarget{group__twi}{\section{I2\-C Driver}
+\label{group__twi}\index{I2\-C Driver@{I2\-C Driver}}
+}
+
+
+Using the A\-V\-R T\-W\-I/\-I2\-C Hardware.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{twi_8h}{twi.\-h}
+\begin{DoxyCompactList}\small\item\em I2\-C A\-P\-I Header. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{T\-W\-I\-\_\-\-R\-E\-A\-D}~1
+\begin{DoxyCompactList}\small\item\em I2\-C Read Bit. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E}~0
+\begin{DoxyCompactList}\small\item\em I2\-C Write Bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{twi\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the I2\-C Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twi\-Stop} (void)
+\begin{DoxyCompactList}\small\item\em Stop the I2\-C Hardware. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twi\-Start} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start an I2\-C Transfer. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twi\-Rep\-Start} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start a repeated I2\-C Transfer. \end{DoxyCompactList}\item 
+void \hyperlink{group__twi_ga0988733f7d2d69888045b0a48463c088}{twi\-Start\-Wait} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start an I2\-C Transfer and poll until ready. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twi\-Write} (unsigned char data)
+\begin{DoxyCompactList}\small\item\em Write to the I2\-C Slave. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twi\-Read\-Ack} (void)
+\begin{DoxyCompactList}\small\item\em Read from the I2\-C Slave and request more data. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twi\-Read\-Nak} (void)
+\begin{DoxyCompactList}\small\item\em Read from the I2\-C Slave and deny more data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Using the A\-V\-R T\-W\-I/\-I2\-C Hardware. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{\index{I2\-C Driver@{I2\-C Driver}!T\-W\-I\-\_\-\-R\-E\-A\-D@{T\-W\-I\-\_\-\-R\-E\-A\-D}}
+\index{T\-W\-I\-\_\-\-R\-E\-A\-D@{T\-W\-I\-\_\-\-R\-E\-A\-D}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{T\-W\-I\-\_\-\-R\-E\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-W\-I\-\_\-\-R\-E\-A\-D~1}}\label{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}
+
+
+I2\-C Read Bit. 
+
+
+
+Definition at line 43 of file twi.\-h.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), and mag\-Read().
+
+\hypertarget{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{\index{I2\-C Driver@{I2\-C Driver}!T\-W\-I\-\_\-\-W\-R\-I\-T\-E@{T\-W\-I\-\_\-\-W\-R\-I\-T\-E}}
+\index{T\-W\-I\-\_\-\-W\-R\-I\-T\-E@{T\-W\-I\-\_\-\-W\-R\-I\-T\-E}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{T\-W\-I\-\_\-\-W\-R\-I\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-W\-I\-\_\-\-W\-R\-I\-T\-E~0}}\label{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}
+
+
+I2\-C Write Bit. 
+
+
+
+Definition at line 44 of file twi.\-h.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), mag\-Read(), and motor\-Task().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Init@{twi\-Init}}
+\index{twi\-Init@{twi\-Init}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void twi\-Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga1a9c88673ee82a5a84274814f168ea78}
+
+
+Initialize the I2\-C Hardware. 
+
+
+
+Definition at line 26 of file twi.\-c.
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+27 \{
+28   \textcolor{comment}{/* initialize TWI clock: 100 kHz clock, TWPS = 0 => prescaler = 1 */}
+29 
+30   TWSR = 0;                         \textcolor{comment}{/* no prescaler */}
+31   TWBR = ((F\_CPU/SCL\_CLOCK)-16)/2;  \textcolor{comment}{/* must be > 10 for stable operation */}
+32 
+33 \}\textcolor{comment}{/* i2c\_init */}
+\end{DoxyCode}
+\hypertarget{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Read\-Ack@{twi\-Read\-Ack}}
+\index{twi\-Read\-Ack@{twi\-Read\-Ack}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Read\-Ack}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char twi\-Read\-Ack (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}
+
+
+Read from the I2\-C Slave and request more data. 
+
+\begin{DoxyReturn}{Returns}
+Data read 
+\end{DoxyReturn}
+
+
+Definition at line 179 of file twi.\-c.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), and mag\-Read().
+
+
+\begin{DoxyCode}
+180 \{
+181     TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);
+182     \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+183 
+184     \textcolor{keywordflow}{return} TWDR;
+185 
+186 \}\textcolor{comment}{/* i2c\_readAck */}
+\end{DoxyCode}
+\hypertarget{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Read\-Nak@{twi\-Read\-Nak}}
+\index{twi\-Read\-Nak@{twi\-Read\-Nak}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Read\-Nak}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char twi\-Read\-Nak (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}
+
+
+Read from the I2\-C Slave and deny more data. 
+
+\begin{DoxyReturn}{Returns}
+Data read 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file twi.\-c.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), and mag\-Read().
+
+
+\begin{DoxyCode}
+195 \{
+196     TWCR = (1<<TWINT) | (1<<TWEN);
+197     \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+198 
+199     \textcolor{keywordflow}{return} TWDR;
+200 
+201 \}\textcolor{comment}{/* i2c\_readNak */}
+\end{DoxyCode}
+\hypertarget{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Rep\-Start@{twi\-Rep\-Start}}
+\index{twi\-Rep\-Start@{twi\-Rep\-Start}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Rep\-Start}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char twi\-Rep\-Start (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{addr}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}
+
+
+Start a repeated I2\-C Transfer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Slave Address (with Read/\-Write bit) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 127 of file twi.\-c.
+
+
+
+References twi\-Start().
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), and mag\-Read().
+
+
+\begin{DoxyCode}
+128 \{
+129     \textcolor{keywordflow}{return} \hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}( address );
+130 
+131 \}\textcolor{comment}{/* i2c\_rep\_start */}
+\end{DoxyCode}
+\hypertarget{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Start@{twi\-Start}}
+\index{twi\-Start@{twi\-Start}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Start}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char twi\-Start (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{addr}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}
+
+
+Start an I2\-C Transfer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Slave Address (with Read/\-Write bit) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file twi.\-c.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), mag\-Read(), motor\-Task(), and twi\-Rep\-Start().
+
+
+\begin{DoxyCode}
+41 \{
+42     uint8\_t   twst;
+43 
+44     \textcolor{comment}{// send START condition}
+45     TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
+46 
+47     \textcolor{comment}{// wait until transmission completed}
+48     \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+49 
+50     \textcolor{comment}{// check value of TWI Status Register. Mask prescaler bits.}
+51     twst = TW\_STATUS & 0xF8;
+52     \textcolor{keywordflow}{if} ( (twst != TW\_START) && (twst != TW\_REP\_START)) \textcolor{keywordflow}{return} 1;
+53 
+54     \textcolor{comment}{// send device address}
+55     TWDR = address;
+56     TWCR = (1<<TWINT) | (1<<TWEN);
+57 
+58     \textcolor{comment}{// wail until transmission completed and ACK/NACK has been received}
+59     \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+60 
+61     \textcolor{comment}{// check value of TWI Status Register. Mask prescaler bits.}
+62     twst = TW\_STATUS & 0xF8;
+63     \textcolor{keywordflow}{if} ( (twst != TW\_MT\_SLA\_ACK) && (twst != TW\_MR\_SLA\_ACK) ) \textcolor{keywordflow}{return} 1;
+64 
+65     \textcolor{keywordflow}{return} 0;
+66 
+67 \}\textcolor{comment}{/* i2c\_start */}
+\end{DoxyCode}
+\hypertarget{group__twi_ga0988733f7d2d69888045b0a48463c088}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Start\-Wait@{twi\-Start\-Wait}}
+\index{twi\-Start\-Wait@{twi\-Start\-Wait}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Start\-Wait}]{\setlength{\rightskip}{0pt plus 5cm}void twi\-Start\-Wait (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{addr}
+\end{DoxyParamCaption}
+)}}\label{group__twi_ga0988733f7d2d69888045b0a48463c088}
+
+
+Start an I2\-C Transfer and poll until ready. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Slave Address (with Read/\-Write bit) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file twi.\-c.
+
+
+\begin{DoxyCode}
+77 \{
+78     uint8\_t   twst;
+79 
+80 
+81     \textcolor{keywordflow}{while} ( 1 )
+82     \{
+83         \textcolor{comment}{// send START condition}
+84         TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
+85 
+86         \textcolor{comment}{// wait until transmission completed}
+87         \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+88 
+89         \textcolor{comment}{// check value of TWI Status Register. Mask prescaler bits.}
+90         twst = TW\_STATUS & 0xF8;
+91         \textcolor{keywordflow}{if} ( (twst != TW\_START) && (twst != TW\_REP\_START)) \textcolor{keywordflow}{continue};
+92 
+93         \textcolor{comment}{// send device address}
+94         TWDR = address;
+95         TWCR = (1<<TWINT) | (1<<TWEN);
+96 
+97         \textcolor{comment}{// wail until transmission completed}
+98         \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+99 
+100         \textcolor{comment}{// check value of TWI Status Register. Mask prescaler bits.}
+101         twst = TW\_STATUS & 0xF8;
+102         \textcolor{keywordflow}{if} ( (twst == TW\_MT\_SLA\_NACK )||(twst ==TW\_MR\_DATA\_NACK) )
+103         \{
+104             \textcolor{comment}{/* device busy, send stop condition to terminate write operation */}
+105             TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+106 
+107             \textcolor{comment}{// wait until stop condition is executed and bus released}
+108             \textcolor{keywordflow}{while}(TWCR & (1<<TWSTO));
+109 
+110             \textcolor{keywordflow}{continue};
+111         \}
+112         \textcolor{comment}{//if( twst != TW\_MT\_SLA\_ACK) return 1;}
+113         \textcolor{keywordflow}{break};
+114      \}
+115 
+116 \}\textcolor{comment}{/* i2c\_start\_wait */}
+\end{DoxyCode}
+\hypertarget{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Stop@{twi\-Stop}}
+\index{twi\-Stop@{twi\-Stop}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Stop}]{\setlength{\rightskip}{0pt plus 5cm}void twi\-Stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}
+
+
+Stop the I2\-C Hardware. 
+
+
+
+Definition at line 137 of file twi.\-c.
+
+
+
+Referenced by motor\-Task().
+
+
+\begin{DoxyCode}
+138 \{
+139     \textcolor{comment}{/* send stop condition */}
+140     TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+141 
+142     \textcolor{comment}{// wait until stop condition is executed and bus released}
+143     \textcolor{keywordflow}{while}(TWCR & (1<<TWSTO));
+144 
+145 \}\textcolor{comment}{/* i2c\_stop */}
+\end{DoxyCode}
+\hypertarget{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{\index{I2\-C Driver@{I2\-C Driver}!twi\-Write@{twi\-Write}}
+\index{twi\-Write@{twi\-Write}!I2C Driver@{I2\-C Driver}}
+\subsubsection[{twi\-Write}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char twi\-Write (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{data}
+\end{DoxyParamCaption}
+)}}\label{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}
+
+
+Write to the I2\-C Slave. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file twi.\-c.
+
+
+
+Referenced by acc\-Read(), gyro\-Read(), mag\-Read(), and motor\-Task().
+
+
+\begin{DoxyCode}
+156 \{
+157     uint8\_t   twst;
+158 
+159     \textcolor{comment}{// send data to the previously addressed device}
+160     TWDR = data;
+161     TWCR = (1<<TWINT) | (1<<TWEN);
+162 
+163     \textcolor{comment}{// wait until transmission completed}
+164     \textcolor{keywordflow}{while}(!(TWCR & (1<<TWINT)));
+165 
+166     \textcolor{comment}{// check value of TWI Status Register. Mask prescaler bits}
+167     twst = TW\_STATUS & 0xF8;
+168     \textcolor{keywordflow}{if}( twst != TW\_MT\_DATA\_ACK) \textcolor{keywordflow}{return} 1;
+169     \textcolor{keywordflow}{return} 0;
+170 
+171 \}\textcolor{comment}{/* i2c\_write */}
+\end{DoxyCode}

@@ -1,0 +1,26 @@
+\hypertarget{kalman_8c}{\section{lib/kalman.c File Reference}
+\label{kalman_8c}\index{lib/kalman.\-c@{lib/kalman.\-c}}
+}
+
+
+Kalman-\/\-Filter Implementation.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$kalman.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalman\-Init} (\hyperlink{struct_kalman}{Kalman} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Initialize a Kalman-\/\-State. \end{DoxyCompactList}\item 
+void \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalman\-Innovate} (\hyperlink{struct_kalman}{Kalman} $\ast$data, double z1, double z2)
+\begin{DoxyCompactList}\small\item\em Step the \hyperlink{struct_kalman}{Kalman} Filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Kalman-\/\-Filter Implementation. 
+
+Definition in file \hyperlink{kalman_8c_source}{kalman.\-c}.
+

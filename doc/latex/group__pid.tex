@@ -1,0 +1,393 @@
+\hypertarget{group__pid}{\section{P\-I\-D-\/\-Controller}
+\label{group__pid}\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}}
+}
+
+
+Simple implementation for multiple floating-\/point P\-I\-D Controllers.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{pid_8h}{pid.\-h}
+\begin{DoxyCompactList}\small\item\em P\-I\-D Library Header. \end{DoxyCompactList}\item 
+file \hyperlink{pid_8c}{pid.\-c}
+\begin{DoxyCompactList}\small\item\em P\-I\-D Library Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_p_i_d_state}{P\-I\-D\-State}
+\begin{DoxyCompactList}\small\item\em Data Structure for a single P\-I\-D Controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{R\-O\-L\-L}~0
+\begin{DoxyCompactList}\small\item\em Roll index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{P\-I\-T\-C\-H}~1
+\begin{DoxyCompactList}\small\item\em Pitch index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{pid\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize Roll and Pitch P\-I\-D. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{pid\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Step the Roll and Pitch P\-I\-D Controllers. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pid\-Set} (\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$pid, double kp, double ki, double kd, double min, double max, double i\-Min, double i\-Max)
+\begin{DoxyCompactList}\small\item\em Set the parameters of a P\-I\-D controller. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaa373eb9da73ef4da4195fd5114555772}{pid\-Execute} (double should, double is, \hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Execute a single P\-I\-D Control Step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch target angles. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D Output. \end{DoxyCompactList}\item 
+\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D States. \end{DoxyCompactList}\item 
+\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D States. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch target angles. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D Output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Simple implementation for multiple floating-\/point P\-I\-D Controllers. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!P\-I\-T\-C\-H@{P\-I\-T\-C\-H}}
+\index{P\-I\-T\-C\-H@{P\-I\-T\-C\-H}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{P\-I\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-T\-C\-H~1}}\label{group__pid_gacd633835a520a62245ec6cfeb6d00e97}
+
+
+Pitch index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 61 of file pid.\-h.
+
+
+
+Referenced by pid\-Task().
+
+\hypertarget{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!R\-O\-L\-L@{R\-O\-L\-L}}
+\index{R\-O\-L\-L@{R\-O\-L\-L}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{R\-O\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-O\-L\-L~0}}\label{group__pid_gaf902416f65138704a180dbae2dc9d8f2}
+
+
+Roll index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 60 of file pid.\-h.
+
+
+
+Referenced by pid\-Task().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__pid_gaa373eb9da73ef4da4195fd5114555772}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!pid\-Execute@{pid\-Execute}}
+\index{pid\-Execute@{pid\-Execute}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{pid\-Execute}]{\setlength{\rightskip}{0pt plus 5cm}double pid\-Execute (
+\begin{DoxyParamCaption}
+\item[{double}]{should, }
+\item[{double}]{is, }
+\item[{{\bf P\-I\-D\-State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}}\label{group__pid_gaa373eb9da73ef4da4195fd5114555772}
+
+
+Execute a single P\-I\-D Control Step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em should} & Target value \\
+\hline
+{\em is} & Measured value \\
+\hline
+{\em state} & P\-I\-D State \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\-I\-D Output 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file pid.\-c.
+
+
+
+References get\-System\-Time(), P\-I\-D\-State\-::int\-Max, P\-I\-D\-State\-::int\-Min, P\-I\-D\-State\-::kd, P\-I\-D\-State\-::ki, P\-I\-D\-State\-::kp, P\-I\-D\-State\-::last, P\-I\-D\-State\-::last\-Error, P\-I\-D\-State\-::out\-Max, P\-I\-D\-State\-::out\-Min, and P\-I\-D\-State\-::sum\-Error.
+
+
+
+Referenced by pid\-Task().
+
+
+\begin{DoxyCode}
+54                                                              \{
+55     \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} now = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+56     \textcolor{keywordtype}{double} timeChange = (double)(now - state->\hyperlink{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}{last});
+57     \textcolor{keywordtype}{double} error = should - is;
+58     \textcolor{keywordtype}{double} newErrorSum = state->\hyperlink{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{sumError} + (error * timeChange);
+59     \textcolor{keywordflow}{if} ((newErrorSum >= state->\hyperlink{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}{intMin}) && (newErrorSum <= state->\hyperlink{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}{intMax}))
+60         state->\hyperlink{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{sumError} = newErrorSum; \textcolor{comment}{// Prevent Integral Windup}
+61     \textcolor{keywordtype}{double} dError = (error - state->\hyperlink{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}{lastError}) / timeChange;
+62     \textcolor{keywordtype}{double} output = (state->\hyperlink{struct_p_i_d_state_ac6390bc2d074992cc6ca37d132a5262d}{kp} * error) + (state->\hyperlink{struct_p_i_d_state_a23e09706a4abb026e1de279c4904e926}{ki} * state->\hyperlink{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{sumError}) + (state->
+      \hyperlink{struct_p_i_d_state_a1cf17dd45e85748457863776dcb28335}{kd} * dError);
+63     state->\hyperlink{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}{lastError} = error;
+64     state->\hyperlink{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}{last} = now;
+65     \textcolor{keywordflow}{if} (output > state->\hyperlink{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}{outMax}) \{
+66         output = state->\hyperlink{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}{outMax};
+67     \}
+68     \textcolor{keywordflow}{if} (output < state->outMin) \{
+69         output = state->\hyperlink{struct_p_i_d_state_a5df6ddfa37685d9035861b0d9f323a05}{outMin};
+70     \}
+71     \textcolor{keywordflow}{return} output;
+72 \}
+\end{DoxyCode}
+\hypertarget{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!pid\-Init@{pid\-Init}}
+\index{pid\-Init@{pid\-Init}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{pid\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void pid\-Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}
+
+
+Initialize Roll and Pitch P\-I\-D. 
+
+Stores the P\-I\-D States in \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. Also resets \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} to zero. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 74 of file pid.\-c.
+
+
+
+References o\-\_\-should, P\-I\-D\-\_\-\-D, P\-I\-D\-\_\-\-I, P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X, P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N, P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X, P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N, P\-I\-D\-\_\-\-P, and pid\-Set().
+
+
+\begin{DoxyCode}
+74                    \{
+75     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < 2; i++) \{
+76         \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[i], \hyperlink{group__config_gab3ea7c9a4399d8844727806c960880ad}{PID\_P}, \hyperlink{group__config_ga2dfd5fcf8dd0bee1de9007fe8e161886}{PID\_I}, \hyperlink{group__config_ga2a442b8579a5c5f9526e824165125497}{PID\_D}, 
+      \hyperlink{group__config_ga684067981e82e4827607d0b0558812cb}{PID\_OUTMIN}, \hyperlink{group__config_gaf36e4eab421932a006c7df7e84f11cf0}{PID\_OUTMAX}, \hyperlink{group__config_ga9ee651f30455f25b5ca4c4bb9a0a6e49}{PID\_INTMIN}, \hyperlink{group__config_ga50582411cbb3f8a20ffd3aa2254ddf71}{PID\_INTMAX});
+77         \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[i] = 0.0;
+78     \}
+79 \}
+\end{DoxyCode}
+\hypertarget{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!pid\-Set@{pid\-Set}}
+\index{pid\-Set@{pid\-Set}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{pid\-Set}]{\setlength{\rightskip}{0pt plus 5cm}void pid\-Set (
+\begin{DoxyParamCaption}
+\item[{{\bf P\-I\-D\-State} $\ast$}]{pid, }
+\item[{double}]{kp, }
+\item[{double}]{ki, }
+\item[{double}]{kd, }
+\item[{double}]{min, }
+\item[{double}]{max, }
+\item[{double}]{i\-Min, }
+\item[{double}]{i\-Max}
+\end{DoxyParamCaption}
+)}}\label{group__pid_ga1fc5e60f994041f4a534f18d1f307308}
+
+
+Set the parameters of a P\-I\-D controller. 
+
+The state variables will be reset to zero.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid} & \hyperlink{struct_p_i_d_state}{P\-I\-D\-State} to be changed. \\
+\hline
+{\em kp} & New Proportional constant. \\
+\hline
+{\em ki} & New Integral constant. \\
+\hline
+{\em kd} & New Derivative constant. \\
+\hline
+{\em min} & New minimum Output. \\
+\hline
+{\em max} & New maximum Output. \\
+\hline
+{\em i\-Min} & New minimal Integral Sum. \\
+\hline
+{\em i\-Max} & New maximal Integral Sum. \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 81 of file pid.\-c.
+
+
+
+References P\-I\-D\-State\-::int\-Max, P\-I\-D\-State\-::int\-Min, P\-I\-D\-State\-::kd, P\-I\-D\-State\-::ki, P\-I\-D\-State\-::kp, P\-I\-D\-State\-::last, P\-I\-D\-State\-::last\-Error, P\-I\-D\-State\-::out\-Max, P\-I\-D\-State\-::out\-Min, and P\-I\-D\-State\-::sum\-Error.
+
+
+
+Referenced by pid\-Init().
+
+
+\begin{DoxyCode}
+81                                                                                                            
+         \{
+82     pid->\hyperlink{struct_p_i_d_state_ac6390bc2d074992cc6ca37d132a5262d}{kp} = kp;
+83     pid->\hyperlink{struct_p_i_d_state_a23e09706a4abb026e1de279c4904e926}{ki} = ki;
+84     pid->\hyperlink{struct_p_i_d_state_a1cf17dd45e85748457863776dcb28335}{kd} = kd;
+85     pid->\hyperlink{struct_p_i_d_state_a5df6ddfa37685d9035861b0d9f323a05}{outMin} = min;
+86     pid->\hyperlink{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}{outMax} = max;
+87     pid->\hyperlink{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}{intMin} = iMin;
+88     pid->\hyperlink{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}{intMax} = iMax;
+89     pid->\hyperlink{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}{lastError} = 0;
+90     pid->\hyperlink{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{sumError} = 0;
+91     pid->\hyperlink{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}{last} = 0;
+92 \}
+\end{DoxyCode}
+\hypertarget{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!pid\-Task@{pid\-Task}}
+\index{pid\-Task@{pid\-Task}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{pid\-Task}]{\setlength{\rightskip}{0pt plus 5cm}void pid\-Task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}
+
+
+Step the Roll and Pitch P\-I\-D Controllers. 
+
+Placing their output in \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and reading the input from \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} and the global orientation \hyperlink{struct_angles}{Angles}. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 94 of file pid.\-c.
+
+
+
+References o\-\_\-output, o\-\_\-should, orientation, pid\-Execute(), Angles\-::pitch, P\-I\-T\-C\-H, Angles\-::roll, and R\-O\-L\-L.
+
+
+\begin{DoxyCode}
+94                    \{
+95     \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = \hyperlink{group__pid_gaa373eb9da73ef4da4195fd5114555772}{pidExecute}(\hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}], 
+      \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll}, &\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[ROLL]);
+96     \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = \hyperlink{group__pid_gaa373eb9da73ef4da4195fd5114555772}{pidExecute}(\hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}], 
+      \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch}, &\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[PITCH]);
+97 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-output@{o\-\_\-output}}
+\index{o\-\_\-output@{o\-\_\-output}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-output}]{\setlength{\rightskip}{0pt plus 5cm}double o\-\_\-output\mbox{[}2\mbox{]}}}\label{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}
+
+
+Roll and Pitch P\-I\-D Output. 
+
+
+
+Definition at line 52 of file pid.\-c.
+
+
+
+Referenced by pid\-Task(), and set\-Task().
+
+\hypertarget{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-output@{o\-\_\-output}}
+\index{o\-\_\-output@{o\-\_\-output}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-output}]{\setlength{\rightskip}{0pt plus 5cm}double o\-\_\-output\mbox{[}2\mbox{]}}}\label{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}
+
+
+Roll and Pitch P\-I\-D Output. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 52 of file pid.\-c.
+
+
+
+Referenced by pid\-Task(), and set\-Task().
+
+\hypertarget{group__pid_gaf8f428e17178b1f15edba7158fd831da}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-pids@{o\-\_\-pids}}
+\index{o\-\_\-pids@{o\-\_\-pids}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-pids}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\-I\-D\-State} o\-\_\-pids\mbox{[}2\mbox{]}}}\label{group__pid_gaf8f428e17178b1f15edba7158fd831da}
+
+
+Roll and Pitch P\-I\-D States. 
+
+
+
+Definition at line 50 of file pid.\-c.
+
+
+
+Referenced by set\-Task().
+
+\hypertarget{group__pid_gaf8f428e17178b1f15edba7158fd831da}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-pids@{o\-\_\-pids}}
+\index{o\-\_\-pids@{o\-\_\-pids}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-pids}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\-I\-D\-State} o\-\_\-pids\mbox{[}2\mbox{]}}}\label{group__pid_gaf8f428e17178b1f15edba7158fd831da}
+
+
+Roll and Pitch P\-I\-D States. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 50 of file pid.\-c.
+
+
+
+Referenced by set\-Task().
+
+\hypertarget{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-should@{o\-\_\-should}}
+\index{o\-\_\-should@{o\-\_\-should}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-should}]{\setlength{\rightskip}{0pt plus 5cm}double o\-\_\-should\mbox{[}2\mbox{]}}}\label{group__pid_ga3e9b95260c17d0da155fb4eede660d03}
+
+
+Roll and Pitch target angles. 
+
+
+
+Definition at line 51 of file pid.\-c.
+
+
+
+Referenced by pid\-Init(), and pid\-Task().
+
+\hypertarget{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{\index{P\-I\-D-\/\-Controller@{P\-I\-D-\/\-Controller}!o\-\_\-should@{o\-\_\-should}}
+\index{o\-\_\-should@{o\-\_\-should}!PID-Controller@{P\-I\-D-\/\-Controller}}
+\subsubsection[{o\-\_\-should}]{\setlength{\rightskip}{0pt plus 5cm}double o\-\_\-should\mbox{[}2\mbox{]}}}\label{group__pid_ga3e9b95260c17d0da155fb4eede660d03}
+
+
+Roll and Pitch target angles. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 51 of file pid.\-c.
+
+
+
+Referenced by pid\-Init(), and pid\-Task().
+

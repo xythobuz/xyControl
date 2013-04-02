@@ -1,0 +1,44 @@
+\hypertarget{pid_8c}{\section{lib/pid.c File Reference}
+\label{pid_8c}\index{lib/pid.\-c@{lib/pid.\-c}}
+}
+
+
+P\-I\-D Library Implementation.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$motor.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$pid.\-h$>$}\\*
+{\ttfamily \#include $<$orientation.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{group__pid_gaa373eb9da73ef4da4195fd5114555772}{pid\-Execute} (double should, double is, \hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Execute a single P\-I\-D Control Step. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{pid\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize Roll and Pitch P\-I\-D. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pid\-Set} (\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$pid, double kp, double ki, double kd, double min, double max, double i\-Min, double i\-Max)
+\begin{DoxyCompactList}\small\item\em Set the parameters of a P\-I\-D controller. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{pid\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Step the Roll and Pitch P\-I\-D Controllers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D States. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch target angles. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D Output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\-I\-D Library Implementation. 
+
+Definition in file \hyperlink{pid_8c_source}{pid.\-c}.
+

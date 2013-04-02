@@ -1,0 +1,77 @@
+\hypertarget{serial_8c}{\section{lib/serial.c File Reference}
+\label{serial_8c}\index{lib/serial.\-c@{lib/serial.\-c}}
+}
+
+
+U\-A\-R\-T A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$avr/interrupt.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$serial.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__uart_gacdf721774c51e08c6609e6fa8cf82cc9}{X\-O\-N}~0x11
+\begin{DoxyCompactList}\small\item\em X\-O\-N Byte. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga67fd78ae15d2b67c10d44d69a49ab1c5}{X\-O\-F\-F}~0x13
+\begin{DoxyCompactList}\small\item\em X\-O\-F\-F Byte. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_gaa7907a070ef8e6d68d7d774b34eebe66}{F\-L\-O\-W\-M\-A\-R\-K}~5
+\begin{DoxyCompactList}\small\item\em Space remaining to trigger X\-O\-F\-F/\-X\-O\-N. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__uart_ga7a36d30320b27d7d863762b7e54b540d}{I\-S\-R} (S\-E\-R\-I\-A\-L\-R\-E\-C\-I\-E\-V\-E\-I\-N\-T\-E\-R\-R\-U\-P\-T)
+\begin{DoxyCompactList}\small\item\em Receive Complete Interrupt. \end{DoxyCompactList}\item 
+\hyperlink{group__uart_gac456aaea36551ccfea05338b693f6f82}{I\-S\-R} (S\-E\-R\-I\-A\-L\-T\-R\-A\-N\-S\-M\-I\-T\-I\-N\-T\-E\-R\-R\-U\-P\-T)
+\begin{DoxyCompactList}\small\item\em Data Register Empty Interrupt. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_ga276d676dc37f6d1dcd5672a9fe056a78}{serial\-Init} (uint16\-\_\-t baud)
+\begin{DoxyCompactList}\small\item\em Initialize the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_gacfb02e5ea225e4641d85191f018d256a}{serial\-Close} (void)
+\begin{DoxyCompactList}\small\item\em Stop the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_ga42630f5ff3489d61615f8b7990c865d1}{set\-Flow} (uint8\-\_\-t on)
+\begin{DoxyCompactList}\small\item\em Manually change the flow control. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_ga27cc67be388d64af00ef64e22f75686d}{serial\-Has\-Char} (void)
+\begin{DoxyCompactList}\small\item\em Check if a byte was received. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_gad779ae9434277dbe34fe292e5d8b10c8}{serial\-Get\-Blocking} (void)
+\begin{DoxyCompactList}\small\item\em Wait until a character is received. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_ga3a3f6acfefa86dc78ec2d2455fc71709}{serial\-Get} (void)
+\begin{DoxyCompactList}\small\item\em Read a single byte. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_gae09e3a1d26a94ba227c84186b6db37c0}{serial\-Rx\-Buffer\-Full} (void)
+\begin{DoxyCompactList}\small\item\em Check if the receive buffer is full. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_gadb8b3dcb37273bc7b6020036c6cc042c}{serial\-Rx\-Buffer\-Empty} (void)
+\begin{DoxyCompactList}\small\item\em Check if the receive buffer is empty. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_ga66f8906eba5f8b0fa6ead524b9f01498}{serial\-Write} (uint8\-\_\-t data)
+\begin{DoxyCompactList}\small\item\em Send a byte. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_gaf75ad80708724751008f68ae264d60cf}{serial\-Write\-String} (const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Send a string. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_ga61a4c50b32168a7c42f48f8bc70694e9}{serial\-Tx\-Buffer\-Full} (void)
+\begin{DoxyCompactList}\small\item\em Check if the transmit buffer is full. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uart_gafc7ede165d9cdfc994180efde88da38d}{serial\-Tx\-Buffer\-Empty} (void)
+\begin{DoxyCompactList}\small\item\em Check if the transmit buffer is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t volatile \hyperlink{group__uart_ga8e77b30148ad1a3590ed6b1733ad0bfd}{rx\-Buffer} \mbox{[}\hyperlink{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}\mbox{]}
+\begin{DoxyCompactList}\small\item\em R\-X F\-I\-F\-O Buffer. \end{DoxyCompactList}\item 
+uint8\-\_\-t volatile \hyperlink{group__uart_gaca401a5697a6121045ed2ea5dd80001e}{tx\-Buffer} \mbox{[}\hyperlink{group__config_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}\mbox{]}
+\begin{DoxyCompactList}\small\item\em T\-X F\-I\-F\-O Buffer. \end{DoxyCompactList}\item 
+uint16\-\_\-t volatile \hyperlink{group__uart_ga9ec81baf5fa44701fbe03f942171b5e6}{rx\-Read} = 0
+\begin{DoxyCompactList}\small\item\em R\-X F\-I\-F\-O Read Position. \end{DoxyCompactList}\item 
+uint16\-\_\-t volatile \hyperlink{group__uart_ga6428d84da0f4255131fef945c27af689}{rx\-Write} = 0
+\begin{DoxyCompactList}\small\item\em R\-X F\-I\-F\-O Write Position. \end{DoxyCompactList}\item 
+uint16\-\_\-t volatile \hyperlink{group__uart_gaa7d4cb17a7fc5817722bdd106b31f60b}{tx\-Read} = 0
+\begin{DoxyCompactList}\small\item\em T\-X F\-I\-F\-O Read Position. \end{DoxyCompactList}\item 
+uint16\-\_\-t volatile \hyperlink{group__uart_gaa0a6ae00e44b68a3250aec0f9599c262}{tx\-Write} = 0
+\begin{DoxyCompactList}\small\item\em T\-X F\-I\-F\-O Write Position. \end{DoxyCompactList}\item 
+uint8\-\_\-t volatile \hyperlink{group__uart_ga7f9fb8e4a004459dd017ce8383fa65ff}{should\-Start\-Transmission} = 1
+\begin{DoxyCompactList}\small\item\em Should enable interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+U\-A\-R\-T A\-P\-I Implementation. 
+
+Definition in file \hyperlink{serial_8c_source}{serial.\-c}.
+

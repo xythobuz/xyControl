@@ -1,0 +1,38 @@
+\hypertarget{mag_8h}{\section{include/mag.h File Reference}
+\label{mag_8h}\index{include/mag.\-h@{include/mag.\-h}}
+}
+
+
+L\-S\-M303\-D\-L\-H\-C Magnetometer A\-P\-I Header.  
+
+
+{\ttfamily \#include $<$error.\-h$>$}\\*
+{\ttfamily \#include $<$xycontrol.\-h$>$}\\*
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__mag_ga3af649d913d146d6654db2354d88c18a}{Mag\-Range} \{ \\*
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa18e06791b32b1772765ff7e54d3e24fd}{r1g3} = 1, 
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9} = 2, 
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa19f90e5cf717669e72908f8d8a1c9f89}{r2g5} = 3, 
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa402a6d56b75bc48c8521500dd8b38bd8}{r4g0} = 4, 
+\\*
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aaa7401534bd82cade38cbb47c0ff4223e}{r4g7} = 5, 
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa815faf18742b2b13ba477eed930851f4}{r5g6} = 6, 
+\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee}{r8g1} = 7
+ \}
+\begin{DoxyCompactList}\small\item\em Magnetometer Range options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{mag\-Init} (\hyperlink{group__mag_ga3af649d913d146d6654db2354d88c18a}{Mag\-Range} r)
+\begin{DoxyCompactList}\small\item\em Initialize the Magnetometer. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__mag_gacc0c83a48498170ef36451db2c684abb}{mag\-Read} (\hyperlink{struct_vector3f}{Vector3f} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Read from the Magnetometer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\-S\-M303\-D\-L\-H\-C Magnetometer A\-P\-I Header. 
+
+Definition in file \hyperlink{mag_8h_source}{mag.\-h}.
+

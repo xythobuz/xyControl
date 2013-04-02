@@ -1,0 +1,41 @@
+\hypertarget{set_8c}{\section{lib/set.c File Reference}
+\label{set_8c}\index{lib/set.\-c@{lib/set.\-c}}
+}
+
+
+Motor Mixer Library Implementation.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$motor.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$pid.\-h$>$}\\*
+{\ttfamily \#include $<$set.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__set_ga3d4060e583ff657db3505ec8933d9b12}{M\-A\-X\-D\-I\-F\-F}~(\hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{base\-Speed} $\ast$ \hyperlink{group__config_ga0eb032986beceb6759aebd761c35a879}{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R})
+\begin{DoxyCompactList}\small\item\em Maximum Speed difference on one axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{set\-Motor\-Speeds} (uint8\-\_\-t axis, uint8\-\_\-t $\ast$vals)
+\begin{DoxyCompactList}\small\item\em Set the Motor Speeds according to the S\-E\-T\-\_\-$\ast$ Motor Position Constants. \end{DoxyCompactList}\item 
+void \hyperlink{group__set_ga37f245c493d725009017f62a78505e64}{set\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Read the P\-I\-D Output and Set the Motor Speeds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{base\-Speed} = 0
+\begin{DoxyCompactList}\small\item\em Motor Base Speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Motor Mixer Library Implementation. 
+
+Definition in file \hyperlink{set_8c_source}{set.\-c}.
+

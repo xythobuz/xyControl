@@ -1,0 +1,36 @@
+\hypertarget{motor_8c}{\section{lib/motor.c File Reference}
+\label{motor_8c}\index{lib/motor.\-c@{lib/motor.\-c}}
+}
+
+
+B\-L-\/\-Ctrl V1.\-2 Controller A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$motor.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__motor_gab10642c396b1a6dc22edf2b45288d781}{motor\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Send the values stored in \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} to the Controllers. \end{DoxyCompactList}\item 
+void \hyperlink{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{motor\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the motor control library. \end{DoxyCompactList}\item 
+void \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motor\-Set} (uint8\-\_\-t id, uint8\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Set the speed of one or all motors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} \mbox{[}\hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Speed for the four motors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+B\-L-\/\-Ctrl V1.\-2 Controller A\-P\-I Implementation. 
+
+Definition in file \hyperlink{motor_8c_source}{motor.\-c}.
+

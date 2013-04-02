@@ -1,0 +1,47 @@
+\hypertarget{pid_8h}{\section{include/pid.h File Reference}
+\label{pid_8h}\index{include/pid.\-h@{include/pid.\-h}}
+}
+
+
+P\-I\-D Library Header.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_p_i_d_state}{P\-I\-D\-State}
+\begin{DoxyCompactList}\small\item\em Data Structure for a single P\-I\-D Controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{R\-O\-L\-L}~0
+\begin{DoxyCompactList}\small\item\em Roll index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{P\-I\-T\-C\-H}~1
+\begin{DoxyCompactList}\small\item\em Pitch index for \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} and \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{pid\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize Roll and Pitch P\-I\-D. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{pid\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Step the Roll and Pitch P\-I\-D Controllers. \end{DoxyCompactList}\item 
+void \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pid\-Set} (\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$pid, double kp, double ki, double kd, double min, double max, double i\-Min, double i\-Max)
+\begin{DoxyCompactList}\small\item\em Set the parameters of a P\-I\-D controller. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaa373eb9da73ef4da4195fd5114555772}{pid\-Execute} (double should, double is, \hyperlink{struct_p_i_d_state}{P\-I\-D\-State} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Execute a single P\-I\-D Control Step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\-\_\-should} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch target angles. \end{DoxyCompactList}\item 
+double \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\-\_\-output} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D Output. \end{DoxyCompactList}\item 
+\hyperlink{struct_p_i_d_state}{P\-I\-D\-State} \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\-\_\-pids} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Roll and Pitch P\-I\-D States. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\-I\-D Library Header. 
+
+Definition in file \hyperlink{pid_8h_source}{pid.\-h}.
+

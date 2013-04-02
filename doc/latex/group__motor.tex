@@ -1,0 +1,179 @@
+\hypertarget{group__motor}{\section{Motor Controller Driver}
+\label{group__motor}\index{Motor Controller Driver@{Motor Controller Driver}}
+}
+
+
+Controlling four \href{https://www.mikrocontroller.com/index.php?main_page=product_info&products_id=209}{\tt B\-L-\/\-Ctrl V1.\-2} Brushless controllers.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{motor_8h}{motor.\-h}
+\begin{DoxyCompactList}\small\item\em B\-L-\/\-Ctrl V1.\-2 Controller A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{motor_8c}{motor.\-c}
+\begin{DoxyCompactList}\small\item\em B\-L-\/\-Ctrl V1.\-2 Controller A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{motor\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the motor control library. \end{DoxyCompactList}\item 
+void \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motor\-Set} (uint8\-\_\-t id, uint8\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Set the speed of one or all motors. \end{DoxyCompactList}\item 
+void \hyperlink{group__motor_gab10642c396b1a6dc22edf2b45288d781}{motor\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Send the values stored in \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} to the Controllers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} \mbox{[}\hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Speed for the four motors. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} \mbox{[}\hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Speed for the four motors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Controlling four \href{https://www.mikrocontroller.com/index.php?main_page=product_info&products_id=209}{\tt B\-L-\/\-Ctrl V1.\-2} Brushless controllers. 
+
+\subsection{Function Documentation}
+\hypertarget{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{\index{Motor Controller Driver@{Motor Controller Driver}!motor\-Init@{motor\-Init}}
+\index{motor\-Init@{motor\-Init}!Motor Controller Driver@{Motor Controller Driver}}
+\subsubsection[{motor\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void motor\-Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}
+
+
+Initializes the motor control library. 
+
+Really only sets motor\-Speed to zero. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 58 of file motor.\-c.
+
+
+
+References M\-O\-T\-O\-R\-C\-O\-U\-N\-T, and motor\-Speed.
+
+
+\begin{DoxyCode}
+58                      \{
+59     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{MOTORCOUNT}; i++) \{
+60         \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[i] = 0;
+61     \}
+62 \}
+\end{DoxyCode}
+\hypertarget{group__motor_gafde1750cdf4354c295108eec552d899d}{\index{Motor Controller Driver@{Motor Controller Driver}!motor\-Set@{motor\-Set}}
+\index{motor\-Set@{motor\-Set}!Motor Controller Driver@{Motor Controller Driver}}
+\subsubsection[{motor\-Set}]{\setlength{\rightskip}{0pt plus 5cm}void motor\-Set (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{id, }
+\item[{uint8\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}}\label{group__motor_gafde1750cdf4354c295108eec552d899d}
+
+
+Set the speed of one or all motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Motor I\-D (0 to 3, 4 = all) \\
+\hline
+{\em speed} & New Speed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file motor.\-c.
+
+
+
+References M\-O\-T\-O\-R\-C\-O\-U\-N\-T, and motor\-Speed.
+
+
+
+Referenced by set\-Motor\-Speeds().
+
+
+\begin{DoxyCode}
+64                                          \{
+65     \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id} < \hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{MOTORCOUNT}) \{
+66         \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[id] = speed;
+67     \} \textcolor{keywordflow}{else} \{
+68         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{id} = 0; \textcolor{keywordtype}{id} < \hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{MOTORCOUNT}; \textcolor{keywordtype}{id}++) \{
+69             \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[id] = speed;
+70         \}
+71     \}
+72 \}
+\end{DoxyCode}
+\hypertarget{group__motor_gab10642c396b1a6dc22edf2b45288d781}{\index{Motor Controller Driver@{Motor Controller Driver}!motor\-Task@{motor\-Task}}
+\index{motor\-Task@{motor\-Task}!Motor Controller Driver@{Motor Controller Driver}}
+\subsubsection[{motor\-Task}]{\setlength{\rightskip}{0pt plus 5cm}void motor\-Task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__motor_gab10642c396b1a6dc22edf2b45288d781}
+
+
+Send the values stored in \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motor\-Speed} to the Controllers. 
+
+I2\-C already has to be initialized! \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 50 of file motor.\-c.
+
+
+
+References M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S, M\-O\-T\-O\-R\-C\-O\-U\-N\-T, motor\-Speed, T\-W\-I\-\_\-\-W\-R\-I\-T\-E, twi\-Start(), twi\-Stop(), and twi\-Write().
+
+
+\begin{DoxyCode}
+50                      \{
+51     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{MOTORCOUNT}; i++) \{
+52         \hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_ga6e8ab18bbb1ef1b1e929c627f18224a3}{MOTOR\_BASEADDRESS} + (i << 1) + 
+      \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE});
+53         \hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[i]);
+54         \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
+55     \}
+56 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{\index{Motor Controller Driver@{Motor Controller Driver}!motor\-Speed@{motor\-Speed}}
+\index{motor\-Speed@{motor\-Speed}!Motor Controller Driver@{Motor Controller Driver}}
+\subsubsection[{motor\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t motor\-Speed\mbox{[}{\bf M\-O\-T\-O\-R\-C\-O\-U\-N\-T}\mbox{]}}}\label{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}
+
+
+Speed for the four motors. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 48 of file motor.\-c.
+
+
+
+Referenced by motor\-Init(), motor\-Set(), and motor\-Task().
+
+\hypertarget{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{\index{Motor Controller Driver@{Motor Controller Driver}!motor\-Speed@{motor\-Speed}}
+\index{motor\-Speed@{motor\-Speed}!Motor Controller Driver@{Motor Controller Driver}}
+\subsubsection[{motor\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t motor\-Speed\mbox{[}{\bf M\-O\-T\-O\-R\-C\-O\-U\-N\-T}\mbox{]}}}\label{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}
+
+
+Speed for the four motors. 
+
+
+
+Definition at line 48 of file motor.\-c.
+
+
+
+Referenced by motor\-Init(), motor\-Set(), and motor\-Task().
+

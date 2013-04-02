@@ -1,0 +1,254 @@
+\hypertarget{uart_flight_8c-example}{\section{uart\-Flight.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/*}
+\textcolor{comment}{ * uartFlight.c}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>}
+\textcolor{comment}{ * All rights reserved.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}
+\textcolor{comment}{ * modification, are permitted provided that the following conditions}
+\textcolor{comment}{ * are met:}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions of source code must retain the above copyright notice,}
+\textcolor{comment}{ *   this list of conditions and the following disclaimer.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions in binary form must reproduce the above copyright}
+\textcolor{comment}{ *   notice, this list of conditions and the following disclaimer in the}
+\textcolor{comment}{ *   documentation and/or other materials provided with the distribution.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS}
+\textcolor{comment}{ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED}
+\textcolor{comment}{ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR}
+\textcolor{comment}{ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR}
+\textcolor{comment}{ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,}
+\textcolor{comment}{ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,}
+\textcolor{comment}{ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR}
+\textcolor{comment}{ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF}
+\textcolor{comment}{ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING}
+\textcolor{comment}{ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS}
+\textcolor{comment}{ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}
+\textcolor{comment}{ */}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <avr/io.h>}
+\textcolor{preprocessor}{#include <avr/pgmspace.h>}
+
+\textcolor{preprocessor}{#include <\hyperlink{tasks_8h}{tasks.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{error_8h}{error.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{xycontrol_8h}{xycontrol.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{time_8h}{time.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{uart_menu_8h}{uartMenu.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{serial_8h}{serial.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{acc_8h}{acc.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{gyro_8h}{gyro.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{mag_8h}{mag.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{motor_8h}{motor.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{orientation_8h}{orientation.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{pid_8h}{pid.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{set_8h}{set.h}>}
+
+\textcolor{preprocessor}{#define MAXANGLE 45}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define ANGLESTEP 10}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define MAXMOTOR 255}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define MOTORSTEP 10}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define QUADFREQ 100}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define STATUSFREQ 10}
+\textcolor{preprocessor}{}
+\textcolor{preprocessor}{#define QUADDELAY (1000 / QUADFREQ)}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define STATUSDELAY (1000 / STATUSFREQ)}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{void} flightTask(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} statusTask(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} controlToggle(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorToggle(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorUp(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorDown(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorForward(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorBackward(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorLeft(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} motorRight(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} parameterChange(\textcolor{keywordtype}{void});
+
+\textcolor{keywordtype}{char} PROGMEM motorToggleString[] = \textcolor{stringliteral}{"Motor On/Off"};
+\textcolor{keywordtype}{char} PROGMEM motorUpString[] = \textcolor{stringliteral}{"Up"};
+\textcolor{keywordtype}{char} PROGMEM motorDownString[] = \textcolor{stringliteral}{"Down"};
+\textcolor{keywordtype}{char} PROGMEM motorLeftString[] = \textcolor{stringliteral}{"Left"};
+\textcolor{keywordtype}{char} PROGMEM motorRightString[] = \textcolor{stringliteral}{"Right"};
+\textcolor{keywordtype}{char} PROGMEM motorForwardString[] = \textcolor{stringliteral}{"Forwards"};
+\textcolor{keywordtype}{char} PROGMEM motorBackwardString[] = \textcolor{stringliteral}{"Backwards"};
+\textcolor{keywordtype}{char} PROGMEM controlToggleString[] = \textcolor{stringliteral}{"Toggle PID"};
+\textcolor{keywordtype}{char} PROGMEM parameterChangeString[] = \textcolor{stringliteral}{"Change PID Params"};
+\textcolor{keywordtype}{char} PROGMEM zeroString[] = \textcolor{stringliteral}{"Angles to Zero"};
+
+uint8\_t state = 0; \textcolor{comment}{// Bit 0: Motor, Bit 1: PID}
+uint8\_t speed = 10;
+int16\_t targetRoll = 0;
+int16\_t targetPitch = 0;
+
+uint32\_t sumFlightTask = 0, sumFlightCount = 0;
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+    \hyperlink{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{xyInit}();
+    \hyperlink{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{pidInit}();
+    \hyperlink{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{motorInit}();
+    \hyperlink{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{orientationInit}();
+
+    \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&flightTask);
+    \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&statusTask);
+
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'m'}, motorToggleString, &motorToggle);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'w'}, motorForwardString, &motorForward);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'a'}, motorLeftString, &motorLeft);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'s'}, motorBackwardString, &motorBackward);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'d'}, motorRightString, &motorRight);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'x'}, motorUpString, &motorUp);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'y'}, motorDownString, &motorDown);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'p'}, controlToggleString, &controlToggle);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'n'}, parameterChangeString, &parameterChange);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'z'}, zeroString, &\hyperlink{group__orientation_ga0fab95dd407145abad293f7c91460eee}{zeroOrientation});
+
+    \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ae4fd580189cac85429ebfa5cb71cd772}{LED\_ALL}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{LED\_ON});
+
+    \textcolor{keywordflow}{for}(;;) \{
+        \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks}();
+    \}
+
+    \textcolor{keywordflow}{return} 0;
+\}
+
+\textcolor{keywordtype}{void} flightTask(\textcolor{keywordtype}{void}) \{
+    \textcolor{keyword}{static} \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} last = 100; \textcolor{comment}{// Don't begin immediately}
+    \textcolor{keywordflow}{if} ((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= QUADDELAY) \{
+        last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+        \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{orientationTask}();
+        \hyperlink{group__error_ga72d32a02ede7ed11eee387aa4f4c05d5}{REPORTERROR}(e);
+        \textcolor{keywordflow}{if} (state & 0x02) \{
+            \hyperlink{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{pidTask}();
+        \} \textcolor{keywordflow}{else} \{
+            \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[0] = \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[1] = 0;
+        \}
+        \hyperlink{group__set_ga37f245c493d725009017f62a78505e64}{setTask}();
+        \hyperlink{group__motor_gab10642c396b1a6dc22edf2b45288d781}{motorTask}();
+
+        uint32\_t diff = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last;
+        \textcolor{keywordflow}{if} (++sumFlightCount >= QUADFREQ) \{
+            sumFlightCount = 1;
+            sumFlightTask = diff;
+        \} \textcolor{keywordflow}{else} \{
+            sumFlightTask += diff;
+        \}
+    \}
+\}
+
+\textcolor{keywordtype}{void} statusTask(\textcolor{keywordtype}{void}) \{
+    \textcolor{keyword}{static} \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} last = 100; \textcolor{comment}{// Don't begin immediately}
+    \textcolor{keyword}{static} uint32\_t lastDuration = 0;
+    \textcolor{keywordflow}{if} ((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= STATUSDELAY) \{
+        last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+        printf(\textcolor{stringliteral}{"q%li %li\(\backslash\)n"}, sumFlightTask / sumFlightCount, lastDuration);
+        printf(\textcolor{stringliteral}{"r%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMin, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMax);
+        printf(\textcolor{stringliteral}{"s%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].outMin, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].outMax);
+        printf(\textcolor{stringliteral}{"t%.3f %.3f %.3f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].kp, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].ki, 
+      \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].kd);
+        printf(\textcolor{stringliteral}{"u%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}], \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[
+      \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}]);
+        printf(\textcolor{stringliteral}{"v%i %i %i %i\(\backslash\)n"}, \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[0], \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[1], 
+      \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[2], \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[3]);
+        printf(\textcolor{stringliteral}{"w%.2f\(\backslash\)n"}, \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch});
+        printf(\textcolor{stringliteral}{"x%.2f\(\backslash\)n"}, \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll});
+        printf(\textcolor{stringliteral}{"y%.2f\(\backslash\)n"}, \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw});
+        printf(\textcolor{stringliteral}{"z%.2f\(\backslash\)n"}, \hyperlink{group__xycontrol_ga97874cf2a7f8e6964188b54fe85084a6}{getVoltage}());
+        lastDuration = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last;
+    \}
+\}
+
+\textcolor{keywordtype}{void} controlToggle(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (state & 0x02) \{
+        state &= ~0x02;
+        printf(\textcolor{stringliteral}{"PID Off!\(\backslash\)n"});
+    \} \textcolor{keywordflow}{else} \{
+        state |= 0x02;
+        printf(\textcolor{stringliteral}{"PID On!\(\backslash\)n"});
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorToggle(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (state & 0x01) \{
+        state &= ~0x01;
+        \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = 0;
+        printf(\textcolor{stringliteral}{"Motor Off!\(\backslash\)n"});
+    \} \textcolor{keywordflow}{else} \{
+        state |= 0x01;
+        \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed = 10;
+        printf(\textcolor{stringliteral}{"Motor On!\(\backslash\)n"});
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorUp(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (speed <= (MAXMOTOR - MOTORSTEP)) \{
+        \textcolor{keywordflow}{if} (state & 0x01) \{
+            speed += MOTORSTEP;
+            \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed;
+            printf(\textcolor{stringliteral}{"Throttle up to %i\(\backslash\)n"}, speed);
+        \}
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorDown(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (speed >= MOTORSTEP) \{
+        \textcolor{keywordflow}{if} (state & 0x01) \{
+            speed -= MOTORSTEP;
+            \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed;
+            printf(\textcolor{stringliteral}{"Throttle down to %i\(\backslash\)n"}, speed);
+        \}
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorForward(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (targetPitch >= (-1 * (MAXANGLE - ANGLESTEP))) \{
+        targetPitch -= ANGLESTEP;
+        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
+        printf(\textcolor{stringliteral}{"Pitch Forward %i\(\backslash\)n"}, targetPitch);
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorBackward(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (targetPitch <= (MAXANGLE - ANGLESTEP)) \{
+        targetPitch += ANGLESTEP;
+        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
+        printf(\textcolor{stringliteral}{"Pitch Backwards %i\(\backslash\)n"}, targetPitch);
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorLeft(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (targetRoll <= (MAXANGLE - ANGLESTEP)) \{
+        targetRoll += ANGLESTEP;
+        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
+        printf(\textcolor{stringliteral}{"Roll Left %i\(\backslash\)n"}, targetRoll);
+    \}
+\}
+
+\textcolor{keywordtype}{void} motorRight(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (targetRoll >= (-1 * (MAXANGLE - ANGLESTEP))) \{
+        targetRoll -= ANGLESTEP;
+        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
+        printf(\textcolor{stringliteral}{"Roll Right %i\(\backslash\)n"}, targetRoll);
+    \}
+\}
+
+\textcolor{keywordtype}{void} parameterChange(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordtype}{double} p, i, d, min, max, iMin, iMax;
+    \textcolor{keywordtype}{int} c = scanf(\textcolor{stringliteral}{"%lf %lf %lf %lf %lf %lf %lf"}, &p, &i, &d, &min, &max, &iMin, &iMax);
+    \textcolor{keywordflow}{if} (c == 7) \{
+        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0], p, i, d, min, max, iMin, iMax);
+        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[1], p, i, d, min, max, iMin, iMax);
+    \} \textcolor{keywordflow}{else} \{
+        printf(\textcolor{stringliteral}{"Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\(\backslash\)n"}, c, p, i, d, min, max, iMin, iMax);
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

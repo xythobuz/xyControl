@@ -1,0 +1,354 @@
+\hypertarget{group__uartmenu}{\section{U\-A\-R\-T Menu}
+\label{group__uartmenu}\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}}
+}
+
+
+Enables user interaction with an U\-A\-R\-T Menu.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{uart_menu_8h}{uart\-Menu.\-h}
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Menu A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{uart_menu_8c}{uart\-Menu.\-c}
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Menu A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_menu_entry}{Menu\-Entry}
+\begin{DoxyCompactList}\small\item\em Data Structure for Single-\/\-Linked-\/\-List for U\-A\-R\-T Menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{add\-Menu\-Command} (uint8\-\_\-t cmd, P\-G\-M\-\_\-\-P help, \hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} f)
+\begin{DoxyCompactList}\small\item\em Add a command to the U\-A\-R\-T Menu. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{uart\-Menu\-Print\-Help} (void)
+\begin{DoxyCompactList}\small\item\em Print all registered commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_gae3654103f924700d1f7801fcda4472b7}{uart\-Menu\-Register\-Handler} (void($\ast$handler)(char))
+\begin{DoxyCompactList}\small\item\em Register a Handler for unhandled menu commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga9f477033e942434f7875930342d5e696}{uart\-Menu\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Task to work the U\-A\-R\-T Menu. \end{DoxyCompactList}\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_ga804da8899dee98e1d4499710625acf10}{find\-Entry} (uint8\-\_\-t cmd)
+\begin{DoxyCompactList}\small\item\em Search the \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uart\-Menu} Linked List. \end{DoxyCompactList}\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_gaf51e7f5c38d5af643af09f6e21d2a4b9}{reverse\-List} (\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Reverse the U\-A\-R\-T Menu List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uart\-Menu} = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em Single-\/\-Linked-\/\-List for commands. \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{un\-Handler} )(char) = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em Handler for unhandled commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Enables user interaction with an U\-A\-R\-T Menu. 
+
+\subsection{Function Documentation}
+\hypertarget{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!add\-Menu\-Command@{add\-Menu\-Command}}
+\index{add\-Menu\-Command@{add\-Menu\-Command}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{add\-Menu\-Command}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t add\-Menu\-Command (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{cmd, }
+\item[{P\-G\-M\-\_\-\-P}]{help, }
+\item[{{\bf Task}}]{f}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}
+
+
+Add a command to the U\-A\-R\-T Menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Byte that triggers command \\
+\hline
+{\em help} & Help Text String in Flash \\
+\hline
+{\em f} & Task to be executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 if already registered or not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 69 of file uart\-Menu.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, Menu\-Entry\-::cmd, Menu\-Entry\-::f, find\-Entry(), Menu\-Entry\-::help\-Text, Menu\-Entry\-::next, uart\-Menu, xmem\-Get\-Bank(), and xmem\-Set\-Bank().
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+69                                                         \{
+70     uint8\_t lastBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
+71     \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+72     \textcolor{keywordflow}{if} (\hyperlink{group__uartmenu_ga804da8899dee98e1d4499710625acf10}{findEntry}(cmd) != NULL) \{
+73         \textcolor{keywordflow}{return} 1;
+74     \} \textcolor{keywordflow}{else} \{
+75         \hyperlink{struct_menu_entry}{MenuEntry} *p = (\hyperlink{struct_menu_entry}{MenuEntry} *)malloc(\textcolor{keyword}{sizeof}(\hyperlink{struct_menu_entry}{MenuEntry}));
+76         \textcolor{keywordflow}{if} (p == NULL) \{
+77             \textcolor{keywordflow}{return} 1;
+78         \}
+79         p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd} = cmd;
+80         p->\hyperlink{struct_menu_entry_a2044142917d83a3df85815bb99dd115f}{helpText} = help;
+81         p->\hyperlink{struct_menu_entry_afe96196d3564b9577477236d13329241}{f} = f;
+82         p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next} = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
+83         \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu} = p;
+84         \textcolor{keywordflow}{return} 0;
+85     \}
+86     \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+87 \}
+\end{DoxyCode}
+\hypertarget{group__uartmenu_ga804da8899dee98e1d4499710625acf10}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!find\-Entry@{find\-Entry}}
+\index{find\-Entry@{find\-Entry}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{find\-Entry}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu\-Entry}$\ast$ find\-Entry (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_ga804da8899dee98e1d4499710625acf10}
+
+
+Search the \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uart\-Menu} Linked List. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Command to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{struct_menu_entry}{Menu\-Entry} for command cmd, or N\-U\-L\-L 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file uart\-Menu.\-c.
+
+
+
+References Menu\-Entry\-::cmd, Menu\-Entry\-::next, and uart\-Menu.
+
+
+
+Referenced by add\-Menu\-Command().
+
+
+\begin{DoxyCode}
+58                                   \{
+59     \hyperlink{struct_menu_entry}{MenuEntry} *p = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
+60     \textcolor{keywordflow}{while} (p != NULL) \{
+61         \textcolor{keywordflow}{if} (p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd} == cmd) \{
+62             \textcolor{keywordflow}{return} p;
+63         \}
+64         p = p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
+65     \}
+66     \textcolor{keywordflow}{return} NULL;
+67 \}
+\end{DoxyCode}
+\hypertarget{group__uartmenu_gaf51e7f5c38d5af643af09f6e21d2a4b9}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!reverse\-List@{reverse\-List}}
+\index{reverse\-List@{reverse\-List}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{reverse\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu\-Entry}$\ast$ reverse\-List (
+\begin{DoxyParamCaption}
+\item[{{\bf Menu\-Entry} $\ast$}]{root}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_gaf51e7f5c38d5af643af09f6e21d2a4b9}
+
+
+Reverse the U\-A\-R\-T Menu List. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Root of the Single-\/\-Linked-\/\-List. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+New root of reversed list. 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file uart\-Menu.\-c.
+
+
+
+References Menu\-Entry\-::next.
+
+
+
+Referenced by uart\-Menu\-Print\-Help().
+
+
+\begin{DoxyCode}
+93                                         \{
+94     \hyperlink{struct_menu_entry}{MenuEntry} *\textcolor{keyword}{new} = NULL;
+95     \textcolor{keywordflow}{while} (root != NULL) \{
+96         \hyperlink{struct_menu_entry}{MenuEntry} *next = root->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
+97         root->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next} = \textcolor{keyword}{new};
+98         \textcolor{keyword}{new} = root;
+99         root = next;
+100     \}
+101     \textcolor{keywordflow}{return} \textcolor{keyword}{new};
+102 \}
+\end{DoxyCode}
+\hypertarget{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!uart\-Menu\-Print\-Help@{uart\-Menu\-Print\-Help}}
+\index{uart\-Menu\-Print\-Help@{uart\-Menu\-Print\-Help}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{uart\-Menu\-Print\-Help}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-Menu\-Print\-Help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}
+
+
+Print all registered commands. 
+
+
+
+Definition at line 104 of file uart\-Menu.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, Menu\-Entry\-::cmd, Menu\-Entry\-::help\-Text, Menu\-Entry\-::next, reverse\-List(), uart\-Menu, xmem\-Get\-Bank(), and xmem\-Set\-Bank().
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+104                              \{
+105     \textcolor{keyword}{static} uint8\_t reversed = 0;
+106     uint8\_t lastBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
+107     \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+108     \textcolor{keywordtype}{char} *buffer = (\textcolor{keywordtype}{char} *)malloc(35);
+109     \textcolor{keywordflow}{if} (buffer == NULL) \{
+110         printf(\textcolor{stringliteral}{"!"});
+111         \textcolor{keywordflow}{return};
+112     \}
+113     \textcolor{keywordflow}{if} (!reversed) \{
+114         reversed = 1;
+115         \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu} = \hyperlink{group__uartmenu_gaf51e7f5c38d5af643af09f6e21d2a4b9}{reverseList}(\hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu});
+116     \}
+117     \hyperlink{struct_menu_entry}{MenuEntry} *p = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
+118     \textcolor{keywordflow}{while} (p != NULL) \{
+119         strcpy\_P(buffer, p->\hyperlink{struct_menu_entry_a2044142917d83a3df85815bb99dd115f}{helpText});
+120         printf(\textcolor{stringliteral}{"%c: %s\(\backslash\)n"}, p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd}, buffer);
+121         p = p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
+122     \}
+123     free(buffer);
+124     \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+125 \}
+\end{DoxyCode}
+\hypertarget{group__uartmenu_gae3654103f924700d1f7801fcda4472b7}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!uart\-Menu\-Register\-Handler@{uart\-Menu\-Register\-Handler}}
+\index{uart\-Menu\-Register\-Handler@{uart\-Menu\-Register\-Handler}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{uart\-Menu\-Register\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-Menu\-Register\-Handler (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(char)}]{handler}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_gae3654103f924700d1f7801fcda4472b7}
+
+
+Register a Handler for unhandled menu commands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & Will be called if an unknown command is received. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 127 of file uart\-Menu.\-c.
+
+
+
+References un\-Handler.
+
+
+\begin{DoxyCode}
+127                                                     \{
+128     \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler} = handler;
+129 \}
+\end{DoxyCode}
+\hypertarget{group__uartmenu_ga9f477033e942434f7875930342d5e696}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!uart\-Menu\-Task@{uart\-Menu\-Task}}
+\index{uart\-Menu\-Task@{uart\-Menu\-Task}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{uart\-Menu\-Task}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-Menu\-Task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__uartmenu_ga9f477033e942434f7875930342d5e696}
+
+
+Task to work the U\-A\-R\-T Menu. 
+
+
+
+Definition at line 131 of file uart\-Menu.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, Menu\-Entry\-::cmd, Menu\-Entry\-::f, Menu\-Entry\-::next, serial\-Get(), serial\-Has\-Char(), uart\-Menu, un\-Handler, xmem\-Get\-Bank(), and xmem\-Set\-Bank().
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+131                         \{
+132     \textcolor{keywordflow}{if} (\hyperlink{group__uart_ga27cc67be388d64af00ef64e22f75686d}{serialHasChar}()) \{
+133         uint8\_t lastBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
+134         \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+135         uint8\_t c = \hyperlink{group__uart_ga3a3f6acfefa86dc78ec2d2455fc71709}{serialGet}();
+136         \hyperlink{struct_menu_entry}{MenuEntry} *p = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
+137         \textcolor{keywordflow}{while} (p != NULL) \{
+138             \textcolor{keywordflow}{if} (p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd} == c) \{
+139                 p->\hyperlink{struct_menu_entry_afe96196d3564b9577477236d13329241}{f}();
+140                 \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+141                 \textcolor{keywordflow}{return};
+142             \}
+143             p = p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
+144         \}
+145         \textcolor{keywordflow}{if} (\hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler} != NULL)
+146             \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler}(c);
+147         \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+148     \}
+149 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!uart\-Menu@{uart\-Menu}}
+\index{uart\-Menu@{uart\-Menu}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{uart\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu\-Entry}$\ast$ uart\-Menu = N\-U\-L\-L}}\label{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}
+
+
+Single-\/\-Linked-\/\-List for commands. 
+
+
+
+Definition at line 51 of file uart\-Menu.\-c.
+
+
+
+Referenced by add\-Menu\-Command(), find\-Entry(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
+
+\hypertarget{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{\index{U\-A\-R\-T Menu@{U\-A\-R\-T Menu}!un\-Handler@{un\-Handler}}
+\index{un\-Handler@{un\-Handler}!UART Menu@{U\-A\-R\-T Menu}}
+\subsubsection[{un\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ un\-Handler)(char) = N\-U\-L\-L}}\label{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}
+
+
+Handler for unhandled commands. 
+
+
+
+Definition at line 52 of file uart\-Menu.\-c.
+
+
+
+Referenced by uart\-Menu\-Register\-Handler(), and uart\-Menu\-Task().
+

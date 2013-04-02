@@ -1,0 +1,44 @@
+\hypertarget{xmem_8c}{\section{lib/xmem.c File Reference}
+\label{xmem_8c}\index{lib/xmem.\-c@{lib/xmem.\-c}}
+}
+
+
+X\-M\-E\-M A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$xmem.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{save\-State} (uint8\-\_\-t bank)
+\begin{DoxyCompactList}\small\item\em Save the current malloc state. \end{DoxyCompactList}\item 
+void \hyperlink{group__xmem_ga02e35ec14c8649b89dd91b5155031e2f}{restore\-State} (uint8\-\_\-t bank)
+\begin{DoxyCompactList}\small\item\em Restore the malloc state. \end{DoxyCompactList}\item 
+void \hyperlink{group__xmem_ga9744de3b2aca21a564b151e770ed7384}{xmem\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the External Memory Interface. \end{DoxyCompactList}\item 
+void \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmem\-Set\-Bank} (uint8\-\_\-t bank)
+\begin{DoxyCompactList}\small\item\em Switch the active memory bank. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmem\-Get\-Bank} (void)
+\begin{DoxyCompactList}\small\item\em Get the current memory bank. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_malloc_state}{Malloc\-State} \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states} \mbox{[}\hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{M\-E\-M\-B\-A\-N\-K\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_malloc_state}{Malloc\-State} for all Memory Banks. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{current\-Bank} = 0
+\begin{DoxyCompactList}\small\item\em Current active Memory Bank. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__xmem_ga8d18204366e8a385c441663ed41f1ae4}{\-\_\-\-\_\-brkval}
+\begin{DoxyCompactList}\small\item\em Internal Malloc Heap-\/\-End Pointer. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\-\_\-\-\_\-flp}
+\begin{DoxyCompactList}\small\item\em Internal Malloc Free List Pointer (State) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+X\-M\-E\-M A\-P\-I Implementation. 
+
+Definition in file \hyperlink{xmem_8c_source}{xmem.\-c}.
+

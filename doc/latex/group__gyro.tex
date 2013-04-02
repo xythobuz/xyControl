@@ -1,0 +1,365 @@
+\hypertarget{group__gyro}{\section{Gyroscope Driver}
+\label{group__gyro}\index{Gyroscope Driver@{Gyroscope Driver}}
+}
+
+
+Configuring and reading an L3\-G\-D20.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{gyro_8h}{gyro.\-h}
+\begin{DoxyCompactList}\small\item\em L3\-G\-D20 Gyroscope A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{gyro_8c}{gyro.\-c}
+\begin{DoxyCompactList}\small\item\em L3\-G\-D20 Gyroscope A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__gyro_ga59d5eec860eab49733b4a814731e356c}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1}~0x20
+\begin{DoxyCompactList}\small\item\em Gyroscope Control Register 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__gyro_gae9b6f4aab3818fdb4c99970918e0a705}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4}~0x23
+\begin{DoxyCompactList}\small\item\em Gyroscope Control Register 4. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__gyro_ga8840a0f1e53e6999ddf435a61c0dc279}{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L}~0x28
+\begin{DoxyCompactList}\small\item\em First Gyroscope Output Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} \{ \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250\-D\-P\-S}, 
+\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}{r500\-D\-P\-S}, 
+\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000\-D\-P\-S}
+ \}
+\begin{DoxyCompactList}\small\item\em Gyroscope Range options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyro\-Init} (\hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} r)
+\begin{DoxyCompactList}\small\item\em Initializes the Gyroscope. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyro\-Read} (\hyperlink{struct_vector3f}{Vector3f} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Get a set of gyroscope data. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}{gyro\-Write\-Byte} (uint8\-\_\-t reg, uint8\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Write a Gyroscope Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} \hyperlink{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}{gyro\-Range}
+\begin{DoxyCompactList}\small\item\em Stored range to scale returned values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuring and reading an L3\-G\-D20. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__gyro_ga59d5eec860eab49733b4a814731e356c}{\index{Gyroscope Driver@{Gyroscope Driver}!G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1}}
+\index{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1~0x20}}\label{group__gyro_ga59d5eec860eab49733b4a814731e356c}
+
+
+Gyroscope Control Register 1. 
+
+
+
+Definition at line 48 of file gyro.\-c.
+
+
+
+Referenced by gyro\-Init().
+
+\hypertarget{group__gyro_gae9b6f4aab3818fdb4c99970918e0a705}{\index{Gyroscope Driver@{Gyroscope Driver}!G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4}}
+\index{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4~0x23}}\label{group__gyro_gae9b6f4aab3818fdb4c99970918e0a705}
+
+
+Gyroscope Control Register 4. 
+
+
+
+Definition at line 49 of file gyro.\-c.
+
+
+
+Referenced by gyro\-Init().
+
+\hypertarget{group__gyro_ga8840a0f1e53e6999ddf435a61c0dc279}{\index{Gyroscope Driver@{Gyroscope Driver}!G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L}}
+\index{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L@{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L~0x28}}\label{group__gyro_ga8840a0f1e53e6999ddf435a61c0dc279}
+
+
+First Gyroscope Output Register. 
+
+
+
+Definition at line 50 of file gyro.\-c.
+
+
+
+Referenced by gyro\-Read().
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{\index{Gyroscope Driver@{Gyroscope Driver}!Gyro\-Range@{Gyro\-Range}}
+\index{Gyro\-Range@{Gyro\-Range}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{Gyro\-Range}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Gyro\-Range}}}\label{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}
+
+
+Gyroscope Range options. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{r250\-D\-P\-S@{r250\-D\-P\-S}!Gyroscope Driver@{Gyroscope Driver}}\index{Gyroscope Driver@{Gyroscope Driver}!r250\-D\-P\-S@{r250\-D\-P\-S}}\item[{\em 
+\hypertarget{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250\-D\-P\-S}\label{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}
+}]+-\/ 250 Degrees per Second \index{r500\-D\-P\-S@{r500\-D\-P\-S}!Gyroscope Driver@{Gyroscope Driver}}\index{Gyroscope Driver@{Gyroscope Driver}!r500\-D\-P\-S@{r500\-D\-P\-S}}\item[{\em 
+\hypertarget{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}{r500\-D\-P\-S}\label{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}
+}]+-\/ 500 Degrees per Second \index{r2000\-D\-P\-S@{r2000\-D\-P\-S}!Gyroscope Driver@{Gyroscope Driver}}\index{Gyroscope Driver@{Gyroscope Driver}!r2000\-D\-P\-S@{r2000\-D\-P\-S}}\item[{\em 
+\hypertarget{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000\-D\-P\-S}\label{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}
+}]+-\/ 2000 Degrees per Second \end{description}
+\end{Desc}
+
+
+Definition at line 47 of file gyro.\-h.
+
+
+\begin{DoxyCode}
+47              \{
+48     \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS}, 
+49     \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}{r500DPS}, 
+50     \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000DPS}, 
+51 \} \hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{GyroRange};
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{\index{Gyroscope Driver@{Gyroscope Driver}!gyro\-Init@{gyro\-Init}}
+\index{gyro\-Init@{gyro\-Init}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{gyro\-Init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} gyro\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf Gyro\-Range}}]{r}
+\end{DoxyParamCaption}
+)}}\label{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}
+
+
+Initializes the Gyroscope. 
+
+I2\-C should already be initialized. 
+\begin{DoxyParams}{Parameters}
+{\em r} & \hyperlink{group__gyro_ga12b0e0572fdceaa90874f9364c862ead}{Gyro\-Range} to use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S} 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file gyro.\-c.
+
+
+
+References A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, gyro\-Range, G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L1, G\-Y\-R\-O\-R\-E\-G\-\_\-\-C\-T\-R\-L4, gyro\-Write\-Byte(), r2000\-D\-P\-S, r250\-D\-P\-S, r500\-D\-P\-S, and S\-U\-C\-C\-E\-S\-S.
+
+
+
+Referenced by orientation\-Init().
+
+
+\begin{DoxyCode}
+75                             \{
+76     uint8\_t v;
+77     \textcolor{keywordflow}{switch} (r) \{
+78         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS}:
+79             v = 0x00;
+80             \textcolor{keywordflow}{break};
+81         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}{r500DPS}:
+82             v = 0x10;
+83             \textcolor{keywordflow}{break};
+84         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000DPS}:
+85             v = 0x20;
+86             \textcolor{keywordflow}{break};
+87         \textcolor{keywordflow}{default}:
+88             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+89     \}
+90     \hyperlink{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}{gyroRange} = r;
+91     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}{gyroWriteByte}(\hyperlink{group__gyro_ga59d5eec860eab49733b4a814731e356c}{GYROREG\_CTRL1}, 0x0F);
+92     \textcolor{keywordflow}{if} (e != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{
+93         \textcolor{keywordflow}{return} e;
+94     \}
+95     e = \hyperlink{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}{gyroWriteByte}(\hyperlink{group__gyro_gae9b6f4aab3818fdb4c99970918e0a705}{GYROREG\_CTRL4}, v);
+96     \textcolor{keywordflow}{return} e;
+97 \}
+\end{DoxyCode}
+\hypertarget{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{\index{Gyroscope Driver@{Gyroscope Driver}!gyro\-Read@{gyro\-Read}}
+\index{gyro\-Read@{gyro\-Read}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{gyro\-Read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} gyro\-Read (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3f} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{group__gyro_gab90a6ac7c268152edb186ee699462fd8}
+
+
+Get a set of gyroscope data. 
+
+\hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyro\-Init()} should already be called. 
+\begin{DoxyParams}{Parameters}
+{\em v} & Data Destionation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S} 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file gyro.\-c.
+
+
+
+References A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S, G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R, gyro\-Range, G\-Y\-R\-O\-R\-E\-G\-\_\-\-O\-U\-T\-X\-L, r2000\-D\-P\-S, r250\-D\-P\-S, r500\-D\-P\-S, S\-U\-C\-C\-E\-S\-S, T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R, T\-W\-I\-\_\-\-R\-E\-A\-D, T\-W\-I\-\_\-\-W\-R\-I\-T\-E, T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R, twi\-Read\-Ack(), twi\-Read\-Nak(), twi\-Rep\-Start(), twi\-Start(), twi\-Write(), Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
+
+
+
+Referenced by orientation\-Task().
+
+
+\begin{DoxyCode}
+99                             \{
+100     \textcolor{comment}{// Simple Software Low-Pass}
+101     \textcolor{keyword}{static} \textcolor{keywordtype}{double} gyroSumX = 0, gyroSumY = 0, gyroSumZ = 0;
+102     \textcolor{keyword}{static} \textcolor{keywordtype}{double} gyroFilterX = 0, gyroFilterY = 0, gyroFilterZ = 0;
+103 
+104     \textcolor{keywordflow}{if} (v == NULL) \{
+105         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+106     \}
+107     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}{GYRO\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+108         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+109     \}
+110     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__gyro_ga8840a0f1e53e6999ddf435a61c0dc279}{GYROREG\_OUTXL} | 0x80)) \{ \textcolor{comment}{// Auto Increment}
+111         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+112     \}
+113     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twiRepStart}(\hyperlink{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}{GYRO\_ADDRESS} | \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{TWI\_READ})) \{
+114         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+115     \}
+116 
+117     uint8\_t xl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+118     uint8\_t xh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+119     uint8\_t yl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+120     uint8\_t yh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+121     uint8\_t zl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+122     uint8\_t zh = \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twiReadNak}();
+123 
+124     int16\_t x = *(int8\_t *)(&xh);
+125     x *= (1 << 8);
+126     x |= xl;
+127 
+128     int16\_t y = *(int8\_t *)(&yh);
+129     y *= (1 << 8);
+130     y |= yl;
+131 
+132     int16\_t z = *(int8\_t *)(&zh);
+133     z *= (1 << 8);
+134     z |= zl;
+135 
+136     \textcolor{keywordflow}{switch} (\hyperlink{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}{gyroRange}) \{
+137         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS}:
+138             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 250 / 0x8000);
+139             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 250 / 0x8000);
+140             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 250 / 0x8000);
+141             \textcolor{keywordflow}{break};
+142         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad107e50e2c89475d879bbb777f658ab3}{r500DPS}:
+143             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 500 / 0x8000);
+144             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 500 / 0x8000);
+145             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 500 / 0x8000);
+146             \textcolor{keywordflow}{break};
+147         \textcolor{keywordflow}{case} \hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000DPS}:
+148             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 2000 / 0x8000);
+149             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 2000 / 0x8000);
+150             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 2000 / 0x8000);
+151             \textcolor{keywordflow}{break};
+152         \textcolor{keywordflow}{default}:
+153             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+154     \}
+155 
+156     gyroSumX = gyroSumX - gyroFilterX + v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x};
+157     gyroFilterX = gyroSumX / \hyperlink{group__config_ga1b5d47810976ecbfd688513246db3ba9}{GYROFILTERFACTOR};
+158     v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = gyroFilterX;
+159 
+160     gyroSumY = gyroSumY - gyroFilterY + v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y};
+161     gyroFilterY = gyroSumY / \hyperlink{group__config_ga1b5d47810976ecbfd688513246db3ba9}{GYROFILTERFACTOR};
+162     v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = gyroFilterY;
+163 
+164     gyroSumZ = gyroSumZ - gyroFilterZ + v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z};
+165     gyroFilterZ = gyroSumZ / \hyperlink{group__config_ga1b5d47810976ecbfd688513246db3ba9}{GYROFILTERFACTOR};
+166     v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = gyroFilterZ;
+167 
+168     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+169 \}
+\end{DoxyCode}
+\hypertarget{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}{\index{Gyroscope Driver@{Gyroscope Driver}!gyro\-Write\-Byte@{gyro\-Write\-Byte}}
+\index{gyro\-Write\-Byte@{gyro\-Write\-Byte}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{gyro\-Write\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} gyro\-Write\-Byte (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{reg, }
+\item[{uint8\-\_\-t}]{val}
+\end{DoxyParamCaption}
+)}}\label{group__gyro_ga779a6d1a0641fc1ddc530366f582961b}
+
+
+Write a Gyroscope Register. 
+
+I2\-C should aready be initialized!
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Register Address \\
+\hline
+{\em val} & New Value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}. 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file gyro.\-c.
+
+
+
+References T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R.
+
+
+
+Referenced by gyro\-Init().
+
+
+\begin{DoxyCode}
+61                                               \{
+62     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}{GYRO\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+63         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+64     \}
+65     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(reg)) \{
+66         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+67     \}
+68     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(val)) \{
+69         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+70     \}
+71     \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
+72     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+73 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}{\index{Gyroscope Driver@{Gyroscope Driver}!gyro\-Range@{gyro\-Range}}
+\index{gyro\-Range@{gyro\-Range}!Gyroscope Driver@{Gyroscope Driver}}
+\subsubsection[{gyro\-Range}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gyro\-Range} gyro\-Range}}\label{group__gyro_gaa2ed27a7e4a0d8a5f492ef6059a04615}
+
+
+Stored range to scale returned values. 
+
+
+
+Definition at line 52 of file gyro.\-c.
+
+
+
+Referenced by gyro\-Init(), and gyro\-Read().
+

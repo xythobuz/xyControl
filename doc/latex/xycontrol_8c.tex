@@ -1,0 +1,58 @@
+\hypertarget{xycontrol_8c}{\section{lib/xycontrol.c File Reference}
+\label{xycontrol_8c}\index{lib/xycontrol.\-c@{lib/xycontrol.\-c}}
+}
+
+
+xy\-Control A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$avr/interrupt.\-h$>$}\\*
+{\ttfamily \#include $<$avr/pgmspace.\-h$>$}\\*
+{\ttfamily \#include $<$avr/wdt.\-h$>$}\\*
+{\ttfamily \#include $<$serial.\-h$>$}\\*
+{\ttfamily \#include $<$spi.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$xmem.\-h$>$}\\*
+{\ttfamily \#include $<$xycontrol.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$adc.\-h$>$}\\*
+{\ttfamily \#include $<$uart\-Menu.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__xycontrol_ga7e2be90354ccc3af05947764858bc0b1}{uartoutput} (char c, F\-I\-L\-E $\ast$f)
+\begin{DoxyCompactList}\small\item\em Method used to write to stdout and stderr. \end{DoxyCompactList}\item 
+int \hyperlink{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{uartinput} (F\-I\-L\-E $\ast$f)
+\begin{DoxyCompactList}\small\item\em Method used to read from stdin. \end{DoxyCompactList}\item 
+void \hyperlink{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{xy\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the xy\-Control Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__xycontrol_ga8b94cac17e75735eec6f6fa42d21ab72}{xy\-Led\-Internal} (uint8\-\_\-t v, volatile uint8\-\_\-t $\ast$port, uint8\-\_\-t pin)
+\begin{DoxyCompactList}\small\item\em Internal L\-E\-D Manipulation function. \end{DoxyCompactList}\item 
+double \hyperlink{group__xycontrol_ga97874cf2a7f8e6964188b54fe85084a6}{get\-Voltage} (void)
+\begin{DoxyCompactList}\small\item\em Calculate and return the Battery Voltage. \end{DoxyCompactList}\item 
+void \hyperlink{group__xycontrol_gab80f101c0a50bca30d796fad70cfd8d7}{reset\-Self} (void)
+\begin{DoxyCompactList}\small\item\em Use the Watchdog to reset yourself after 15ms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{group__xycontrol_gab29cf1c6b0f1a36311899902ec9364ea}{help\-Text} \mbox{[}$\,$\mbox{]} = \char`\"{}Print this Help\char`\"{}
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Menu Help Text. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{group__xycontrol_ga27915b4caf41f74542980a4ea0f1726a}{reset\-Text} \mbox{[}$\,$\mbox{]} = \char`\"{}Reset M\-C\-U\char`\"{}
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Menu Reset Text. \end{DoxyCompactList}\item 
+F\-I\-L\-E \hyperlink{group__xycontrol_gaad0ab56da43b41bbfeeaa3d1eca70e9c}{in\-File}
+\begin{DoxyCompactList}\small\item\em F\-I\-L\-E for stdin. \end{DoxyCompactList}\item 
+F\-I\-L\-E \hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{out\-File}
+\begin{DoxyCompactList}\small\item\em F\-I\-L\-E for stdout and stderr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+xy\-Control A\-P\-I Implementation. 
+
+Definition in file \hyperlink{xycontrol_8c_source}{xycontrol.\-c}.
+

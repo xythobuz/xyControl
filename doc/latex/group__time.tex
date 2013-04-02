@@ -1,0 +1,238 @@
+\hypertarget{group__time}{\section{Time Keeping}
+\label{group__time}\index{Time Keeping@{Time Keeping}}
+}
+
+
+Measuring Time with Millisecond Resolution.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{time_8h}{time.\-h}
+\begin{DoxyCompactList}\small\item\em Time A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{time_8c}{time.\-c}
+\begin{DoxyCompactList}\small\item\em Time A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__time_ga2d2fd1cec45bcf7874da25b8b5efff3c}{T\-C\-R\-A}~T\-C\-C\-R2\-A
+\begin{DoxyCompactList}\small\item\em Timer 2 Control Register A. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__time_ga717594a5c0d5875c9e22aaa23c0649c5}{T\-C\-R\-B}~T\-C\-C\-R2\-B
+\begin{DoxyCompactList}\small\item\em Timer 2 Control Register B. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__time_gab38552082013ece744b4bff695e3b039}{O\-C\-R}~O\-C\-R2\-A
+\begin{DoxyCompactList}\small\item\em Timer 2 Compare Register A. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__time_ga0d40e996ea66a3ab8d42039bebb09978}{T\-I\-M\-S}~T\-I\-M\-S\-K2
+\begin{DoxyCompactList}\small\item\em Timer 2 Interrupt Mask. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__time_ga28e96a5f5c13f26d2e4e4feae1e3c0fe}{O\-C\-I\-E}~O\-C\-I\-E2\-A
+\begin{DoxyCompactList}\small\item\em Timer 2 Compare Match A Interrupt Enable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\-\_\-t \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\-\_\-t}
+\begin{DoxyCompactList}\small\item\em Timekeeping Data Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__time_ga66bac2517b216a802f8fb2233eccfa66}{init\-System\-Timer} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the system timer. \end{DoxyCompactList}\item 
+\hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\-\_\-t} \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{get\-System\-Time} (void)
+\begin{DoxyCompactList}\small\item\em Get the System Uptime. \end{DoxyCompactList}\item 
+\hyperlink{group__time_ga5686c229bdef50123688ab6cb1404230}{I\-S\-R} (T\-I\-M\-E\-R2\-\_\-\-C\-O\-M\-P\-A\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em Timer 2 Compare Match A Interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\-\_\-t} \hyperlink{group__time_ga90653843fa9b02271309112c1062bf4c}{system\-Time} = 0
+\begin{DoxyCompactList}\small\item\em Current System Uptime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Measuring Time with Millisecond Resolution. Uses Timer 2
+
+Prescaler 64
+
+Count to 250
+
+16000000 / 64 / 250 = 1000 --$>$ 1 Interrupt per millisecond 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__time_ga28e96a5f5c13f26d2e4e4feae1e3c0fe}{\index{Time Keeping@{Time Keeping}!O\-C\-I\-E@{O\-C\-I\-E}}
+\index{O\-C\-I\-E@{O\-C\-I\-E}!Time Keeping@{Time Keeping}}
+\subsubsection[{O\-C\-I\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-C\-I\-E~O\-C\-I\-E2\-A}}\label{group__time_ga28e96a5f5c13f26d2e4e4feae1e3c0fe}
+
+
+Timer 2 Compare Match A Interrupt Enable. 
+
+
+
+Definition at line 53 of file time.\-c.
+
+\hypertarget{group__time_gab38552082013ece744b4bff695e3b039}{\index{Time Keeping@{Time Keeping}!O\-C\-R@{O\-C\-R}}
+\index{O\-C\-R@{O\-C\-R}!Time Keeping@{Time Keeping}}
+\subsubsection[{O\-C\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-C\-R~O\-C\-R2\-A}}\label{group__time_gab38552082013ece744b4bff695e3b039}
+
+
+Timer 2 Compare Register A. 
+
+
+
+Definition at line 51 of file time.\-c.
+
+\hypertarget{group__time_ga2d2fd1cec45bcf7874da25b8b5efff3c}{\index{Time Keeping@{Time Keeping}!T\-C\-R\-A@{T\-C\-R\-A}}
+\index{T\-C\-R\-A@{T\-C\-R\-A}!Time Keeping@{Time Keeping}}
+\subsubsection[{T\-C\-R\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-C\-R\-A~T\-C\-C\-R2\-A}}\label{group__time_ga2d2fd1cec45bcf7874da25b8b5efff3c}
+
+
+Timer 2 Control Register A. 
+
+
+
+Definition at line 49 of file time.\-c.
+
+\hypertarget{group__time_ga717594a5c0d5875c9e22aaa23c0649c5}{\index{Time Keeping@{Time Keeping}!T\-C\-R\-B@{T\-C\-R\-B}}
+\index{T\-C\-R\-B@{T\-C\-R\-B}!Time Keeping@{Time Keeping}}
+\subsubsection[{T\-C\-R\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-C\-R\-B~T\-C\-C\-R2\-B}}\label{group__time_ga717594a5c0d5875c9e22aaa23c0649c5}
+
+
+Timer 2 Control Register B. 
+
+
+
+Definition at line 50 of file time.\-c.
+
+\hypertarget{group__time_ga0d40e996ea66a3ab8d42039bebb09978}{\index{Time Keeping@{Time Keeping}!T\-I\-M\-S@{T\-I\-M\-S}}
+\index{T\-I\-M\-S@{T\-I\-M\-S}!Time Keeping@{Time Keeping}}
+\subsubsection[{T\-I\-M\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-S~T\-I\-M\-S\-K2}}\label{group__time_ga0d40e996ea66a3ab8d42039bebb09978}
+
+
+Timer 2 Interrupt Mask. 
+
+
+
+Definition at line 52 of file time.\-c.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{\index{Time Keeping@{Time Keeping}!time\-\_\-t@{time\-\_\-t}}
+\index{time\-\_\-t@{time\-\_\-t}!Time Keeping@{Time Keeping}}
+\subsubsection[{time\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef uint64\-\_\-t {\bf time\-\_\-t}}}\label{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}
+
+
+Timekeeping Data Type. 
+
+Overflows after 500 million years... \-:) 
+
+Definition at line 53 of file time.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__time_ga158463b7abdb2191a9a364bce1faac83}{\index{Time Keeping@{Time Keeping}!get\-System\-Time@{get\-System\-Time}}
+\index{get\-System\-Time@{get\-System\-Time}!Time Keeping@{Time Keeping}}
+\subsubsection[{get\-System\-Time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf time\-\_\-t} get\-System\-Time (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__time_ga158463b7abdb2191a9a364bce1faac83}
+
+
+Get the System Uptime. 
+
+\begin{DoxyReturn}{Returns}
+System Uptime in Milliseconds 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 68 of file time.\-c.
+
+
+
+References system\-Time.
+
+
+
+Referenced by pid\-Execute().
+
+
+\begin{DoxyCode}
+68                            \{
+69     \textcolor{keywordflow}{return} \hyperlink{group__time_ga90653843fa9b02271309112c1062bf4c}{systemTime};
+70 \}
+\end{DoxyCode}
+\hypertarget{group__time_ga66bac2517b216a802f8fb2233eccfa66}{\index{Time Keeping@{Time Keeping}!init\-System\-Timer@{init\-System\-Timer}}
+\index{init\-System\-Timer@{init\-System\-Timer}!Time Keeping@{Time Keeping}}
+\subsubsection[{init\-System\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}void init\-System\-Timer (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__time_ga66bac2517b216a802f8fb2233eccfa66}
+
+
+Initialize the system timer. 
+
+Execution every millisecond. Uses Timer 2. 
+
+Definition at line 55 of file time.\-c.
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+55                        \{
+56     \textcolor{comment}{// Timer initialization}
+57     \hyperlink{group__time_ga2d2fd1cec45bcf7874da25b8b5efff3c}{TCRA} |= (1 << WGM21); \textcolor{comment}{// CTC Mode}
+58     \hyperlink{group__time_ga717594a5c0d5875c9e22aaa23c0649c5}{TCRB} |= (1 << CS22); \textcolor{comment}{// Prescaler: 64}
+59     \hyperlink{group__time_gab38552082013ece744b4bff695e3b039}{OCR} = 250;
+60     \hyperlink{group__time_ga0d40e996ea66a3ab8d42039bebb09978}{TIMS} |= (1 << \hyperlink{group__time_ga28e96a5f5c13f26d2e4e4feae1e3c0fe}{OCIE}); \textcolor{comment}{// Enable compare match interrupt}
+61 \}
+\end{DoxyCode}
+\hypertarget{group__time_ga5686c229bdef50123688ab6cb1404230}{\index{Time Keeping@{Time Keeping}!I\-S\-R@{I\-S\-R}}
+\index{I\-S\-R@{I\-S\-R}!Time Keeping@{Time Keeping}}
+\subsubsection[{I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}I\-S\-R (
+\begin{DoxyParamCaption}
+\item[{T\-I\-M\-E\-R2\-\_\-\-C\-O\-M\-P\-A\-\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}\label{group__time_ga5686c229bdef50123688ab6cb1404230}
+
+
+Timer 2 Compare Match A Interrupt. 
+
+
+
+Definition at line 64 of file time.\-c.
+
+
+
+References system\-Time.
+
+
+\begin{DoxyCode}
+64                        \{
+65     \hyperlink{group__time_ga90653843fa9b02271309112c1062bf4c}{systemTime}++;
+66 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__time_ga90653843fa9b02271309112c1062bf4c}{\index{Time Keeping@{Time Keeping}!system\-Time@{system\-Time}}
+\index{system\-Time@{system\-Time}!Time Keeping@{Time Keeping}}
+\subsubsection[{system\-Time}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf time\-\_\-t} system\-Time = 0}}\label{group__time_ga90653843fa9b02271309112c1062bf4c}
+
+
+Current System Uptime. 
+
+
+
+Definition at line 47 of file time.\-c.
+
+
+
+Referenced by get\-System\-Time(), and I\-S\-R().
+

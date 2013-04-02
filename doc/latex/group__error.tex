@@ -1,0 +1,166 @@
+\hypertarget{group__error}{\section{Error Reporting}
+\label{group__error}\index{Error Reporting@{Error Reporting}}
+}
+
+
+Error reporting with human readable strings.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{error_8h}{error.\-h}
+\begin{DoxyCompactList}\small\item\em Global listing of different error conditions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{C\-H\-E\-C\-K\-E\-R\-R\-O\-R}(x)~if(x!=\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S})\{return x;\}
+\begin{DoxyCompactList}\small\item\em Check an Error Code. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__error_ga72d32a02ede7ed11eee387aa4f4c05d5}{R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R}(x)
+\begin{DoxyCompactList}\small\item\em Report an error, if it occured. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \{ \\*
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S} = 0, 
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, 
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, 
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a89a164ff453c45893033cf318906c2d7}{M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L}, 
+\\*
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}{E\-R\-R\-O\-R}, 
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R}
+ \}
+\begin{DoxyCompactList}\small\item\em Error Conditions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{group__error_ga6ad4aa1b927ea2ceb2c29b5693ddee53}{get\-Error\-String} (\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e)
+\begin{DoxyCompactList}\small\item\em Returns a human-\/readable error description. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Error reporting with human readable strings. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{\index{Error Reporting@{Error Reporting}!C\-H\-E\-C\-K\-E\-R\-R\-O\-R@{C\-H\-E\-C\-K\-E\-R\-R\-O\-R}}
+\index{C\-H\-E\-C\-K\-E\-R\-R\-O\-R@{C\-H\-E\-C\-K\-E\-R\-R\-O\-R}!Error Reporting@{Error Reporting}}
+\subsubsection[{C\-H\-E\-C\-K\-E\-R\-R\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-E\-C\-K\-E\-R\-R\-O\-R(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~if(x!={\bf S\-U\-C\-C\-E\-S\-S})\{return x;\}}}\label{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}
+
+
+Check an Error Code. 
+
+Return it if an error occured. 
+
+Definition at line 56 of file error.\-h.
+
+
+
+Referenced by orientation\-Init(), and orientation\-Task().
+
+\hypertarget{group__error_ga72d32a02ede7ed11eee387aa4f4c05d5}{\index{Error Reporting@{Error Reporting}!R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R@{R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R}}
+\index{R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R@{R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R}!Error Reporting@{Error Reporting}}
+\subsubsection[{R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-E\-P\-O\-R\-T\-E\-R\-R\-O\-R(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}\label{group__error_ga72d32a02ede7ed11eee387aa4f4c05d5}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\{ \(\backslash\)
+    if (x != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{ \(\backslash\)
+        char *s = \hyperlink{group__error_ga6ad4aa1b927ea2ceb2c29b5693ddee53}{getErrorString}(x); \(\backslash\)
+        printf(\textcolor{stringliteral}{"Error: %s\(\backslash\)n"}, s); \(\backslash\)
+        free(s); \(\backslash\)
+    \} \(\backslash\)
+\}
+\end{DoxyCode}
+
+
+Report an error, if it occured. 
+
+Using printf() \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 59 of file error.\-h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{\index{Error Reporting@{Error Reporting}!Error@{Error}}
+\index{Error@{Error}!Error Reporting@{Error Reporting}}
+\subsubsection[{Error}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Error}}}\label{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}
+
+
+Error Conditions. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{S\-U\-C\-C\-E\-S\-S@{S\-U\-C\-C\-E\-S\-S}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!S\-U\-C\-C\-E\-S\-S@{S\-U\-C\-C\-E\-S\-S}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}
+}]No Error. \index{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R@{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R@{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}
+}]No answer from T\-W\-I Slave. \index{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R@{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R@{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}
+}]Error while writing to T\-W\-I Slave. \index{M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L@{M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L@{M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a89a164ff453c45893033cf318906c2d7}{M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a89a164ff453c45893033cf318906c2d7}
+}]Malloc failed. \index{E\-R\-R\-O\-R@{E\-R\-R\-O\-R}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!E\-R\-R\-O\-R@{E\-R\-R\-O\-R}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}{E\-R\-R\-O\-R}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}
+}]General Error. \index{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R@{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R}!Error Reporting@{Error Reporting}}\index{Error Reporting@{Error Reporting}!A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R@{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R}}\item[{\em 
+\hypertarget{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R}\label{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}
+}]Invalid arguments. \end{description}
+\end{Desc}
+
+
+Definition at line 46 of file error.\-h.
+
+
+\begin{DoxyCode}
+46              \{
+47     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS} = 0, 
+48     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER}, 
+49     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR}, 
+50     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a89a164ff453c45893033cf318906c2d7}{MALLOC\_FAIL}, 
+51     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}{ERROR}, 
+52     \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR}, 
+53 \} \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error};
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__error_ga6ad4aa1b927ea2ceb2c29b5693ddee53}{\index{Error Reporting@{Error Reporting}!get\-Error\-String@{get\-Error\-String}}
+\index{get\-Error\-String@{get\-Error\-String}!Error Reporting@{Error Reporting}}
+\subsubsection[{get\-Error\-String}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\-Error\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Error}}]{e}
+\end{DoxyParamCaption}
+)}}\label{group__error_ga6ad4aa1b927ea2ceb2c29b5693ddee53}
+
+
+Returns a human-\/readable error description. 
+
+Free the string after use! 
+
+Definition at line 58 of file error.\-c.
+
+
+
+References error\-Table.
+
+
+\begin{DoxyCode}
+58                               \{
+59     \textcolor{keywordtype}{char} *buff = (\textcolor{keywordtype}{char} *)malloc(strlen\_P((PGM\_P)pgm\_read\_word(&(\hyperlink{error_8c_a0bb6d2621c3b908d06e6b1343f5a3873}{errorTable}[e]))));
+60     \textcolor{keywordflow}{if} (buff == NULL) \{
+61         \textcolor{keywordflow}{return} NULL;
+62     \}
+63     strcpy\_P(buff, (PGM\_P)pgm\_read\_word(&(\hyperlink{error_8c_a0bb6d2621c3b908d06e6b1343f5a3873}{errorTable}[e])));
+64     \textcolor{keywordflow}{return} buff;
+65 \}
+\end{DoxyCode}

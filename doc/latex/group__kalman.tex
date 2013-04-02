@@ -1,0 +1,190 @@
+\hypertarget{group__kalman}{\section{Kalman-\/\-Filter}
+\label{group__kalman}\index{Kalman-\/\-Filter@{Kalman-\/\-Filter}}
+}
+
+
+Kalman-\/\-Filter from \href{http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/}{\tt Linus Helgesson}  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{kalman_8h}{kalman.\-h}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-Filter Header. \end{DoxyCompactList}\item 
+file \hyperlink{kalman_8c}{kalman.\-c}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-Filter Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_kalman}{Kalman}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-Filter State data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalman\-Innovate} (\hyperlink{struct_kalman}{Kalman} $\ast$data, double z1, double z2)
+\begin{DoxyCompactList}\small\item\em Step the \hyperlink{struct_kalman}{Kalman} Filter. \end{DoxyCompactList}\item 
+void \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalman\-Init} (\hyperlink{struct_kalman}{Kalman} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Initialize a Kalman-\/\-State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Kalman-\/\-Filter from \href{http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/}{\tt Linus Helgesson} 
+
+\subsection{Function Documentation}
+\hypertarget{group__kalman_ga89613fd996739650842bef0089c28cb9}{\index{Kalman-\/\-Filter@{Kalman-\/\-Filter}!kalman\-Init@{kalman\-Init}}
+\index{kalman\-Init@{kalman\-Init}!Kalman-Filter@{Kalman-\/\-Filter}}
+\subsubsection[{kalman\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void kalman\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf Kalman} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{group__kalman_ga89613fd996739650842bef0089c28cb9}
+
+
+Initialize a Kalman-\/\-State. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Kalman-\/\-State to be initialized \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file kalman.\-c.
+
+
+
+References Kalman\-::p33, and Kalman\-::x3.
+
+
+
+Referenced by orientation\-Init().
+
+
+\begin{DoxyCode}
+48                               \{
+49     data->x1 = 0.0f;
+50     data->x2 = 0.0f;
+51     data->\hyperlink{struct_kalman_a98e99f64ddf7321e4eae52beca4b580f}{x3} = 0.0f;
+52 
+53     \textcolor{comment}{// Init P to diagonal matrix with large values since}
+54     \textcolor{comment}{// the initial state is not known}
+55     data->p11 = 1000.0f;
+56     data->p12 = 0.0f;
+57     data->p13 = 0.0f;
+58     data->p21 = 0.0f;
+59     data->p22 = 1000.0f;
+60     data->p23 = 0.0f;
+61     data->p31 = 0.0f;
+62     data->p32 = 0.0f;
+63     data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33} = 1000.0f;
+64 \}
+\end{DoxyCode}
+\hypertarget{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{\index{Kalman-\/\-Filter@{Kalman-\/\-Filter}!kalman\-Innovate@{kalman\-Innovate}}
+\index{kalman\-Innovate@{kalman\-Innovate}!Kalman-Filter@{Kalman-\/\-Filter}}
+\subsubsection[{kalman\-Innovate}]{\setlength{\rightskip}{0pt plus 5cm}void kalman\-Innovate (
+\begin{DoxyParamCaption}
+\item[{{\bf Kalman} $\ast$}]{data, }
+\item[{double}]{z1, }
+\item[{double}]{z2}
+\end{DoxyParamCaption}
+)}}\label{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}
+
+
+Step the \hyperlink{struct_kalman}{Kalman} Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Kalman-\/\-Filter State \\
+\hline
+{\em z1} & Angle from Accelerometer \\
+\hline
+{\em z2} & Corresponding Gyroscope data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file kalman.\-c.
+
+
+
+References D\-T, Kalman\-::p33, Q1, Q2, Q3, R1, R2, and Kalman\-::x3.
+
+
+
+Referenced by orientation\-Task().
+
+
+\begin{DoxyCode}
+66                                                         \{
+67     \textcolor{keywordtype}{double} y1, y2;
+68     \textcolor{keywordtype}{double} a, b, c;
+69     \textcolor{keywordtype}{double} sDet;
+70     \textcolor{keywordtype}{double} s11, s12, s21, s22;
+71     \textcolor{keywordtype}{double} k11, k12, k21, k22, k31, k32;
+72     \textcolor{keywordtype}{double} p11, p12, p13, p21, p22, p23, p31, p32, p33;
+73 
+74     \textcolor{comment}{// Step 1}
+75     \textcolor{comment}{// x(k) = Fx(k-1) + Bu + w:}
+76     data->x1 = data->x1 + \hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT}*data->x2 - \hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT}*data->\hyperlink{struct_kalman_a98e99f64ddf7321e4eae52beca4b580f}{x3};
+77     \textcolor{comment}{//x2 = x2;}
+78     \textcolor{comment}{//x3 = x3;}
+79 
+80     \textcolor{comment}{// Step 2}
+81     \textcolor{comment}{// P = FPF'+Q}
+82     a = data->p11 + data->p21*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - data->p31*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT};
+83     b = data->p12 + data->p22*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - data->p32*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT};
+84     c = data->p13 + data->p23*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33}*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT};
+85     data->p11 = a + b*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - c*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} + \hyperlink{group__config_ga0f32727853a3ac3d848701803c3b8688}{Q1};
+86     data->p12 = b;
+87     data->p13 = c;
+88     data->p21 = data->p21 + data->p22*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - data->p23*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT};
+89     data->p22 = data->p22 + \hyperlink{group__config_gaf5bca4c32f8c6886a3d8c526d2e3e9a7}{Q2};
+90     \textcolor{comment}{//p23 = p23;}
+91     data->p31 = data->p31 + data->p32*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT} - data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33}*\hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{DT};
+92     \textcolor{comment}{//p32 = p32;}
+93     data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33} = data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33} + \hyperlink{group__config_ga1d7d3dfd2c4618949c484c5e8369f05a}{Q3};
+94 
+95     \textcolor{comment}{// Step 3}
+96     \textcolor{comment}{// y = z(k) - Hx(k)}
+97     y1 = z1-data->x1;
+98     y2 = z2-data->x2;
+99 
+100     \textcolor{comment}{// Step 4}
+101     \textcolor{comment}{// S = HPT' + R}
+102     s11 = data->p11 + \hyperlink{group__config_ga918f64eb53db8e8dc694f36a87646476}{R1};
+103     s12 = data->p12;
+104     s21 = data->p21;
+105     s22 = data->p22 + \hyperlink{group__config_ga7a255a2815b9453060f51c6eb22cfed8}{R2};
+106 
+107     \textcolor{comment}{// Step 5}
+108     \textcolor{comment}{// K = PH*inv(S)}
+109     sDet = 1/(s11*s22 - s12*s21);
+110     k11 = (data->p11*s22 - data->p12*s21)*sDet;
+111     k12 = (data->p12*s11 - data->p11*s12)*sDet;
+112     k21 = (data->p21*s22 - data->p22*s21)*sDet;
+113     k22 = (data->p22*s11 - data->p21*s12)*sDet;
+114     k31 = (data->p31*s22 - data->p32*s21)*sDet;
+115     k32 = (data->p32*s11 - data->p31*s12)*sDet;
+116 
+117     \textcolor{comment}{// Step 6}
+118     \textcolor{comment}{// x = x + Ky}
+119     data->x1 = data->x1 + k11*y1 + k12*y2;
+120     data->x2 = data->x2 + k21*y1 + k22*y2;
+121     data->\hyperlink{struct_kalman_a98e99f64ddf7321e4eae52beca4b580f}{x3} = data->\hyperlink{struct_kalman_a98e99f64ddf7321e4eae52beca4b580f}{x3} + k31*y1 + k32*y2;
+122 
+123     \textcolor{comment}{// Step 7}
+124     \textcolor{comment}{// P = (I-KH)P}
+125     p11 = data->p11*(1.0f - k11) - data->p21*k12;
+126     p12 = data->p12*(1.0f - k11) - data->p22*k12;
+127     p13 = data->p13*(1.0f - k11) - data->p23*k12;
+128     p21 = data->p21*(1.0f - k22) - data->p11*k21;
+129     p22 = data->p22*(1.0f - k22) - data->p12*k21;
+130     p23 = data->p23*(1.0f - k22) - data->p13*k21;
+131     p31 = data->p31 - data->p21*k32 - data->p11*k31;
+132     p32 = data->p32 - data->p22*k32 - data->p12*k31;
+133     p33 = data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33} - data->p22*k32 - data->p13*k31;
+134     data->p11 = p11; data->p12 = p12; data->p13 = p13;
+135     data->p21 = p21; data->p22 = p22; data->p23 = p23;
+136     data->p31 = p31; data->p32 = p32; data->\hyperlink{struct_kalman_a30801bc9a38fd4c527388e0725fa62f8}{p33} = p33;
+137 \}
+\end{DoxyCode}

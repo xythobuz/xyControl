@@ -1,0 +1,270 @@
+\hypertarget{group__orientation}{\section{Orientation Calculation}
+\label{group__orientation}\index{Orientation Calculation@{Orientation Calculation}}
+}
+
+
+Calculate Orientation using the Kalman-\/\-Filter, Accelerometer and Gyroscope.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{orientation_8h}{orientation.\-h}
+\begin{DoxyCompactList}\small\item\em Orientation A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{orientation_8c}{orientation.\-c}
+\begin{DoxyCompactList}\small\item\em Orientation A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_angles}{Angles}
+\begin{DoxyCompactList}\small\item\em Can store orientation in Euler Space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{T\-O\-D\-E\-G}(x)~((x $\ast$ 180) / M\-\_\-\-P\-I)
+\begin{DoxyCompactList}\small\item\em Convert Radians to Degrees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{orientation\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the Orientation A\-P\-I. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{orientation\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Calculate the current orientation. \end{DoxyCompactList}\item 
+void \hyperlink{group__orientation_ga0fab95dd407145abad293f7c91460eee}{zero\-Orientation} (void)
+\begin{DoxyCompactList}\small\item\em Sets the current orientation to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_angles}{Angles} \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}
+\begin{DoxyCompactList}\small\item\em Current Aircraft orientation. \end{DoxyCompactList}\item 
+\hyperlink{struct_angles}{Angles} \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation} = \{.pitch = 0, .roll = 0, .yaw = 0\}
+\begin{DoxyCompactList}\small\item\em Current Aircraft orientation. \end{DoxyCompactList}\item 
+\hyperlink{struct_angles}{Angles} \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientation\-Error} = \{.pitch = 0, .roll = 0, .yaw = 0\}
+\begin{DoxyCompactList}\small\item\em Current Aircraft orientation offset. \end{DoxyCompactList}\item 
+\hyperlink{struct_kalman}{Kalman} \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitch\-Data}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-State for Pitch Angle. \end{DoxyCompactList}\item 
+\hyperlink{struct_kalman}{Kalman} \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{roll\-Data}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-State for Roll Angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculate Orientation using the Kalman-\/\-Filter, Accelerometer and Gyroscope. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{\index{Orientation Calculation@{Orientation Calculation}!T\-O\-D\-E\-G@{T\-O\-D\-E\-G}}
+\index{T\-O\-D\-E\-G@{T\-O\-D\-E\-G}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{T\-O\-D\-E\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-O\-D\-E\-G(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((x $\ast$ 180) / M\-\_\-\-P\-I)}}\label{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}
+
+
+Convert Radians to Degrees. 
+
+
+
+Definition at line 54 of file orientation.\-c.
+
+
+
+Referenced by orientation\-Task().
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{\index{Orientation Calculation@{Orientation Calculation}!orientation\-Init@{orientation\-Init}}
+\index{orientation\-Init@{orientation\-Init}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{orientation\-Init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} orientation\-Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}
+
+
+Initializes the Orientation A\-P\-I. 
+
+Also initializes the Accelerometer, Gyroscope and Magnetometer. I2\-C should already be initialized! \begin{DoxyReturn}{Returns}
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 65 of file orientation.\-c.
+
+
+
+References acc\-Init(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, gyro\-Init(), kalman\-Init(), mag\-Init(), r1g9, r250\-D\-P\-S, r4\-G, and S\-U\-C\-C\-E\-S\-S.
+
+
+\begin{DoxyCode}
+65                             \{
+66     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga7674eb1b940f183abe5e0b0913a87613}{accInit}(\hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G});
+67     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+68     e = \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyroInit}(\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS});
+69     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+70     e = \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{magInit}(\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9});
+71     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+72     \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData});
+73     \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData});
+74     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+75 \}
+\end{DoxyCode}
+\hypertarget{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{\index{Orientation Calculation@{Orientation Calculation}!orientation\-Task@{orientation\-Task}}
+\index{orientation\-Task@{orientation\-Task}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{orientation\-Task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} orientation\-Task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}
+
+
+Calculate the current orientation. 
+
+It will be stored in the global \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation} Struct. \begin{DoxyReturn}{Returns}
+\hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 77 of file orientation.\-c.
+
+
+
+References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, gyro\-Read(), kalman\-Innovate(), orientation, Angles\-::pitch, Angles\-::roll, S\-U\-C\-C\-E\-S\-S, T\-O\-D\-E\-G, Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
+
+
+\begin{DoxyCode}
+77                             \{
+78     \hyperlink{struct_vector3f}{Vector3f} g, a;
+79     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{accRead}(&a); \textcolor{comment}{// Read Accelerometer}
+80     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+81     e = \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyroRead}(&g); \textcolor{comment}{// Read Gyroscope}
+82     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+83 
+84     \textcolor{comment}{// Calculate Pitch & Roll from Accelerometer Data}
+85     \textcolor{keywordtype}{double} roll = atan(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} / hypot(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
+86     \textcolor{keywordtype}{double} pitch = atan(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} / hypot(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
+87     roll = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(roll);
+88     pitch = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(pitch); \textcolor{comment}{// As Degree, not radians!}
+89 
+90     \textcolor{comment}{// Filter Roll and Pitch with Gyroscope Data from the corresponding axis}
+91     \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}, pitch, g.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x});
+92     \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}, roll, g.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y});
+93     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}.x1 - \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.
+      \hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
+94     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}.x1 - \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.
+      \hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
+95 
+96     \textcolor{comment}{//orientation.roll = round(orientation.roll * 10) / 10;}
+97     \textcolor{comment}{//orientation.pitch = round(orientation.pitch * 10) / 10;}
+98 
+99     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+100 \}
+\end{DoxyCode}
+\hypertarget{group__orientation_ga0fab95dd407145abad293f7c91460eee}{\index{Orientation Calculation@{Orientation Calculation}!zero\-Orientation@{zero\-Orientation}}
+\index{zero\-Orientation@{zero\-Orientation}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{zero\-Orientation}]{\setlength{\rightskip}{0pt plus 5cm}void zero\-Orientation (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__orientation_ga0fab95dd407145abad293f7c91460eee}
+
+
+Sets the current orientation to zero. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 102 of file orientation.\-c.
+
+
+
+References orientation, Angles\-::pitch, Angles\-::roll, and Angles\-::yaw.
+
+
+\begin{DoxyCode}
+102                            \{
+103     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} + 
+      \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
+104     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} + 
+      \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
+105     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} + 
+      \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw};
+106 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{\index{Orientation Calculation@{Orientation Calculation}!orientation@{orientation}}
+\index{orientation@{orientation}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{orientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Angles} orientation}}\label{group__orientation_gacd4a2942520b68691db5aebde4e537a4}
+
+
+Current Aircraft orientation. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 57 of file orientation.\-c.
+
+
+
+Referenced by orientation\-Task(), pid\-Task(), and zero\-Orientation().
+
+\hypertarget{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{\index{Orientation Calculation@{Orientation Calculation}!orientation@{orientation}}
+\index{orientation@{orientation}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{orientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Angles} orientation = \{.pitch = 0, .roll = 0, .yaw = 0\}}}\label{group__orientation_gacd4a2942520b68691db5aebde4e537a4}
+
+
+Current Aircraft orientation. 
+
+
+
+Definition at line 57 of file orientation.\-c.
+
+
+
+Referenced by orientation\-Task(), pid\-Task(), and zero\-Orientation().
+
+\hypertarget{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{\index{Orientation Calculation@{Orientation Calculation}!orientation\-Error@{orientation\-Error}}
+\index{orientation\-Error@{orientation\-Error}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{orientation\-Error}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Angles} orientation\-Error = \{.pitch = 0, .roll = 0, .yaw = 0\}}}\label{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}
+
+
+Current Aircraft orientation offset. 
+
+
+
+Definition at line 60 of file orientation.\-c.
+
+\hypertarget{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{\index{Orientation Calculation@{Orientation Calculation}!pitch\-Data@{pitch\-Data}}
+\index{pitch\-Data@{pitch\-Data}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{pitch\-Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Kalman} pitch\-Data}}\label{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}
+
+
+Kalman-\/\-State for Pitch Angle. 
+
+
+
+Definition at line 62 of file orientation.\-c.
+
+\hypertarget{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{\index{Orientation Calculation@{Orientation Calculation}!roll\-Data@{roll\-Data}}
+\index{roll\-Data@{roll\-Data}!Orientation Calculation@{Orientation Calculation}}
+\subsubsection[{roll\-Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Kalman} roll\-Data}}\label{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}
+
+
+Kalman-\/\-State for Roll Angle. 
+
+
+
+Definition at line 63 of file orientation.\-c.
+

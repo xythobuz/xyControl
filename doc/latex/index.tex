@@ -1,0 +1,69 @@
+
+
+xy\-Control is a Quadrocopter Flight Controller based on Atmels Atmega2560 microcontroller. It features 64\-K\-B S\-R\-A\-M on-\/board, using the external memory interface of this processor. Also included is a switched power supply as well as a U\-S\-B connection to communicate with and program the target. All I/\-O pins, including 3 additional U\-A\-R\-Ts, S\-P\-I, I2\-C (T\-W\-I) and 16 A\-D\-C Channels, are accessible via standard 2.\-54mm connectors. The Board can be powered from an external stable 5\-V supply, U\-S\-B or 7\-V or more, via the on-\/board switched power supply. All voltage sources can be selected via jumpers.
+
+\subsection*{Known Problems}
+
+In the current P\-C\-B layout, the S\-D-\/\-Card holder is rotated 180 degrees. This prevents an S\-D-\/\-Card from being inserted!
+
+\subsection*{Flight Control Software Flow}
+
+Three tasks are controlling the Quadrocopter Orientation in Space.
+
+
+\begin{DoxyItemize}
+\item The Orientation Task reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct \char`\"{}orientation\char`\"{}.
+\item The P\-I\-D Task is then feeding these angles into two P\-I\-D controllers. Their output is then used by...
+\item The Set Task, which calculates the motor speeds and gives them to...
+\item The motor task, which sends the new values via T\-W\-I to the motor controllers.
+\end{DoxyItemize}
+
+\section*{Supported Hardware}
+
+
+\begin{DoxyItemize}
+\item Gyroscope L3\-G\-D20, code based on the \href{https://github.com/adafruit/Adafruit_L3GD20}{\tt Adafruit Example}.
+\item Accelerometer and Magnetometer L\-S\-M303\-D\-L\-H\-C, code based on the \href{https://github.com/pololu/LSM303}{\tt Pololu Example}.
+\item I got both of these Sensors on the \href{http://www.pololu.com/catalog/product/1268}{\tt Min\-I\-M\-U-\/9 v2}
+\item Brushless Motor Driver \href{http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2}{\tt B\-L-\/\-Ctrl V1.\-2} with eg. the \href{http://www.conrad.de/ce/de/product/231867}{\tt Robbe Roxxy Outrunner 2824-\/34} Brushless Motor.
+\item B\-T\-M-\/222 Bluetooth U\-A\-R\-T Bridge (\href{http://xythobuz.org/index.php?p=bt}{\tt P\-C\-B})
+\end{DoxyItemize}
+
+\subsection*{External Memory (\hyperlink{xmem_8h}{xmem.\-h})}
+
+The external memory consists of a 512\-Kx8 S\-R\-A\-M, bank-\/switched onto the 16bit avr address space. This gives us 8 memory banks, consisting of 56\-K\-B. All memory from 0x0000 to 0x21\-F\-F is the A\-V\-Rs internal memory. The memory banks are switched into 0x2200 to 0x\-F\-F\-F\-F. This gives us 8 banks with 56\-K\-B each, resulting in 448\-K\-B external R\-A\-M.
+
+The data and bss memory sections, as well as the Stack are located in the internal R\-A\-M. The external R\-A\-M is used only for dynamically allocated memory.
+
+\subsection*{Orientation Calculation (\hyperlink{orientation_8h}{orientation.\-h})}
+
+Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a \hyperlink{struct_kalman}{Kalman} Filter. It is using this slightly modified \href{http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/}{\tt Kalman Filter Implementation} by Linus Helgesson.
+
+\section*{P\-C and Android Tools}
+
+You can find some P\-C Software in the 'tools' directory. Each one should be accompanied by it's own Readme file.
+
+\subsection*{U\-A\-R\-T-\/\-Flight Status Packet Format}
+
+\begin{DoxyVerb}printf("t%.2f %.2f %.2f\n", kp, ki, kd);
+printf("u%.2f %.2f\n", pid_output[1], pid_output[0]); // Pitch, Roll
+printf("v%i %i %i %i\n", motorSpeed[0], ..., motorSpeed[3]);
+printf("w%.2f\n", orientation.pitch);
+printf("x%.2f\n", orientation.roll);
+printf("y%.2f\n", orientation.yaw);
+printf("z%.2f\n", getVoltage());
+\end{DoxyVerb}
+
+
+\section*{Software used}
+
+
+\begin{DoxyItemize}
+\item \href{http://homepage.hispeed.ch/peterfleury/avr-software.html}{\tt Peter Fleurys T\-W\-I Library}
+\end{DoxyItemize}
+
+\section*{License}
+
+Peter Fleurys T\-W\-I Library (\hyperlink{twi_8c_source}{twi.\-c} \& \hyperlink{twi_8h}{twi.\-h}) is released under the \href{http://www.gnu.org/licenses/gpl.html}{\tt G\-N\-U G\-P\-L license}.
+
+Everything else is released under a B\-S\-D-\/\-Style license. See the accompanying C\-O\-P\-Y\-I\-N\-G file. 

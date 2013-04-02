@@ -1,0 +1,41 @@
+\hypertarget{twi_8h}{\section{include/twi.h File Reference}
+\label{twi_8h}\index{include/twi.\-h@{include/twi.\-h}}
+}
+
+
+I2\-C A\-P\-I Header.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{T\-W\-I\-\_\-\-R\-E\-A\-D}~1
+\begin{DoxyCompactList}\small\item\em I2\-C Read Bit. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E}~0
+\begin{DoxyCompactList}\small\item\em I2\-C Write Bit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{twi\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the I2\-C Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twi\-Stop} (void)
+\begin{DoxyCompactList}\small\item\em Stop the I2\-C Hardware. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twi\-Start} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start an I2\-C Transfer. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twi\-Rep\-Start} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start a repeated I2\-C Transfer. \end{DoxyCompactList}\item 
+void \hyperlink{group__twi_ga0988733f7d2d69888045b0a48463c088}{twi\-Start\-Wait} (unsigned char addr)
+\begin{DoxyCompactList}\small\item\em Start an I2\-C Transfer and poll until ready. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twi\-Write} (unsigned char data)
+\begin{DoxyCompactList}\small\item\em Write to the I2\-C Slave. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twi\-Read\-Ack} (void)
+\begin{DoxyCompactList}\small\item\em Read from the I2\-C Slave and request more data. \end{DoxyCompactList}\item 
+unsigned char \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twi\-Read\-Nak} (void)
+\begin{DoxyCompactList}\small\item\em Read from the I2\-C Slave and deny more data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+I2\-C A\-P\-I Header. 
+
+Definition in file \hyperlink{twi_8h_source}{twi.\-h}.
+

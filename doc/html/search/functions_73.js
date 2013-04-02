@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['savestate',['saveState',['../group__xmem.html#ga1b5d7ce361c908dce9af0faf79987124',1,'xmem.c']]],
+  ['serialclose',['serialClose',['../group__uart.html#gacfb02e5ea225e4641d85191f018d256a',1,'serial.c']]],
+  ['serialget',['serialGet',['../group__uart.html#ga3a3f6acfefa86dc78ec2d2455fc71709',1,'serial.c']]],
+  ['serialgetblocking',['serialGetBlocking',['../group__uart.html#gad779ae9434277dbe34fe292e5d8b10c8',1,'serial.c']]],
+  ['serialhaschar',['serialHasChar',['../group__uart.html#ga27cc67be388d64af00ef64e22f75686d',1,'serial.c']]],
+  ['serialinit',['serialInit',['../group__uart.html#ga276d676dc37f6d1dcd5672a9fe056a78',1,'serial.c']]],
+  ['serialrxbufferempty',['serialRxBufferEmpty',['../group__uart.html#gadb8b3dcb37273bc7b6020036c6cc042c',1,'serial.c']]],
+  ['serialrxbufferfull',['serialRxBufferFull',['../group__uart.html#gae09e3a1d26a94ba227c84186b6db37c0',1,'serial.c']]],
+  ['serialtxbufferempty',['serialTxBufferEmpty',['../group__uart.html#gafc7ede165d9cdfc994180efde88da38d',1,'serial.c']]],
+  ['serialtxbufferfull',['serialTxBufferFull',['../group__uart.html#ga61a4c50b32168a7c42f48f8bc70694e9',1,'serial.c']]],
+  ['serialwrite',['serialWrite',['../group__uart.html#ga66f8906eba5f8b0fa6ead524b9f01498',1,'serial.c']]],
+  ['serialwritestring',['serialWriteString',['../group__uart.html#gaf75ad80708724751008f68ae264d60cf',1,'serial.c']]],
+  ['setflow',['setFlow',['../group__uart.html#ga42630f5ff3489d61615f8b7990c865d1',1,'serial.c']]],
+  ['setmotorspeeds',['setMotorSpeeds',['../group__set.html#ga4173baf06c19647e0c60ef2e910bbc87',1,'set.c']]],
+  ['settask',['setTask',['../group__set.html#ga37f245c493d725009017f62a78505e64',1,'set.c']]],
+  ['spiinit',['spiInit',['../group__spi.html#gab16bbe73b15109ae6ca700391711d036',1,'spi.h']]],
+  ['spisendbyte',['spiSendByte',['../group__spi.html#ga0ba99d77c04fac21eff9c6ee91b60d43',1,'spi.c']]]
+];

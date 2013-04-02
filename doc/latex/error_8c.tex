@@ -1,0 +1,132 @@
+\hypertarget{error_8c}{\section{lib/error.c File Reference}
+\label{error_8c}\index{lib/error.\-c@{lib/error.\-c}}
+}
+
+
+Global listing of different error conditions.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$avr/pgmspace.\-h$>$}\\*
+{\ttfamily \#include $<$error.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{group__error_ga6ad4aa1b927ea2ceb2c29b5693ddee53}{get\-Error\-String} (\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e)
+\begin{DoxyCompactList}\small\item\em Returns a human-\/readable error description. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_a606e4c5df4b690d69b3f5b08419d1a1f}{error0} \mbox{[}$\,$\mbox{]} = \char`\"{}Success\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for S\-U\-C\-C\-E\-S\-S. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_a8c75e4b02dca7170df6874a9cdac5188}{error1} \mbox{[}$\,$\mbox{]} = \char`\"{}T\-W\-I doesn't answer\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_ac4156338c38414394192bc974e6822a2}{error2} \mbox{[}$\,$\mbox{]} = \char`\"{}T\-W\-I could not write\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_a376b3e9849d80aa569593c88726107e8}{error3} \mbox{[}$\,$\mbox{]} = \char`\"{}Not enough memory\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_ac75921789501655408a831adf93568ae}{error4} \mbox{[}$\,$\mbox{]} = \char`\"{}General \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error}\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for E\-R\-R\-O\-R. \end{DoxyCompactList}\item 
+char P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_ace3f3055ca8e01442967177a33049806}{error5} \mbox{[}$\,$\mbox{]} = \char`\"{}Argument \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error}\char`\"{}
+\begin{DoxyCompactList}\small\item\em String for A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R. \end{DoxyCompactList}\item 
+P\-G\-M\-\_\-\-P P\-R\-O\-G\-M\-E\-M \hyperlink{error_8c_a0bb6d2621c3b908d06e6b1343f5a3873}{error\-Table} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of all error descriptions in Flash Memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global listing of different error conditions. Can be returned to signalise error or success. Also allows to print human-\/readable error descriptions. 
+
+Definition in file \hyperlink{error_8c_source}{error.\-c}.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{error_8c_a606e4c5df4b690d69b3f5b08419d1a1f}{\index{error.\-c@{error.\-c}!error0@{error0}}
+\index{error0@{error0}!error.c@{error.\-c}}
+\subsubsection[{error0}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error0\mbox{[}$\,$\mbox{]} = \char`\"{}Success\char`\"{}}}\label{error_8c_a606e4c5df4b690d69b3f5b08419d1a1f}
+
+
+String for S\-U\-C\-C\-E\-S\-S. 
+
+
+
+Definition at line 43 of file error.\-c.
+
+\hypertarget{error_8c_a8c75e4b02dca7170df6874a9cdac5188}{\index{error.\-c@{error.\-c}!error1@{error1}}
+\index{error1@{error1}!error.c@{error.\-c}}
+\subsubsection[{error1}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error1\mbox{[}$\,$\mbox{]} = \char`\"{}T\-W\-I doesn't answer\char`\"{}}}\label{error_8c_a8c75e4b02dca7170df6874a9cdac5188}
+
+
+String for T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R. 
+
+
+
+Definition at line 44 of file error.\-c.
+
+\hypertarget{error_8c_ac4156338c38414394192bc974e6822a2}{\index{error.\-c@{error.\-c}!error2@{error2}}
+\index{error2@{error2}!error.c@{error.\-c}}
+\subsubsection[{error2}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error2\mbox{[}$\,$\mbox{]} = \char`\"{}T\-W\-I could not write\char`\"{}}}\label{error_8c_ac4156338c38414394192bc974e6822a2}
+
+
+String for T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R. 
+
+
+
+Definition at line 45 of file error.\-c.
+
+\hypertarget{error_8c_a376b3e9849d80aa569593c88726107e8}{\index{error.\-c@{error.\-c}!error3@{error3}}
+\index{error3@{error3}!error.c@{error.\-c}}
+\subsubsection[{error3}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error3\mbox{[}$\,$\mbox{]} = \char`\"{}Not enough memory\char`\"{}}}\label{error_8c_a376b3e9849d80aa569593c88726107e8}
+
+
+String for M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L. 
+
+
+
+Definition at line 46 of file error.\-c.
+
+\hypertarget{error_8c_ac75921789501655408a831adf93568ae}{\index{error.\-c@{error.\-c}!error4@{error4}}
+\index{error4@{error4}!error.c@{error.\-c}}
+\subsubsection[{error4}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error4\mbox{[}$\,$\mbox{]} = \char`\"{}General {\bf Error}\char`\"{}}}\label{error_8c_ac75921789501655408a831adf93568ae}
+
+
+String for E\-R\-R\-O\-R. 
+
+
+
+Definition at line 47 of file error.\-c.
+
+\hypertarget{error_8c_ace3f3055ca8e01442967177a33049806}{\index{error.\-c@{error.\-c}!error5@{error5}}
+\index{error5@{error5}!error.c@{error.\-c}}
+\subsubsection[{error5}]{\setlength{\rightskip}{0pt plus 5cm}char P\-R\-O\-G\-M\-E\-M error5\mbox{[}$\,$\mbox{]} = \char`\"{}Argument {\bf Error}\char`\"{}}}\label{error_8c_ace3f3055ca8e01442967177a33049806}
+
+
+String for A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R. 
+
+
+
+Definition at line 48 of file error.\-c.
+
+\hypertarget{error_8c_a0bb6d2621c3b908d06e6b1343f5a3873}{\index{error.\-c@{error.\-c}!error\-Table@{error\-Table}}
+\index{error\-Table@{error\-Table}!error.c@{error.\-c}}
+\subsubsection[{error\-Table}]{\setlength{\rightskip}{0pt plus 5cm}P\-G\-M\-\_\-\-P P\-R\-O\-G\-M\-E\-M error\-Table\mbox{[}$\,$\mbox{]}}}\label{error_8c_a0bb6d2621c3b908d06e6b1343f5a3873}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \{
+    \hyperlink{error_8c_a606e4c5df4b690d69b3f5b08419d1a1f}{error0}, \hyperlink{error_8c_a8c75e4b02dca7170df6874a9cdac5188}{error1}, \hyperlink{error_8c_ac4156338c38414394192bc974e6822a2}{error2}, \hyperlink{error_8c_a376b3e9849d80aa569593c88726107e8}{error3}, \hyperlink{error_8c_ac75921789501655408a831adf93568ae}{error4}, \hyperlink{error_8c_ace3f3055ca8e01442967177a33049806}{error5}
+\}
+\end{DoxyCode}
+
+
+Array of all error descriptions in Flash Memory. 
+
+
+
+Definition at line 51 of file error.\-c.
+
+
+
+Referenced by get\-Error\-String().
+

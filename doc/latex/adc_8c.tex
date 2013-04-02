@@ -1,0 +1,31 @@
+\hypertarget{adc_8c}{\section{lib/adc.c File Reference}
+\label{adc_8c}\index{lib/adc.\-c@{lib/adc.\-c}}
+}
+
+
+Analog-\/to-\/\-Digital Converter A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$adc.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adc\-Init} (\hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{A\-D\-C\-Ref} ref)
+\begin{DoxyCompactList}\small\item\em Initialize the A\-D\-C Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{adc\-Start} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Start a conversion on a given channel. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adc\-Ready} (void)
+\begin{DoxyCompactList}\small\item\em Check if a result is ready. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adc\-Get} (uint8\-\_\-t next)
+\begin{DoxyCompactList}\small\item\em Get the conversion results. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga60d979fb3eb0c7cc9da721671ad7f2bc}{adc\-Close} (void)
+\begin{DoxyCompactList}\small\item\em Disable the A\-D\-C to save energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Analog-\/to-\/\-Digital Converter A\-P\-I Implementation. 
+
+Definition in file \hyperlink{adc_8c_source}{adc.\-c}.
+

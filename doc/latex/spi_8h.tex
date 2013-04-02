@@ -1,0 +1,42 @@
+\hypertarget{spi_8h}{\section{include/spi.h File Reference}
+\label{spi_8h}\index{include/spi.\-h@{include/spi.\-h}}
+}
+
+
+S\-P\-I A\-P\-I Header.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__spi_gae506139af46f1328f631ddacd54af96d}{S\-P\-I\-\_\-\-M\-O\-D\-E} \{ \hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96da68ae6cc4ed3f27fe8040eb93d9c4efa3}{M\-O\-D\-E\-\_\-0} = 0, 
+\hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96daf25f6bda513005f645d3626d9391f8cc}{M\-O\-D\-E\-\_\-1} = 1, 
+\hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96da0a36399f2feba688abe010c193b8a5f1}{M\-O\-D\-E\-\_\-2} = 2, 
+\hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96dad94e70da03012c70efde66c9136b0981}{M\-O\-D\-E\-\_\-3} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em S\-P\-I Mode option. \end{DoxyCompactList}\item 
+enum \hyperlink{group__spi_ga92b13fd51af2a9a09b1854520a5a427f}{S\-P\-I\-\_\-\-S\-P\-E\-E\-D} \{ \\*
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fa3e1a04cc2aad70558b57122e6b70f8b6}{S\-P\-E\-E\-D\-\_\-2} = 4, 
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fae11af3cd43c20a2067c8656e851f5898}{S\-P\-E\-E\-D\-\_\-4} = 0, 
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427faa29ab48ff495c06b667f4a9a619b2296}{S\-P\-E\-E\-D\-\_\-8} = 5, 
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fa7eb7eef4c4f6e11040a40d1a34fa7ede}{S\-P\-E\-E\-D\-\_\-16} = 1, 
+\\*
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fac9ddd00c987ca0f77965762d7e73393d}{S\-P\-E\-E\-D\-\_\-32} = 6, 
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427faec264204118211e58417f9cb466dd609}{S\-P\-E\-E\-D\-\_\-64} = 2, 
+\hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427faa0503562f9205b335a03f39c54ff529e}{S\-P\-E\-E\-D\-\_\-128} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em S\-P\-I Speed options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__spi_gab16bbe73b15109ae6ca700391711d036}{spi\-Init} (\hyperlink{group__spi_gae506139af46f1328f631ddacd54af96d}{S\-P\-I\-\_\-\-M\-O\-D\-E} mode, \hyperlink{group__spi_ga92b13fd51af2a9a09b1854520a5a427f}{S\-P\-I\-\_\-\-S\-P\-E\-E\-D} speed)
+\begin{DoxyCompactList}\small\item\em Initialize the S\-P\-I Hardware Module. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__spi_ga0ba99d77c04fac21eff9c6ee91b60d43}{spi\-Send\-Byte} (uint8\-\_\-t d)
+\begin{DoxyCompactList}\small\item\em Send and Receive one byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\-P\-I A\-P\-I Header. 
+
+Definition in file \hyperlink{spi_8h_source}{spi.\-h}.
+

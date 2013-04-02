@@ -1,0 +1,100 @@
+\hypertarget{struct_malloc_state}{\section{Malloc\-State Struct Reference}
+\label{struct_malloc_state}\index{Malloc\-State@{Malloc\-State}}
+}
+
+
+All Malloc related State.  
+
+
+
+
+{\ttfamily \#include $<$xmem.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{start}
+\begin{DoxyCompactList}\small\item\em Start of Heap. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{end}
+\begin{DoxyCompactList}\small\item\em End of Heap. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{val}
+\begin{DoxyCompactList}\small\item\em Highest Heap Point. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{fl}
+\begin{DoxyCompactList}\small\item\em Free List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+All Malloc related State. 
+
+The Heap is bank-\/switched, so this state has to be switched with the banks to allow different memory allocations on different banks. 
+
+Definition at line 62 of file xmem.\-h.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{\index{Malloc\-State@{Malloc\-State}!end@{end}}
+\index{end@{end}!MallocState@{Malloc\-State}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ end}}\label{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}
+
+
+End of Heap. 
+
+
+
+Definition at line 64 of file xmem.\-h.
+
+
+
+Referenced by restore\-State(), and save\-State().
+
+\hypertarget{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{\index{Malloc\-State@{Malloc\-State}!fl@{fl}}
+\index{fl@{fl}!MallocState@{Malloc\-State}}
+\subsubsection[{fl}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ fl}}\label{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}
+
+
+Free List. 
+
+
+
+Definition at line 66 of file xmem.\-h.
+
+
+
+Referenced by restore\-State(), and save\-State().
+
+\hypertarget{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{\index{Malloc\-State@{Malloc\-State}!start@{start}}
+\index{start@{start}!MallocState@{Malloc\-State}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ start}}\label{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}
+
+
+Start of Heap. 
+
+
+
+Definition at line 63 of file xmem.\-h.
+
+
+
+Referenced by restore\-State(), and save\-State().
+
+\hypertarget{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{\index{Malloc\-State@{Malloc\-State}!val@{val}}
+\index{val@{val}!MallocState@{Malloc\-State}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ val}}\label{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}
+
+
+Highest Heap Point. 
+
+
+
+Definition at line 65 of file xmem.\-h.
+
+
+
+Referenced by restore\-State(), and save\-State().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{xmem_8h}{xmem.\-h}\end{DoxyCompactItemize}

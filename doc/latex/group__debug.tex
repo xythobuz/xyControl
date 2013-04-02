@@ -1,0 +1,106 @@
+\hypertarget{group__debug}{\section{Debug Output}
+\label{group__debug}\index{Debug Output@{Debug Output}}
+}
+
+
+Allows debug ouput and assert usage.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{debug_8h}{debug.\-h}
+\begin{DoxyCompactList}\small\item\em Debug and Assert Header and Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}{D\-E\-B\-U\-G\-O\-U\-T}(x)~printf(x)
+\begin{DoxyCompactList}\small\item\em Debug Output Function. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)
+\begin{DoxyCompactList}\small\item\em Simple Assert Implementation. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{assert}(x)~\hyperlink{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)
+\begin{DoxyCompactList}\small\item\em Enable \hyperlink{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{assert()} \end{DoxyCompactList}\item 
+\#define \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print}(ignore)
+\begin{DoxyCompactList}\small\item\em Disable \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Allows debug ouput and assert usage. Usage\-: Before including this file, define D\-E\-B\-U\-G as the debuglevel, eg\-:
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#define DEBUG 1}
+\end{DoxyCode}
+
+
+for debuglevel 1. Then use debug\-Print(\char`\"{}\-Foo\char`\"{}) in your code. If you need to calculate stuff for your debug output, enclose it\-:
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#if DEBUG >= 1}
+\textcolor{preprocessor}{}    \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debugPrint}(\textcolor{stringliteral}{"Bar"});
+\textcolor{preprocessor}{#endif}
+\end{DoxyCode}
+ 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{\index{Debug Output@{Debug Output}!assert@{assert}}
+\index{assert@{assert}!Debug Output@{Debug Output}}
+\subsubsection[{assert}]{\setlength{\rightskip}{0pt plus 5cm}\#define assert(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~{\bf A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)}}\label{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}
+
+
+Enable \hyperlink{group__debug_gaf576bf8ffa22a44e53018c67095ffbf0}{assert()} 
+
+
+
+Definition at line 88 of file debug.\-h.
+
+\hypertarget{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{\index{Debug Output@{Debug Output}!A\-S\-S\-E\-R\-T\-F\-U\-N\-C@{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}}
+\index{A\-S\-S\-E\-R\-T\-F\-U\-N\-C@{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}!Debug Output@{Debug Output}}
+\subsubsection[{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-S\-S\-E\-R\-T\-F\-U\-N\-C(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}\label{group__debug_ga9dfd1281735240dcb36d5f605013d40e}
+
+
+Simple Assert Implementation. 
+
+
+
+Definition at line 67 of file debug.\-h.
+
+\hypertarget{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}{\index{Debug Output@{Debug Output}!D\-E\-B\-U\-G\-O\-U\-T@{D\-E\-B\-U\-G\-O\-U\-T}}
+\index{D\-E\-B\-U\-G\-O\-U\-T@{D\-E\-B\-U\-G\-O\-U\-T}!Debug Output@{Debug Output}}
+\subsubsection[{D\-E\-B\-U\-G\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-B\-U\-G\-O\-U\-T(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~printf(x)}}\label{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}
+
+
+Debug Output Function. 
+
+
+
+Definition at line 64 of file debug.\-h.
+
+\hypertarget{group__debug_gada1787bea8c10cd89775d6918f6fd324}{\index{Debug Output@{Debug Output}!debug\-Print@{debug\-Print}}
+\index{debug\-Print@{debug\-Print}!Debug Output@{Debug Output}}
+\subsubsection[{debug\-Print}]{\setlength{\rightskip}{0pt plus 5cm}\#define debug\-Print(
+\begin{DoxyParamCaption}
+\item[{}]{ignore}
+\end{DoxyParamCaption}
+)}}\label{group__debug_gada1787bea8c10cd89775d6918f6fd324}
+
+
+Disable \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print()} 
+
+
+
+Definition at line 96 of file debug.\-h.
+

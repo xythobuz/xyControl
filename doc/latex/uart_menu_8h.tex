@@ -1,0 +1,32 @@
+\hypertarget{uart_menu_8h}{\section{include/uart\-Menu.h File Reference}
+\label{uart_menu_8h}\index{include/uart\-Menu.\-h@{include/uart\-Menu.\-h}}
+}
+
+
+U\-A\-R\-T Menu A\-P\-I Header.  
+
+
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_menu_entry}{Menu\-Entry}
+\begin{DoxyCompactList}\small\item\em Data Structure for Single-\/\-Linked-\/\-List for U\-A\-R\-T Menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{add\-Menu\-Command} (uint8\-\_\-t cmd, P\-G\-M\-\_\-\-P help, \hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} f)
+\begin{DoxyCompactList}\small\item\em Add a command to the U\-A\-R\-T Menu. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{uart\-Menu\-Print\-Help} (void)
+\begin{DoxyCompactList}\small\item\em Print all registered commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_gae3654103f924700d1f7801fcda4472b7}{uart\-Menu\-Register\-Handler} (void($\ast$handler)(char))
+\begin{DoxyCompactList}\small\item\em Register a Handler for unhandled menu commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga9f477033e942434f7875930342d5e696}{uart\-Menu\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Task to work the U\-A\-R\-T Menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+U\-A\-R\-T Menu A\-P\-I Header. 
+
+Definition in file \hyperlink{uart_menu_8h_source}{uart\-Menu.\-h}.
+

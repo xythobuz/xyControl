@@ -1,0 +1,37 @@
+\hypertarget{adc_8h}{\section{include/adc.h File Reference}
+\label{adc_8h}\index{include/adc.\-h@{include/adc.\-h}}
+}
+
+
+Analog-\/to-\/\-Digital Converter A\-P\-I Header.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{A\-D\-C\-Ref} \{ \hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa6e9ea4c6059ebc1e09b29a64afe26bd4}{A\-R\-E\-F}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{A\-V\-C\-C}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa46f5d50796c7975a87eedbd152f34126}{A\-I\-N\-T1}, 
+\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02fa265a976440d52609d53c5f8bfe2dae34}{A\-I\-N\-T2}
+ \}
+\begin{DoxyCompactList}\small\item\em A\-D\-C Reference Voltage options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adc\-Init} (\hyperlink{group__adc_ga7fc3dc0de11790b4393b4be70d79a02f}{A\-D\-C\-Ref} ref)
+\begin{DoxyCompactList}\small\item\em Initialize the A\-D\-C Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{adc\-Start} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Start a conversion on a given channel. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adc\-Ready} (void)
+\begin{DoxyCompactList}\small\item\em Check if a result is ready. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adc\-Get} (uint8\-\_\-t next)
+\begin{DoxyCompactList}\small\item\em Get the conversion results. \end{DoxyCompactList}\item 
+void \hyperlink{group__adc_ga60d979fb3eb0c7cc9da721671ad7f2bc}{adc\-Close} (void)
+\begin{DoxyCompactList}\small\item\em Disable the A\-D\-C to save energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Analog-\/to-\/\-Digital Converter A\-P\-I Header. 
+
+Definition in file \hyperlink{adc_8h_source}{adc.\-h}.
+

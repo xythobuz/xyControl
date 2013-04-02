@@ -1,0 +1,45 @@
+\hypertarget{acc_8c}{\section{lib/acc.c File Reference}
+\label{acc_8c}\index{lib/acc.\-c@{lib/acc.\-c}}
+}
+
+
+L\-S\-M303\-D\-L\-H\-C Accelerometer A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$twi.\-h$>$}\\*
+{\ttfamily \#include $<$acc.\-h$>$}\\*
+{\ttfamily \#include $<$error.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1}~0x20
+\begin{DoxyCompactList}\small\item\em Accelerometer Control Register 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__acc_ga4369b46f297623a18b9d937623b7f783}{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L4}~0x23
+\begin{DoxyCompactList}\small\item\em Accelerometer Control Register 4. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__acc_ga9d03f89f2f3ef006967f84157a21075b}{A\-C\-C\-R\-E\-G\-\_\-\-X\-L}~0x28
+\begin{DoxyCompactList}\small\item\em First Accelerometer Output Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__acc_ga277bcee14b8033f6da9790a8afe03348}{acc\-Write\-Register} (uint8\-\_\-t reg, uint8\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Write an Accelerometer Register. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__acc_ga7674eb1b940f183abe5e0b0913a87613}{acc\-Init} (\hyperlink{group__acc_ga3d56e56c162b045de727006a11880324}{Acc\-Range} r)
+\begin{DoxyCompactList}\small\item\em Initialize the Accelerometer. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{acc\-Read} (\hyperlink{struct_vector3f}{Vector3f} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Read from the Accelerometer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__acc_ga3d56e56c162b045de727006a11880324}{Acc\-Range} \hyperlink{group__acc_ga450bb9262f697cdcab7185674b9fc6a3}{acc\-Range}
+\begin{DoxyCompactList}\small\item\em Stored range to scale returned values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\-S\-M303\-D\-L\-H\-C Accelerometer A\-P\-I Implementation. 
+
+Definition in file \hyperlink{acc_8c_source}{acc.\-c}.
+

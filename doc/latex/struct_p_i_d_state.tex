@@ -1,0 +1,202 @@
+\hypertarget{struct_p_i_d_state}{\section{P\-I\-D\-State Struct Reference}
+\label{struct_p_i_d_state}\index{P\-I\-D\-State@{P\-I\-D\-State}}
+}
+
+
+Data Structure for a single P\-I\-D Controller.  
+
+
+
+
+{\ttfamily \#include $<$pid.\-h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{struct_p_i_d_state_ac6390bc2d074992cc6ca37d132a5262d}{kp}
+\begin{DoxyCompactList}\small\item\em Proportional factor. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a23e09706a4abb026e1de279c4904e926}{ki}
+\begin{DoxyCompactList}\small\item\em Integral factor. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a1cf17dd45e85748457863776dcb28335}{kd}
+\begin{DoxyCompactList}\small\item\em Derivative factor. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a5df6ddfa37685d9035861b0d9f323a05}{out\-Min}
+\begin{DoxyCompactList}\small\item\em Minimum Output. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}{out\-Max}
+\begin{DoxyCompactList}\small\item\em Maximum Output. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}{int\-Min}
+\begin{DoxyCompactList}\small\item\em Minimum Integral sum. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}{int\-Max}
+\begin{DoxyCompactList}\small\item\em Maximum Integral sum. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}{last\-Error}
+\begin{DoxyCompactList}\small\item\em Derivative State. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{sum\-Error}
+\begin{DoxyCompactList}\small\item\em Integral state. \end{DoxyCompactList}\item 
+\hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\-\_\-t} \hyperlink{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}{last}
+\begin{DoxyCompactList}\small\item\em Last execution time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data Structure for a single P\-I\-D Controller. 
+
+Stores all needed constants and state variables. 
+
+Definition at line 47 of file pid.\-h.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}{\index{P\-I\-D\-State@{P\-I\-D\-State}!int\-Max@{int\-Max}}
+\index{int\-Max@{int\-Max}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{int\-Max}]{\setlength{\rightskip}{0pt plus 5cm}double int\-Max}}\label{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}
+
+
+Maximum Integral sum. 
+
+Default is \hyperlink{group__config_ga50582411cbb3f8a20ffd3aa2254ddf71}{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X}. 
+
+Definition at line 54 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}{\index{P\-I\-D\-State@{P\-I\-D\-State}!int\-Min@{int\-Min}}
+\index{int\-Min@{int\-Min}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{int\-Min}]{\setlength{\rightskip}{0pt plus 5cm}double int\-Min}}\label{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}
+
+
+Minimum Integral sum. 
+
+Default is \hyperlink{group__config_ga9ee651f30455f25b5ca4c4bb9a0a6e49}{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N}. 
+
+Definition at line 53 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a1cf17dd45e85748457863776dcb28335}{\index{P\-I\-D\-State@{P\-I\-D\-State}!kd@{kd}}
+\index{kd@{kd}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{kd}]{\setlength{\rightskip}{0pt plus 5cm}double kd}}\label{struct_p_i_d_state_a1cf17dd45e85748457863776dcb28335}
+
+
+Derivative factor. 
+
+Default is \hyperlink{group__config_ga2a442b8579a5c5f9526e824165125497}{P\-I\-D\-\_\-\-D}. 
+
+Definition at line 50 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a23e09706a4abb026e1de279c4904e926}{\index{P\-I\-D\-State@{P\-I\-D\-State}!ki@{ki}}
+\index{ki@{ki}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{ki}]{\setlength{\rightskip}{0pt plus 5cm}double ki}}\label{struct_p_i_d_state_a23e09706a4abb026e1de279c4904e926}
+
+
+Integral factor. 
+
+Default is \hyperlink{group__config_ga2dfd5fcf8dd0bee1de9007fe8e161886}{P\-I\-D\-\_\-\-I}. 
+
+Definition at line 49 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_ac6390bc2d074992cc6ca37d132a5262d}{\index{P\-I\-D\-State@{P\-I\-D\-State}!kp@{kp}}
+\index{kp@{kp}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{kp}]{\setlength{\rightskip}{0pt plus 5cm}double kp}}\label{struct_p_i_d_state_ac6390bc2d074992cc6ca37d132a5262d}
+
+
+Proportional factor. 
+
+Default is \hyperlink{group__config_gab3ea7c9a4399d8844727806c960880ad}{P\-I\-D\-\_\-\-P}. 
+
+Definition at line 48 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}{\index{P\-I\-D\-State@{P\-I\-D\-State}!last@{last}}
+\index{last@{last}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{last}]{\setlength{\rightskip}{0pt plus 5cm}{\bf time\-\_\-t} last}}\label{struct_p_i_d_state_ad8672640f42e8308c593fafe968241f5}
+
+
+Last execution time. 
+
+For d\-T calculation. 
+
+Definition at line 57 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}{\index{P\-I\-D\-State@{P\-I\-D\-State}!last\-Error@{last\-Error}}
+\index{last\-Error@{last\-Error}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{last\-Error}]{\setlength{\rightskip}{0pt plus 5cm}double last\-Error}}\label{struct_p_i_d_state_a16066d446d47c9e2ca1dadb75b5f439c}
+
+
+Derivative State. 
+
+
+
+Definition at line 55 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}{\index{P\-I\-D\-State@{P\-I\-D\-State}!out\-Max@{out\-Max}}
+\index{out\-Max@{out\-Max}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{out\-Max}]{\setlength{\rightskip}{0pt plus 5cm}double out\-Max}}\label{struct_p_i_d_state_a3bcf8ed648b49bfe14cf141b134ba23b}
+
+
+Maximum Output. 
+
+Default is \hyperlink{group__config_gaf36e4eab421932a006c7df7e84f11cf0}{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}. 
+
+Definition at line 52 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_a5df6ddfa37685d9035861b0d9f323a05}{\index{P\-I\-D\-State@{P\-I\-D\-State}!out\-Min@{out\-Min}}
+\index{out\-Min@{out\-Min}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{out\-Min}]{\setlength{\rightskip}{0pt plus 5cm}double out\-Min}}\label{struct_p_i_d_state_a5df6ddfa37685d9035861b0d9f323a05}
+
+
+Minimum Output. 
+
+Default is \hyperlink{group__config_ga684067981e82e4827607d0b0558812cb}{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}. 
+
+Definition at line 51 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+\hypertarget{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}{\index{P\-I\-D\-State@{P\-I\-D\-State}!sum\-Error@{sum\-Error}}
+\index{sum\-Error@{sum\-Error}!PIDState@{P\-I\-D\-State}}
+\subsubsection[{sum\-Error}]{\setlength{\rightskip}{0pt plus 5cm}double sum\-Error}}\label{struct_p_i_d_state_ac13ddfe17d63fa9b765378450d3d1b3f}
+
+
+Integral state. 
+
+Kept in \hyperlink{struct_p_i_d_state_a76c3abc852d5003bd3a2b1cdaa09b80c}{int\-Min}, \hyperlink{struct_p_i_d_state_a85e14db5dc2af5e111772213512512e7}{int\-Max} Range. 
+
+Definition at line 56 of file pid.\-h.
+
+
+
+Referenced by pid\-Execute(), and pid\-Set().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{pid_8h}{pid.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,47 @@
+\hypertarget{uart_menu_8c}{\section{lib/uart\-Menu.c File Reference}
+\label{uart_menu_8c}\index{lib/uart\-Menu.\-c@{lib/uart\-Menu.\-c}}
+}
+
+
+U\-A\-R\-T Menu A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$avr/pgmspace.\-h$>$}\\*
+{\ttfamily \#include $<$xycontrol.\-h$>$}\\*
+{\ttfamily \#include $<$xmem.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$serial.\-h$>$}\\*
+{\ttfamily \#include $<$uart\-Menu.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_ga804da8899dee98e1d4499710625acf10}{find\-Entry} (uint8\-\_\-t cmd)
+\begin{DoxyCompactList}\small\item\em Search the \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uart\-Menu} Linked List. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{add\-Menu\-Command} (uint8\-\_\-t cmd, P\-G\-M\-\_\-\-P help, \hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} f)
+\begin{DoxyCompactList}\small\item\em Add a command to the U\-A\-R\-T Menu. \end{DoxyCompactList}\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_gaf51e7f5c38d5af643af09f6e21d2a4b9}{reverse\-List} (\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Reverse the U\-A\-R\-T Menu List. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{uart\-Menu\-Print\-Help} (void)
+\begin{DoxyCompactList}\small\item\em Print all registered commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_gae3654103f924700d1f7801fcda4472b7}{uart\-Menu\-Register\-Handler} (void($\ast$handler)(char))
+\begin{DoxyCompactList}\small\item\em Register a Handler for unhandled menu commands. \end{DoxyCompactList}\item 
+void \hyperlink{group__uartmenu_ga9f477033e942434f7875930342d5e696}{uart\-Menu\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Task to work the U\-A\-R\-T Menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_menu_entry}{Menu\-Entry} $\ast$ \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uart\-Menu} = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em Single-\/\-Linked-\/\-List for commands. \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{un\-Handler} )(char) = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em Handler for unhandled commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+U\-A\-R\-T Menu A\-P\-I Implementation. 
+
+Definition in file \hyperlink{uart_menu_8c_source}{uart\-Menu.\-c}.
+

@@ -1,0 +1,269 @@
+\hypertarget{group__task}{\section{Task Handler}
+\label{group__task}\index{Task Handler@{Task Handler}}
+}
+
+
+System for registering different tasks that will be called regularly, one after another.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{tasks_8h}{tasks.\-h}
+\begin{DoxyCompactList}\small\item\em Task A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{tasks_8c}{tasks.\-c}
+\begin{DoxyCompactList}\small\item\em Task A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_task_element}{Task\-Element}
+\begin{DoxyCompactList}\small\item\em Single-\/\-Linked Task List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} )(void)
+\begin{DoxyCompactList}\small\item\em A Task has no arguments and returns nothing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\-\_\-t \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{add\-Task} (\hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} func)
+\begin{DoxyCompactList}\small\item\em Adds another task that will be called regularly. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__task_ga2651e32a00e6db5b77aa1042d3c7b9c7}{remove\-Task} (\hyperlink{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{Task} func)
+\begin{DoxyCompactList}\small\item\em Removes an already registered Task. \end{DoxyCompactList}\item 
+void \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks} (void)
+\begin{DoxyCompactList}\small\item\em Executes registered Tasks. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{group__task_ga962f40b16f7aa5ab995593971fb6f848}{tasks\-Registered} (void)
+\begin{DoxyCompactList}\small\item\em Get the number of registered Tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_task_element}{Task\-Element} $\ast$ \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{task\-List}
+\begin{DoxyCompactList}\small\item\em List of registered Tasks. \end{DoxyCompactList}\item 
+\hyperlink{struct_task_element}{Task\-Element} $\ast$ \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{task\-List} = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em List of registered Tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+System for registering different tasks that will be called regularly, one after another. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}{\index{Task Handler@{Task Handler}!Task@{Task}}
+\index{Task@{Task}!Task Handler@{Task Handler}}
+\subsubsection[{Task}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ Task)(void)}}\label{group__task_gaa9c5b8d3ac838189ed335dbe4ec9fa6b}
+
+
+A Task has no arguments and returns nothing. 
+
+
+
+Definition at line 44 of file tasks.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{\index{Task Handler@{Task Handler}!add\-Task@{add\-Task}}
+\index{add\-Task@{add\-Task}!Task Handler@{Task Handler}}
+\subsubsection[{add\-Task}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t add\-Task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{func}
+\end{DoxyParamCaption}
+)}}\label{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}
+
+
+Adds another task that will be called regularly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Task to be executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 57 of file tasks.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, Task\-Element\-::next, Task\-Element\-::task, and task\-List.
+
+
+
+Referenced by xy\-Init().
+
+
+\begin{DoxyCode}
+57                            \{
+58     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+59     \hyperlink{struct_task_element}{TaskElement} *p = (\hyperlink{struct_task_element}{TaskElement} *)malloc(\textcolor{keyword}{sizeof}(
+      \hyperlink{struct_task_element}{TaskElement}));
+60     \textcolor{keywordflow}{if} (p == NULL) \{
+61         \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+62         \textcolor{keywordflow}{return} 1;
+63     \}
+64     p->\hyperlink{struct_task_element_a8bcc572b9d73774627be66dd46aa61a8}{task} = func;
+65     p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next} = \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList};
+66     \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList} = p;
+67     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+68     \textcolor{keywordflow}{return} 0;
+69 \}
+\end{DoxyCode}
+\hypertarget{group__task_ga2651e32a00e6db5b77aa1042d3c7b9c7}{\index{Task Handler@{Task Handler}!remove\-Task@{remove\-Task}}
+\index{remove\-Task@{remove\-Task}!Task Handler@{Task Handler}}
+\subsubsection[{remove\-Task}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t remove\-Task (
+\begin{DoxyParamCaption}
+\item[{{\bf Task}}]{func}
+\end{DoxyParamCaption}
+)}}\label{group__task_ga2651e32a00e6db5b77aa1042d3c7b9c7}
+
+
+Removes an already registered Task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Task to be removed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file tasks.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, Task\-Element\-::next, Task\-Element\-::task, and task\-List.
+
+
+\begin{DoxyCode}
+71                               \{
+72     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+73     \hyperlink{struct_task_element}{TaskElement} *p = \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList};
+74     \hyperlink{struct_task_element}{TaskElement} *prev = NULL;
+75     \textcolor{keywordflow}{while} (p != NULL) \{
+76         \textcolor{keywordflow}{if} (p->\hyperlink{struct_task_element_a8bcc572b9d73774627be66dd46aa61a8}{task} == func) \{
+77             \textcolor{keywordflow}{if} (prev == NULL) \{
+78                 \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList} = p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next};
+79             \} \textcolor{keywordflow}{else} \{
+80                 prev->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next} = p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next};
+81             \}
+82             free(p);
+83             \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+84             \textcolor{keywordflow}{return} 0;
+85         \}
+86         prev = p;
+87         p = p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next};
+88     \}
+89     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+90     \textcolor{keywordflow}{return} 1;
+91 \}
+\end{DoxyCode}
+\hypertarget{group__task_gabf4510e1aba7b08f11d447c2b530d661}{\index{Task Handler@{Task Handler}!tasks@{tasks}}
+\index{tasks@{tasks}!Task Handler@{Task Handler}}
+\subsubsection[{tasks}]{\setlength{\rightskip}{0pt plus 5cm}void tasks (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__task_gabf4510e1aba7b08f11d447c2b530d661}
+
+
+Executes registered Tasks. 
+
+Call this in your Main Loop! \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 93 of file tasks.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, Task\-Element\-::next, Task\-Element\-::task, and task\-List.
+
+
+\begin{DoxyCode}
+93                  \{
+94     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+95     \textcolor{keyword}{static} \hyperlink{struct_task_element}{TaskElement} *p = NULL;
+96     \textcolor{keywordflow}{if} (p == NULL) \{
+97         p = \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList};
+98     \}
+99     \textcolor{keywordflow}{if} (p != NULL) \{
+100         p->\hyperlink{struct_task_element_a8bcc572b9d73774627be66dd46aa61a8}{task}();
+101         p = p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next};
+102     \}
+103     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+104 \}
+\end{DoxyCode}
+\hypertarget{group__task_ga962f40b16f7aa5ab995593971fb6f848}{\index{Task Handler@{Task Handler}!tasks\-Registered@{tasks\-Registered}}
+\index{tasks\-Registered@{tasks\-Registered}!Task Handler@{Task Handler}}
+\subsubsection[{tasks\-Registered}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t tasks\-Registered (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__task_ga962f40b16f7aa5ab995593971fb6f848}
+
+
+Get the number of registered Tasks. 
+
+\begin{DoxyReturn}{Returns}
+Count of registered Tasks 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file tasks.\-c.
+
+
+
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, and Task\-Element\-::next.
+
+
+\begin{DoxyCode}
+47                               \{
+48     uint8\_t c = 0;
+49     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+50     \textcolor{keywordflow}{for} (\hyperlink{struct_task_element}{TaskElement} *p = \hyperlink{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{taskList}; p != NULL; p = p->\hyperlink{struct_task_element_ac0faa835255f5aba0bdb6fe9083d9d7d}{next}) \{
+51         c++;
+52     \}
+53     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+54     \textcolor{keywordflow}{return} c;
+55 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{\index{Task Handler@{Task Handler}!task\-List@{task\-List}}
+\index{task\-List@{task\-List}!Task Handler@{Task Handler}}
+\subsubsection[{task\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task\-Element}$\ast$ task\-List = N\-U\-L\-L}}\label{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}
+
+
+List of registered Tasks. 
+
+
+
+Definition at line 45 of file tasks.\-c.
+
+
+
+Referenced by add\-Task(), remove\-Task(), and tasks().
+
+\hypertarget{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}{\index{Task Handler@{Task Handler}!task\-List@{task\-List}}
+\index{task\-List@{task\-List}!Task Handler@{Task Handler}}
+\subsubsection[{task\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Task\-Element}$\ast$ task\-List}}\label{group__task_gaadf0c3981f1a6c7cc610de145a1d5461}
+
+
+List of registered Tasks. 
+
+
+
+Definition at line 45 of file tasks.\-c.
+
+
+
+Referenced by add\-Task(), remove\-Task(), and tasks().
+

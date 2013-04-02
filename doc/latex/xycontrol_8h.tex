@@ -1,0 +1,51 @@
+\hypertarget{xycontrol_8h}{\section{include/xycontrol.h File Reference}
+\label{xycontrol_8h}\index{include/xycontrol.\-h@{include/xycontrol.\-h}}
+}
+
+
+xy\-Control A\-P\-I Header.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_vector3f}{Vector3f}
+\begin{DoxyCompactList}\small\item\em The global 3-\/\-Dimensional Floating Point Vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__xycontrol_gaadcb6002d2b42fdfe01490f730ab00a6}{L\-E\-D} \{ \\*
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6abd50485e17442a345888be61d2074c40}{L\-E\-D\-\_\-\-R\-E\-D0} = 0, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6af706e3dc22e0cbc5d3c38bb45ee35922}{L\-E\-D\-\_\-\-R\-E\-D1} = 1, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a9360f305ce504b55ff68922bab599c38}{L\-E\-D\-\_\-\-G\-R\-E\-E\-N0} = 2, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a213b05e94b12e0bcee53b6de3df294f8}{L\-E\-D\-\_\-\-G\-R\-E\-E\-N1} = 3, 
+\\*
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ae4fd580189cac85429ebfa5cb71cd772}{L\-E\-D\-\_\-\-A\-L\-L} = 4, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a2a797d26a32fb3bdc0f975e6955e2873}{L\-E\-D\-\_\-\-B\-I\-T\-M\-A\-P} = 5, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ad80f13022b6d309268fadc7b1da89cb9}{L\-E\-D\-\_\-\-R\-E\-D} = 6, 
+\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a0ad916c7f80666dc88f6b5b22a72e742}{L\-E\-D\-\_\-\-G\-R\-E\-E\-N} = 7
+ \}
+\begin{DoxyCompactList}\small\item\em Methods of addressing the L\-E\-Ds. \end{DoxyCompactList}\item 
+enum \hyperlink{group__xycontrol_ga51a69e0b98357e170e63bc843e2fd1c0}{L\-E\-D\-State} \{ \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0afc0ca8cc6cbe215fd3f1ae6d40255b40}{L\-E\-D\-\_\-\-O\-F\-F} = 0, 
+\hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{L\-E\-D\-\_\-\-O\-N} = 1, 
+\hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0a1b3bca014fbbfe339c8e216d175bae2e}{L\-E\-D\-\_\-\-T\-O\-G\-G\-L\-E} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Possible states of the L\-E\-Ds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{xy\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the xy\-Control Hardware. \end{DoxyCompactList}\item 
+void \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xy\-Led} (\hyperlink{group__xycontrol_gaadcb6002d2b42fdfe01490f730ab00a6}{L\-E\-D} l, \hyperlink{group__xycontrol_ga51a69e0b98357e170e63bc843e2fd1c0}{L\-E\-D\-State} v)
+\begin{DoxyCompactList}\small\item\em Set the L\-E\-Ds. \end{DoxyCompactList}\item 
+double \hyperlink{group__xycontrol_ga97874cf2a7f8e6964188b54fe85084a6}{get\-Voltage} (void)
+\begin{DoxyCompactList}\small\item\em Calculate and return the Battery Voltage. \end{DoxyCompactList}\item 
+void \hyperlink{group__xycontrol_gab80f101c0a50bca30d796fad70cfd8d7}{reset\-Self} (void)
+\begin{DoxyCompactList}\small\item\em Use the Watchdog to reset yourself after 15ms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+xy\-Control A\-P\-I Header. 
+
+Definition in file \hyperlink{xycontrol_8h_source}{xycontrol.\-h}.
+

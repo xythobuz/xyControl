@@ -1,0 +1,53 @@
+\hypertarget{orientation_8c}{\section{lib/orientation.c File Reference}
+\label{orientation_8c}\index{lib/orientation.\-c@{lib/orientation.\-c}}
+}
+
+
+Orientation A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$xycontrol.\-h$>$}\\*
+{\ttfamily \#include $<$error.\-h$>$}\\*
+{\ttfamily \#include $<$gyro.\-h$>$}\\*
+{\ttfamily \#include $<$acc.\-h$>$}\\*
+{\ttfamily \#include $<$mag.\-h$>$}\\*
+{\ttfamily \#include $<$tasks.\-h$>$}\\*
+{\ttfamily \#include $<$time.\-h$>$}\\*
+{\ttfamily \#include $<$orientation.\-h$>$}\\*
+{\ttfamily \#include $<$kalman.\-h$>$}\\*
+{\ttfamily \#include $<$config.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{T\-O\-D\-E\-G}(x)~((x $\ast$ 180) / M\-\_\-\-P\-I)
+\begin{DoxyCompactList}\small\item\em Convert Radians to Degrees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{orientation\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the Orientation A\-P\-I. \end{DoxyCompactList}\item 
+\hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} \hyperlink{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{orientation\-Task} (void)
+\begin{DoxyCompactList}\small\item\em Calculate the current orientation. \end{DoxyCompactList}\item 
+void \hyperlink{group__orientation_ga0fab95dd407145abad293f7c91460eee}{zero\-Orientation} (void)
+\begin{DoxyCompactList}\small\item\em Sets the current orientation to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_angles}{Angles} \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation} = \{.pitch = 0, .roll = 0, .yaw = 0\}
+\begin{DoxyCompactList}\small\item\em Current Aircraft orientation. \end{DoxyCompactList}\item 
+\hyperlink{struct_angles}{Angles} \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientation\-Error} = \{.pitch = 0, .roll = 0, .yaw = 0\}
+\begin{DoxyCompactList}\small\item\em Current Aircraft orientation offset. \end{DoxyCompactList}\item 
+\hyperlink{struct_kalman}{Kalman} \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitch\-Data}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-State for Pitch Angle. \end{DoxyCompactList}\item 
+\hyperlink{struct_kalman}{Kalman} \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{roll\-Data}
+\begin{DoxyCompactList}\small\item\em Kalman-\/\-State for Roll Angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Orientation A\-P\-I Implementation. 
+
+Definition in file \hyperlink{orientation_8c_source}{orientation.\-c}.
+

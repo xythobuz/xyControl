@@ -1,0 +1,909 @@
+\hypertarget{group__config}{\section{Configuration}
+\label{group__config}\index{Configuration@{Configuration}}
+}
+
+
+Various default settings.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{config_8h}{config.\-h}
+\begin{DoxyCompactList}\small\item\em Various default settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__config_gaba06e7be57726e74f267a1622e7d720e}{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}~50
+\begin{DoxyCompactList}\small\item\em Software Low-\/\-Pass on Gyro and A\-C\-C. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaace41596724b03f3f2b2ee28b7e87272}{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}~\hyperlink{group__config_gaba06e7be57726e74f267a1622e7d720e}{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}
+\begin{DoxyCompactList}\small\item\em Accelerometer Low Pass Factor. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga1b5d47810976ecbfd688513246db3ba9}{G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}~\hyperlink{group__config_gaba06e7be57726e74f267a1622e7d720e}{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}
+\begin{DoxyCompactList}\small\item\em Gyroscope Low Pass Factor. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaf36e4eab421932a006c7df7e84f11cf0}{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}~256
+\begin{DoxyCompactList}\small\item\em Maximum P\-I\-D Output. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga684067981e82e4827607d0b0558812cb}{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}~-\/256
+\begin{DoxyCompactList}\small\item\em Minimum P\-I\-D Output. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga50582411cbb3f8a20ffd3aa2254ddf71}{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X}~\hyperlink{group__config_gaf36e4eab421932a006c7df7e84f11cf0}{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}
+\begin{DoxyCompactList}\small\item\em Maximum P\-I\-D Integral Sum. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga9ee651f30455f25b5ca4c4bb9a0a6e49}{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N}~\hyperlink{group__config_ga684067981e82e4827607d0b0558812cb}{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}
+\begin{DoxyCompactList}\small\item\em Minimal P\-I\-D Integral Sum. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga0eb032986beceb6759aebd761c35a879}{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R}~4 / 5
+\begin{DoxyCompactList}\small\item\em Influence of P\-I\-D in relation to Base Speed. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{D\-T}~0.\-01f
+\begin{DoxyCompactList}\small\item\em Time Constant. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga0f32727853a3ac3d848701803c3b8688}{Q1}~5.\-0f
+\begin{DoxyCompactList}\small\item\em Q Matrix Diagonal Element 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaf5bca4c32f8c6886a3d8c526d2e3e9a7}{Q2}~100.\-0f
+\begin{DoxyCompactList}\small\item\em Q Matrix Diagonal Element 2. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga1d7d3dfd2c4618949c484c5e8369f05a}{Q3}~0.\-01f
+\begin{DoxyCompactList}\small\item\em Q Matrix Diagonal Element 3. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga918f64eb53db8e8dc694f36a87646476}{R1}~1000.\-0f
+\begin{DoxyCompactList}\small\item\em R Matrix Diagonal Element 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga7a255a2815b9453060f51c6eb22cfed8}{R2}~1000.\-0f
+\begin{DoxyCompactList}\small\item\em R Matrix Diagonal Element 2. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga460dbe0039d252579c5ce8beef7cc709}{S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S}~1
+\begin{DoxyCompactList}\small\item\em Second Motor at the Right. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga9921670161925a1d7b946aeb65d5767a}{S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S}~3
+\begin{DoxyCompactList}\small\item\em Fourth Motor at the Left. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaf0a00d922db66d875ca53f6db34e7307}{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S}~0
+\begin{DoxyCompactList}\small\item\em First Motor at the Top. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga8c969dbb07dc504226fc2c69484b9768}{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}~2
+\begin{DoxyCompactList}\small\item\em Third Motor at the Bottom. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gab3ea7c9a4399d8844727806c960880ad}{P\-I\-D\-\_\-\-P}~5.\-0
+\begin{DoxyCompactList}\small\item\em Default P\-I\-D P Constant. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga2dfd5fcf8dd0bee1de9007fe8e161886}{P\-I\-D\-\_\-\-I}~0.\-03
+\begin{DoxyCompactList}\small\item\em Default P\-I\-D I Constant. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga2a442b8579a5c5f9526e824165125497}{P\-I\-D\-\_\-\-D}~-\/13.\-0
+\begin{DoxyCompactList}\small\item\em Default P\-I\-D D Constant. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}~4
+\begin{DoxyCompactList}\small\item\em Amount of motors. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}{B\-A\-T\-T\-\_\-\-M\-A\-X}~15
+\begin{DoxyCompactList}\small\item\em Battery Voltage Reference (A\-D\-C 5\-V) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga9fd748b19523c96052a2964d73a7b0f5}{B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L}~0
+\begin{DoxyCompactList}\small\item\em A\-D\-C Channel for Battery. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}~0x32
+\begin{DoxyCompactList}\small\item\em Accelerometer Address (0011001r) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}{G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S}~0x\-D6
+\begin{DoxyCompactList}\small\item\em Gyroscope Address (110101xr, x = 1) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S}~0x3\-C
+\begin{DoxyCompactList}\small\item\em Magnetometer Address. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga6e8ab18bbb1ef1b1e929c627f18224a3}{M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S}~0x52
+\begin{DoxyCompactList}\small\item\em Address of first motor controller. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gac0f99671c3447a31e5d3755e1f11ee1f}{L\-E\-D0\-P\-O\-R\-T}~P\-O\-R\-T\-L
+\begin{DoxyCompactList}\small\item\em First L\-E\-D Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga86208659221ec2a932cd722dfc18101f}{L\-E\-D0\-D\-D\-R}~D\-D\-R\-L
+\begin{DoxyCompactList}\small\item\em First L\-E\-D Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gab0e1f692e2b1fa1cdbb24a9926b3489d}{L\-E\-D0\-P\-I\-N}~P\-L6
+\begin{DoxyCompactList}\small\item\em First L\-E\-D Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga3931891a757b08dbdfeaa8afd4dcb664}{L\-E\-D1\-P\-O\-R\-T}~P\-O\-R\-T\-L
+\begin{DoxyCompactList}\small\item\em Second L\-E\-D Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gab0f33b52cdb68e643eba6cf583fb625f}{L\-E\-D1\-D\-D\-R}~D\-D\-R\-L
+\begin{DoxyCompactList}\small\item\em Second L\-E\-D Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga04d7aaffbb7b5afaf49acf8a3a39e33a}{L\-E\-D1\-P\-I\-N}~P\-L7
+\begin{DoxyCompactList}\small\item\em Second L\-E\-D Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga4b6e8cddebfbc6f1f5132eb93b92d60f}{L\-E\-D2\-P\-O\-R\-T}~P\-O\-R\-T\-G
+\begin{DoxyCompactList}\small\item\em Third L\-E\-D Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga7e635626ee31b094da0a668476132577}{L\-E\-D2\-D\-D\-R}~D\-D\-R\-G
+\begin{DoxyCompactList}\small\item\em Third L\-E\-D Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga50070e632cb68d11f627c5ab60f88683}{L\-E\-D2\-P\-I\-N}~P\-G5
+\begin{DoxyCompactList}\small\item\em Third L\-E\-D Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga63df95c1a0ce0e770964ca35e4032fb6}{L\-E\-D3\-P\-O\-R\-T}~P\-O\-R\-T\-E
+\begin{DoxyCompactList}\small\item\em Fourth L\-E\-D Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga09535652dd0ca340b20840c848cb6093}{L\-E\-D3\-D\-D\-R}~D\-D\-R\-E
+\begin{DoxyCompactList}\small\item\em Fourth L\-E\-D Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga2663b8fc01c4753562adc572cf12a5ed}{L\-E\-D3\-P\-I\-N}~P\-E2
+\begin{DoxyCompactList}\small\item\em Fourth L\-E\-D Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gabeec1986c81588dde8863b7936028fc9}{B\-A\-N\-K0\-P\-O\-R\-T}~P\-O\-R\-T\-G
+\begin{DoxyCompactList}\small\item\em First Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gafba0bbf9336cfc754622a5e9b3d12d80}{B\-A\-N\-K0\-D\-D\-R}~D\-D\-R\-G
+\begin{DoxyCompactList}\small\item\em First Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{B\-A\-N\-K0\-P\-I\-N}~P\-G3
+\begin{DoxyCompactList}\small\item\em First Bank Selection Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga8b3ee7126196f6e939989eae097c3ac4}{B\-A\-N\-K1\-P\-O\-R\-T}~P\-O\-R\-T\-G
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gada13cb9312072b48628763a6e1fd50d3}{B\-A\-N\-K1\-D\-D\-R}~D\-D\-R\-G
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{B\-A\-N\-K1\-P\-I\-N}~P\-G4
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gad35afb0251524c201c2d60f3d035af32}{B\-A\-N\-K2\-P\-O\-R\-T}~P\-O\-R\-T\-L
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga62f56230c5f5f7220c44ab1c93d677ab}{B\-A\-N\-K2\-D\-D\-R}~D\-D\-R\-L
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{B\-A\-N\-K2\-P\-I\-N}~P\-L5
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gab652052c0495e4b720b52cdcf83f535d}{S\-P\-I\-S\-S}~P\-B0
+\begin{DoxyCompactList}\small\item\em S\-P\-I Slave Select Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Receive Buffer Size. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Transmit Buffer Size. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga779bf099075a999d1074357fccbd466b}{U\-S\-B}~0
+\begin{DoxyCompactList}\small\item\em F\-T232\-R\-L U\-S\-B U\-A\-R\-T module. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_ga3f30897fa8435dc9811642367a328be8}{B\-L\-U\-E\-T\-O\-O\-T\-H}~1
+\begin{DoxyCompactList}\small\item\em Bluetooth U\-A\-R\-T module. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}{U\-A\-R\-T}~\hyperlink{group__config_ga3f30897fa8435dc9811642367a328be8}{B\-L\-U\-E\-T\-O\-O\-T\-H}
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T module to use (0 to 3) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Various default settings. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{\index{Configuration@{Configuration}!A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}}
+\index{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S~0x32}}\label{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}
+
+
+Accelerometer Address (0011001r) 
+
+
+
+Definition at line 108 of file config.\-h.
+
+
+
+Referenced by acc\-Read().
+
+\hypertarget{group__config_gaace41596724b03f3f2b2ee28b7e87272}{\index{Configuration@{Configuration}!A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}}
+\index{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}!Configuration@{Configuration}}
+\subsubsection[{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R~{\bf S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}}}\label{group__config_gaace41596724b03f3f2b2ee28b7e87272}
+
+
+Accelerometer Low Pass Factor. 
+
+
+
+Definition at line 47 of file config.\-h.
+
+
+
+Referenced by acc\-Read().
+
+\hypertarget{group__config_gafba0bbf9336cfc754622a5e9b3d12d80}{\index{Configuration@{Configuration}!B\-A\-N\-K0\-D\-D\-R@{B\-A\-N\-K0\-D\-D\-R}}
+\index{B\-A\-N\-K0\-D\-D\-R@{B\-A\-N\-K0\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K0\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-D\-D\-R~D\-D\-R\-G}}\label{group__config_gafba0bbf9336cfc754622a5e9b3d12d80}
+
+
+First Bank Selection Data Direction Register. 
+
+
+
+Definition at line 135 of file config.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{\index{Configuration@{Configuration}!B\-A\-N\-K0\-P\-I\-N@{B\-A\-N\-K0\-P\-I\-N}}
+\index{B\-A\-N\-K0\-P\-I\-N@{B\-A\-N\-K0\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K0\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-P\-I\-N~P\-G3}}\label{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}
+
+
+First Bank Selection Pin. 
+
+
+
+Definition at line 136 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_gabeec1986c81588dde8863b7936028fc9}{\index{Configuration@{Configuration}!B\-A\-N\-K0\-P\-O\-R\-T@{B\-A\-N\-K0\-P\-O\-R\-T}}
+\index{B\-A\-N\-K0\-P\-O\-R\-T@{B\-A\-N\-K0\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K0\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-P\-O\-R\-T~P\-O\-R\-T\-G}}\label{group__config_gabeec1986c81588dde8863b7936028fc9}
+
+
+First Bank Selection Port. 
+
+
+
+Definition at line 134 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_gada13cb9312072b48628763a6e1fd50d3}{\index{Configuration@{Configuration}!B\-A\-N\-K1\-D\-D\-R@{B\-A\-N\-K1\-D\-D\-R}}
+\index{B\-A\-N\-K1\-D\-D\-R@{B\-A\-N\-K1\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K1\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-D\-D\-R~D\-D\-R\-G}}\label{group__config_gada13cb9312072b48628763a6e1fd50d3}
+
+
+Second Bank Selection Data Direction Register. 
+
+
+
+Definition at line 138 of file config.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{\index{Configuration@{Configuration}!B\-A\-N\-K1\-P\-I\-N@{B\-A\-N\-K1\-P\-I\-N}}
+\index{B\-A\-N\-K1\-P\-I\-N@{B\-A\-N\-K1\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K1\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-P\-I\-N~P\-G4}}\label{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}
+
+
+Second Bank Selection Pin. 
+
+
+
+Definition at line 139 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_ga8b3ee7126196f6e939989eae097c3ac4}{\index{Configuration@{Configuration}!B\-A\-N\-K1\-P\-O\-R\-T@{B\-A\-N\-K1\-P\-O\-R\-T}}
+\index{B\-A\-N\-K1\-P\-O\-R\-T@{B\-A\-N\-K1\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K1\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-P\-O\-R\-T~P\-O\-R\-T\-G}}\label{group__config_ga8b3ee7126196f6e939989eae097c3ac4}
+
+
+Second Bank Selection Port. 
+
+
+
+Definition at line 137 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_ga62f56230c5f5f7220c44ab1c93d677ab}{\index{Configuration@{Configuration}!B\-A\-N\-K2\-D\-D\-R@{B\-A\-N\-K2\-D\-D\-R}}
+\index{B\-A\-N\-K2\-D\-D\-R@{B\-A\-N\-K2\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K2\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-D\-D\-R~D\-D\-R\-L}}\label{group__config_ga62f56230c5f5f7220c44ab1c93d677ab}
+
+
+Third Bank Selection Data Direction Register. 
+
+
+
+Definition at line 141 of file config.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{\index{Configuration@{Configuration}!B\-A\-N\-K2\-P\-I\-N@{B\-A\-N\-K2\-P\-I\-N}}
+\index{B\-A\-N\-K2\-P\-I\-N@{B\-A\-N\-K2\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K2\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-P\-I\-N~P\-L5}}\label{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}
+
+
+Third Bank Selection Pin. 
+
+
+
+Definition at line 142 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_gad35afb0251524c201c2d60f3d035af32}{\index{Configuration@{Configuration}!B\-A\-N\-K2\-P\-O\-R\-T@{B\-A\-N\-K2\-P\-O\-R\-T}}
+\index{B\-A\-N\-K2\-P\-O\-R\-T@{B\-A\-N\-K2\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-N\-K2\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-P\-O\-R\-T~P\-O\-R\-T\-L}}\label{group__config_gad35afb0251524c201c2d60f3d035af32}
+
+
+Third Bank Selection Port. 
+
+
+
+Definition at line 140 of file config.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__config_ga9fd748b19523c96052a2964d73a7b0f5}{\index{Configuration@{Configuration}!B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L@{B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L}}
+\index{B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L@{B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-T\-T\-\_\-\-C\-H\-A\-N\-N\-E\-L~0}}\label{group__config_ga9fd748b19523c96052a2964d73a7b0f5}
+
+
+A\-D\-C Channel for Battery. 
+
+
+
+Definition at line 102 of file config.\-h.
+
+
+
+Referenced by get\-Voltage().
+
+\hypertarget{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}{\index{Configuration@{Configuration}!B\-A\-T\-T\-\_\-\-M\-A\-X@{B\-A\-T\-T\-\_\-\-M\-A\-X}}
+\index{B\-A\-T\-T\-\_\-\-M\-A\-X@{B\-A\-T\-T\-\_\-\-M\-A\-X}!Configuration@{Configuration}}
+\subsubsection[{B\-A\-T\-T\-\_\-\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-T\-T\-\_\-\-M\-A\-X~15}}\label{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}
+
+
+Battery Voltage Reference (A\-D\-C 5\-V) 
+
+
+
+Definition at line 101 of file config.\-h.
+
+
+
+Referenced by get\-Voltage().
+
+\hypertarget{group__config_ga3f30897fa8435dc9811642367a328be8}{\index{Configuration@{Configuration}!B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}}
+\index{B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}!Configuration@{Configuration}}
+\subsubsection[{B\-L\-U\-E\-T\-O\-O\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-L\-U\-E\-T\-O\-O\-T\-H~1}}\label{group__config_ga3f30897fa8435dc9811642367a328be8}
+
+
+Bluetooth U\-A\-R\-T module. 
+
+
+
+Definition at line 167 of file config.\-h.
+
+\hypertarget{group__config_ga943f07034774ef1261d62cd0d3d1fec9}{\index{Configuration@{Configuration}!D\-T@{D\-T}}
+\index{D\-T@{D\-T}!Configuration@{Configuration}}
+\subsubsection[{D\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-T~0.\-01f}}\label{group__config_ga943f07034774ef1261d62cd0d3d1fec9}
+
+
+Time Constant. 
+
+
+
+Definition at line 63 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}{\index{Configuration@{Configuration}!G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S@{G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S}}
+\index{G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S@{G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-Y\-R\-O\-\_\-\-A\-D\-D\-R\-E\-S\-S~0x\-D6}}\label{group__config_ga8ed1f343e82440b4ef900e5fe42d74f0}
+
+
+Gyroscope Address (110101xr, x = 1) 
+
+
+
+Definition at line 109 of file config.\-h.
+
+
+
+Referenced by gyro\-Read().
+
+\hypertarget{group__config_ga1b5d47810976ecbfd688513246db3ba9}{\index{Configuration@{Configuration}!G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}}
+\index{G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}!Configuration@{Configuration}}
+\subsubsection[{G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-Y\-R\-O\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R~{\bf S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}}}\label{group__config_ga1b5d47810976ecbfd688513246db3ba9}
+
+
+Gyroscope Low Pass Factor. 
+
+
+
+Definition at line 48 of file config.\-h.
+
+
+
+Referenced by gyro\-Read().
+
+\hypertarget{group__config_ga86208659221ec2a932cd722dfc18101f}{\index{Configuration@{Configuration}!L\-E\-D0\-D\-D\-R@{L\-E\-D0\-D\-D\-R}}
+\index{L\-E\-D0\-D\-D\-R@{L\-E\-D0\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D0\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D0\-D\-D\-R~D\-D\-R\-L}}\label{group__config_ga86208659221ec2a932cd722dfc18101f}
+
+
+First L\-E\-D Data Direction Register. 
+
+
+
+Definition at line 118 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_gab0e1f692e2b1fa1cdbb24a9926b3489d}{\index{Configuration@{Configuration}!L\-E\-D0\-P\-I\-N@{L\-E\-D0\-P\-I\-N}}
+\index{L\-E\-D0\-P\-I\-N@{L\-E\-D0\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D0\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D0\-P\-I\-N~P\-L6}}\label{group__config_gab0e1f692e2b1fa1cdbb24a9926b3489d}
+
+
+First L\-E\-D Pin. 
+
+
+
+Definition at line 119 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_gac0f99671c3447a31e5d3755e1f11ee1f}{\index{Configuration@{Configuration}!L\-E\-D0\-P\-O\-R\-T@{L\-E\-D0\-P\-O\-R\-T}}
+\index{L\-E\-D0\-P\-O\-R\-T@{L\-E\-D0\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D0\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D0\-P\-O\-R\-T~P\-O\-R\-T\-L}}\label{group__config_gac0f99671c3447a31e5d3755e1f11ee1f}
+
+
+First L\-E\-D Port. 
+
+
+
+Definition at line 117 of file config.\-h.
+
+\hypertarget{group__config_gab0f33b52cdb68e643eba6cf583fb625f}{\index{Configuration@{Configuration}!L\-E\-D1\-D\-D\-R@{L\-E\-D1\-D\-D\-R}}
+\index{L\-E\-D1\-D\-D\-R@{L\-E\-D1\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D1\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D1\-D\-D\-R~D\-D\-R\-L}}\label{group__config_gab0f33b52cdb68e643eba6cf583fb625f}
+
+
+Second L\-E\-D Data Direction Register. 
+
+
+
+Definition at line 121 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga04d7aaffbb7b5afaf49acf8a3a39e33a}{\index{Configuration@{Configuration}!L\-E\-D1\-P\-I\-N@{L\-E\-D1\-P\-I\-N}}
+\index{L\-E\-D1\-P\-I\-N@{L\-E\-D1\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D1\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D1\-P\-I\-N~P\-L7}}\label{group__config_ga04d7aaffbb7b5afaf49acf8a3a39e33a}
+
+
+Second L\-E\-D Pin. 
+
+
+
+Definition at line 122 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga3931891a757b08dbdfeaa8afd4dcb664}{\index{Configuration@{Configuration}!L\-E\-D1\-P\-O\-R\-T@{L\-E\-D1\-P\-O\-R\-T}}
+\index{L\-E\-D1\-P\-O\-R\-T@{L\-E\-D1\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D1\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D1\-P\-O\-R\-T~P\-O\-R\-T\-L}}\label{group__config_ga3931891a757b08dbdfeaa8afd4dcb664}
+
+
+Second L\-E\-D Port. 
+
+
+
+Definition at line 120 of file config.\-h.
+
+\hypertarget{group__config_ga7e635626ee31b094da0a668476132577}{\index{Configuration@{Configuration}!L\-E\-D2\-D\-D\-R@{L\-E\-D2\-D\-D\-R}}
+\index{L\-E\-D2\-D\-D\-R@{L\-E\-D2\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D2\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D2\-D\-D\-R~D\-D\-R\-G}}\label{group__config_ga7e635626ee31b094da0a668476132577}
+
+
+Third L\-E\-D Data Direction Register. 
+
+
+
+Definition at line 124 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga50070e632cb68d11f627c5ab60f88683}{\index{Configuration@{Configuration}!L\-E\-D2\-P\-I\-N@{L\-E\-D2\-P\-I\-N}}
+\index{L\-E\-D2\-P\-I\-N@{L\-E\-D2\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D2\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D2\-P\-I\-N~P\-G5}}\label{group__config_ga50070e632cb68d11f627c5ab60f88683}
+
+
+Third L\-E\-D Pin. 
+
+
+
+Definition at line 125 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga4b6e8cddebfbc6f1f5132eb93b92d60f}{\index{Configuration@{Configuration}!L\-E\-D2\-P\-O\-R\-T@{L\-E\-D2\-P\-O\-R\-T}}
+\index{L\-E\-D2\-P\-O\-R\-T@{L\-E\-D2\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D2\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D2\-P\-O\-R\-T~P\-O\-R\-T\-G}}\label{group__config_ga4b6e8cddebfbc6f1f5132eb93b92d60f}
+
+
+Third L\-E\-D Port. 
+
+
+
+Definition at line 123 of file config.\-h.
+
+\hypertarget{group__config_ga09535652dd0ca340b20840c848cb6093}{\index{Configuration@{Configuration}!L\-E\-D3\-D\-D\-R@{L\-E\-D3\-D\-D\-R}}
+\index{L\-E\-D3\-D\-D\-R@{L\-E\-D3\-D\-D\-R}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D3\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D3\-D\-D\-R~D\-D\-R\-E}}\label{group__config_ga09535652dd0ca340b20840c848cb6093}
+
+
+Fourth L\-E\-D Data Direction Register. 
+
+
+
+Definition at line 127 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga2663b8fc01c4753562adc572cf12a5ed}{\index{Configuration@{Configuration}!L\-E\-D3\-P\-I\-N@{L\-E\-D3\-P\-I\-N}}
+\index{L\-E\-D3\-P\-I\-N@{L\-E\-D3\-P\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D3\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D3\-P\-I\-N~P\-E2}}\label{group__config_ga2663b8fc01c4753562adc572cf12a5ed}
+
+
+Fourth L\-E\-D Pin. 
+
+
+
+Definition at line 128 of file config.\-h.
+
+
+
+Referenced by xy\-Init().
+
+\hypertarget{group__config_ga63df95c1a0ce0e770964ca35e4032fb6}{\index{Configuration@{Configuration}!L\-E\-D3\-P\-O\-R\-T@{L\-E\-D3\-P\-O\-R\-T}}
+\index{L\-E\-D3\-P\-O\-R\-T@{L\-E\-D3\-P\-O\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{L\-E\-D3\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-E\-D3\-P\-O\-R\-T~P\-O\-R\-T\-E}}\label{group__config_ga63df95c1a0ce0e770964ca35e4032fb6}
+
+
+Fourth L\-E\-D Port. 
+
+
+
+Definition at line 126 of file config.\-h.
+
+\hypertarget{group__config_gade4e63fac819c67040e374f08d2d7230}{\index{Configuration@{Configuration}!M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S@{M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S}}
+\index{M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S@{M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S~0x3\-C}}\label{group__config_gade4e63fac819c67040e374f08d2d7230}
+
+
+Magnetometer Address. 
+
+
+
+Definition at line 110 of file config.\-h.
+
+
+
+Referenced by mag\-Read().
+
+\hypertarget{group__config_ga6e8ab18bbb1ef1b1e929c627f18224a3}{\index{Configuration@{Configuration}!M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S@{M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S}}
+\index{M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S@{M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-O\-T\-O\-R\-\_\-\-B\-A\-S\-E\-A\-D\-D\-R\-E\-S\-S~0x52}}\label{group__config_ga6e8ab18bbb1ef1b1e929c627f18224a3}
+
+
+Address of first motor controller. 
+
+
+
+Definition at line 111 of file config.\-h.
+
+
+
+Referenced by motor\-Task().
+
+\hypertarget{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}{\index{Configuration@{Configuration}!M\-O\-T\-O\-R\-C\-O\-U\-N\-T@{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}}
+\index{M\-O\-T\-O\-R\-C\-O\-U\-N\-T@{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}!Configuration@{Configuration}}
+\subsubsection[{M\-O\-T\-O\-R\-C\-O\-U\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-O\-T\-O\-R\-C\-O\-U\-N\-T~4}}\label{group__config_ga1a2c496f8bb7dbb5f1dfef5c32624a6d}
+
+
+Amount of motors. 
+
+
+
+Definition at line 95 of file config.\-h.
+
+
+
+Referenced by motor\-Init(), motor\-Set(), and motor\-Task().
+
+\hypertarget{group__config_ga2a442b8579a5c5f9526e824165125497}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-D@{P\-I\-D\-\_\-\-D}}
+\index{P\-I\-D\-\_\-\-D@{P\-I\-D\-\_\-\-D}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-D~-\/13.\-0}}\label{group__config_ga2a442b8579a5c5f9526e824165125497}
+
+
+Default P\-I\-D D Constant. 
+
+
+
+Definition at line 89 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_ga0eb032986beceb6759aebd761c35a879}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R@{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R}}
+\index{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R@{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R~4 / 5}}\label{group__config_ga0eb032986beceb6759aebd761c35a879}
+
+
+Influence of P\-I\-D in relation to Base Speed. 
+
+
+
+Definition at line 56 of file config.\-h.
+
+\hypertarget{group__config_ga2dfd5fcf8dd0bee1de9007fe8e161886}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-I@{P\-I\-D\-\_\-\-I}}
+\index{P\-I\-D\-\_\-\-I@{P\-I\-D\-\_\-\-I}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-I~0.\-03}}\label{group__config_ga2dfd5fcf8dd0bee1de9007fe8e161886}
+
+
+Default P\-I\-D I Constant. 
+
+
+
+Definition at line 88 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_ga50582411cbb3f8a20ffd3aa2254ddf71}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X@{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X}}
+\index{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X@{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-I\-N\-T\-M\-A\-X~{\bf P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}}}\label{group__config_ga50582411cbb3f8a20ffd3aa2254ddf71}
+
+
+Maximum P\-I\-D Integral Sum. 
+
+
+
+Definition at line 52 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_ga9ee651f30455f25b5ca4c4bb9a0a6e49}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N@{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N}}
+\index{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N@{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-I\-N\-T\-M\-I\-N~{\bf P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}}}\label{group__config_ga9ee651f30455f25b5ca4c4bb9a0a6e49}
+
+
+Minimal P\-I\-D Integral Sum. 
+
+
+
+Definition at line 53 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_gaf36e4eab421932a006c7df7e84f11cf0}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X@{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}}
+\index{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X@{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-O\-U\-T\-M\-A\-X~256}}\label{group__config_gaf36e4eab421932a006c7df7e84f11cf0}
+
+
+Maximum P\-I\-D Output. 
+
+
+
+Definition at line 50 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_ga684067981e82e4827607d0b0558812cb}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N@{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}}
+\index{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N@{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-O\-U\-T\-M\-I\-N~-\/256}}\label{group__config_ga684067981e82e4827607d0b0558812cb}
+
+
+Minimum P\-I\-D Output. 
+
+
+
+Definition at line 51 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_gab3ea7c9a4399d8844727806c960880ad}{\index{Configuration@{Configuration}!P\-I\-D\-\_\-\-P@{P\-I\-D\-\_\-\-P}}
+\index{P\-I\-D\-\_\-\-P@{P\-I\-D\-\_\-\-P}!Configuration@{Configuration}}
+\subsubsection[{P\-I\-D\-\_\-\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-D\-\_\-\-P~5.\-0}}\label{group__config_gab3ea7c9a4399d8844727806c960880ad}
+
+
+Default P\-I\-D P Constant. 
+
+
+
+Definition at line 87 of file config.\-h.
+
+
+
+Referenced by pid\-Init().
+
+\hypertarget{group__config_ga0f32727853a3ac3d848701803c3b8688}{\index{Configuration@{Configuration}!Q1@{Q1}}
+\index{Q1@{Q1}!Configuration@{Configuration}}
+\subsubsection[{Q1}]{\setlength{\rightskip}{0pt plus 5cm}\#define Q1~5.\-0f}}\label{group__config_ga0f32727853a3ac3d848701803c3b8688}
+
+
+Q Matrix Diagonal Element 1. 
+
+
+
+Definition at line 66 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_gaf5bca4c32f8c6886a3d8c526d2e3e9a7}{\index{Configuration@{Configuration}!Q2@{Q2}}
+\index{Q2@{Q2}!Configuration@{Configuration}}
+\subsubsection[{Q2}]{\setlength{\rightskip}{0pt plus 5cm}\#define Q2~100.\-0f}}\label{group__config_gaf5bca4c32f8c6886a3d8c526d2e3e9a7}
+
+
+Q Matrix Diagonal Element 2. 
+
+
+
+Definition at line 67 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_ga1d7d3dfd2c4618949c484c5e8369f05a}{\index{Configuration@{Configuration}!Q3@{Q3}}
+\index{Q3@{Q3}!Configuration@{Configuration}}
+\subsubsection[{Q3}]{\setlength{\rightskip}{0pt plus 5cm}\#define Q3~0.\-01f}}\label{group__config_ga1d7d3dfd2c4618949c484c5e8369f05a}
+
+
+Q Matrix Diagonal Element 3. 
+
+
+
+Definition at line 68 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_ga918f64eb53db8e8dc694f36a87646476}{\index{Configuration@{Configuration}!R1@{R1}}
+\index{R1@{R1}!Configuration@{Configuration}}
+\subsubsection[{R1}]{\setlength{\rightskip}{0pt plus 5cm}\#define R1~1000.\-0f}}\label{group__config_ga918f64eb53db8e8dc694f36a87646476}
+
+
+R Matrix Diagonal Element 1. 
+
+
+
+Definition at line 71 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_ga7a255a2815b9453060f51c6eb22cfed8}{\index{Configuration@{Configuration}!R2@{R2}}
+\index{R2@{R2}!Configuration@{Configuration}}
+\subsubsection[{R2}]{\setlength{\rightskip}{0pt plus 5cm}\#define R2~1000.\-0f}}\label{group__config_ga7a255a2815b9453060f51c6eb22cfed8}
+
+
+R Matrix Diagonal Element 2. 
+
+
+
+Definition at line 72 of file config.\-h.
+
+
+
+Referenced by kalman\-Innovate().
+
+\hypertarget{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{\index{Configuration@{Configuration}!R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!Configuration@{Configuration}}
+\subsubsection[{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}
+
+
+U\-A\-R\-T Receive Buffer Size. 
+
+
+
+Definition at line 163 of file config.\-h.
+
+
+
+Referenced by I\-S\-R(), serial\-Get(), and serial\-Rx\-Buffer\-Full().
+
+\hypertarget{group__config_ga8c969dbb07dc504226fc2c69484b9768}{\index{Configuration@{Configuration}!S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}}
+\index{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S~2}}\label{group__config_ga8c969dbb07dc504226fc2c69484b9768}
+
+
+Third Motor at the Bottom. 
+
+
+
+Definition at line 81 of file config.\-h.
+
+\hypertarget{group__config_gaf0a00d922db66d875ca53f6db34e7307}{\index{Configuration@{Configuration}!S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S}}
+\index{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S~0}}\label{group__config_gaf0a00d922db66d875ca53f6db34e7307}
+
+
+First Motor at the Top. 
+
+
+
+Definition at line 80 of file config.\-h.
+
+\hypertarget{group__config_ga9921670161925a1d7b946aeb65d5767a}{\index{Configuration@{Configuration}!S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S}}
+\index{S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S~3}}\label{group__config_ga9921670161925a1d7b946aeb65d5767a}
+
+
+Fourth Motor at the Left. 
+
+
+
+Definition at line 79 of file config.\-h.
+
+
+
+Referenced by set\-Motor\-Speeds().
+
+\hypertarget{group__config_ga460dbe0039d252579c5ce8beef7cc709}{\index{Configuration@{Configuration}!S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S@{S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S}}
+\index{S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S@{S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S~1}}\label{group__config_ga460dbe0039d252579c5ce8beef7cc709}
+
+
+Second Motor at the Right. 
+
+
+
+Definition at line 78 of file config.\-h.
+
+
+
+Referenced by set\-Motor\-Speeds().
+
+\hypertarget{group__config_gaba06e7be57726e74f267a1622e7d720e}{\index{Configuration@{Configuration}!S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S@{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}}
+\index{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S@{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-O\-F\-T\-W\-A\-R\-E\-L\-O\-W\-P\-A\-S\-S~50}}\label{group__config_gaba06e7be57726e74f267a1622e7d720e}
+
+
+Software Low-\/\-Pass on Gyro and A\-C\-C. 
+
+
+
+Definition at line 46 of file config.\-h.
+
+\hypertarget{group__config_gab652052c0495e4b720b52cdcf83f535d}{\index{Configuration@{Configuration}!S\-P\-I\-S\-S@{S\-P\-I\-S\-S}}
+\index{S\-P\-I\-S\-S@{S\-P\-I\-S\-S}!Configuration@{Configuration}}
+\subsubsection[{S\-P\-I\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-P\-I\-S\-S~P\-B0}}\label{group__config_gab652052c0495e4b720b52cdcf83f535d}
+
+
+S\-P\-I Slave Select Pin. 
+
+
+
+Definition at line 151 of file config.\-h.
+
+\hypertarget{group__config_ga9ab33647617098646990fe263600b650}{\index{Configuration@{Configuration}!T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!Configuration@{Configuration}}
+\subsubsection[{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__config_ga9ab33647617098646990fe263600b650}
+
+
+U\-A\-R\-T Transmit Buffer Size. 
+
+
+
+Definition at line 164 of file config.\-h.
+
+
+
+Referenced by I\-S\-R(), serial\-Tx\-Buffer\-Full(), and serial\-Write().
+
+\hypertarget{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}{\index{Configuration@{Configuration}!U\-A\-R\-T@{U\-A\-R\-T}}
+\index{U\-A\-R\-T@{U\-A\-R\-T}!Configuration@{Configuration}}
+\subsubsection[{U\-A\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T~{\bf B\-L\-U\-E\-T\-O\-O\-T\-H}}}\label{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}
+
+
+U\-A\-R\-T module to use (0 to 3) 
+
+
+
+Definition at line 168 of file config.\-h.
+
+\hypertarget{group__config_ga779bf099075a999d1074357fccbd466b}{\index{Configuration@{Configuration}!U\-S\-B@{U\-S\-B}}
+\index{U\-S\-B@{U\-S\-B}!Configuration@{Configuration}}
+\subsubsection[{U\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-B~0}}\label{group__config_ga779bf099075a999d1074357fccbd466b}
+
+
+F\-T232\-R\-L U\-S\-B U\-A\-R\-T module. 
+
+
+
+Definition at line 166 of file config.\-h.
+
