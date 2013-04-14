@@ -64,7 +64,7 @@ Convert Radians to Degrees.
 
 
 
-Definition at line 54 of file orientation.\-c.
+Definition at line 55 of file orientation.\-c.
 
 
 
@@ -92,25 +92,32 @@ Also initializes the Accelerometer, Gyroscope and Magnetometer. I2\-C should alr
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 65 of file orientation.\-c.
+Definition at line 73 of file orientation.\-c.
 
 
 
-References acc\-Init(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, gyro\-Init(), kalman\-Init(), mag\-Init(), r1g9, r250\-D\-P\-S, r4\-G, and S\-U\-C\-C\-E\-S\-S.
+References acc\-Init(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, complementary\-Init(), gyro\-Init(), kalman\-Init(), mag\-Init(), r1g9, r250\-D\-P\-S, r4\-G, and S\-U\-C\-C\-E\-S\-S.
 
 
 \begin{DoxyCode}
-65                             \{
-66     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga7674eb1b940f183abe5e0b0913a87613}{accInit}(\hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G});
-67     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
-68     e = \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyroInit}(\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS});
-69     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
-70     e = \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{magInit}(\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9});
-71     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
-72     \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData});
-73     \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData});
-74     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-75 \}
+73                             \{
+74     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga7674eb1b940f183abe5e0b0913a87613}{accInit}(\hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G});
+75     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+76     e = \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyroInit}(\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd}{r250DPS});
+77     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+78     e = \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{magInit}(\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9});
+79     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+80 
+81 \textcolor{preprocessor}{#if ORIENTATION\_FILTER == FILTER\_KALMAN}
+82 \textcolor{preprocessor}{}    \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData});
+83     \hyperlink{group__kalman_ga89613fd996739650842bef0089c28cb9}{kalmanInit}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData});
+84 \textcolor{preprocessor}{#elif ORIENTATION\_FILTER == FILTER\_COMPLEMENTARY}
+85 \textcolor{preprocessor}{}    \hyperlink{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}{complementaryInit}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData});
+86     \hyperlink{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}{complementaryInit}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData});
+87 \textcolor{preprocessor}{#endif}
+88 \textcolor{preprocessor}{}
+89     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+90 \}
 \end{DoxyCode}
 \hypertarget{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{\index{Orientation Calculation@{Orientation Calculation}!orientation\-Task@{orientation\-Task}}
 \index{orientation\-Task@{orientation\-Task}!Orientation Calculation@{Orientation Calculation}}
@@ -131,40 +138,49 @@ It will be stored in the global \hyperlink{group__orientation_gacd4a2942520b6869
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 77 of file orientation.\-c.
+Definition at line 92 of file orientation.\-c.
 
 
 
-References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, gyro\-Read(), kalman\-Innovate(), orientation, Angles\-::pitch, Angles\-::roll, S\-U\-C\-C\-E\-S\-S, T\-O\-D\-E\-G, Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
+References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, complementary\-Execute(), gyro\-Read(), kalman\-Innovate(), orientation, Angles\-::pitch, Angles\-::roll, S\-U\-C\-C\-E\-S\-S, T\-O\-D\-E\-G, Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
 
 
 \begin{DoxyCode}
-77                             \{
-78     \hyperlink{struct_vector3f}{Vector3f} g, a;
-79     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{accRead}(&a); \textcolor{comment}{// Read Accelerometer}
-80     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
-81     e = \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyroRead}(&g); \textcolor{comment}{// Read Gyroscope}
-82     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
-83 
-84     \textcolor{comment}{// Calculate Pitch & Roll from Accelerometer Data}
-85     \textcolor{keywordtype}{double} roll = atan(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} / hypot(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
-86     \textcolor{keywordtype}{double} pitch = atan(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} / hypot(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
-87     roll = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(roll);
-88     pitch = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(pitch); \textcolor{comment}{// As Degree, not radians!}
-89 
-90     \textcolor{comment}{// Filter Roll and Pitch with Gyroscope Data from the corresponding axis}
-91     \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}, pitch, g.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x});
-92     \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}, roll, g.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y});
-93     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}.x1 - \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.
-      \hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
-94     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}.x1 - \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.
-      \hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
-95 
-96     \textcolor{comment}{//orientation.roll = round(orientation.roll * 10) / 10;}
-97     \textcolor{comment}{//orientation.pitch = round(orientation.pitch * 10) / 10;}
+92                             \{
+93     \hyperlink{struct_vector3f}{Vector3f} g, a;
+94     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{accRead}(&a); \textcolor{comment}{// Read Accelerometer}
+95     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
+96     e = \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyroRead}(&g); \textcolor{comment}{// Read Gyroscope}
+97     \hyperlink{group__error_ga27f0c01e2c2678a7a6c0c44f86108fe0}{CHECKERROR}(e);
 98 
-99     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-100 \}
+99     \textcolor{comment}{// Calculate Pitch & Roll from Accelerometer Data}
+100     \textcolor{keywordtype}{double} roll = atan(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} / hypot(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
+101     \textcolor{keywordtype}{double} pitch = atan(a.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} / hypot(a.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, a.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z}));
+102     roll = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(roll);
+103     pitch = \hyperlink{group__orientation_ga1697ca2f6c35ed996d8653b5b029d283}{TODEG}(pitch); \textcolor{comment}{// As Degree, not radians!}
+104 
+105     \textcolor{comment}{// Filter Roll and Pitch with Gyroscope Data from the corresponding axis}
+106 \textcolor{preprocessor}{#if ORIENTATION\_FILTER == FILTER\_KALMAN}
+107 \textcolor{preprocessor}{}    \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}, pitch, g.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x});
+108     \hyperlink{group__kalman_ga008ac0878fbd45cbf8403f52387a34d1}{kalmanInnovate}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}, roll, g.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y});
+109     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}.x1;
+110     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}.x1;
+111 \textcolor{preprocessor}{#elif ORIENTATION\_FILTER == FILTER\_COMPLEMENTARY}
+112 \textcolor{preprocessor}{}    \hyperlink{group__complementary_gaa0b82ecce955806245736b228e0702d2}{complementaryExecute}(&\hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}, pitch, g.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x});
+113     \hyperlink{group__complementary_gaa0b82ecce955806245736b228e0702d2}{complementaryExecute}(&\hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}, roll, g.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y});
+114     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{rollData}.angle;
+115     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{pitchData}.angle;
+116 \textcolor{preprocessor}{#endif}
+117 \textcolor{preprocessor}{}
+118     \textcolor{comment}{// Zero Offset for angles}
+119     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} -= \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
+120     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} -= \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
+121 
+122     \textcolor{comment}{//orientation.roll = round(orientation.roll * 10) / 10;}
+123     \textcolor{comment}{//orientation.pitch = round(orientation.pitch * 10) / 10;}
+124 
+125     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+126 \}
 \end{DoxyCode}
 \hypertarget{group__orientation_ga0fab95dd407145abad293f7c91460eee}{\index{Orientation Calculation@{Orientation Calculation}!zero\-Orientation@{zero\-Orientation}}
 \index{zero\-Orientation@{zero\-Orientation}!Orientation Calculation@{Orientation Calculation}}
@@ -182,7 +198,7 @@ Sets the current orientation to zero.
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 102 of file orientation.\-c.
+Definition at line 128 of file orientation.\-c.
 
 
 
@@ -190,14 +206,14 @@ References orientation, Angles\-::pitch, Angles\-::roll, and Angles\-::yaw.
 
 
 \begin{DoxyCode}
-102                            \{
-103     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} + 
+128                            \{
+129     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
-104     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} + 
+130     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
-105     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} + 
+131     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw};
-106 \}
+132 \}
 \end{DoxyCode}
 
 
@@ -214,7 +230,7 @@ Current Aircraft orientation.
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 57 of file orientation.\-c.
+Definition at line 58 of file orientation.\-c.
 
 
 
@@ -229,7 +245,7 @@ Current Aircraft orientation.
 
 
 
-Definition at line 57 of file orientation.\-c.
+Definition at line 58 of file orientation.\-c.
 
 
 
@@ -244,7 +260,7 @@ Current Aircraft orientation offset.
 
 
 
-Definition at line 60 of file orientation.\-c.
+Definition at line 61 of file orientation.\-c.
 
 \hypertarget{group__orientation_gaee2ebdd37342c4cfa69ce7ee1440fd1d}{\index{Orientation Calculation@{Orientation Calculation}!pitch\-Data@{pitch\-Data}}
 \index{pitch\-Data@{pitch\-Data}!Orientation Calculation@{Orientation Calculation}}
@@ -255,7 +271,7 @@ Kalman-\/\-State for Pitch Angle.
 
 
 
-Definition at line 62 of file orientation.\-c.
+Definition at line 64 of file orientation.\-c.
 
 \hypertarget{group__orientation_ga327c51463b7ca66c1ed8d0f400ffbfec}{\index{Orientation Calculation@{Orientation Calculation}!roll\-Data@{roll\-Data}}
 \index{roll\-Data@{roll\-Data}!Orientation Calculation@{Orientation Calculation}}
@@ -266,5 +282,5 @@ Kalman-\/\-State for Roll Angle.
 
 
 
-Definition at line 63 of file orientation.\-c.
+Definition at line 65 of file orientation.\-c.
 

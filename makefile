@@ -58,6 +58,7 @@ SRC += lib/error.c
 SRC += lib/pid.c
 SRC += lib/set.c
 SRC += lib/kalman.c
+SRC += lib/complementary.c
 
 OBJ = $(SRC:.c=.o)
 

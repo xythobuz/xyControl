@@ -6,7 +6,7 @@ var searchData=
   ['acc_5faddress',['ACC_ADDRESS',['../group__config.html#ga27341a8e1cb1a6ace5a5cf3caea1c99f',1,'config.h']]],
   ['accfilterfactor',['ACCFILTERFACTOR',['../group__config.html#gaace41596724b03f3f2b2ee28b7e87272',1,'config.h']]],
   ['accinit',['accInit',['../group__acc.html#ga7674eb1b940f183abe5e0b0913a87613',1,'acc.c']]],
-  ['accrange',['accRange',['../group__acc.html#ga450bb9262f697cdcab7185674b9fc6a3',1,'accRange():&#160;acc.c'],['../group__acc.html#ga3d56e56c162b045de727006a11880324',1,'AccRange():&#160;acc.h']]],
+  ['accrange',['AccRange',['../group__acc.html#ga3d56e56c162b045de727006a11880324',1,'AccRange():&#160;acc.h'],['../group__acc.html#ga450bb9262f697cdcab7185674b9fc6a3',1,'accRange():&#160;acc.c']]],
   ['accread',['accRead',['../group__acc.html#ga4dd55defcab17af4ecc29562a5a28ab3',1,'acc.c']]],
   ['accreg_5fctrl1',['ACCREG_CTRL1',['../group__acc.html#gae81a43863d896c9afe65cc45bf8db9dc',1,'acc.c']]],
   ['accreg_5fctrl4',['ACCREG_CTRL4',['../group__acc.html#ga4369b46f297623a18b9d937623b7f783',1,'acc.c']]],

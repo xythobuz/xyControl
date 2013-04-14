@@ -43,7 +43,18 @@
 // |    Filtering    |
 //  -----------------
 
-#define SOFTWARELOWPASS 50 /**< Software Low-Pass on Gyro and ACC */
+#define FILTER_KALMAN 0
+#define FILTER_COMPLEMENTARY 1
+#define ORIENTATION_FILTER FILTER_COMPLEMENTARY /**< Filter Implementation to be used */
+
+/** Time Contant for Low and High Pass Filter in the Complementary Filter.
+ *  In essence, time periods shorter than TAU come from gyro data,
+ *  longer time periods come from the Accelerometer data.
+ */
+#define COMPLEMENTARY_TAU 0.5
+
+// 1 has no effect, bigger numbers dampen the signal more
+#define SOFTWARELOWPASS 1 /**< Software Low-Pass on Gyro and ACC */
 #define ACCFILTERFACTOR SOFTWARELOWPASS /**< Accelerometer Low Pass Factor */
 #define GYROFILTERFACTOR SOFTWARELOWPASS /**< Gyroscope Low Pass Factor */
 

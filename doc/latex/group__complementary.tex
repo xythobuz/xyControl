@@ -1,0 +1,115 @@
+\hypertarget{group__complementary}{\section{Complementary-\/\-Filter}
+\label{group__complementary}\index{Complementary-\/\-Filter@{Complementary-\/\-Filter}}
+}
+
+
+Complementary-\/\-Filter.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{complementary_8h}{complementary.\-h}
+\begin{DoxyCompactList}\small\item\em Complementary-\/\-Filter Header. \end{DoxyCompactList}\item 
+file \hyperlink{complementary_8c}{complementary.\-c}
+\begin{DoxyCompactList}\small\item\em Complementary-\/\-Filter Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_complementary}{Complementary}
+\begin{DoxyCompactList}\small\item\em Cmplementary-\/\-Filter State data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__complementary_gaa0b82ecce955806245736b228e0702d2}{complementary\-Execute} (\hyperlink{struct_complementary}{Complementary} $\ast$data, double acc, double gyro)
+\begin{DoxyCompactList}\small\item\em Step the \hyperlink{struct_complementary}{Complementary} Filter. \end{DoxyCompactList}\item 
+void \hyperlink{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}{complementary\-Init} (\hyperlink{struct_complementary}{Complementary} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Initialize a Complementary-\/\-State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Complementary-\/\-Filter. Inspired by \href{http://web.mit.edu/scolton/www/filter.pdf}{\tt this presentation}... 
+
+\subsection{Function Documentation}
+\hypertarget{group__complementary_gaa0b82ecce955806245736b228e0702d2}{\index{Complementary-\/\-Filter@{Complementary-\/\-Filter}!complementary\-Execute@{complementary\-Execute}}
+\index{complementary\-Execute@{complementary\-Execute}!Complementary-Filter@{Complementary-\/\-Filter}}
+\subsubsection[{complementary\-Execute}]{\setlength{\rightskip}{0pt plus 5cm}void complementary\-Execute (
+\begin{DoxyParamCaption}
+\item[{{\bf Complementary} $\ast$}]{data, }
+\item[{double}]{acc, }
+\item[{double}]{gyro}
+\end{DoxyParamCaption}
+)}}\label{group__complementary_gaa0b82ecce955806245736b228e0702d2}
+
+
+Step the \hyperlink{struct_complementary}{Complementary} Filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Complementary-\/\-Filter State \\
+\hline
+{\em acc} & Angle from Accelerometer \\
+\hline
+{\em gyro} & Corresponding Gyroscope data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file complementary.\-c.
+
+
+
+References C\-O\-M\-P\-L\-E\-M\-E\-N\-T\-A\-R\-Y\-\_\-\-T\-A\-U, and get\-System\-Time().
+
+
+
+Referenced by orientation\-Task().
+
+
+\begin{DoxyCode}
+50                                                                         \{
+51     \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} dtInteger = (\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - data->lastExecute);
+52     \textcolor{keywordtype}{double} dt = dtInteger / 1000;
+53     data->angle = (data->angle + (gyro * dt)); \textcolor{comment}{// Gyro Integrator}
+54     data->angle *= \hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt); \textcolor{comment}{//
+       High-Pass}
+55     data->angle += (1 - (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt))) *
+       acc; \textcolor{comment}{// Low-Pass}
+56     data->lastExecute = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+57 \}
+\end{DoxyCode}
+\hypertarget{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}{\index{Complementary-\/\-Filter@{Complementary-\/\-Filter}!complementary\-Init@{complementary\-Init}}
+\index{complementary\-Init@{complementary\-Init}!Complementary-Filter@{Complementary-\/\-Filter}}
+\subsubsection[{complementary\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void complementary\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf Complementary} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}
+
+
+Initialize a Complementary-\/\-State. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Complementary-\/\-State to be initialized \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file complementary.\-c.
+
+
+
+References get\-System\-Time().
+
+
+
+Referenced by orientation\-Init().
+
+
+\begin{DoxyCode}
+45                                             \{
+46     data->angle = 0;
+47     data->lastExecute = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+48 \}
+\end{DoxyCode}

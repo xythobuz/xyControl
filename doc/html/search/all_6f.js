@@ -8,6 +8,7 @@ var searchData=
   ['orientation',['orientation',['../group__orientation.html#gacd4a2942520b68691db5aebde4e537a4',1,'orientation():&#160;orientation.c'],['../group__orientation.html#gacd4a2942520b68691db5aebde4e537a4',1,'orientation():&#160;orientation.c'],['../group__orientation.html',1,'(Global Namespace)']]],
   ['orientation_2ec',['orientation.c',['../orientation_8c.html',1,'']]],
   ['orientation_2eh',['orientation.h',['../orientation_8h.html',1,'']]],
+  ['orientation_5ffilter',['ORIENTATION_FILTER',['../group__config.html#gaf45c761b3bd949068c77712e21259564',1,'config.h']]],
   ['orientationerror',['orientationError',['../group__orientation.html#gab42c272957b0a5cdc11845ade183c2f9',1,'orientation.c']]],
   ['orientationinit',['orientationInit',['../group__orientation.html#gaa5724492d0f54b41a8984cdde51d59df',1,'orientation.c']]],
   ['orientationtask',['orientationTask',['../group__orientation.html#ga966edaeb4790aecd79b3c49ede459e56',1,'orientation.c']]],

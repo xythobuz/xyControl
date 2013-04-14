@@ -40,6 +40,7 @@
 #include <time.h>
 #include <orientation.h>
 #include <kalman.h>
+#include <complementary.h>
 #include <config.h>
 
 /** \addtogroup orientation Orientation Calculation
@@ -54,13 +55,20 @@
 #define TODEG(x) ((x * 180) / M_PI) /**< Convert Radians to Degrees */
 
 /** Current Aircraft orientation */
-Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0}; 
+Angles orientation = {.pitch = 0, .roll = 0, .yaw = 0};
 
 /** Current Aircraft orientation offset */
 Angles orientationError = {.pitch = 0, .roll = 0, .yaw = 0};
 
+#if ORIENTATION_FILTER == FILTER_KALMAN
 Kalman pitchData; /**< Kalman-State for Pitch Angle */
 Kalman rollData; /**< Kalman-State for Roll Angle */
+#elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
+Complementary pitchData; /**< Complementary-State for Pitch Angle */
+Complementary rollData; /**< Complementary-State for Roll Angle */
+#else
+#error Define a Filter for the orientation Data
+#endif
 
 Error orientationInit(void) {
     Error e = accInit(r4G);
@@ -69,8 +77,15 @@ Error orientationInit(void) {
     CHECKERROR(e);
     e = magInit(r1g9);
     CHECKERROR(e);
+
+#if ORIENTATION_FILTER == FILTER_KALMAN
     kalmanInit(&pitchData);
     kalmanInit(&rollData);
+#elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
+    complementaryInit(&pitchData);
+    complementaryInit(&rollData);
+#endif
+
     return SUCCESS;
 }
 
@@ -88,10 +103,21 @@ Error orientationTask(void) {
     pitch = TODEG(pitch); // As Degree, not radians!
 
     // Filter Roll and Pitch with Gyroscope Data from the corresponding axis
+#if ORIENTATION_FILTER == FILTER_KALMAN
     kalmanInnovate(&pitchData, pitch, g.x);
     kalmanInnovate(&rollData, roll, g.y);
-    orientation.roll = rollData.x1 - orientationError.roll;
-    orientation.pitch = pitchData.x1 - orientationError.pitch;
+    orientation.roll = rollData.x1;
+    orientation.pitch = pitchData.x1;
+#elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
+    complementaryExecute(&pitchData, pitch, g.x);
+    complementaryExecute(&rollData, roll, g.y);
+    orientation.roll = rollData.angle;
+    orientation.pitch = pitchData.angle;
+#endif
+
+    // Zero Offset for angles
+    orientation.roll -= orientationError.roll;
+    orientation.pitch -= orientationError.pitch;
 
     //orientation.roll = round(orientation.roll * 10) / 10;
     //orientation.pitch = round(orientation.pitch * 10) / 10;

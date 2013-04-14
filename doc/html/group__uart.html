@@ -293,7 +293,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00107">107</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00063">FLOWMARK</a>, <a class="el" href="config_8h_source.html#l00163">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00092">rxBuffer</a>, <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, and <a class="el" href="serial_8c_source.html#l00047">XOFF</a>.</p>
+<p>References <a class="el" href="serial_8c_source.html#l00063">FLOWMARK</a>, <a class="el" href="config_8h_source.html#l00174">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00092">rxBuffer</a>, <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, and <a class="el" href="serial_8c_source.html#l00047">XOFF</a>.</p>
 <div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                            {</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="group__uart.html#ga8e77b30148ad1a3590ed6b1733ad0bfd" title="RX FIFO Buffer.">rxBuffer</a>[<a class="code" href="group__uart.html#ga6428d84da0f4255131fef945c27af689" title="RX FIFO Write Position.">rxWrite</a>] = SERIALDATA;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__uart.html#ga6428d84da0f4255131fef945c27af689" title="RX FIFO Write Position.">rxWrite</a> &lt; (<a class="code" href="group__config.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="UART Receive Buffer Size.">RX_BUFFER_SIZE</a> - 1)) {</div>
@@ -336,7 +336,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00130">130</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, <a class="el" href="config_8h_source.html#l00164">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00093">txBuffer</a>, <a class="el" href="serial_8c_source.html#l00096">txRead</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
+<p>References <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, <a class="el" href="config_8h_source.html#l00175">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00093">txBuffer</a>, <a class="el" href="serial_8c_source.html#l00096">txRead</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
 <div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                             {</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifdef FLOWCONTROL</span></div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (sendThisNext) {</div>
@@ -423,7 +423,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00231">231</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00063">FLOWMARK</a>, <a class="el" href="config_8h_source.html#l00163">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00092">rxBuffer</a>, <a class="el" href="serial_8c_source.html#l00094">rxRead</a>, <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, and <a class="el" href="serial_8c_source.html#l00046">XON</a>.</p>
+<p>References <a class="el" href="serial_8c_source.html#l00063">FLOWMARK</a>, <a class="el" href="config_8h_source.html#l00174">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00092">rxBuffer</a>, <a class="el" href="serial_8c_source.html#l00094">rxRead</a>, <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, and <a class="el" href="serial_8c_source.html#l00046">XON</a>.</p>
 
 <p>Referenced by <a class="el" href="serial_8c_source.html#l00226">serialGetBlocking()</a>, <a class="el" href="xycontrol_8c_source.html#l00079">uartinput()</a>, and <a class="el" href="uart_menu_8c_source.html#l00131">uartMenuTask()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                        {</div>
@@ -605,7 +605,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00262">262</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00163">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00094">rxRead</a>, and <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00174">RX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00094">rxRead</a>, and <a class="el" href="serial_8c_source.html#l00095">rxWrite</a>.</p>
 <div class="fragment"><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                                 {</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">return</span> (((<a class="code" href="group__uart.html#ga6428d84da0f4255131fef945c27af689" title="RX FIFO Write Position.">rxWrite</a> + 1) == <a class="code" href="group__uart.html#ga9ec81baf5fa44701fbe03f942171b5e6" title="RX FIFO Read Position.">rxRead</a>) || ((<a class="code" href="group__uart.html#ga9ec81baf5fa44701fbe03f942171b5e6" title="RX FIFO Read Position.">rxRead</a> == 0) &amp;&amp; ((<a class="code" href="group__uart.html#ga6428d84da0f4255131fef945c27af689" title="RX FIFO Write Position.">rxWrite</a> + 1) == <a class="code" href="group__config.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="UART Receive Buffer Size.">RX_BUFFER_SIZE</a>)));</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;}</div>
@@ -663,7 +663,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00309">309</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00164">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00096">txRead</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00175">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00096">txRead</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
 
 <p>Referenced by <a class="el" href="serial_8c_source.html#l00278">serialWrite()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                                 {</div>
@@ -696,7 +696,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00278">278</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00309">serialTxBufferFull()</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, <a class="el" href="config_8h_source.html#l00164">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00093">txBuffer</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
+<p>References <a class="el" href="serial_8c_source.html#l00309">serialTxBufferFull()</a>, <a class="el" href="serial_8c_source.html#l00098">shouldStartTransmission</a>, <a class="el" href="config_8h_source.html#l00175">TX_BUFFER_SIZE</a>, <a class="el" href="serial_8c_source.html#l00093">txBuffer</a>, and <a class="el" href="serial_8c_source.html#l00097">txWrite</a>.</p>
 
 <p>Referenced by <a class="el" href="serial_8c_source.html#l00299">serialWriteString()</a>, and <a class="el" href="xycontrol_8c_source.html#l00066">uartoutput()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                               {</div>
@@ -945,7 +945,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 2 2013 20:43:30 for xyControl by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
