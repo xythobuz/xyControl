@@ -1,6 +1,8 @@
 var searchData=
 [
   ['uart',['UART',['../group__config.html#gaf7cb12b462b4594bd759d1b4e241ec4c',1,'UART():&#160;config.h'],['../group__uart.html',1,'(Global Namespace)']]],
+  ['uart_5fbluetooth',['UART_BLUETOOTH',['../group__config.html#ga2c948aa36e7c71b5e04623c1f560f1f1',1,'config.h']]],
+  ['uart_5fusb',['UART_USB',['../group__config.html#ga9757131cd175465e6220de58b57f6b78',1,'config.h']]],
   ['uartinput',['uartinput',['../group__xycontrol.html#ga3f158de66529c4606b8d8a380e5a5b07',1,'xycontrol.c']]],
   ['uartmenu',['uartMenu',['../group__uartmenu.html#gaedd623ea603861db72748b5b03859ba9',1,'uartMenu():&#160;uartMenu.c'],['../group__uartmenu.html',1,'(Global Namespace)']]],
   ['uartmenu_2ec',['uartMenu.c',['../uart_menu_8c.html',1,'']]],
@@ -9,6 +11,5 @@ var searchData=
   ['uartmenuregisterhandler',['uartMenuRegisterHandler',['../group__uartmenu.html#gae3654103f924700d1f7801fcda4472b7',1,'uartMenu.c']]],
   ['uartmenutask',['uartMenuTask',['../group__uartmenu.html#ga9f477033e942434f7875930342d5e696',1,'uartMenu.c']]],
   ['uartoutput',['uartoutput',['../group__xycontrol.html#ga7e2be90354ccc3af05947764858bc0b1',1,'xycontrol.c']]],
-  ['unhandler',['unHandler',['../group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a',1,'uartMenu.c']]],
-  ['usb',['USB',['../group__config.html#ga779bf099075a999d1074357fccbd466b',1,'config.h']]]
+  ['unhandler',['unHandler',['../group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a',1,'uartMenu.c']]]
 ];

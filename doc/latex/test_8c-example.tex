@@ -1,0 +1,65 @@
+\hypertarget{test_8c-example}{\section{test.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/*}
+\textcolor{comment}{ * test.c}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>}
+\textcolor{comment}{ * All rights reserved.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}
+\textcolor{comment}{ * modification, are permitted provided that the following conditions}
+\textcolor{comment}{ * are met:}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions of source code must retain the above copyright notice,}
+\textcolor{comment}{ *   this list of conditions and the following disclaimer.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions in binary form must reproduce the above copyright}
+\textcolor{comment}{ *   notice, this list of conditions and the following disclaimer in the}
+\textcolor{comment}{ *   documentation and/or other materials provided with the distribution.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS}
+\textcolor{comment}{ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED}
+\textcolor{comment}{ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR}
+\textcolor{comment}{ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR}
+\textcolor{comment}{ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,}
+\textcolor{comment}{ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,}
+\textcolor{comment}{ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR}
+\textcolor{comment}{ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF}
+\textcolor{comment}{ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING}
+\textcolor{comment}{ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS}
+\textcolor{comment}{ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}
+\textcolor{comment}{ */}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <avr/io.h>}
+\textcolor{preprocessor}{#include <avr/pgmspace.h>}
+
+\textcolor{preprocessor}{#include <\hyperlink{tasks_8h}{tasks.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{error_8h}{error.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{xycontrol_8h}{xycontrol.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{time_8h}{time.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{uart_menu_8h}{uartMenu.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{serial_8h}{serial.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{acc_8h}{acc.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{gyro_8h}{gyro.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{mag_8h}{mag.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{motor_8h}{motor.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{orientation_8h}{orientation.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{pid_8h}{pid.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{set_8h}{set.h}>}
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+    \hyperlink{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{xyInit}();
+    \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ae4fd580189cac85429ebfa5cb71cd772}{LED\_ALL}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{LED\_ON});
+
+    \textcolor{keywordflow}{for}(;;) \{
+        \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks}();
+    \}
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

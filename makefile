@@ -79,10 +79,10 @@ CARGS += -lm -lprintf_flt
 LINKER = -Wl,--relax,-u,vfprintf,-lm,-lprintf_flt,-u,vfscanf,-lscanf_flt
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 
-PROGRAMMER = stk500v2
-ISPPORT = /dev/tty.usbmodem641
-#BOOTLOADER = /dev/tty.usbserial-AE01539L
-BOOTLOADER = /dev/tty.xyRobot-DevB
+PROGRAMMER = avrisp2
+ISPPORT = usb
+BOOTLOADER = /dev/tty.usbserial-AE01539L
+#BOOTLOADER = /dev/tty.xyRobot-DevB
 
 TARGETSRC = uartFlight.c
 

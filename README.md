@@ -6,10 +6,6 @@ Also included is a switched power supply as well as a USB connection to communic
 All I/O pins, including 3 additional UARTs, SPI, I2C (TWI) and 16 ADC Channels, are accessible via standard 2.54mm connectors.
 The Board can be powered from an external stable 5V supply, USB or 7V or more, via the on-board switched power supply. All voltage sources can be selected via jumpers.
 
-## Known Problems
-
-In the current PCB layout, the SD-Card holder is rotated 180 degrees. This prevents an SD-Card from being inserted!
-
 ## Flight Control Software Flow
 
 Three tasks are controlling the Quadrocopter Orientation in Space.

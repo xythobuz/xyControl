@@ -1,7 +1,8 @@
 /*
- * complementary.c
+ * test.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,31 +28,34 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <avr/io.h>
+#include <avr/pgmspace.h>
 
+#include <tasks.h>
+#include <error.h>
+#include <xycontrol.h>
 #include <time.h>
-#include <complementary.h>
-#include <config.h>
+#include <uartMenu.h>
+#include <serial.h>
+#include <acc.h>
+#include <gyro.h>
+#include <mag.h>
+#include <motor.h>
+#include <orientation.h>
+#include <pid.h>
+#include <set.h>
 
-/** \addtogroup complementary Complementary-Filter
- *  \ingroup Flight
- *  @{
- */
+/** \example test.c */
 
-/** \file complementary.c
- *  Complementary-Filter Implementation.
- */
+int main(void) {
+    xyInit();
+    xyLed(LED_ALL, LED_ON);
 
-void complementaryInit(Complementary *data) {
-    data->angle = 0;
-    data->lastExecute = getSystemTime();
+    for(;;) {
+        tasks();
+    }
+
+    return 0;
 }
-
-void complementaryExecute(Complementary *data, double acc, double gyro) {
-    double dt = (getSystemTime() - data->lastExecute) / 1000.0;
-    data->angle = (data->angle + (gyro * dt)); // Gyro Integrator
-    data->angle *= COMPLEMENTARY_TAU / (COMPLEMENTARY_TAU + dt); // High-Pass
-    data->angle += (1 - (COMPLEMENTARY_TAU / (COMPLEMENTARY_TAU + dt))) * acc; // Low-Pass
-    data->lastExecute = getSystemTime();
-}
-/** @} */

@@ -68,15 +68,14 @@ Referenced by orientation\-Task().
 
 \begin{DoxyCode}
 50                                                                         \{
-51     \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} dtInteger = (\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - data->lastExecute);
-52     \textcolor{keywordtype}{double} dt = dtInteger / 1000;
-53     data->angle = (data->angle + (gyro * dt)); \textcolor{comment}{// Gyro Integrator}
-54     data->angle *= \hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt); \textcolor{comment}{//
+51     \textcolor{keywordtype}{double} dt = (\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - data->lastExecute) / 1000.0;
+52     data->angle = (data->angle + (gyro * dt)); \textcolor{comment}{// Gyro Integrator}
+53     data->angle *= \hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt); \textcolor{comment}{//
        High-Pass}
-55     data->angle += (1 - (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt))) *
+54     data->angle += (1 - (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} / (\hyperlink{group__config_ga61cd22949cc88bd899de6b20cb61e959}{COMPLEMENTARY\_TAU} + dt))) *
        acc; \textcolor{comment}{// Low-Pass}
-56     data->lastExecute = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
-57 \}
+55     data->lastExecute = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+56 \}
 \end{DoxyCode}
 \hypertarget{group__complementary_ga0e47610c4ee9fab65271c599db6cc24b}{\index{Complementary-\/\-Filter@{Complementary-\/\-Filter}!complementary\-Init@{complementary\-Init}}
 \index{complementary\-Init@{complementary\-Init}!Complementary-Filter@{Complementary-\/\-Filter}}

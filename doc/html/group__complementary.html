@@ -160,17 +160,16 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="complementary_8c_source.html#l00050">50</a> of file <a class="el" href="complementary_8c_source.html">complementary.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00054">COMPLEMENTARY_TAU</a>, and <a class="el" href="time_8c_source.html#l00068">getSystemTime()</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00055">COMPLEMENTARY_TAU</a>, and <a class="el" href="time_8c_source.html#l00068">getSystemTime()</a>.</p>
 
 <p>Referenced by <a class="el" href="orientation_8c_source.html#l00092">orientationTask()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                                        {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="group__time.html#ga02ad034d26db2c14b7e295b0c50fc11d" title="Timekeeping Data Type.">time_t</a> dtInteger = (<a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - data-&gt;lastExecute);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">double</span> dt = dtInteger / 1000;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    data-&gt;angle = (data-&gt;angle + (gyro * dt)); <span class="comment">// Gyro Integrator</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    data-&gt;angle *= <a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> / (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> + dt); <span class="comment">// High-Pass</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    data-&gt;angle += (1 - (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> / (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> + dt))) * acc; <span class="comment">// Low-Pass</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    data-&gt;lastExecute = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">double</span> dt = (<a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - data-&gt;lastExecute) / 1000.0;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    data-&gt;angle = (data-&gt;angle + (gyro * dt)); <span class="comment">// Gyro Integrator</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    data-&gt;angle *= <a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> / (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> + dt); <span class="comment">// High-Pass</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    data-&gt;angle += (1 - (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> / (<a class="code" href="group__config.html#ga61cd22949cc88bd899de6b20cb61e959" title="Time Contant for Low and High Pass Filter in the Complementary Filter.">COMPLEMENTARY_TAU</a> + dt))) * acc; <span class="comment">// Low-Pass</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    data-&gt;lastExecute = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

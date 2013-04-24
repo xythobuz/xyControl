@@ -50,6 +50,7 @@
 /** Time Contant for Low and High Pass Filter in the Complementary Filter.
  *  In essence, time periods shorter than TAU come from gyro data,
  *  longer time periods come from the Accelerometer data.
+ *  In seconds!
  */
 #define COMPLEMENTARY_TAU 0.5
 
@@ -174,9 +175,9 @@
 #define RX_BUFFER_SIZE 128 /**< UART Receive Buffer Size */
 #define TX_BUFFER_SIZE 128 /**< UART Transmit Buffer Size */
 
-#define USB 0 /**< FT232RL USB UART module */
-#define BLUETOOTH 1 /**< Bluetooth UART module */
-#define UART BLUETOOTH /**< UART module to use (0 to 3) */
+#define UART_USB 0 /**< FT232RL USB UART module */
+#define UART_BLUETOOTH 1 /**< Bluetooth UART module */
+#define UART UART_USB /**< UART module to use (0 to 3) */
 
 #endif
 /** @} */
