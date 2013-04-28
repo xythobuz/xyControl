@@ -44,8 +44,6 @@ public class Remote extends JFrame implements ActionListener {
     public int xOff = 10;
     public int yOff = 10;
 
-    public SerialCommunicator serial;
-
     private JComboBox selector;
     private JButton connector;
     private JButton showLog;
@@ -55,20 +53,31 @@ public class Remote extends JFrame implements ActionListener {
     private JLabel rollCurrent;
     private JLabel pitchCurrent;
     private JLabel yawCurrent;
-    private JTextField rollTarget;
-    private JTextField pitchTarget;
-    private JTextField yawTarget;
-    private JButton calibrate;
-    private JButton setAngles;
-    private JButton resetAngles;
+    private JLabel voltLabel;
+    private JLabel voltCurrent;
 
-    private JProgressBar[] bars = new JProgressBar[4];
-    private JLabel[] barLabels = new JLabel[4];
-    private String[] barText = {"1", "3", "2", "4"};
+    public SerialCommunicator serial = null;
+    public SerialThread serialThread = null;
+
+    private JProgressBar[] bars = new JProgressBar[3];
+    private JLabel[] barLabels = new JLabel[3];
+    private String[] barText = {"P", "R", "Y"};
 
     public JFrame logF;
     public JTextArea logArea;
     public JScrollPane logPane;
+
+    public static final int MESSAGE_READ = 1;
+    public static final int MESSAGE_FREQ_READ = 2;
+    public static final int MESSAGE_MOTOR_READ = 3;
+    public static final int MESSAGE_PIDINTRANGE_READ = 4;
+    public static final int MESSAGE_PIDRANGE_READ = 5;
+    public static final int MESSAGE_PIDVAL_READ = 6;
+    public static final int MESSAGE_PID_READ = 7;
+    public static final int MESSAGE_PITCH_READ = 8;
+    public static final int MESSAGE_ROLL_READ = 9;
+    public static final int MESSAGE_YAW_READ = 10;
+    public static final int MESSAGE_VOLT_READ = 11;
 
     public Remote() {
         super("xyControl Telemetry");
@@ -79,7 +88,7 @@ public class Remote extends JFrame implements ActionListener {
         yOff = gd.getDisplayMode().getHeight() / 3;
         yOff -= height / 2;
 
-        serial = new SerialCommunicator(this);
+        serial = new SerialCommunicator();
 
         setBounds(xOff, yOff, width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +109,7 @@ public class Remote extends JFrame implements ActionListener {
                 String tmp = ports[0];
                 ports[0] = ports[i];
                 ports[i] = tmp;
+                break;
             }
         }
         selector = new JComboBox(ports);
@@ -134,63 +144,43 @@ public class Remote extends JFrame implements ActionListener {
 
         rollLabel = new JLabel();
         rollLabel.setText("Roll:");
-        rollLabel.setBounds(145, 100, 35, 15);
+        rollLabel.setBounds(105, 100, 35, 15);
         add(rollLabel);
         pitchLabel = new JLabel();
         pitchLabel.setText("Pitch:");
-        pitchLabel.setBounds(145, 130, 35, 15);
+        pitchLabel.setBounds(105, 130, 35, 15);
         add(pitchLabel);
         yawLabel = new JLabel();
         yawLabel.setText("Yaw:");
-        yawLabel.setBounds(145, 160, 35, 15);
+        yawLabel.setBounds(105, 160, 35, 15);
         add(yawLabel);
 
         rollCurrent = new JLabel();
         rollCurrent.setText("-180°");
-        rollCurrent.setBounds(185, 100, 40, 15);
+        rollCurrent.setBounds(145, 100, 50, 15);
         add(rollCurrent);
         pitchCurrent = new JLabel();
         pitchCurrent.setText("-180°");
-        pitchCurrent.setBounds(185, 130, 40, 15);
+        pitchCurrent.setBounds(145, 130, 50, 15);
         add(pitchCurrent);
         yawCurrent = new JLabel();
         yawCurrent.setText("-180°");
-        yawCurrent.setBounds(185, 160, 40, 15);
+        yawCurrent.setBounds(145, 160, 50, 15);
         add(yawCurrent);
 
-        rollTarget = new JTextField();
-        rollTarget.setText("-180");
-        rollTarget.setBounds(235, 100, 45, 20);
-        add(rollTarget);
-        pitchTarget = new JTextField();
-        pitchTarget.setText("-180");
-        pitchTarget.setBounds(235, 130, 45, 20);
-        add(pitchTarget);
-        yawTarget = new JTextField();
-        yawTarget.setText("-180");
-        yawTarget.setBounds(235, 160, 45, 20);
-        add(yawTarget);
-
-        calibrate = new JButton();
-        calibrate.setText("Calibrate");
-        calibrate.setBounds(290, 95, 100, 30);
-        calibrate.addActionListener(this);
-        add(calibrate);
-        setAngles = new JButton();
-        setAngles.setText("Set");
-        setAngles.setBounds(290, 125, 100, 30);
-        setAngles.addActionListener(this);
-        add(setAngles);
-        resetAngles = new JButton();
-        resetAngles.setText("Reset");
-        resetAngles.setBounds(290, 155, 100, 30);
-        resetAngles.addActionListener(this);
-        add(resetAngles);
+        voltLabel = new JLabel();
+        voltLabel.setText("Batt: ");
+        voltLabel.setBounds(105, 190, 35, 15);
+        add(voltLabel);
+        voltCurrent = new JLabel();
+        voltCurrent.setText("11.11V");
+        voltCurrent.setBounds(145, 190, 50, 15);
+        add(voltCurrent);
 
         for (int i = 0; i < bars.length; i++) {
-            bars[i] = new JProgressBar(SwingConstants.VERTICAL, 0, 255);
+            bars[i] = new JProgressBar(SwingConstants.VERTICAL, -180, 180);
             bars[i].setBounds(10 + (30 * i), 95, 20, 290);
-            bars[i].setValue(127);
+            bars[i].setValue(0);
             add(bars[i]);
             barLabels[i] = new JLabel();
             barLabels[i].setText(barText[i]);
@@ -206,25 +196,152 @@ public class Remote extends JFrame implements ActionListener {
         logArea.setCaretPosition(logArea.getDocument().getLength());
     }
 
+    public void sendMessage(int msg, final String line) {
+        switch(msg) {
+            case MESSAGE_READ:
+                log("RX: " + line);
+                break;
+
+            case MESSAGE_FREQ_READ:
+
+                break;
+
+            case MESSAGE_MOTOR_READ:
+
+                break;
+
+            case MESSAGE_PIDINTRANGE_READ:
+
+                break;
+
+            case MESSAGE_PIDRANGE_READ:
+
+                break;
+
+            case MESSAGE_PIDVAL_READ:
+
+                break;
+
+            case MESSAGE_PID_READ:
+
+                break;
+
+            case MESSAGE_PITCH_READ:
+                int p = Math.round(Float.parseFloat(line));
+                bars[0].setValue(p);
+                pitchCurrent.setText(p + "°");
+                break;
+
+            case MESSAGE_ROLL_READ:
+                int r = Math.round(Float.parseFloat(line));
+                bars[1].setValue(r);
+                rollCurrent.setText(r + "°");
+                break;
+
+            case MESSAGE_YAW_READ :
+                int y = Math.round(Float.parseFloat(line));
+                bars[2].setValue(y);
+                yawCurrent.setText(y + "°");
+                break;
+
+            case MESSAGE_VOLT_READ :
+                float v = Float.parseFloat(line);
+                voltCurrent.setText(String.format("%.2f", v) + "V");
+                break;
+
+            default:
+                log("Unknown Message: " + msg + ": " + line);
+                break;
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == connector) {
             if (serial.isOpen()) {
                 serial.closePort();
                 connector.setText("Connect");
                 log("Disconnected!");
+                if (serialThread != null) {
+                    serialThread.disconnect();
+                    serialThread = null;
+                }
             } else {
                 if (!serial.openPort((String)selector.getSelectedItem())) {
                     showError("Could not open port!");
                 } else {
                     connector.setText("Disconnect");
                     log("Connected!");
+                    serialThread = new SerialThread(this);
+                    serialThread.start();
                 }
             }
         } else if (e.getSource() == showLog) {
             logF.setVisible(true);
-        } else if (e.getSource() == calibrate) {
-        } else if (e.getSource() == setAngles) {
-        } else if (e.getSource() == resetAngles) {
+        }
+    }
+
+    class SerialThread extends Thread {
+        public boolean running = true;
+        private Remote remote;
+
+        SerialThread(Remote r) {
+            remote = r;
+        }
+
+        public void run() {
+            while (running) {
+                // Read from the InputStream
+                String line = remote.serial.readLine();
+                // Send to Remote
+                if (line == null) {
+                    remote.log("Error while reading line!");
+                    continue;
+                }
+                if (line.length() < 1) {
+                    remote.log("Read a single character!");
+                    continue;
+                }
+                char first = line.charAt(0);
+                switch (first) {
+                case 'q':
+                    remote.sendMessage(Remote.MESSAGE_FREQ_READ, line.substring(1));
+                    break;
+                case 'r':
+                    remote.sendMessage(Remote.MESSAGE_PIDINTRANGE_READ, line.substring(1));
+                    break;
+                case 's':
+                    remote.sendMessage(Remote.MESSAGE_PIDRANGE_READ, line.substring(1));
+                    break;
+                case 't':
+                    remote.sendMessage(Remote.MESSAGE_PIDVAL_READ, line.substring(1));
+                    break;
+                case 'u':
+                    remote.sendMessage(Remote.MESSAGE_PID_READ, line.substring(1));
+                    break;
+                case 'v':
+                    remote.sendMessage(Remote.MESSAGE_MOTOR_READ, line.substring(1));
+                    break;
+                case 'w':
+                    remote.sendMessage(Remote.MESSAGE_PITCH_READ, line.substring(1));
+                    break;
+                case 'x':
+                    remote.sendMessage(Remote.MESSAGE_ROLL_READ, line.substring(1));
+                    break;
+                case 'y':
+                    remote.sendMessage(Remote.MESSAGE_YAW_READ, line.substring(1));
+                    break;
+                case 'z':
+                    remote.sendMessage(Remote.MESSAGE_VOLT_READ, line.substring(1));
+                    break;
+                default:
+                    remote.sendMessage(Remote.MESSAGE_READ, line);
+                    break;
+                }
+            }
+        }
+
+        public void disconnect() {
+            running = false;
         }
     }
 

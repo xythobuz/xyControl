@@ -28,20 +28,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import javax.swing.*;
-import java.awt.*;
-
 class SerialCommunicator {
-    private Remote remote;
     private boolean opened = false;
 
     public final int ERROR = -1;
     public final int TIMEOUT = -2;
     public int lastError = 0;
-
-    public SerialCommunicator(Remote r) {
-        remote = r;
-    }
 
     public boolean openPort(String port) {
         if (!HelperUtility.openPort(port)) {
@@ -61,6 +53,7 @@ class SerialCommunicator {
         return opened;
     }
 
+    // null on error
     public String readLine() {
         // Read until \n, return as String, with \n stripped
         if (opened) {
@@ -82,6 +75,7 @@ class SerialCommunicator {
         }
     }
 
+    // false on error
     public boolean writeChar(int c) {
         int errorCount = 10;
         short[] dat = new short[1];
@@ -89,6 +83,7 @@ class SerialCommunicator {
         return writeData(dat, 1);
     }
 
+    // null on error
     public short[] readData(int length) {
         if (opened) {
             short[] tmp = HelperUtility.readData(length);
@@ -106,11 +101,12 @@ class SerialCommunicator {
         }
     }
 
+    // false on error
     private boolean writeData(short[] data, int length) {
         if (opened) {
             boolean tmp = HelperUtility.writeData(data, length);
             if (!tmp) {
-                remote.showError("Could not write data!");
+                lastError = ERROR;
             }
             return tmp;
         } else {
