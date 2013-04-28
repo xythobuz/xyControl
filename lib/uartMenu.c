@@ -129,22 +129,24 @@ void uartMenuRegisterHandler(void (*handler)(char)) {
 }
 
 void uartMenuTask(void) {
-    if (serialHasChar()) {
-        uint8_t lastBank = xmemGetBank();
-        xmemSetBank(BANK_GENERIC);
-        uint8_t c = serialGet();
-        MenuEntry *p = uartMenu;
-        while (p != NULL) {
-            if (p->cmd == c) {
-                p->f();
-                xmemSetBank(lastBank);
-                return;
+    for (uint8_t i = 0; i < serialAvailable(); i++) {
+        if (serialHasChar(i)) {
+            uint8_t lastBank = xmemGetBank();
+            xmemSetBank(BANK_GENERIC);
+            uint8_t c = serialGet(i);
+            MenuEntry *p = uartMenu;
+            while (p != NULL) {
+                if (p->cmd == c) {
+                    p->f();
+                    xmemSetBank(lastBank);
+                    return;
+                }
+                p = p->next;
             }
-            p = p->next;
+            if (unHandler != NULL)
+                unHandler(c);
+            xmemSetBank(lastBank);
         }
-        if (unHandler != NULL)
-            unHandler(c);
-        xmemSetBank(lastBank);
     }
 }
 /** @} */

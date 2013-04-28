@@ -24,8 +24,5 @@ var searchData=
   ['reverselist',['reverseList',['../group__uartmenu.html#gaf51e7f5c38d5af643af09f6e21d2a4b9',1,'uartMenu.c']]],
   ['roll',['roll',['../struct_angles.html#a1d3228afa3a1d6773954f40c1e519eb9',1,'Angles::roll()'],['../group__pid.html#gaf902416f65138704a180dbae2dc9d8f2',1,'ROLL():&#160;pid.h']]],
   ['rolldata',['rollData',['../group__orientation.html#ga327c51463b7ca66c1ed8d0f400ffbfec',1,'orientation.c']]],
-  ['rx_5fbuffer_5fsize',['RX_BUFFER_SIZE',['../group__config.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'config.h']]],
-  ['rxbuffer',['rxBuffer',['../group__uart.html#ga8e77b30148ad1a3590ed6b1733ad0bfd',1,'serial.c']]],
-  ['rxread',['rxRead',['../group__uart.html#ga9ec81baf5fa44701fbe03f942171b5e6',1,'serial.c']]],
-  ['rxwrite',['rxWrite',['../group__uart.html#ga6428d84da0f4255131fef945c27af689',1,'serial.c']]]
+  ['rx_5fbuffer_5fsize',['RX_BUFFER_SIZE',['../group__config.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;config.h'],['../group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;serial.c']]]
 ];

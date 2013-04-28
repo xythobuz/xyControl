@@ -107,7 +107,7 @@
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K0\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}
     \subitem {Configuration}, \hyperpage{25}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K0\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}
-    \subitem {Configuration}, \hyperpage{26}
+    \subitem {Configuration}, \hyperpage{25}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K1\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{26}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K1\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}
@@ -123,11 +123,11 @@
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}I\discretionary {-}{}{}C}
     \subitem {External Memory Interface}, \hyperpage{91}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}C\discretionary {-}{}{}H\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}N\discretionary {-}{}{}E\discretionary {-}{}{}L}
-    \subitem {Configuration}, \hyperpage{27}
+    \subitem {Configuration}, \hyperpage{26}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}X}
     \subitem {Configuration}, \hyperpage{27}
   \item {B\discretionary {-}{}{}A\discretionary {-}{}{}U\discretionary {-}{}{}D}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{62}
   \item {base\discretionary {-}{}{}Speed}
     \subitem {Motor Speed Mixer}, \hyperpage{71}
@@ -161,7 +161,7 @@
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K0\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
 		\hyperpage{25}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K0\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
-		\hyperpage{26}
+		\hyperpage{25}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K1\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}, 
 		\hyperpage{26}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K1\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
@@ -175,7 +175,7 @@
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}K2\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
 		\hyperpage{26}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}C\discretionary {-}{}{}H\discretionary {-}{}{}A\discretionary {-}{}{}N\discretionary {-}{}{}N\discretionary {-}{}{}E\discretionary {-}{}{}L}, 
-		\hyperpage{27}
+		\hyperpage{26}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}X}, 
 		\hyperpage{27}
     \subitem {C\discretionary {-}{}{}O\discretionary {-}{}{}M\discretionary {-}{}{}P\discretionary {-}{}{}L\discretionary {-}{}{}E\discretionary {-}{}{}M\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}Y\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}U}, 
@@ -190,7 +190,7 @@
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D0\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
 		\hyperpage{27}
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D0\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
-		\hyperpage{28}
+		\hyperpage{27}
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D1\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}, 
 		\hyperpage{28}
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D1\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
@@ -206,7 +206,7 @@
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}, 
 		\hyperpage{28}
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
-		\hyperpage{29}
+		\hyperpage{28}
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
 		\hyperpage{29}
     \subitem {M\discretionary {-}{}{}A\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}A\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}S\discretionary {-}{}{}S}, 
@@ -222,7 +222,7 @@
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R}, 
 		\hyperpage{29}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I}, 
-		\hyperpage{30}
+		\hyperpage{29}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}X}, 
 		\hyperpage{30}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}M\discretionary {-}{}{}I\discretionary {-}{}{}N}, 
@@ -249,16 +249,10 @@
     \subitem {S\discretionary {-}{}{}E\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}O\discretionary {-}{}{}L\discretionary {-}{}{}L\discretionary {-}{}{}P\discretionary {-}{}{}L\discretionary {-}{}{}U\discretionary {-}{}{}S}, 
 		\hyperpage{31}
     \subitem {S\discretionary {-}{}{}O\discretionary {-}{}{}F\discretionary {-}{}{}T\discretionary {-}{}{}W\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}P\discretionary {-}{}{}A\discretionary {-}{}{}S\discretionary {-}{}{}S}, 
-		\hyperpage{32}
+		\hyperpage{31}
     \subitem {S\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}S\discretionary {-}{}{}S}, 
 		\hyperpage{32}
     \subitem {T\discretionary {-}{}{}X\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}U\discretionary {-}{}{}F\discretionary {-}{}{}F\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
-		\hyperpage{32}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T}, 
-		\hyperpage{32}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}U\discretionary {-}{}{}E\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}O\discretionary {-}{}{}T\discretionary {-}{}{}H}, 
-		\hyperpage{32}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}U\discretionary {-}{}{}S\discretionary {-}{}{}B}, 
 		\hyperpage{32}
   \item {current\discretionary {-}{}{}Bank}
     \subitem {External Memory Interface}, \hyperpage{93, 94}
@@ -353,8 +347,11 @@
 
   \item {f}
     \subitem {Menu\discretionary {-}{}{}Entry}, \hyperpage{105}
+  \item {F\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}C\discretionary {-}{}{}O\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}R\discretionary {-}{}{}O\discretionary {-}{}{}L}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{62}
   \item {F\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}K}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{62}
   \item {find\discretionary {-}{}{}Entry}
     \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Menu}, 
@@ -436,8 +433,6 @@
     \subitem {twi\discretionary {-}{}{}Write}, \hyperpage{84}
   \item {I\discretionary {-}{}{}S\discretionary {-}{}{}R}
     \subitem {Time Keeping}, \hyperpage{80}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{63}
   \item {in\discretionary {-}{}{}File}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{99}
   \item {include/acc.\discretionary {-}{}{}h}, \hyperpage{111}
@@ -455,6 +450,8 @@
   \item {include/orientation.\discretionary {-}{}{}h}, \hyperpage{118}
   \item {include/pid.\discretionary {-}{}{}h}, \hyperpage{119}
   \item {include/serial.\discretionary {-}{}{}h}, \hyperpage{120}
+  \item {include/serial\discretionary {-}{}{}\_\discretionary {-}{}{}device.\discretionary {-}{}{}h}, 
+		\hyperpage{121}
   \item {include/set.\discretionary {-}{}{}h}, \hyperpage{121}
   \item {include/spi.\discretionary {-}{}{}h}, \hyperpage{121}
   \item {include/tasks.\discretionary {-}{}{}h}, \hyperpage{122}
@@ -526,7 +523,7 @@
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D0\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}
     \subitem {Configuration}, \hyperpage{27}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D0\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}
-    \subitem {Configuration}, \hyperpage{28}
+    \subitem {Configuration}, \hyperpage{27}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D1\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{28}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D1\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}
@@ -542,7 +539,7 @@
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}D\discretionary {-}{}{}D\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{28}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}N}
-    \subitem {Configuration}, \hyperpage{29}
+    \subitem {Configuration}, \hyperpage{28}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D3\discretionary {-}{}{}P\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}T}
     \subitem {Configuration}, \hyperpage{29}
   \item {L\discretionary {-}{}{}E\discretionary {-}{}{}D\discretionary {-}{}{}State}
@@ -569,9 +566,9 @@
   \item {lib/tasks.\discretionary {-}{}{}c}, \hyperpage{136}
   \item {lib/time.\discretionary {-}{}{}c}, \hyperpage{137}
   \item {lib/uart\discretionary {-}{}{}Menu.\discretionary {-}{}{}c}, 
-		\hyperpage{138}
-  \item {lib/xmem.\discretionary {-}{}{}c}, \hyperpage{139}
-  \item {lib/xycontrol.\discretionary {-}{}{}c}, \hyperpage{140}
+		\hyperpage{137}
+  \item {lib/xmem.\discretionary {-}{}{}c}, \hyperpage{138}
+  \item {lib/xycontrol.\discretionary {-}{}{}c}, \hyperpage{139}
 
   \indexspace
 
@@ -738,7 +735,7 @@
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}A\discretionary {-}{}{}C\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{29}
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I}
-    \subitem {Configuration}, \hyperpage{30}
+    \subitem {Configuration}, \hyperpage{29}
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}X}
     \subitem {Configuration}, \hyperpage{30}
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}M\discretionary {-}{}{}I\discretionary {-}{}{}N}
@@ -831,6 +828,8 @@
 		\hyperpage{57}
   \item {R\discretionary {-}{}{}X\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}U\discretionary {-}{}{}F\discretionary {-}{}{}F\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
     \subitem {Configuration}, \hyperpage{31}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{62}
   \item {remove\discretionary {-}{}{}Task}
     \subitem {Task Handler}, \hyperpage{75}
   \item {reset\discretionary {-}{}{}Self}
@@ -846,15 +845,6 @@
     \subitem {Angles}, \hyperpage{101}
   \item {roll\discretionary {-}{}{}Data}
     \subitem {Orientation Calculation}, \hyperpage{55}
-  \item {rx\discretionary {-}{}{}Buffer}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{68}
-  \item {rx\discretionary {-}{}{}Read}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{68}
-  \item {rx\discretionary {-}{}{}Write}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{68}
 
   \indexspace
 
@@ -895,7 +885,7 @@
   \item {S\discretionary {-}{}{}E\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}O\discretionary {-}{}{}L\discretionary {-}{}{}L\discretionary {-}{}{}P\discretionary {-}{}{}L\discretionary {-}{}{}U\discretionary {-}{}{}S}
     \subitem {Configuration}, \hyperpage{31}
   \item {S\discretionary {-}{}{}O\discretionary {-}{}{}F\discretionary {-}{}{}T\discretionary {-}{}{}W\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}P\discretionary {-}{}{}A\discretionary {-}{}{}S\discretionary {-}{}{}S}
-    \subitem {Configuration}, \hyperpage{32}
+    \subitem {Configuration}, \hyperpage{31}
   \item {S\discretionary {-}{}{}P\discretionary {-}{}{}I Driver}, 
 		\hyperpage{72}
     \subitem {S\discretionary {-}{}{}P\discretionary {-}{}{}I\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}M\discretionary {-}{}{}O\discretionary {-}{}{}D\discretionary {-}{}{}E}, 
@@ -915,49 +905,49 @@
     \subitem {Configuration}, \hyperpage{32}
   \item {save\discretionary {-}{}{}State}
     \subitem {External Memory Interface}, \hyperpage{92}
+  \item {serial\discretionary {-}{}{}Available}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{63}
   \item {serial\discretionary {-}{}{}Close}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{63}
   \item {serial\discretionary {-}{}{}Get}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{64}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{63}
   \item {serial\discretionary {-}{}{}Get\discretionary {-}{}{}Blocking}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{64}
   \item {serial\discretionary {-}{}{}Has\discretionary {-}{}{}Char}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{65}
   \item {serial\discretionary {-}{}{}Init}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{65}
   \item {serial\discretionary {-}{}{}Rx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Empty}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{65}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{66}
   \item {serial\discretionary {-}{}{}Rx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Full}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{66}
   \item {serial\discretionary {-}{}{}Tx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Empty}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{66}
   \item {serial\discretionary {-}{}{}Tx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Full}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{66}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{67}
   \item {serial\discretionary {-}{}{}Write}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{67}
   \item {serial\discretionary {-}{}{}Write\discretionary {-}{}{}String}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{67}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{68}
   \item {set\discretionary {-}{}{}Flow}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{68}
   \item {set\discretionary {-}{}{}Motor\discretionary {-}{}{}Speeds}
     \subitem {Motor Speed Mixer}, \hyperpage{70}
   \item {set\discretionary {-}{}{}Task}
     \subitem {Motor Speed Mixer}, \hyperpage{71}
-  \item {should\discretionary {-}{}{}Start\discretionary {-}{}{}Transmission}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{69}
   \item {Software}, \hyperpage{9}
   \item {spi\discretionary {-}{}{}Init}
     \subitem {S\discretionary {-}{}{}P\discretionary {-}{}{}I Driver}, 
@@ -996,6 +986,8 @@
     \subitem {I2\discretionary {-}{}{}C Driver}, \hyperpage{81}
   \item {T\discretionary {-}{}{}X\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}U\discretionary {-}{}{}F\discretionary {-}{}{}F\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}
     \subitem {Configuration}, \hyperpage{32}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{62}
   \item {Task}
     \subitem {Task Handler}, \hyperpage{74}
   \item {task}
@@ -1054,59 +1046,45 @@
     \subitem {I2\discretionary {-}{}{}C Driver}, \hyperpage{84}
   \item {twi\discretionary {-}{}{}Write}
     \subitem {I2\discretionary {-}{}{}C Driver}, \hyperpage{84}
-  \item {tx\discretionary {-}{}{}Buffer}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{69}
-  \item {tx\discretionary {-}{}{}Read}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{69}
-  \item {tx\discretionary {-}{}{}Write}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{69}
 
   \indexspace
 
-  \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T}
-    \subitem {Configuration}, \hyperpage{32}
-  \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+  \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{61}
     \subitem {B\discretionary {-}{}{}A\discretionary {-}{}{}U\discretionary {-}{}{}D}, 
 		\hyperpage{62}
+    \subitem {F\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}C\discretionary {-}{}{}O\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}R\discretionary {-}{}{}O\discretionary {-}{}{}L}, 
+		\hyperpage{62}
     \subitem {F\discretionary {-}{}{}L\discretionary {-}{}{}O\discretionary {-}{}{}W\discretionary {-}{}{}M\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}K}, 
 		\hyperpage{62}
-    \subitem {I\discretionary {-}{}{}S\discretionary {-}{}{}R}, 
-		\hyperpage{63}
-    \subitem {rx\discretionary {-}{}{}Buffer}, \hyperpage{68}
-    \subitem {rx\discretionary {-}{}{}Read}, \hyperpage{68}
-    \subitem {rx\discretionary {-}{}{}Write}, \hyperpage{68}
+    \subitem {R\discretionary {-}{}{}X\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}U\discretionary {-}{}{}F\discretionary {-}{}{}F\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{62}
+    \subitem {serial\discretionary {-}{}{}Available}, \hyperpage{63}
     \subitem {serial\discretionary {-}{}{}Close}, \hyperpage{63}
-    \subitem {serial\discretionary {-}{}{}Get}, \hyperpage{64}
+    \subitem {serial\discretionary {-}{}{}Get}, \hyperpage{63}
     \subitem {serial\discretionary {-}{}{}Get\discretionary {-}{}{}Blocking}, 
 		\hyperpage{64}
     \subitem {serial\discretionary {-}{}{}Has\discretionary {-}{}{}Char}, 
 		\hyperpage{65}
     \subitem {serial\discretionary {-}{}{}Init}, \hyperpage{65}
     \subitem {serial\discretionary {-}{}{}Rx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Empty}, 
-		\hyperpage{65}
+		\hyperpage{66}
     \subitem {serial\discretionary {-}{}{}Rx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Full}, 
 		\hyperpage{66}
     \subitem {serial\discretionary {-}{}{}Tx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Empty}, 
 		\hyperpage{66}
     \subitem {serial\discretionary {-}{}{}Tx\discretionary {-}{}{}Buffer\discretionary {-}{}{}Full}, 
-		\hyperpage{66}
+		\hyperpage{67}
     \subitem {serial\discretionary {-}{}{}Write}, \hyperpage{67}
     \subitem {serial\discretionary {-}{}{}Write\discretionary {-}{}{}String}, 
-		\hyperpage{67}
+		\hyperpage{68}
     \subitem {set\discretionary {-}{}{}Flow}, \hyperpage{68}
-    \subitem {should\discretionary {-}{}{}Start\discretionary {-}{}{}Transmission}, 
-		\hyperpage{69}
-    \subitem {tx\discretionary {-}{}{}Buffer}, \hyperpage{69}
-    \subitem {tx\discretionary {-}{}{}Read}, \hyperpage{69}
-    \subitem {tx\discretionary {-}{}{}Write}, \hyperpage{69}
+    \subitem {T\discretionary {-}{}{}X\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}U\discretionary {-}{}{}F\discretionary {-}{}{}F\discretionary {-}{}{}E\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}S\discretionary {-}{}{}I\discretionary {-}{}{}Z\discretionary {-}{}{}E}, 
+		\hyperpage{62}
     \subitem {X\discretionary {-}{}{}O\discretionary {-}{}{}F\discretionary {-}{}{}F}, 
 		\hyperpage{62}
     \subitem {X\discretionary {-}{}{}O\discretionary {-}{}{}N}, 
-		\hyperpage{62}
+		\hyperpage{63}
   \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Menu}, 
 		\hyperpage{86}
     \subitem {add\discretionary {-}{}{}Menu\discretionary {-}{}{}Command}, 
@@ -1121,10 +1099,6 @@
     \subitem {uart\discretionary {-}{}{}Menu\discretionary {-}{}{}Task}, 
 		\hyperpage{89}
     \subitem {un\discretionary {-}{}{}Handler}, \hyperpage{89}
-  \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}L\discretionary {-}{}{}U\discretionary {-}{}{}E\discretionary {-}{}{}T\discretionary {-}{}{}O\discretionary {-}{}{}O\discretionary {-}{}{}T\discretionary {-}{}{}H}
-    \subitem {Configuration}, \hyperpage{32}
-  \item {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}U\discretionary {-}{}{}S\discretionary {-}{}{}B}
-    \subitem {Configuration}, \hyperpage{32}
   \item {uart\discretionary {-}{}{}Menu}
     \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Menu}, 
 		\hyperpage{89}
@@ -1161,11 +1135,11 @@
   \item {x3}
     \subitem {Kalman}, \hyperpage{103}
   \item {X\discretionary {-}{}{}O\discretionary {-}{}{}F\discretionary {-}{}{}F}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
 		\hyperpage{62}
   \item {X\discretionary {-}{}{}O\discretionary {-}{}{}N}
-    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Driver}, 
-		\hyperpage{62}
+    \subitem {U\discretionary {-}{}{}A\discretionary {-}{}{}R\discretionary {-}{}{}T Library}, 
+		\hyperpage{63}
   \item {xmem\discretionary {-}{}{}Get\discretionary {-}{}{}Bank}
     \subitem {External Memory Interface}, \hyperpage{92}
   \item {xmem\discretionary {-}{}{}Init}
@@ -1197,16 +1171,16 @@
     \subitem {reset\discretionary {-}{}{}Text}, \hyperpage{99}
     \subitem {uartinput}, \hyperpage{97}
     \subitem {uartoutput}, \hyperpage{97}
-    \subitem {xy\discretionary {-}{}{}Init}, \hyperpage{97}
+    \subitem {xy\discretionary {-}{}{}Init}, \hyperpage{98}
     \subitem {xy\discretionary {-}{}{}Led}, \hyperpage{98}
     \subitem {xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}, 
-		\hyperpage{98}
+		\hyperpage{99}
   \item {xy\discretionary {-}{}{}Init}
-    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{97}
+    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
   \item {xy\discretionary {-}{}{}Led}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
   \item {xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}
-    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
+    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{99}
 
   \indexspace
 

@@ -30,15 +30,15 @@ JAVAFILES = Remote.java HelperUtility.java SerialCommunicator.java
 
 # --------------------------------------
 
-all: FlightRemote.jar
+all: xyTelemetry.jar
 
-run: FlightRemote.jar
-	java -jar FlightRemote$(PLATFORM).jar
+run: xyTelemetry.jar
+	java -jar xyTelemetry$(PLATFORM).jar
 
 doc: doc/index.html
 
-FlightRemote.jar: HelperUtility.class manifest.txt libSerial
-	jar -cmf manifest.txt "FlightRemote$(PLATFORM).jar" $(INJAR)
+xyTelemetry.jar: HelperUtility.class manifest.txt libSerial
+	jar -cmf manifest.txt "xyTelemetry$(PLATFORM).jar" $(INJAR)
 
 HelperUtility.class: $(JAVAFILES)
 	javac $(CFLAGS) -g $(JAVAFILES)
@@ -79,18 +79,18 @@ clean:
 	$(RM) *.o
 ifdef SystemRoot
 	$(RM) *.dll
-	$(RM) FlightRemoteWin.jar
+	$(RM) xyTelemetryWin.jar
 else
 ifdef SYSTEMROOT
 	$(RM) *.dll
-	$(RM) FlightRemoteWin.jar
+	$(RM) xyTelemetryWin.jar
 else
 ifeq ($(UNAME),Darwin)
 	$(RM) *.jnilib
-	$(RM) FlightRemoteMac.jar
+	$(RM) xyTelemetryMac.jar
 else
 	$(RM) *.so
-	$(RM) FlightRemoteLinux.jar
+	$(RM) xyTelemetryLinux.jar
 endif
 endif
 endif

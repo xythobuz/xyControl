@@ -166,18 +166,8 @@
 // |     Serial      |
 //  -----------------
 
-// If you define this, a '\r' (CR) will be put in front of '\n' (LF)
-// #define SERIALINJECTCR
-
-// Defining this enables incoming XON XOFF (sends XOFF if rx buff is full)
-// #define FLOWCONTROL
-
-#define RX_BUFFER_SIZE 128 /**< UART Receive Buffer Size */
-#define TX_BUFFER_SIZE 128 /**< UART Transmit Buffer Size */
-
-#define UART_USB 0 /**< FT232RL USB UART module */
-#define UART_BLUETOOTH 1 /**< Bluetooth UART module */
-#define UART UART_USB /**< UART module to use (0 to 3) */
+#define RX_BUFFER_SIZE 64 /**< UART Receive Buffer Size */
+#define TX_BUFFER_SIZE 64 /**< UART Transmit Buffer Size */
 
 #endif
 /** @} */

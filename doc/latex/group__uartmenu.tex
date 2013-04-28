@@ -291,7 +291,7 @@ Definition at line 131 of file uart\-Menu.\-c.
 
 
 
-References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, Menu\-Entry\-::cmd, Menu\-Entry\-::f, Menu\-Entry\-::next, serial\-Get(), serial\-Has\-Char(), uart\-Menu, un\-Handler, xmem\-Get\-Bank(), and xmem\-Set\-Bank().
+References B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C, Menu\-Entry\-::cmd, Menu\-Entry\-::f, Menu\-Entry\-::next, serial\-Available(), serial\-Get(), serial\-Has\-Char(), uart\-Menu, un\-Handler, xmem\-Get\-Bank(), and xmem\-Set\-Bank().
 
 
 
@@ -300,24 +300,26 @@ Referenced by xy\-Init().
 
 \begin{DoxyCode}
 131                         \{
-132     \textcolor{keywordflow}{if} (\hyperlink{group__uart_ga27cc67be388d64af00ef64e22f75686d}{serialHasChar}()) \{
-133         uint8\_t lastBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
-134         \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
-135         uint8\_t c = \hyperlink{group__uart_ga3a3f6acfefa86dc78ec2d2455fc71709}{serialGet}();
-136         \hyperlink{struct_menu_entry}{MenuEntry} *p = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
-137         \textcolor{keywordflow}{while} (p != NULL) \{
-138             \textcolor{keywordflow}{if} (p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd} == c) \{
-139                 p->\hyperlink{struct_menu_entry_afe96196d3564b9577477236d13329241}{f}();
-140                 \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
-141                 \textcolor{keywordflow}{return};
-142             \}
-143             p = p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
-144         \}
-145         \textcolor{keywordflow}{if} (\hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler} != NULL)
-146             \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler}(c);
-147         \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
-148     \}
-149 \}
+132     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serialAvailable}(); i++) \{
+133         \textcolor{keywordflow}{if} (\hyperlink{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{serialHasChar}(i)) \{
+134             uint8\_t lastBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
+135             \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(\hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{BANK\_GENERIC});
+136             uint8\_t c = \hyperlink{group__uart_gaa9d6e44600b215154c3f66193df151f6}{serialGet}(i);
+137             \hyperlink{struct_menu_entry}{MenuEntry} *p = \hyperlink{group__uartmenu_gaedd623ea603861db72748b5b03859ba9}{uartMenu};
+138             \textcolor{keywordflow}{while} (p != NULL) \{
+139                 \textcolor{keywordflow}{if} (p->\hyperlink{struct_menu_entry_a4d43e8212bdc9dbee866506f04effcea}{cmd} == c) \{
+140                     p->\hyperlink{struct_menu_entry_afe96196d3564b9577477236d13329241}{f}();
+141                     \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+142                     \textcolor{keywordflow}{return};
+143                 \}
+144                 p = p->\hyperlink{struct_menu_entry_af79f4060fda1c0b572c15c3dd99b09a5}{next};
+145             \}
+146             \textcolor{keywordflow}{if} (\hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler} != NULL)
+147                 \hyperlink{group__uartmenu_ga59944eadba9321ee37f247a13bc8ec1a}{unHandler}(c);
+148             \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(lastBank);
+149         \}
+150     \}
+151 \}
 \end{DoxyCode}
 
 

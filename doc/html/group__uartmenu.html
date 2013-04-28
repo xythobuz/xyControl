@@ -185,7 +185,7 @@ Variables</h2></td></tr>
 
 <p>References <a class="el" href="xmem_8h_source.html#l00055">BANK_GENERIC</a>, <a class="el" href="uart_menu_8h_source.html#l00050">MenuEntry::cmd</a>, <a class="el" href="uart_menu_8h_source.html#l00052">MenuEntry::f</a>, <a class="el" href="uart_menu_8c_source.html#l00058">findEntry()</a>, <a class="el" href="uart_menu_8h_source.html#l00051">MenuEntry::helpText</a>, <a class="el" href="uart_menu_8h_source.html#l00053">MenuEntry::next</a>, <a class="el" href="uart_menu_8c_source.html#l00051">uartMenu</a>, <a class="el" href="xmem_8c_source.html#l00105">xmemGetBank()</a>, and <a class="el" href="xmem_8c_source.html#l00089">xmemSetBank()</a>.</p>
 
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00084">xyInit()</a>.</p>
+<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                                        {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    uint8_t lastBank = <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>();</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(<a class="code" href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb" title="Generic Memory Bank.">BANK_GENERIC</a>);</div>
@@ -310,7 +310,7 @@ Variables</h2></td></tr>
 
 <p>References <a class="el" href="xmem_8h_source.html#l00055">BANK_GENERIC</a>, <a class="el" href="uart_menu_8h_source.html#l00050">MenuEntry::cmd</a>, <a class="el" href="uart_menu_8h_source.html#l00051">MenuEntry::helpText</a>, <a class="el" href="uart_menu_8h_source.html#l00053">MenuEntry::next</a>, <a class="el" href="uart_menu_8c_source.html#l00093">reverseList()</a>, <a class="el" href="uart_menu_8c_source.html#l00051">uartMenu</a>, <a class="el" href="xmem_8c_source.html#l00105">xmemGetBank()</a>, and <a class="el" href="xmem_8c_source.html#l00089">xmemSetBank()</a>.</p>
 
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00084">xyInit()</a>.</p>
+<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                             {</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">static</span> uint8_t reversed = 0;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    uint8_t lastBank = <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>();</div>
@@ -385,28 +385,30 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="uart_menu_8c_source.html#l00131">131</a> of file <a class="el" href="uart_menu_8c_source.html">uartMenu.c</a>.</p>
 
-<p>References <a class="el" href="xmem_8h_source.html#l00055">BANK_GENERIC</a>, <a class="el" href="uart_menu_8h_source.html#l00050">MenuEntry::cmd</a>, <a class="el" href="uart_menu_8h_source.html#l00052">MenuEntry::f</a>, <a class="el" href="uart_menu_8h_source.html#l00053">MenuEntry::next</a>, <a class="el" href="serial_8c_source.html#l00231">serialGet()</a>, <a class="el" href="serial_8c_source.html#l00218">serialHasChar()</a>, <a class="el" href="uart_menu_8c_source.html#l00051">uartMenu</a>, <a class="el" href="uart_menu_8c_source.html#l00052">unHandler</a>, <a class="el" href="xmem_8c_source.html#l00105">xmemGetBank()</a>, and <a class="el" href="xmem_8c_source.html#l00089">xmemSetBank()</a>.</p>
+<p>References <a class="el" href="xmem_8h_source.html#l00055">BANK_GENERIC</a>, <a class="el" href="uart_menu_8h_source.html#l00050">MenuEntry::cmd</a>, <a class="el" href="uart_menu_8h_source.html#l00052">MenuEntry::f</a>, <a class="el" href="uart_menu_8h_source.html#l00053">MenuEntry::next</a>, <a class="el" href="serial_8c_source.html#l00114">serialAvailable()</a>, <a class="el" href="serial_8c_source.html#l00218">serialGet()</a>, <a class="el" href="serial_8c_source.html#l00199">serialHasChar()</a>, <a class="el" href="uart_menu_8c_source.html#l00051">uartMenu</a>, <a class="el" href="uart_menu_8c_source.html#l00052">unHandler</a>, <a class="el" href="xmem_8c_source.html#l00105">xmemGetBank()</a>, and <a class="el" href="xmem_8c_source.html#l00089">xmemSetBank()</a>.</p>
 
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00084">xyInit()</a>.</p>
+<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__uart.html#ga27cc67be388d64af00ef64e22f75686d" title="Check if a byte was received.">serialHasChar</a>()) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        uint8_t lastBank = <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>();</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(<a class="code" href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb" title="Generic Memory Bank.">BANK_GENERIC</a>);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        uint8_t c = <a class="code" href="group__uart.html#ga3a3f6acfefa86dc78ec2d2455fc71709" title="Read a single byte.">serialGet</a>();</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="struct_menu_entry.html" title="Data Structure for Single-Linked-List for UART Menu.">MenuEntry</a> *p = <a class="code" href="group__uartmenu.html#gaedd623ea603861db72748b5b03859ba9" title="Single-Linked-List for commands.">uartMenu</a>;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">while</span> (p != NULL) {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">if</span> (p-&gt;<a class="code" href="struct_menu_entry.html#a4d43e8212bdc9dbee866506f04effcea" title="Byte that triggers the action.">cmd</a> == c) {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                p-&gt;<a class="code" href="struct_menu_entry.html#afe96196d3564b9577477236d13329241" title="Action that get&#39;s executed.">f</a>();</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(lastBank);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            p = p-&gt;<a class="code" href="struct_menu_entry.html#af79f4060fda1c0b572c15c3dd99b09a5" title="Next MenuEntry in the linked list.">next</a>;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        }</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a" title="Handler for unhandled commands.">unHandler</a> != NULL)</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <a class="code" href="group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a" title="Handler for unhandled commands.">unHandler</a>(c);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(lastBank);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code" href="group__uart.html#ga1ea963b291215ad9c5e8a0610f116b90" title="Get number of available UART modules.">serialAvailable</a>(); i++) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="group__uart.html#ga266a54dcf3c4b85d92bf6b16bdcb5069" title="Check if a byte was received.">serialHasChar</a>(i)) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            uint8_t lastBank = <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(<a class="code" href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb" title="Generic Memory Bank.">BANK_GENERIC</a>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            uint8_t c = <a class="code" href="group__uart.html#gaa9d6e44600b215154c3f66193df151f6" title="Read a single byte.">serialGet</a>(i);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <a class="code" href="struct_menu_entry.html" title="Data Structure for Single-Linked-List for UART Menu.">MenuEntry</a> *p = <a class="code" href="group__uartmenu.html#gaedd623ea603861db72748b5b03859ba9" title="Single-Linked-List for commands.">uartMenu</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">while</span> (p != NULL) {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordflow">if</span> (p-&gt;<a class="code" href="struct_menu_entry.html#a4d43e8212bdc9dbee866506f04effcea" title="Byte that triggers the action.">cmd</a> == c) {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                    p-&gt;<a class="code" href="struct_menu_entry.html#afe96196d3564b9577477236d13329241" title="Action that get&#39;s executed.">f</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                    <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(lastBank);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                p = p-&gt;<a class="code" href="struct_menu_entry.html#af79f4060fda1c0b572c15c3dd99b09a5" title="Next MenuEntry in the linked list.">next</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a" title="Handler for unhandled commands.">unHandler</a> != NULL)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <a class="code" href="group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a" title="Handler for unhandled commands.">unHandler</a>(c);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(lastBank);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

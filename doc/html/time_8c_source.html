@@ -143,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="group__time.html#ga0d40e996ea66a3ab8d42039bebb09978" title="Timer 2 Interrupt Mask.">TIMS</a> |= (1 &lt;&lt; <a class="code" href="group__time.html#ga28e96a5f5c13f26d2e4e4feae1e3c0fe" title="Timer 2 Compare Match A Interrupt Enable.">OCIE</a>); <span class="comment">// Enable compare match interrupt</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="group__time.html#ga5686c229bdef50123688ab6cb1404230">   64</a></span>&#160;<a class="code" href="group__uart.html#ga7a36d30320b27d7d863762b7e54b540d" title="Receive Complete Interrupt.">ISR</a>(TIMER2_COMPA_vect) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="group__time.html#ga5686c229bdef50123688ab6cb1404230">   64</a></span>&#160;<a class="code" href="group__time.html#ga5686c229bdef50123688ab6cb1404230" title="Timer 2 Compare Match A Interrupt.">ISR</a>(TIMER2_COMPA_vect) {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="group__time.html#ga90653843fa9b02271309112c1062bf4c" title="Current System Uptime.">systemTime</a>++;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>

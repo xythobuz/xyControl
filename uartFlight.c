@@ -109,7 +109,8 @@ int main(void) {
     addMenuCommand('n', parameterChangeString, &parameterChange);
     addMenuCommand('z', zeroString, &zeroOrientation);
 
-    xyLed(LED_ALL, LED_ON);
+    xyLed(LED_RED, LED_OFF);
+    xyLed(LED_GREEN, LED_ON);
 
     for(;;) {
         tasks();

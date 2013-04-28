@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  24 APR 2013 16:28
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  28 APR 2013 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1167,22 +1167,26 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 71.
  [2]
-[3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
+[3] [4] [5] [6] [7] [8] [9] [10] [11]
+Underfull \vbox (badness 1968) has occurred while \output is active []
+
+ [12]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 477.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 470.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 477.
+(Font)              scaled to size 10.79993pt on input line 470.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 477.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 477.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 477.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
 )
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [13] [14
+
+[13] [14
 
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line 65.
@@ -1241,7 +1245,7 @@ LaTeX Warning: Reference `uart_flight_8c' on page 7 undefined on input line 4.
 
 [7]
 
-LaTeX Warning: Reference `twi_8c' on page 8 undefined on input line 42.
+LaTeX Warning: Reference `twi_8c' on page 8 undefined on input line 43.
 
 ) [8]
 Chapter 5.
@@ -1499,20 +1503,52 @@ l.90 \include{group__pid}
  (./group__uart.tex [61
 
 
-] [62] [63] [64]
-Underfull \vbox (badness 10000) detected at line 418
+] [62]
+Underfull \vbox (badness 10000) detected at line 222
  []
 
-[65] [66]
-Underfull \vbox (badness 10000) detected at line 585
+[63]
+Underfull \vbox (badness 10000) detected at line 263
  []
 
 
-Underfull \vbox (badness 10000) detected at line 636
+Underfull \vbox (badness 10000) detected at line 330
+ []
+
+[64]
+Underfull \vbox (badness 10000) detected at line 367
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 410
+ []
+
+[65]
+Underfull \vbox (badness 10000) detected at line 469
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 505
+ []
+
+[66]
+Underfull \vbox (badness 10000) detected at line 542
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 582
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 626
  []
 
 [67]
-Underfull \vbox (badness 10000) detected at line 672
+Underfull \vbox (badness 10000) detected at line 683
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 725
  []
 
 [68]) [69]
@@ -1632,7 +1668,13 @@ Underfull \vbox (badness 10000) detected at line 170
 Underfull \vbox (badness 10000) detected at line 262
  []
 
-[88]) [89]
+[88]
+Underfull \hbox (badness 883) in paragraph at lines 294--295
+[]\T1/phv/m/n/10 References B-A-N-K-_--G-E-N-E-R-I-C, Menu-Entry-::cmd, Menu-En
+try-::f, Menu-Entry-::next, serial-Available(), serial-Get(),
+ []
+
+) [89]
 \openout2 = `group__xmem.aux'.
 
  (./group__xmem.tex [90
@@ -1679,11 +1721,15 @@ l.98 \include{group__xmem}
 
 
 ] [96] [97]
-Underfull \vbox (badness 10000) detected at line 359
+Underfull \vbox (badness 10000) detected at line 368
  []
 
+
+Overfull \vbox (11.98845pt too high) has occurred while \output is active []
+
+
 [98]
-Underfull \vbox (badness 10000) detected at line 388
+Underfull \vbox (badness 10000) detected at line 397
  []
 
 ) [99] [100
@@ -1713,7 +1759,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
-) (./doc_8h.tex [115]) (./error_8h.tex) (./gyro_8h.tex
+) (./doc_8h.tex) (./error_8h.tex [115]) (./gyro_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
@@ -1733,9 +1779,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
 
-[118]) (./pid_8h.tex [119]) (./serial_8h.tex [120]) (./set_8h.tex)
-(./spi_8h.tex) (./tasks_8h.tex [121]) (./time_8h.tex [122]) (./twi_8h.tex)
-(./uart_menu_8h.tex [123]
+[118]) (./pid_8h.tex [119]) (./serial_8h.tex) (./serial__device_8h.tex [120])
+(./set_8h.tex) (./spi_8h.tex [121]) (./tasks_8h.tex) (./time_8h.tex [122])
+(./twi_8h.tex) (./uart_menu_8h.tex [123]
 Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
@@ -1791,7 +1837,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--18
  []
 
 [133]) (./serial_8c.tex
-Underfull \hbox (badness 10000) in paragraph at lines 9--14
+Underfull \hbox (badness 10000) in paragraph at lines 9--15
 
  []
 
@@ -1800,7 +1846,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--18
 
  []
 
-[135]) (./spi_8c.tex
+) (./spi_8c.tex [135]
 Underfull \hbox (badness 10000) in paragraph at lines 9--13
 
  []
@@ -1810,27 +1856,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--13
 
  []
 
-[136]) (./time_8c.tex
+) (./time_8c.tex [136]
 Underfull \hbox (badness 10000) in paragraph at lines 9--15
 
  []
 
-[137]) (./uart_menu_8c.tex
+) (./uart_menu_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--19
 
  []
 
-[138]) (./xmem_8c.tex
+[137]) (./xmem_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
 
-) (./xycontrol_8c.tex [139]
+[138]) (./xycontrol_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--26
 
  []
 
-) [140]
+[139]) [140]
 Chapter 8.
 (./test_8c-example.tex) (./uart_flight_8c-example.tex
 Underfull \vbox (badness 4805) has occurred while \output is active []
@@ -1849,8 +1895,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] [146] [147] [148] [149] [150] [151] [152] [153
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
 
 (./refman.aux (./group___system.aux) (./group___flight.aux)
 (./group___hardware.aux) (./group__acc.aux) (./group__adc.aux)
@@ -1860,10 +1906,10 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
 (./group__pid.aux) (./group__uart.aux) (./group__set.aux) (./group__spi.aux)
 (./group__task.aux) (./group__time.aux) (./group__twi.aux)
 (./group__uartmenu.aux) (./group__xmem.aux) (./group__xycontrol.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 0371F473BD6C0197251EA5F85FAADF86;68579.
+(rerunfilecheck)             Checksum: 82627C98D47891F7143196C539321045;68023.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1874,16 +1920,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 155.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
  ) 
 Here is how much of TeX's memory you used:
- 13978 strings out of 493610
- 220598 string characters out of 3142404
- 307295 words of memory out of 3000000
- 15492 multiletter control sequences out of 15000+200000
+ 13967 strings out of 493610
+ 219703 string characters out of 3142404
+ 307240 words of memory out of 3000000
+ 15486 multiletter control sequences out of 15000+200000
  86391 words of font info for 133 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 41i,13n,58p,694b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,58p,694b,516s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{xycontrol_8c_source} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -1962,6 +2008,9 @@ st, replaced by a fixed one
 pdfTeX warning (dest): name{set_8h_source} has been referenced but does not exi
 st, replaced by a fixed one
 
+pdfTeX warning (dest): name{serial__device_8h_source} has been referenced but d
+oes not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{serial_8h_source} has been referenced but does not 
 exist, replaced by a fixed one
 
@@ -2017,10 +2066,10 @@ nts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvbo8ac.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb>
-Output written on refman.pdf (169 pages, 504564 bytes).
+Output written on refman.pdf (169 pages, 501168 bytes).
 PDF statistics:
- 6778 PDF objects out of 7423 (max. 8388607)
- 6532 compressed objects within 66 object streams
- 1272 named destinations out of 1440 (max. 500000)
- 3817 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6658 PDF objects out of 7423 (max. 8388607)
+ 6413 compressed objects within 65 object streams
+ 1265 named destinations out of 1440 (max. 500000)
+ 3761 words of extra memory for PDF output out of 10000 (max. 10000000)
 

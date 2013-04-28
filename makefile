@@ -92,7 +92,7 @@ TARGETPROGRAM = $(TARGETSRC:.c=.program)
 
 all: dropbox
 
-doc: $(TARGETSRC) $(SRC)
+doc:
 	$(DOXYGEN) Doxyfile
 	make -C doc/latex/
 

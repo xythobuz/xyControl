@@ -118,16 +118,10 @@ file \hyperlink{config_8h}{config.\-h}
 \begin{DoxyCompactList}\small\item\em Third Bank Selection Pin. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__config_gab652052c0495e4b720b52cdcf83f535d}{S\-P\-I\-S\-S}~P\-B0
 \begin{DoxyCompactList}\small\item\em S\-P\-I Slave Select Pin. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\#define \hyperlink{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~64
 \begin{DoxyCompactList}\small\item\em U\-A\-R\-T Receive Buffer Size. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__config_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
-\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Transmit Buffer Size. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__config_ga9757131cd175465e6220de58b57f6b78}{U\-A\-R\-T\-\_\-\-U\-S\-B}~0
-\begin{DoxyCompactList}\small\item\em F\-T232\-R\-L U\-S\-B U\-A\-R\-T module. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__config_ga2c948aa36e7c71b5e04623c1f560f1f1}{U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H}~1
-\begin{DoxyCompactList}\small\item\em Bluetooth U\-A\-R\-T module. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}{U\-A\-R\-T}~\hyperlink{group__config_ga9757131cd175465e6220de58b57f6b78}{U\-A\-R\-T\-\_\-\-U\-S\-B}
-\begin{DoxyCompactList}\small\item\em U\-A\-R\-T module to use (0 to 3) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \hyperlink{group__config_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~64
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Transmit Buffer Size. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -802,18 +796,14 @@ Referenced by kalman\-Innovate().
 
 \hypertarget{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}{\index{Configuration@{Configuration}!R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
 \index{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!Configuration@{Configuration}}
-\subsubsection[{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}
+\subsubsection[{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~64}}\label{group__config_ga739a2a1a0047c98ac1b18ecd25dac092}
 
 
 U\-A\-R\-T Receive Buffer Size. 
 
 
 
-Definition at line 175 of file config.\-h.
-
-
-
-Referenced by I\-S\-R(), serial\-Get(), and serial\-Rx\-Buffer\-Full().
+Definition at line 169 of file config.\-h.
 
 \hypertarget{group__config_ga8c969dbb07dc504226fc2c69484b9768}{\index{Configuration@{Configuration}!S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}}
 \index{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S@{S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S}!Configuration@{Configuration}}
@@ -891,49 +881,12 @@ Definition at line 163 of file config.\-h.
 
 \hypertarget{group__config_ga9ab33647617098646990fe263600b650}{\index{Configuration@{Configuration}!T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
 \index{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!Configuration@{Configuration}}
-\subsubsection[{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__config_ga9ab33647617098646990fe263600b650}
+\subsubsection[{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~64}}\label{group__config_ga9ab33647617098646990fe263600b650}
 
 
 U\-A\-R\-T Transmit Buffer Size. 
 
 
 
-Definition at line 176 of file config.\-h.
-
-
-
-Referenced by I\-S\-R(), serial\-Tx\-Buffer\-Full(), and serial\-Write().
-
-\hypertarget{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}{\index{Configuration@{Configuration}!U\-A\-R\-T@{U\-A\-R\-T}}
-\index{U\-A\-R\-T@{U\-A\-R\-T}!Configuration@{Configuration}}
-\subsubsection[{U\-A\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T~{\bf U\-A\-R\-T\-\_\-\-U\-S\-B}}}\label{group__config_gaf7cb12b462b4594bd759d1b4e241ec4c}
-
-
-U\-A\-R\-T module to use (0 to 3) 
-
-
-
-Definition at line 180 of file config.\-h.
-
-\hypertarget{group__config_ga2c948aa36e7c71b5e04623c1f560f1f1}{\index{Configuration@{Configuration}!U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H@{U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H}}
-\index{U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H@{U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H}!Configuration@{Configuration}}
-\subsubsection[{U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T\-\_\-\-B\-L\-U\-E\-T\-O\-O\-T\-H~1}}\label{group__config_ga2c948aa36e7c71b5e04623c1f560f1f1}
-
-
-Bluetooth U\-A\-R\-T module. 
-
-
-
-Definition at line 179 of file config.\-h.
-
-\hypertarget{group__config_ga9757131cd175465e6220de58b57f6b78}{\index{Configuration@{Configuration}!U\-A\-R\-T\-\_\-\-U\-S\-B@{U\-A\-R\-T\-\_\-\-U\-S\-B}}
-\index{U\-A\-R\-T\-\_\-\-U\-S\-B@{U\-A\-R\-T\-\_\-\-U\-S\-B}!Configuration@{Configuration}}
-\subsubsection[{U\-A\-R\-T\-\_\-\-U\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T\-\_\-\-U\-S\-B~0}}\label{group__config_ga9757131cd175465e6220de58b57f6b78}
-
-
-F\-T232\-R\-L U\-S\-B U\-A\-R\-T module. 
-
-
-
-Definition at line 178 of file config.\-h.
+Definition at line 170 of file config.\-h.
 

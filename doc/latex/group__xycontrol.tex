@@ -169,7 +169,7 @@ Current Battery Voltage
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 163 of file xycontrol.\-c.
+Definition at line 172 of file xycontrol.\-c.
 
 
 
@@ -177,12 +177,12 @@ References adc\-Get(), adc\-Ready(), adc\-Start(), B\-A\-T\-T\-\_\-\-C\-H\-A\-N\
 
 
 \begin{DoxyCode}
-163                         \{
-164     \hyperlink{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{adcStart}(\hyperlink{group__config_ga9fd748b19523c96052a2964d73a7b0f5}{BATT\_CHANNEL});
-165     \textcolor{keywordflow}{while}(!\hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adcReady}());
-166     uint16\_t v = \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adcGet}(0) * \hyperlink{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}{BATT\_MAX};
-167     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})v / 1024.0);
-168 \}
+172                         \{
+173     \hyperlink{group__adc_ga709f0e604f22040ae61dc7710f0adee5}{adcStart}(\hyperlink{group__config_ga9fd748b19523c96052a2964d73a7b0f5}{BATT\_CHANNEL});
+174     \textcolor{keywordflow}{while}(!\hyperlink{group__adc_gaf80150a2f4a38efa40fe1c314b6995ef}{adcReady}());
+175     uint16\_t v = \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adcGet}(0) * \hyperlink{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}{BATT\_MAX};
+176     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})v / 1024.0);
+177 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_gab80f101c0a50bca30d796fad70cfd8d7}{\index{xy\-Control Hardware@{xy\-Control Hardware}!reset\-Self@{reset\-Self}}
 \index{reset\-Self@{reset\-Self}!xyControl Hardware@{xy\-Control Hardware}}
@@ -197,7 +197,7 @@ Use the Watchdog to reset yourself after 15ms.
 
 
 
-Definition at line 170 of file xycontrol.\-c.
+Definition at line 179 of file xycontrol.\-c.
 
 
 
@@ -205,10 +205,10 @@ Referenced by xy\-Init().
 
 
 \begin{DoxyCode}
-170                      \{
-171     wdt\_enable(WDTO\_15MS);
-172     \textcolor{keywordflow}{for}(;;);
-173 \}
+179                      \{
+180     wdt\_enable(WDTO\_15MS);
+181     \textcolor{keywordflow}{for}(;;);
+182 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{\index{xy\-Control Hardware@{xy\-Control Hardware}!uartinput@{uartinput}}
 \index{uartinput@{uartinput}!xyControl Hardware@{xy\-Control Hardware}}
@@ -223,11 +223,11 @@ Method used to read from stdin.
 
 
 
-Definition at line 79 of file xycontrol.\-c.
+Definition at line 81 of file xycontrol.\-c.
 
 
 
-References serial\-Get(), and serial\-Has\-Char().
+References serial\-Available(), serial\-Get(), and serial\-Has\-Char().
 
 
 
@@ -235,10 +235,15 @@ Referenced by xy\-Init().
 
 
 \begin{DoxyCode}
-79                        \{
-80     \textcolor{keywordflow}{while} (!\hyperlink{group__uart_ga27cc67be388d64af00ef64e22f75686d}{serialHasChar}());
-81     \textcolor{keywordflow}{return} \hyperlink{group__uart_ga3a3f6acfefa86dc78ec2d2455fc71709}{serialGet}();
-82 \}
+81                        \{
+82     \textcolor{keywordflow}{for} (;;) \{
+83         \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serialAvailable}(); i++) \{
+84             \textcolor{keywordflow}{if} (\hyperlink{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{serialHasChar}(i)) \{
+85                 \textcolor{keywordflow}{return} \hyperlink{group__uart_gaa9d6e44600b215154c3f66193df151f6}{serialGet}(i);
+86             \}
+87         \}
+88     \}
+89 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_ga7e2be90354ccc3af05947764858bc0b1}{\index{xy\-Control Hardware@{xy\-Control Hardware}!uartoutput@{uartoutput}}
 \index{uartoutput@{uartoutput}!xyControl Hardware@{xy\-Control Hardware}}
@@ -258,7 +263,7 @@ Definition at line 66 of file xycontrol.\-c.
 
 
 
-References serial\-Write().
+References serial\-Available(), and serial\-Write().
 
 
 
@@ -270,13 +275,15 @@ Referenced by xy\-Init().
 67     \textcolor{comment}{// Inject CR here, instead of in the serial library,}
 68     \textcolor{comment}{// so we can still do binary transfers with serialWrite()...}
 69     \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'\(\backslash\)n'}) \{
-70         \hyperlink{group__uart_ga66f8906eba5f8b0fa6ead524b9f01498}{serialWrite}(\textcolor{charliteral}{'\(\backslash\)r'});
-71     \}
-72     \textcolor{keywordflow}{if} (c != \textcolor{charliteral}{'\(\backslash\)r'}) \{
-73         \hyperlink{group__uart_ga66f8906eba5f8b0fa6ead524b9f01498}{serialWrite}(c);
-74     \}
-75     \textcolor{keywordflow}{return} 0;
-76 \}
+70         \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serialAvailable}(); i++)
+71             \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(i, \textcolor{charliteral}{'\(\backslash\)r'});
+72     \}
+73     \textcolor{keywordflow}{if} (c != \textcolor{charliteral}{'\(\backslash\)r'}) \{
+74         \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serialAvailable}(); i++)
+75             \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(i, c);
+76     \}
+77     \textcolor{keywordflow}{return} 0;
+78 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{\index{xy\-Control Hardware@{xy\-Control Hardware}!xy\-Init@{xy\-Init}}
 \index{xy\-Init@{xy\-Init}!xyControl Hardware@{xy\-Control Hardware}}
@@ -294,49 +301,51 @@ Initializes L\-E\-Ds, Timer, U\-A\-R\-T, I2\-C, S\-P\-I, A\-D\-C, the U\-A\-R\-T
 \hyperlink{test_8c-example}{test.\-c}, and \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 84 of file xycontrol.\-c.
+Definition at line 91 of file xycontrol.\-c.
 
 
 
-References adc\-Init(), add\-Menu\-Command(), add\-Task(), A\-V\-C\-C, B\-A\-U\-D, help\-Text, in\-File, init\-System\-Timer(), L\-E\-D0\-D\-D\-R, L\-E\-D0\-P\-I\-N, L\-E\-D1\-D\-D\-R, L\-E\-D1\-P\-I\-N, L\-E\-D2\-D\-D\-R, L\-E\-D2\-P\-I\-N, L\-E\-D3\-D\-D\-R, L\-E\-D3\-P\-I\-N, M\-O\-D\-E\-\_\-0, out\-File, reset\-Self(), reset\-Text, serial\-Init(), S\-P\-E\-E\-D\-\_\-2, spi\-Init(), twi\-Init(), uartinput(), uart\-Menu\-Print\-Help(), uart\-Menu\-Task(), uartoutput(), xmem\-Init(), and xy\-Led().
+References adc\-Init(), add\-Menu\-Command(), add\-Task(), A\-V\-C\-C, B\-A\-U\-D, help\-Text, in\-File, init\-System\-Timer(), L\-E\-D0\-D\-D\-R, L\-E\-D0\-P\-I\-N, L\-E\-D1\-D\-D\-R, L\-E\-D1\-P\-I\-N, L\-E\-D2\-D\-D\-R, L\-E\-D2\-P\-I\-N, L\-E\-D3\-D\-D\-R, L\-E\-D3\-P\-I\-N, M\-O\-D\-E\-\_\-0, out\-File, reset\-Self(), reset\-Text, serial\-Available(), serial\-Init(), S\-P\-E\-E\-D\-\_\-2, spi\-Init(), twi\-Init(), uartinput(), uart\-Menu\-Print\-Help(), uart\-Menu\-Task(), uartoutput(), xmem\-Init(), and xy\-Led().
 
 
 \begin{DoxyCode}
-84                   \{
-85     \hyperlink{group__xmem_ga9744de3b2aca21a564b151e770ed7384}{xmemInit}(); \textcolor{comment}{// Most important!}
-86 
-87     \textcolor{comment}{// LEDs}
-88     \hyperlink{group__config_ga86208659221ec2a932cd722dfc18101f}{LED0DDR} |= (1 << \hyperlink{group__config_gab0e1f692e2b1fa1cdbb24a9926b3489d}{LED0PIN});
-89     \hyperlink{group__config_gab0f33b52cdb68e643eba6cf583fb625f}{LED1DDR} |= (1 << \hyperlink{group__config_ga04d7aaffbb7b5afaf49acf8a3a39e33a}{LED1PIN});
-90     \hyperlink{group__config_ga7e635626ee31b094da0a668476132577}{LED2DDR} |= (1 << \hyperlink{group__config_ga50070e632cb68d11f627c5ab60f88683}{LED2PIN});
-91     \hyperlink{group__config_ga09535652dd0ca340b20840c848cb6093}{LED3DDR} |= (1 << \hyperlink{group__config_ga2663b8fc01c4753562adc572cf12a5ed}{LED3PIN});
-92     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(4, 1);
+91                   \{
+92     \hyperlink{group__xmem_ga9744de3b2aca21a564b151e770ed7384}{xmemInit}(); \textcolor{comment}{// Most important!}
 93 
-94     \hyperlink{group__time_ga66bac2517b216a802f8fb2233eccfa66}{initSystemTimer}();
-95     \hyperlink{group__uart_ga276d676dc37f6d1dcd5672a9fe056a78}{serialInit}(\hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{BAUD}(38400, F\_CPU));
-96     \hyperlink{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{twiInit}();
-97     \hyperlink{group__spi_gab16bbe73b15109ae6ca700391711d036}{spiInit}(\hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96da68ae6cc4ed3f27fe8040eb93d9c4efa3}{MODE\_0}, \hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fa3e1a04cc2aad70558b57122e6b70f8b6}{SPEED\_2});
-98     \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adcInit}(\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{AVCC});
-99 
-100     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'q'}, \hyperlink{group__xycontrol_ga27915b4caf41f74542980a4ea0f1726a}{resetText}, &\hyperlink{group__xycontrol_gab80f101c0a50bca30d796fad70cfd8d7}{resetSelf});
-101     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'h'}, \hyperlink{group__xycontrol_gab29cf1c6b0f1a36311899902ec9364ea}{helpText}, &\hyperlink{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{uartMenuPrintHelp});
-102     \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&\hyperlink{group__uartmenu_ga9f477033e942434f7875930342d5e696}{uartMenuTask});
-103 
-104     \textcolor{comment}{// fdevopen() is using malloc, so printf in a different}
-105     \textcolor{comment}{// memory bank will not work!}
-106     \textcolor{comment}{//   fdevopen(&uartoutput, NULL); // stdout & stderr}
-107     \textcolor{comment}{//   fdevopen(NULL, &uartinput); // stdin}
-108     \textcolor{comment}{// Instead we have the FILE structs as static variables}
-109     \textcolor{comment}{// and assign them to stdin, stdout and stderr}
-110 
-111     fdev\_setup\_stream(&\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile}, &\hyperlink{group__xycontrol_ga7e2be90354ccc3af05947764858bc0b1}{uartoutput}, NULL, \_FDEV\_SETUP\_WRITE);
-112     fdev\_setup\_stream(&\hyperlink{group__xycontrol_gaad0ab56da43b41bbfeeaa3d1eca70e9c}{inFile}, NULL, &\hyperlink{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{uartinput}, \_FDEV\_SETUP\_READ);
-113     stdin = &\hyperlink{group__xycontrol_gaad0ab56da43b41bbfeeaa3d1eca70e9c}{inFile};
-114     stdout = &\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile};
-115     stderr = &\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile};
-116 
-117     sei();
-118 \}
+94     \textcolor{comment}{// LEDs}
+95     \hyperlink{group__config_ga86208659221ec2a932cd722dfc18101f}{LED0DDR} |= (1 << \hyperlink{group__config_gab0e1f692e2b1fa1cdbb24a9926b3489d}{LED0PIN});
+96     \hyperlink{group__config_gab0f33b52cdb68e643eba6cf583fb625f}{LED1DDR} |= (1 << \hyperlink{group__config_ga04d7aaffbb7b5afaf49acf8a3a39e33a}{LED1PIN});
+97     \hyperlink{group__config_ga7e635626ee31b094da0a668476132577}{LED2DDR} |= (1 << \hyperlink{group__config_ga50070e632cb68d11f627c5ab60f88683}{LED2PIN});
+98     \hyperlink{group__config_ga09535652dd0ca340b20840c848cb6093}{LED3DDR} |= (1 << \hyperlink{group__config_ga2663b8fc01c4753562adc572cf12a5ed}{LED3PIN});
+99     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(4, 1);
+100 
+101     \hyperlink{group__time_ga66bac2517b216a802f8fb2233eccfa66}{initSystemTimer}();
+102     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serialAvailable}(); i++) \{
+103         \hyperlink{group__uart_ga73d4335cb201753c580c87954f493886}{serialInit}(i, \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{BAUD}(38400, F\_CPU));
+104     \}
+105     \hyperlink{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{twiInit}();
+106     \hyperlink{group__spi_gab16bbe73b15109ae6ca700391711d036}{spiInit}(\hyperlink{group__spi_ggae506139af46f1328f631ddacd54af96da68ae6cc4ed3f27fe8040eb93d9c4efa3}{MODE\_0}, \hyperlink{group__spi_gga92b13fd51af2a9a09b1854520a5a427fa3e1a04cc2aad70558b57122e6b70f8b6}{SPEED\_2});
+107     \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adcInit}(\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{AVCC});
+108 
+109     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'q'}, \hyperlink{group__xycontrol_ga27915b4caf41f74542980a4ea0f1726a}{resetText}, &\hyperlink{group__xycontrol_gab80f101c0a50bca30d796fad70cfd8d7}{resetSelf});
+110     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'h'}, \hyperlink{group__xycontrol_gab29cf1c6b0f1a36311899902ec9364ea}{helpText}, &\hyperlink{group__uartmenu_ga82cceeb5e46aa39967600fb62d7716c6}{uartMenuPrintHelp});
+111     \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&\hyperlink{group__uartmenu_ga9f477033e942434f7875930342d5e696}{uartMenuTask});
+112 
+113     \textcolor{comment}{// fdevopen() is using malloc, so printf in a different}
+114     \textcolor{comment}{// memory bank will not work!}
+115     \textcolor{comment}{//   fdevopen(&uartoutput, NULL); // stdout & stderr}
+116     \textcolor{comment}{//   fdevopen(NULL, &uartinput); // stdin}
+117     \textcolor{comment}{// Instead we have the FILE structs as static variables}
+118     \textcolor{comment}{// and assign them to stdin, stdout and stderr}
+119 
+120     fdev\_setup\_stream(&\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile}, &\hyperlink{group__xycontrol_ga7e2be90354ccc3af05947764858bc0b1}{uartoutput}, NULL, \_FDEV\_SETUP\_WRITE);
+121     fdev\_setup\_stream(&\hyperlink{group__xycontrol_gaad0ab56da43b41bbfeeaa3d1eca70e9c}{inFile}, NULL, &\hyperlink{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{uartinput}, \_FDEV\_SETUP\_READ);
+122     stdin = &\hyperlink{group__xycontrol_gaad0ab56da43b41bbfeeaa3d1eca70e9c}{inFile};
+123     stdout = &\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile};
+124     stderr = &\hyperlink{group__xycontrol_gaa9e0cac6f45e381f488c1dd9a8418ca2}{outFile};
+125 
+126     sei();
+127 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{\index{xy\-Control Hardware@{xy\-Control Hardware}!xy\-Led@{xy\-Led}}
 \index{xy\-Led@{xy\-Led}!xyControl Hardware@{xy\-Control Hardware}}
@@ -388,19 +397,19 @@ Internal L\-E\-D Manipulation function.
 \end{DoxyParams}
 
 
-Definition at line 125 of file xycontrol.\-c.
+Definition at line 134 of file xycontrol.\-c.
 
 
 \begin{DoxyCode}
-125                                                                    \{
-126     \textcolor{keywordflow}{if} (v == 0) \{
-127         *port &= ~(1 << pin);
-128     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (v == 1) \{
-129         *port |= (1 << pin);
-130     \} \textcolor{keywordflow}{else} \{
-131         *port ^= (1 << pin);
-132     \}
-133 \}
+134                                                                    \{
+135     \textcolor{keywordflow}{if} (v == 0) \{
+136         *port &= ~(1 << pin);
+137     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (v == 1) \{
+138         *port |= (1 << pin);
+139     \} \textcolor{keywordflow}{else} \{
+140         *port ^= (1 << pin);
+141     \}
+142 \}
 \end{DoxyCode}
 
 

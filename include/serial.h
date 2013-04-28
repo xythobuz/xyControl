@@ -1,7 +1,7 @@
 /*
  * serial.h
  *
- * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
+ * Copyright (c) 2012, 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,78 +30,97 @@
 #ifndef _serial_h
 #define _serial_h
 
-/** \addtogroup uart UART Driver
+/** \addtogroup uart UART Library
  *  \ingroup Hardware
- *  Serial Library for AVRs built-in UART Hardware.
- *  Allows XON/XOFF Flow Control.
- *  FIFO Buffer for Receiving and Transmitting.
+ *  UART Library enabling you to control all available
+ *  UART Modules. With XON/XOFF Flow Control and buffered
+ *  Receiving and Transmitting.
  *  @{
  */
 
 /** \file serial.h
- *  UART API Header
+ *  UART Library Header File
  */
 
 /** Calculate Baudrate Register Value */
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
 
+/** Get number of available UART modules.
+ *  \returns number of modules
+ */
+uint8_t serialAvailable(void);
+
 /** Initialize the UART Hardware.
+ *  \param uart UART Module to initialize
  *  \param baud Baudrate. Use the BAUD() macro!
  */
-void serialInit(uint16_t baud);
+void serialInit(uint8_t uart, uint16_t baud);
 
-/** Stop the UART Hardware */
-void serialClose(void);
+/** Stop the UART Hardware.
+ *  \param uart UART Module to stop
+ */
+void serialClose(uint8_t uart);
 
 /** Manually change the flow control.
+ *  Flow Control has to be compiled into the library!
+ *  \param uart UART Module to operate on
  *  \param on 1 of on, 0 if off
  */
-void setFlow(uint8_t on);
+void setFlow(uint8_t uart, uint8_t on);
 
 /** Check if a byte was received.
+ *  \param uart UART Module to check
  *  \returns 1 if a byte was received, 0 if not
  */
-uint8_t serialHasChar(void);
+uint8_t serialHasChar(uint8_t uart);
 
 /** Read a single byte.
+ *  \param uart UART Module to read from
  *  \returns Received byte or 0
  */
-uint8_t serialGet(void);
+uint8_t serialGet(uint8_t uart);
 
 /** Wait until a character is received.
+ *  \param uart UART Module to read from
  *  \returns Received byte
  */
-uint8_t serialGetBlocking(void);
+uint8_t serialGetBlocking(uint8_t uart);
 
 /** Check if the receive buffer is full.
+ *  \param uart UART Module to check
  *  \returns 1 if buffer is full, 0 if not
  */
-uint8_t serialRxBufferFull(void);
+uint8_t serialRxBufferFull(uint8_t uart);
 
 /** Check if the receive buffer is empty.
+ *  \param uart UART Module to check
  *  \returns 1 if buffer is empty, 0 if not.
  */
-uint8_t serialRxBufferEmpty(void);
+uint8_t serialRxBufferEmpty(uint8_t uart);
 
 /** Send a byte.
+ *  \param uart UART Module to write to
  *  \param data Byte to send
  */
-void serialWrite(uint8_t data);
+void serialWrite(uint8_t uart, uint8_t data);
 
 /** Send a string.
+ *  \param uart UART Module to write to
  *  \param data Null-Terminated String
  */
-void serialWriteString(const char *data);
+void serialWriteString(uint8_t uart, const char *data);
 
 /** Check if the transmit buffer is full.
+ *  \param uart UART Module to check
  *  \returns 1 if buffer is full, 0 if not
  */
-uint8_t serialTxBufferFull(void);
+uint8_t serialTxBufferFull(uint8_t uart);
 
 /** Check if the transmit buffer is empty.
+ *  \param uart UART Module to check
  *  \returns 1 if buffer is empty, 0 if not.
  */
-uint8_t serialTxBufferEmpty(void);
+uint8_t serialTxBufferEmpty(uint8_t uart);
 
-#endif
+#endif // _serial_h
 /** @} */

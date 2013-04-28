@@ -67,18 +67,25 @@ int uartoutput(char c, FILE *f) {
     // Inject CR here, instead of in the serial library,
     // so we can still do binary transfers with serialWrite()...
     if (c == '\n') {
-        serialWrite('\r');
+        for (uint8_t i = 0; i < serialAvailable(); i++)
+            serialWrite(i, '\r');
     }
     if (c != '\r') {
-        serialWrite(c);
+        for (uint8_t i = 0; i < serialAvailable(); i++)
+            serialWrite(i, c);
     }
     return 0;
 }
 
 /** Method used to read from stdin. */
 int uartinput(FILE *f) {
-    while (!serialHasChar());
-    return serialGet();
+    for (;;) {
+        for (uint8_t i = 0; i < serialAvailable(); i++) {
+            if (serialHasChar(i)) {
+                return serialGet(i);
+            }
+        }
+    }
 }
 
 void xyInit(void) {
@@ -92,7 +99,9 @@ void xyInit(void) {
     xyLed(4, 1);
 
     initSystemTimer();
-    serialInit(BAUD(38400, F_CPU));
+    for (uint8_t i = 0; i < serialAvailable(); i++) {
+        serialInit(i, BAUD(38400, F_CPU));
+    }
     twiInit();
     spiInit(MODE_0, SPEED_2);
     adcInit(AVCC);
