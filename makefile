@@ -92,8 +92,12 @@ TARGETPROGRAM = $(TARGETSRC:.c=.program)
 
 all: dropbox
 
-doc:
+doc: runDoxygen setPDF
+
+runDoxygen:
 	$(DOXYGEN) Doxyfile
+
+setPDF:
 	make -C doc/latex/
 
 dropbox: dropboxCopy

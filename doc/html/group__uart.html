@@ -104,6 +104,12 @@ Files</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga779bf099075a999d1074357fccbd466b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga779bf099075a999d1074357fccbd466b">USB</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ga779bf099075a999d1074357fccbd466b"><td class="mdescLeft">&#160;</td><td class="mdescRight">First UART Name.  <a href="#ga779bf099075a999d1074357fccbd466b">More...</a><br/></td></tr>
+<tr class="separator:ga779bf099075a999d1074357fccbd466b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f30897fa8435dc9811642367a328be8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga3f30897fa8435dc9811642367a328be8">BLUETOOTH</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ga3f30897fa8435dc9811642367a328be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second UART Name.  <a href="#ga3f30897fa8435dc9811642367a328be8">More...</a><br/></td></tr>
+<tr class="separator:ga3f30897fa8435dc9811642367a328be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafccfd7d1315f0763ac404c6104883341"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gafccfd7d1315f0763ac404c6104883341">BAUD</a>(baudRate, xtalCpu)&#160;&#160;&#160;((xtalCpu)/((baudRate)*16l)-1)</td></tr>
 <tr class="memdesc:gafccfd7d1315f0763ac404c6104883341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Baudrate Register Value.  <a href="#gafccfd7d1315f0763ac404c6104883341">More...</a><br/></td></tr>
 <tr class="separator:gafccfd7d1315f0763ac404c6104883341"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,9 +204,26 @@ Functions</h2></td></tr>
 
 <p>Calculate Baudrate Register Value. </p>
 
-<p>Definition at line <a class="el" href="serial_8h_source.html#l00046">46</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00049">49</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 <p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga3f30897fa8435dc9811642367a328be8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BLUETOOTH&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Second UART Name. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a26">hardwareTest.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00046">46</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
 </div>
@@ -272,6 +295,23 @@ Functions</h2></td></tr>
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00059">59</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 <p>Referenced by <a class="el" href="serial_8c_source.html#l00311">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00274">serialWrite()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga779bf099075a999d1074357fccbd466b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define USB&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>First UART Name. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a28">hardwareTest.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00045">45</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +441,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Received byte or 0 </dd></dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a29">hardwareTest.c</a>.</dd>
+</dl>
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00218">218</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 <p>References <a class="el" href="serial_8c_source.html#l00065">FLOWMARK</a>, <a class="el" href="serial_8c_source.html#l00055">RX_BUFFER_SIZE</a>, and <a class="el" href="serial_8c_source.html#l00066">XON</a>.</p>
@@ -501,7 +542,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if a byte was received, 0 if not </dd></dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a25">hardwareTest.c</a>.</dd>
+</dl>
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00199">199</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 <p>Referenced by <a class="el" href="serial_8c_source.html#l00210">serialGetBlocking()</a>, <a class="el" href="xycontrol_8c_source.html#l00081">uartinput()</a>, and <a class="el" href="uart_menu_8c_source.html#l00131">uartMenuTask()</a>.</p>
@@ -767,7 +809,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a27">hardwareTest.c</a>.</dd>
+</dl>
 <p>Definition at line <a class="el" href="serial_8c_source.html#l00274">274</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 <p>References <a class="el" href="serial_8c_source.html#l00311">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00059">TX_BUFFER_SIZE</a>.</p>

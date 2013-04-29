@@ -37,6 +37,9 @@
 \textcolor{preprocessor}{#include <avr/io.h>}
 \textcolor{preprocessor}{#include <avr/pgmspace.h>}
 
+\textcolor{preprocessor}{#define DEBUG 1}
+\textcolor{preprocessor}{}
+\textcolor{preprocessor}{#include <\hyperlink{debug_8h}{debug.h}>}
 \textcolor{preprocessor}{#include <\hyperlink{tasks_8h}{tasks.h}>}
 \textcolor{preprocessor}{#include <\hyperlink{error_8h}{error.h}>}
 \textcolor{preprocessor}{#include <\hyperlink{xycontrol_8h}{xycontrol.h}>}
@@ -72,6 +75,7 @@
 \textcolor{keywordtype}{void} motorLeft(\textcolor{keywordtype}{void});
 \textcolor{keywordtype}{void} motorRight(\textcolor{keywordtype}{void});
 \textcolor{keywordtype}{void} parameterChange(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} silent(\textcolor{keywordtype}{void});
 
 \textcolor{keywordtype}{char} PROGMEM motorToggleString[] = \textcolor{stringliteral}{"Motor On/Off"};
 \textcolor{keywordtype}{char} PROGMEM motorUpString[] = \textcolor{stringliteral}{"Up"};
@@ -83,8 +87,13 @@
 \textcolor{keywordtype}{char} PROGMEM controlToggleString[] = \textcolor{stringliteral}{"Toggle PID"};
 \textcolor{keywordtype}{char} PROGMEM parameterChangeString[] = \textcolor{stringliteral}{"Change PID Params"};
 \textcolor{keywordtype}{char} PROGMEM zeroString[] = \textcolor{stringliteral}{"Angles to Zero"};
+\textcolor{keywordtype}{char} PROGMEM silentString[] = \textcolor{stringliteral}{"Toggle Status Output"};
 
-uint8\_t state = 0; \textcolor{comment}{// Bit 0: Motor, Bit 1: PID}
+\textcolor{preprocessor}{#define STATE\_MOTOR (1 << 0) // 1 -> Motor On}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define STATE\_PID (1 << 1) // 1 -> PID enabled}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define STATE\_OUTPUT (1 << 2) // 1 -> No Status Output}
+\textcolor{preprocessor}{}uint8\_t state = 0;
+
 uint8\_t speed = 10;
 int16\_t targetRoll = 0;
 int16\_t targetPitch = 0;
@@ -96,6 +105,8 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
     \hyperlink{group__pid_ga54768e126d9accbdd7232d9fa5adfdfd}{pidInit}();
     \hyperlink{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{motorInit}();
     \hyperlink{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{orientationInit}();
+
+    \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debugPrint}(\textcolor{stringliteral}{"Initialized Hardware"});
 
     \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&flightTask);
     \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&statusTask);
@@ -110,9 +121,12 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'p'}, controlToggleString, &controlToggle);
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'n'}, parameterChangeString, &parameterChange);
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'z'}, zeroString, &\hyperlink{group__orientation_ga0fab95dd407145abad293f7c91460eee}{zeroOrientation});
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'o'}, silentString, &silent);
 
     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ad80f13022b6d309268fadc7b1da89cb9}{LED\_RED}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0afc0ca8cc6cbe215fd3f1ae6d40255b40}{LED\_OFF});
     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a0ad916c7f80666dc88f6b5b22a72e742}{LED\_GREEN}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{LED\_ON});
+
+    \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debugPrint}(\textcolor{stringliteral}{"Starting Tasks"});
 
     \textcolor{keywordflow}{for}(;;) \{
         \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks}();
@@ -148,7 +162,7 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
 \textcolor{keywordtype}{void} statusTask(\textcolor{keywordtype}{void}) \{
     \textcolor{keyword}{static} \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} last = 100; \textcolor{comment}{// Don't begin immediately}
     \textcolor{keyword}{static} uint32\_t lastDuration = 0;
-    \textcolor{keywordflow}{if} ((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= STATUSDELAY) \{
+    \textcolor{keywordflow}{if} (((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= STATUSDELAY) && (!(state & STATE\_OUTPUT))) \{
         last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
         printf(\textcolor{stringliteral}{"q%li %li\(\backslash\)n"}, sumFlightTask / sumFlightCount, lastDuration);
         printf(\textcolor{stringliteral}{"r%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMin, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMax);
@@ -168,22 +182,22 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
 \}
 
 \textcolor{keywordtype}{void} controlToggle(\textcolor{keywordtype}{void}) \{
-    \textcolor{keywordflow}{if} (state & 0x02) \{
-        state &= ~0x02;
+    \textcolor{keywordflow}{if} (state & STATE\_PID) \{
+        state &= ~STATE\_PID;
         printf(\textcolor{stringliteral}{"PID Off!\(\backslash\)n"});
     \} \textcolor{keywordflow}{else} \{
-        state |= 0x02;
+        state |= STATE\_PID;
         printf(\textcolor{stringliteral}{"PID On!\(\backslash\)n"});
     \}
 \}
 
 \textcolor{keywordtype}{void} motorToggle(\textcolor{keywordtype}{void}) \{
-    \textcolor{keywordflow}{if} (state & 0x01) \{
-        state &= ~0x01;
+    \textcolor{keywordflow}{if} (state & STATE\_MOTOR) \{
+        state &= ~STATE\_MOTOR;
         \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = 0;
         printf(\textcolor{stringliteral}{"Motor Off!\(\backslash\)n"});
     \} \textcolor{keywordflow}{else} \{
-        state |= 0x01;
+        state |= STATE\_MOTOR;
         \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed = 10;
         printf(\textcolor{stringliteral}{"Motor On!\(\backslash\)n"});
     \}
@@ -191,7 +205,7 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
 
 \textcolor{keywordtype}{void} motorUp(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (speed <= (MAXMOTOR - MOTORSTEP)) \{
-        \textcolor{keywordflow}{if} (state & 0x01) \{
+        \textcolor{keywordflow}{if} (state & STATE\_MOTOR) \{
             speed += MOTORSTEP;
             \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed;
             printf(\textcolor{stringliteral}{"Throttle up to %i\(\backslash\)n"}, speed);
@@ -201,7 +215,7 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
 
 \textcolor{keywordtype}{void} motorDown(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (speed >= MOTORSTEP) \{
-        \textcolor{keywordflow}{if} (state & 0x01) \{
+        \textcolor{keywordflow}{if} (state & STATE\_MOTOR) \{
             speed -= MOTORSTEP;
             \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} = speed;
             printf(\textcolor{stringliteral}{"Throttle down to %i\(\backslash\)n"}, speed);
@@ -249,6 +263,16 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
         \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[1], p, i, d, min, max, iMin, iMax);
     \} \textcolor{keywordflow}{else} \{
         printf(\textcolor{stringliteral}{"Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\(\backslash\)n"}, c, p, i, d, min, max, iMin, iMax);
+    \}
+\}
+
+\textcolor{keywordtype}{void} silent(\textcolor{keywordtype}{void}) \{
+    \textcolor{keywordflow}{if} (state & STATE\_OUTPUT) \{
+        \textcolor{comment}{// Currently disabled, bit set}
+        state &= ~STATE\_OUTPUT; \textcolor{comment}{// Unset Bit}
+    \} \textcolor{keywordflow}{else} \{
+        \textcolor{comment}{// Currently enabled}
+        state |= STATE\_OUTPUT; \textcolor{comment}{// Set Bit}
     \}
 \}
 \end{DoxyCodeInclude}

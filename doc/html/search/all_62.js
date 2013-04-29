@@ -13,5 +13,6 @@ var searchData=
   ['basespeed',['baseSpeed',['../group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b',1,'baseSpeed():&#160;set.c'],['../group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b',1,'baseSpeed():&#160;set.c']]],
   ['batt_5fchannel',['BATT_CHANNEL',['../group__config.html#ga9fd748b19523c96052a2964d73a7b0f5',1,'config.h']]],
   ['batt_5fmax',['BATT_MAX',['../group__config.html#gac873c87f494ea2b22e7eb5fc74ad5a82',1,'config.h']]],
-  ['baud',['BAUD',['../group__uart.html#gafccfd7d1315f0763ac404c6104883341',1,'serial.h']]]
+  ['baud',['BAUD',['../group__uart.html#gafccfd7d1315f0763ac404c6104883341',1,'serial.h']]],
+  ['bluetooth',['BLUETOOTH',['../group__uart.html#ga3f30897fa8435dc9811642367a328be8',1,'serial.h']]]
 ];

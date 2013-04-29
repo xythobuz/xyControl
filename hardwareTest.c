@@ -61,10 +61,10 @@ void bluetoothTest(void);
 /*
  * Strings for UART menu, stored in Flash.
  */
-char voltageString[] PROGMEM = "Battery Voltage";
-char sensorString[] PROGMEM = "Raw Sensor Data";
-char ramString[] PROGMEM = "Test external RAM";
-char bluetoothString[] PROGMEM = "Test Bluetooth Module";
+char PROGMEM voltageString[] = "Battery Voltage";
+char PROGMEM sensorString[] = "Raw Sensor Data";
+char PROGMEM ramString[] = "Test external RAM";
+char PROGMEM bluetoothString[] = "Test Bluetooth Module";
 
 int main(void) {
 

@@ -1,0 +1,201 @@
+\hypertarget{hardware_test_8c-example}{\section{hardware\-Test.\-c}
+}
+Small walk-\/through the inner workings of the task scheduler and other library features.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/*}
+\textcolor{comment}{ * hardwareTest.c}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>}
+\textcolor{comment}{ * All rights reserved.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}
+\textcolor{comment}{ * modification, are permitted provided that the following conditions}
+\textcolor{comment}{ * are met:}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions of source code must retain the above copyright notice,}
+\textcolor{comment}{ *   this list of conditions and the following disclaimer.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions in binary form must reproduce the above copyright}
+\textcolor{comment}{ *   notice, this list of conditions and the following disclaimer in the}
+\textcolor{comment}{ *   documentation and/or other materials provided with the distribution.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS}
+\textcolor{comment}{ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED}
+\textcolor{comment}{ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR}
+\textcolor{comment}{ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR}
+\textcolor{comment}{ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,}
+\textcolor{comment}{ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,}
+\textcolor{comment}{ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR}
+\textcolor{comment}{ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF}
+\textcolor{comment}{ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING}
+\textcolor{comment}{ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS}
+\textcolor{comment}{ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}
+\textcolor{comment}{ */}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <stdio.h>}
+
+\textcolor{preprocessor}{#include <avr/io.h>}
+\textcolor{preprocessor}{#include <avr/pgmspace.h>}
+
+\textcolor{preprocessor}{#include <\hyperlink{tasks_8h}{tasks.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{xycontrol_8h}{xycontrol.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{time_8h}{time.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{uart_menu_8h}{uartMenu.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{serial_8h}{serial.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{acc_8h}{acc.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{gyro_8h}{gyro.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{mag_8h}{mag.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{motor_8h}{motor.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{orientation_8h}{orientation.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{xmem_8h}{xmem.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{error_8h}{error.h}>}
+
+\textcolor{keywordtype}{void} ledTask(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} printVoltage(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} printRaw(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} ramTest(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} bluetoothTest(\textcolor{keywordtype}{void});
+
+\textcolor{comment}{/*}
+\textcolor{comment}{ * Strings for UART menu, stored in Flash.}
+\textcolor{comment}{ */}
+\textcolor{keywordtype}{char} PROGMEM voltageString[] = \textcolor{stringliteral}{"Battery Voltage"};
+\textcolor{keywordtype}{char} PROGMEM sensorString[] = \textcolor{stringliteral}{"Raw Sensor Data"};
+\textcolor{keywordtype}{char} PROGMEM ramString[] = \textcolor{stringliteral}{"Test external RAM"};
+\textcolor{keywordtype}{char} PROGMEM bluetoothString[] = \textcolor{stringliteral}{"Test Bluetooth Module"};
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Initialize the System Timer, UART, TWI, SPI,}
+\textcolor{comment}{     * ADC and the UART menu task for user or software}
+\textcolor{comment}{     * interaction. Also enables interrupts!}
+\textcolor{comment}{     * Also, the UART will be tied to stdin, stdout and stderr.}
+\textcolor{comment}{     * This allows you to use stdio.h utilities like printf()}
+\textcolor{comment}{     */}
+    \hyperlink{group__xycontrol_ga2b3fb0734a2675e6dbdcb2c7665a708f}{xyInit}();
+    printf(\textcolor{stringliteral}{"Initializing Hardware Test...\(\backslash\)n"});
+
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Initialize Hardware}
+\textcolor{comment}{     */}
+    \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a0ad916c7f80666dc88f6b5b22a72e742}{LED\_GREEN}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0afc0ca8cc6cbe215fd3f1ae6d40255b40}{LED\_OFF});
+    \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ad80f13022b6d309268fadc7b1da89cb9}{LED\_RED}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{LED\_ON});
+    \hyperlink{group__motor_gaa29e2982047be0f7afbb10c8d6f3f5c3}{motorInit}();
+    \hyperlink{group__orientation_gaa5724492d0f54b41a8984cdde51d59df}{orientationInit}();
+
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Register Tasks in the Scheduler. A UART task}
+\textcolor{comment}{     * is already registered...}
+\textcolor{comment}{     */}
+    \hyperlink{group__task_ga9a6ba4cb66e2fb7e3be42fb5b87fec6f}{addTask}(&ledTask); \textcolor{comment}{// Blink LED}
+
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Add commands for the UART menu}
+\textcolor{comment}{     */}
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'b'}, bluetoothString, &bluetoothTest);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'r'}, sensorString, &printRaw);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'t'}, ramString, &ramTest);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'v'}, voltageString, &printVoltage);
+
+    printf(\textcolor{stringliteral}{"Hardware Test Initialized!\(\backslash\)n"});
+
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Execute all registered tasks, forever.}
+\textcolor{comment}{     */}
+    \textcolor{keywordflow}{for}(;;) \{
+        \hyperlink{group__task_gabf4510e1aba7b08f11d447c2b530d661}{tasks}();
+    \}
+
+    \textcolor{keywordflow}{return} 0;
+\}
+
+\textcolor{keywordtype}{void} ledTask(\textcolor{keywordtype}{void}) \{
+    \textcolor{comment}{/*}
+\textcolor{comment}{     * Basic example of executing a task with a given frequency.}
+\textcolor{comment}{     * last contains the last time this task was executed.}
+\textcolor{comment}{     */}
+    \textcolor{keyword}{static} \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} last = 0;
+    \textcolor{keywordflow}{if} ((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) > 125) \{ \textcolor{comment}{// 125ms have passed}
+        \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ae4fd580189cac85429ebfa5cb71cd772}{LED\_ALL}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0a1b3bca014fbbfe339c8e216d175bae2e}{LED\_TOGGLE}); \textcolor{comment}{// Do something...}
+        last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}(); \textcolor{comment}{// Store new execution time}
+    \}
+\}
+
+\textcolor{keywordtype}{void} printVoltage(\textcolor{keywordtype}{void}) \{
+    printf(\textcolor{stringliteral}{"Battery: %fV\(\backslash\)n"}, \hyperlink{group__xycontrol_ga97874cf2a7f8e6964188b54fe85084a6}{getVoltage}());
+\}
+
+\textcolor{keywordtype}{void} printRaw(\textcolor{keywordtype}{void}) \{
+    \hyperlink{struct_vector3f}{Vector3f} v;
+    \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{accRead}(&v);
+    printf(\textcolor{stringliteral}{"Ax: %f Ay: %f Az: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
+    \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyroRead}(&v);
+    printf(\textcolor{stringliteral}{"Gx: %f Gy: %f Gz: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
+    \hyperlink{group__mag_gacc0c83a48498170ef36451db2c684abb}{magRead}(&v);
+    printf(\textcolor{stringliteral}{"Mx: %f My: %f Mz: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
+\}
+
+\textcolor{preprocessor}{#define CHECKSIZE 53248 // 52KB}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{void} ramTest(\textcolor{keywordtype}{void}) \{
+    uint8\_t *blocks[\hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}];
+    uint8\_t oldBank = \hyperlink{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{xmemGetBank}();
+
+    printf(\textcolor{stringliteral}{"Allocating Test Memory...\(\backslash\)n"});
+    \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
+        \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(i);
+        blocks[i] = (uint8\_t *)malloc(CHECKSIZE);
+        \textcolor{keywordflow}{if} (blocks[i] == NULL) \{
+            printf(\textcolor{stringliteral}{"  Error: Couldn't allocate %liKB in Bank %i!\(\backslash\)n"}, (CHECKSIZE / 1024), i);
+        \} \textcolor{keywordflow}{else} \{
+            printf(\textcolor{stringliteral}{"  Bank %i ready!\(\backslash\)n"}, i);
+        \}
+    \}
+    printf(\textcolor{stringliteral}{"Filling with data...\(\backslash\)n"});
+    \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
+        \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(i);
+        \textcolor{keywordflow}{for} (uint16\_t j = 0; j < CHECKSIZE; j++) \{
+            blocks[i][j] = (j & 0xFF);
+        \}
+        printf(\textcolor{stringliteral}{"  Filled Bank %i!\(\backslash\)n"}, i);
+    \}
+    printf(\textcolor{stringliteral}{"Checking data...\(\backslash\)n"});
+    \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
+        \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(i);
+        uint8\_t error = 0;
+        \textcolor{keywordflow}{for} (uint16\_t j = 0; ((j < CHECKSIZE) && (!error)); j++) \{
+            \textcolor{keywordflow}{if} (blocks[i][j] != (j & 0xFF)) \{
+                printf(\textcolor{stringliteral}{"  Error at %i in %i!\(\backslash\)n"}, j, i);
+                error = 1;
+            \}
+        \}
+        \textcolor{keywordflow}{if} (!error) \{
+            printf(\textcolor{stringliteral}{"  Bank %i okay!\(\backslash\)n"}, i);
+        \}
+    \}
+    printf(\textcolor{stringliteral}{"Freeing memory...\(\backslash\)n"});
+    \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
+        \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(i);
+        free(blocks[i]);
+    \}
+    printf(\textcolor{stringliteral}{"Finished!\(\backslash\)n"});
+
+    \hyperlink{group__xmem_ga619fa66b9f38be684f4331951fc91730}{xmemSetBank}(oldBank);
+\}
+
+\textcolor{keywordtype}{void} bluetoothTest(\textcolor{keywordtype}{void}) \{
+    printf(\textcolor{stringliteral}{"Please disconnect, wait 10s, then reconnect!\(\backslash\)n"});
+    printf(\textcolor{stringliteral}{"All data will be logged, then printed after 15s.\(\backslash\)n"});
+    \hyperlink{group__time_ga02ad034d26db2c14b7e295b0c50fc11d}{time\_t} start = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+    \textcolor{keywordflow}{while} ((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - start) <= 15000); \textcolor{comment}{// Wait}
+    \textcolor{keywordflow}{while} (\hyperlink{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{serialHasChar}(\hyperlink{group__uart_ga3f30897fa8435dc9811642367a328be8}{BLUETOOTH})) \{ \textcolor{comment}{// Check}
+        \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(\hyperlink{group__uart_ga779bf099075a999d1074357fccbd466b}{USB}, \hyperlink{group__uart_gaa9d6e44600b215154c3f66193df151f6}{serialGet}(\hyperlink{group__uart_ga3f30897fa8435dc9811642367a328be8}{BLUETOOTH}));
+    \}
+    printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)nDone!\(\backslash\)n"});
+\}
+\end{DoxyCodeInclude}
+ 

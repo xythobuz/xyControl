@@ -9,5 +9,6 @@ var searchData=
   ['uartmenuregisterhandler',['uartMenuRegisterHandler',['../group__uartmenu.html#gae3654103f924700d1f7801fcda4472b7',1,'uartMenu.c']]],
   ['uartmenutask',['uartMenuTask',['../group__uartmenu.html#ga9f477033e942434f7875930342d5e696',1,'uartMenu.c']]],
   ['uartoutput',['uartoutput',['../group__xycontrol.html#ga7e2be90354ccc3af05947764858bc0b1',1,'xycontrol.c']]],
-  ['unhandler',['unHandler',['../group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a',1,'uartMenu.c']]]
+  ['unhandler',['unHandler',['../group__uartmenu.html#ga59944eadba9321ee37f247a13bc8ec1a',1,'uartMenu.c']]],
+  ['usb',['USB',['../group__uart.html#ga779bf099075a999d1074357fccbd466b',1,'serial.h']]]
 ];

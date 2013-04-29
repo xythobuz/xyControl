@@ -14,7 +14,7 @@ file \hyperlink{debug_8h}{debug.\-h}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}{D\-E\-B\-U\-G\-O\-U\-T}(x)~printf(x)
+\#define \hyperlink{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}{D\-E\-B\-U\-G\-O\-U\-T}(x)~printf(\char`\"{}!\%s\textbackslash{}n\char`\"{}, x)
 \begin{DoxyCompactList}\small\item\em Debug Output Function. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__debug_ga9dfd1281735240dcb36d5f605013d40e}{A\-S\-S\-E\-R\-T\-F\-U\-N\-C}(x)
 \begin{DoxyCompactList}\small\item\em Simple Assert Implementation. \end{DoxyCompactList}\item 
@@ -80,7 +80,7 @@ Definition at line 67 of file debug.\-h.
 \begin{DoxyParamCaption}
 \item[{}]{x}
 \end{DoxyParamCaption}
-)~printf(x)}}\label{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}
+)~printf(\char`\"{}!\%s\textbackslash{}n\char`\"{}, x)}}\label{group__debug_ga19525f7b34cac5693e8cd76d113de4ea}
 
 
 Debug Output Function. 
@@ -100,6 +100,9 @@ Definition at line 64 of file debug.\-h.
 
 Disable \hyperlink{group__debug_gada1787bea8c10cd89775d6918f6fd324}{debug\-Print()} 
 
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
 Definition at line 96 of file debug.\-h.

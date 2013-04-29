@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  28 APR 2013 20:42
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  29 APR 2013 21:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1167,26 +1167,22 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 71.
  [2]
-[3] [4] [5] [6] [7] [8] [9] [10] [11]
-Underfull \vbox (badness 1968) has occurred while \output is active []
-
- [12]
+[3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 470.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 475.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 470.
+(Font)              scaled to size 10.79993pt on input line 475.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 475.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 475.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 470.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 475.
 )
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
-
-[13] [14
+ [13] [14
 
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line 65.
@@ -1238,14 +1234,21 @@ Chapter 3.
 Chapter 4.
 (./files.tex
 
-LaTeX Warning: Reference `test_8c' on page 7 undefined on input line 3.
+LaTeX Warning: Reference `hardware_test_8c' on page 7 undefined on input line 3
+.
 
 
-LaTeX Warning: Reference `uart_flight_8c' on page 7 undefined on input line 4.
+LaTeX Warning: Reference `test_8c' on page 7 undefined on input line 4.
 
-[7]
 
-LaTeX Warning: Reference `twi_8c' on page 8 undefined on input line 43.
+LaTeX Warning: Reference `uart_flight_8c' on page 7 undefined on input line 5.
+
+
+Underfull \vbox (badness 2521) has occurred while \output is active []
+
+ [7]
+
+LaTeX Warning: Reference `twi_8c' on page 8 undefined on input line 44.
 
 ) [8]
 Chapter 5.
@@ -1309,7 +1312,7 @@ Underfull \vbox (badness 10000) detected at line 216
  []
 
 [15]
-Underfull \vbox (badness 10000) detected at line 334
+Underfull \vbox (badness 10000) detected at line 337
  []
 
 [16]) [17]
@@ -1354,14 +1357,8 @@ Underfull \vbox (badness 10000) detected at line 95
 [32]
 \openout2 = `group__debug.aux'.
 
- (./group__debug.tex [33
-
-
-]) [34]
-\openout2 = `group__error.aux'.
-
- (./group__error.tex
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 51.
+ (./group__debug.tex
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 83.
 
 (/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
@@ -1369,15 +1366,22 @@ File: omsphv.fd
 
 LaTeX Font Warning: Font shape `OMS/phv/bc/n' undefined
 (Font)              using `OMS/phv/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 51.
+(Font)              for symbol `textbackslash' on input line 83.
 
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+[33
+
+
+]) [34]
+\openout2 = `group__error.aux'.
+
+ (./group__error.tex
 LaTeX Font Info:    Font shape `OMS/phv/bc/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
-[35
+ [35
 
 
 ]) [36]
@@ -1395,7 +1399,7 @@ Underfull \vbox (badness 10000) detected at line 206
  []
 
 [39]
-Underfull \vbox (badness 10000) detected at line 316
+Underfull \vbox (badness 10000) detected at line 319
  []
 
 [40]) [41]
@@ -1418,65 +1422,64 @@ Underfull \vbox (badness 10000) detected at line 103
  (./group__mag.tex [45
 
 
-]
-Underfull \vbox (badness 10000) detected at line 164
+] [46]
+Underfull \vbox (badness 10000) detected at line 169
  []
 
-[46]
-Underfull \vbox (badness 10000) detected at line 209
+
+Underfull \vbox (badness 10000) detected at line 215
  []
 
 [47]
-Underfull \vbox (badness 10000) detected at line 269
+Underfull \vbox (badness 10000) detected at line 331
  []
 
-) [48]
+[48]) [49]
 \openout2 = `group__motor.aux'.
 
- (./group__motor.tex [49
+ (./group__motor.tex [50
 
 
 ]
 Underfull \vbox (badness 10000) detected at line 86
  []
 
-[50pdfTeX warning (ext4): destination with the same identifier (name{group__mot
+[51pdfTeX warning (ext4): destination with the same identifier (name{group__mot
 or_ga0b3c12451554c9ee060319cbe2553d3a}) has been already used, duplicate ignore
 d
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.178 R
-       eferenced by motor\-Init(), motor\-Set(), and motor\-Task().]) [51]
+       eferenced by motor\-Init(), motor\-Set(), and motor\-Task().]) [52]
 \openout2 = `group__orientation.aux'.
 
 
-(./group__orientation.tex [52
+(./group__orientation.tex [53
 
 
-] [53] [54pdfTeX warning (ext4): destination with the same identifier (name{gro
-up__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already used, dup
-licate ignored
+] [54] [55]) [56pdfTeX warning (ext4): destination with the same identifier (na
+me{group__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already use
+d, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.248 D
-       efinition at line 58 of file orientation.\-c.]) [55]
+l.89 \include{group__orientation}
+                                 ]
 \openout2 = `group__pid.aux'.
 
- (./group__pid.tex
-[56
+ (./group__pid.tex [57
 
 
 ]
 Underfull \vbox (badness 10000) detected at line 120
  []
 
-[57]
+[58]
 Underfull \vbox (badness 10000) detected at line 229
  []
 
-[58] [59pdfTeX warning (ext4): destination with the same identifier (name{group
+[59] [60pdfTeX warning (ext4): destination with the same identifier (name{group
 __pid_gaf457b38bb75f72a89bac9b4a9570bd99}) has been already used, duplicate ign
 ored
 
@@ -1490,7 +1493,7 @@ y used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.351 \item[Examples\-: ]
-                         \par]) [60pdfTeX warning (ext4): destination with the 
+                         \par]) [61pdfTeX warning (ext4): destination with the 
 same identifier (name{group__pid_ga3e9b95260c17d0da155fb4eede660d03}) has been 
 already used, duplicate ignored
 
@@ -1500,58 +1503,58 @@ l.90 \include{group__pid}
                          ]
 \openout2 = `group__uart.aux'.
 
- (./group__uart.tex [61
+ (./group__uart.tex [62
 
 
-] [62]
-Underfull \vbox (badness 10000) detected at line 222
- []
-
-[63]
-Underfull \vbox (badness 10000) detected at line 263
+] [63] [64]
+Underfull \vbox (badness 10000) detected at line 254
  []
 
 
-Underfull \vbox (badness 10000) detected at line 330
- []
-
-[64]
-Underfull \vbox (badness 10000) detected at line 367
- []
-
-
-Underfull \vbox (badness 10000) detected at line 410
+Underfull \vbox (badness 10000) detected at line 295
  []
 
 [65]
-Underfull \vbox (badness 10000) detected at line 469
+Underfull \vbox (badness 10000) detected at line 365
  []
 
 
-Underfull \vbox (badness 10000) detected at line 505
+Underfull \vbox (badness 10000) detected at line 402
  []
 
 [66]
-Underfull \vbox (badness 10000) detected at line 542
+Underfull \vbox (badness 10000) detected at line 448
  []
 
 
-Underfull \vbox (badness 10000) detected at line 582
- []
-
-
-Underfull \vbox (badness 10000) detected at line 626
+Underfull \vbox (badness 10000) detected at line 507
  []
 
 [67]
-Underfull \vbox (badness 10000) detected at line 683
+Underfull \vbox (badness 10000) detected at line 543
  []
 
 
-Underfull \vbox (badness 10000) detected at line 725
+Underfull \vbox (badness 10000) detected at line 580
  []
 
-[68]) [69]
+[68]
+Underfull \vbox (badness 10000) detected at line 620
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 664
+ []
+
+[69]
+Underfull \vbox (badness 10000) detected at line 724
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 766
+ []
+
+) [70]
 \openout2 = `group__set.aux'.
 
  (./group__set.tex
@@ -1564,14 +1567,14 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Warning: Font shape `OT1/pcr/bc/n' undefined
 (Font)              using `OT1/pcr/m/n' instead on input line 66.
 
-[70
+[71
 
 
 ]
 Underfull \vbox (badness 10000) detected at line 77
  []
 
-) [71pdfTeX warning (ext4): destination with the same identifier (name{group__s
+) [72pdfTeX warning (ext4): destination with the same identifier (name{group__s
 et_gab2b0c78a81e045d7a8f28be307b8c61b}) has been already used, duplicate ignore
 d
 
@@ -1581,7 +1584,7 @@ l.92 \include{group__set}
                          ]
 \openout2 = `group__spi.aux'.
 
- (./group__spi.tex [72
+ (./group__spi.tex [73
 
 
 ]
@@ -1592,10 +1595,10 @@ Underfull \vbox (badness 10000) detected at line 145
 Underfull \vbox (badness 10000) detected at line 165
  []
 
-) [73]
+) [74]
 \openout2 = `group__task.aux'.
 
- (./group__task.tex [74
+ (./group__task.tex [75
 
 
 ]
@@ -1606,7 +1609,7 @@ Underfull \vbox (badness 10000) detected at line 79
 Underfull \vbox (badness 10000) detected at line 130
  []
 
-[75] [76]) [77pdfTeX warning (ext4): destination with the same identifier (name
+[76] [77]) [78pdfTeX warning (ext4): destination with the same identifier (name
 {group__task_gaadf0c3981f1a6c7cc610de145a1d5461}) has been already used, duplic
 ate ignored
 
@@ -1616,17 +1619,17 @@ l.94 \include{group__task}
                           ]
 \openout2 = `group__time.aux'.
 
- (./group__time.tex [78
+ (./group__time.tex [79
 
 
-] [79]) [80]
+] [80]) [81]
 \openout2 = `group__twi.aux'.
 
 
-(./group__twi.tex [81
+(./group__twi.tex [82
 
 
-] [82]
+] [83]
 Underfull \vbox (badness 10000) detected at line 187
  []
 
@@ -1634,15 +1637,15 @@ Underfull \vbox (badness 10000) detected at line 187
 Underfull \vbox (badness 10000) detected at line 225
  []
 
-[83]
+[84]
 Underfull \vbox (badness 10000) detected at line 282
  []
 
-[84]
+[85]
 Underfull \vbox (badness 10000) detected at line 375
  []
 
-) [85]
+) [86]
 \openout2 = `group__uartmenu.aux'.
 
  (./group__uartmenu.tex
@@ -1653,14 +1656,14 @@ Underfull \vbox (badness 10000) detected at line 70
 Overfull \vbox (34.16437pt too high) has occurred while \output is active []
 
 
-[86
+[87
 
 
 ]
 Underfull \vbox (badness 10000) detected at line 126
  []
 
-[87]
+[88]
 Underfull \vbox (badness 10000) detected at line 170
  []
 
@@ -1668,48 +1671,51 @@ Underfull \vbox (badness 10000) detected at line 170
 Underfull \vbox (badness 10000) detected at line 262
  []
 
-[88]
+[89]
 Underfull \hbox (badness 883) in paragraph at lines 294--295
 []\T1/phv/m/n/10 References B-A-N-K-_--G-E-N-E-R-I-C, Menu-Entry-::cmd, Menu-En
 try-::f, Menu-Entry-::next, serial-Available(), serial-Get(),
  []
 
-) [89]
+) [90]
 \openout2 = `group__xmem.aux'.
 
- (./group__xmem.tex [90
+ (./group__xmem.tex [91
 
 
 ]
-Underfull \vbox (badness 10000) detected at line 111
+Underfull \vbox (badness 10000) detected at line 114
  []
 
 
-Underfull \vbox (badness 10000) detected at line 135
- []
-
-[91]
-Underfull \vbox (badness 10000) detected at line 162
+Underfull \vbox (badness 10000) detected at line 138
  []
 
 
-Underfull \vbox (badness 10000) detected at line 199
+Underfull \vbox (badness 1454) has occurred while \output is active []
+
+ [92]
+Underfull \vbox (badness 10000) detected at line 165
  []
 
-[92]
-Underfull \vbox (badness 10000) detected at line 310
+
+Underfull \vbox (badness 10000) detected at line 202
  []
 
-[93]pdfTeX warning (ext4): destination with the same identifier (name{group__xm
-em_ga4a1acf2db179d35f089bd00881d1c2eb}) has been already used, duplicate ignore
-d
-<to be read again> 
-                   \relax 
-l.383 ...0pt plus 5cm}uint8\-\_\-t current\-Bank}}
-                                                  \label{group__xmem_ga4a1ac...
-) [94pdfTeX warning (ext4): destination with the same identifier (name{group__x
-mem_gabe6eb8575dfb63d41e3ca7fe774d1b27}) has been already used, duplicate ignor
-ed
+[93]
+Underfull \vbox (badness 10000) detected at line 316
+ []
+
+[94]) [95pdfTeX warning (ext4): destination with the same identifier (name{grou
+p__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}) has been already used, duplicate i
+gnored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.98 \include{group__xmem}
+                          pdfTeX warning (ext4): destination with the same iden
+tifier (name{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}) has been already 
+used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1717,10 +1723,10 @@ l.98 \include{group__xmem}
                           ]
 \openout2 = `group__xycontrol.aux'.
 
- (./group__xycontrol.tex [95
+ (./group__xycontrol.tex [96
 
 
-] [96] [97]
+] [97] [98]
 Underfull \vbox (badness 10000) detected at line 368
  []
 
@@ -1728,16 +1734,16 @@ Underfull \vbox (badness 10000) detected at line 368
 Overfull \vbox (11.98845pt too high) has occurred while \output is active []
 
 
-[98]
+[99]
 Underfull \vbox (badness 10000) detected at line 397
  []
 
-) [99] [100
-
-
-]
+) [100]
 Chapter 6.
-(./struct_angles.tex [101]) (./struct_complementary.tex) (./struct_kalman.tex
+(./struct_angles.tex [101
+
+
+]) (./struct_complementary.tex) (./struct_kalman.tex
 [102]) (./struct_malloc_state.tex [103]) (./struct_menu_entry.tex [104])
 (./struct_p_i_d_state.tex [105] [106] [107]) (./struct_task_element.tex)
 (./struct_vector3f.tex [108]) [109] [110
@@ -1781,7 +1787,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
 [118]) (./pid_8h.tex [119]) (./serial_8h.tex) (./serial__device_8h.tex [120])
 (./set_8h.tex) (./spi_8h.tex [121]) (./tasks_8h.tex) (./time_8h.tex [122])
-(./twi_8h.tex) (./uart_menu_8h.tex [123]
+(./twi_8h.tex [123]) (./uart_menu_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
@@ -1791,17 +1797,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
 
-) (./adc_8c.tex
+[126]) (./adc_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
-[126]) (./complementary_8c.tex
+) (./complementary_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
 
-) (./error_8c.tex [127]
+[127]) (./error_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
@@ -1816,12 +1822,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--13
 
  []
 
-) (./mag_8c.tex
+) (./mag_8c.tex [130]
 Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
 
-[130]) (./motor_8c.tex
+) (./motor_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--16
 
  []
@@ -1878,25 +1884,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--26
 
 [139]) [140]
 Chapter 8.
-(./test_8c-example.tex) (./uart_flight_8c-example.tex
-Underfull \vbox (badness 4805) has occurred while \output is active []
-
- [141
+(./hardware_test_8c-example.tex [141
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [142]
+ [142])
+(./test_8c-example.tex [143]) (./uart_flight_8c-example.tex [144]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [143])
-(./refman.ind [144] [145
+ [145]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [146] [147] [148] [149] [150] [151] [152] [153
+ [146])
+(./refman.ind [147] [148
+
+] [149] [150] [151] [152] [153] [154] [155] [156
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 157.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 157.
 
 (./refman.aux (./group___system.aux) (./group___flight.aux)
 (./group___hardware.aux) (./group__acc.aux) (./group__adc.aux)
@@ -1906,10 +1913,10 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
 (./group__pid.aux) (./group__uart.aux) (./group__set.aux) (./group__spi.aux)
 (./group__task.aux) (./group__time.aux) (./group__twi.aux)
 (./group__uartmenu.aux) (./group__xmem.aux) (./group__xycontrol.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 157.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 157.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 82627C98D47891F7143196C539321045;68023.
+(rerunfilecheck)             Checksum: E7790C5CEFE62C6B0D23F8611403241E;68652.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1920,16 +1927,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
  ) 
 Here is how much of TeX's memory you used:
- 13967 strings out of 493610
- 219703 string characters out of 3142404
- 307240 words of memory out of 3000000
- 15486 multiletter control sequences out of 15000+200000
+ 13993 strings out of 493610
+ 220346 string characters out of 3142404
+ 309898 words of memory out of 3000000
+ 15496 multiletter control sequences out of 15000+200000
  86391 words of font info for 133 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 41i,13n,58p,694b,516s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,58p,694b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{xycontrol_8c_source} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2066,10 +2073,10 @@ nts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvbo8ac.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb>
-Output written on refman.pdf (169 pages, 501168 bytes).
+Output written on refman.pdf (172 pages, 517556 bytes).
 PDF statistics:
- 6658 PDF objects out of 7423 (max. 8388607)
- 6413 compressed objects within 65 object streams
- 1265 named destinations out of 1440 (max. 500000)
- 3761 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6877 PDF objects out of 7423 (max. 8388607)
+ 6627 compressed objects within 67 object streams
+ 1279 named destinations out of 1440 (max. 500000)
+ 3801 words of extra memory for PDF output out of 10000 (max. 10000000)
 

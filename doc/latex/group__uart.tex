@@ -18,6 +18,10 @@ file \hyperlink{serial_8c}{serial.\-c}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \hyperlink{group__uart_ga779bf099075a999d1074357fccbd466b}{U\-S\-B}~0
+\begin{DoxyCompactList}\small\item\em First U\-A\-R\-T Name. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga3f30897fa8435dc9811642367a328be8}{B\-L\-U\-E\-T\-O\-O\-T\-H}~1
+\begin{DoxyCompactList}\small\item\em Second U\-A\-R\-T Name. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{B\-A\-U\-D}(baud\-Rate, xtal\-Cpu)~((xtal\-Cpu)/((baud\-Rate)$\ast$16l)-\/1)
 \begin{DoxyCompactList}\small\item\em Calculate Baudrate Register Value. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~32
@@ -81,11 +85,25 @@ Calculate Baudrate Register Value.
 
 
 
-Definition at line 46 of file serial.\-h.
+Definition at line 49 of file serial.\-h.
 
 
 
 Referenced by xy\-Init().
+
+\hypertarget{group__uart_ga3f30897fa8435dc9811642367a328be8}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}}
+\index{B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}!UART Library@{U\-A\-R\-T Library}}
+\subsubsection[{B\-L\-U\-E\-T\-O\-O\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-L\-U\-E\-T\-O\-O\-T\-H~1}}\label{group__uart_ga3f30897fa8435dc9811642367a328be8}
+
+
+Second U\-A\-R\-T Name. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
+
+
+Definition at line 46 of file serial.\-h.
 
 \hypertarget{group__uart_gaff1f07741fbe1f53f46098687f0a05e2}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!F\-L\-O\-W\-C\-O\-N\-T\-R\-O\-L@{F\-L\-O\-W\-C\-O\-N\-T\-R\-O\-L}}
 \index{F\-L\-O\-W\-C\-O\-N\-T\-R\-O\-L@{F\-L\-O\-W\-C\-O\-N\-T\-R\-O\-L}!UART Library@{U\-A\-R\-T Library}}
@@ -142,6 +160,20 @@ Definition at line 59 of file serial.\-c.
 
 
 Referenced by serial\-Tx\-Buffer\-Full(), and serial\-Write().
+
+\hypertarget{group__uart_ga779bf099075a999d1074357fccbd466b}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!U\-S\-B@{U\-S\-B}}
+\index{U\-S\-B@{U\-S\-B}!UART Library@{U\-A\-R\-T Library}}
+\subsubsection[{U\-S\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-B~0}}\label{group__uart_ga779bf099075a999d1074357fccbd466b}
+
+
+First U\-A\-R\-T Name. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
+
+
+Definition at line 45 of file serial.\-h.
 
 \hypertarget{group__uart_ga67fd78ae15d2b67c10d44d69a49ab1c5}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!X\-O\-F\-F@{X\-O\-F\-F}}
 \index{X\-O\-F\-F@{X\-O\-F\-F}!UART Library@{U\-A\-R\-T Library}}
@@ -264,6 +296,9 @@ Read a single byte.
 \begin{DoxyReturn}{Returns}
 Received byte or 0 
 \end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 218 of file serial.\-c.
@@ -368,6 +403,9 @@ Check if a byte was received.
 \begin{DoxyReturn}{Returns}
 1 if a byte was received, 0 if not 
 \end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 199 of file serial.\-c.
@@ -624,6 +662,9 @@ Send a byte.
 {\em data} & Byte to send \\
 \hline
 \end{DoxyParams}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 274 of file serial.\-c.
