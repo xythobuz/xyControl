@@ -45,7 +45,7 @@
 
 #define FILTER_KALMAN 0
 #define FILTER_COMPLEMENTARY 1
-#define ORIENTATION_FILTER FILTER_COMPLEMENTARY /**< Filter Implementation to be used */
+#define ORIENTATION_FILTER FILTER_KALMAN /**< Filter Implementation to be used */
 
 /** Time Contant for Low and High Pass Filter in the Complementary Filter.
  *  In essence, time periods shorter than TAU come from gyro data,

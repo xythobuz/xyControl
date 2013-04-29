@@ -156,16 +156,16 @@ public class Remote extends JFrame implements ActionListener {
         add(yawLabel);
 
         rollCurrent = new JLabel();
-        rollCurrent.setText("-180°");
-        rollCurrent.setBounds(145, 100, 50, 15);
+        rollCurrent.setText("-180.00°");
+        rollCurrent.setBounds(145, 100, 60, 15);
         add(rollCurrent);
         pitchCurrent = new JLabel();
-        pitchCurrent.setText("-180°");
-        pitchCurrent.setBounds(145, 130, 50, 15);
+        pitchCurrent.setText("-180.00°");
+        pitchCurrent.setBounds(145, 130, 60, 15);
         add(pitchCurrent);
         yawCurrent = new JLabel();
-        yawCurrent.setText("-180°");
-        yawCurrent.setBounds(145, 160, 50, 15);
+        yawCurrent.setText("-180.00°");
+        yawCurrent.setBounds(145, 160, 60, 15);
         add(yawCurrent);
 
         voltLabel = new JLabel();
@@ -174,7 +174,7 @@ public class Remote extends JFrame implements ActionListener {
         add(voltLabel);
         voltCurrent = new JLabel();
         voltCurrent.setText("11.11V");
-        voltCurrent.setBounds(145, 190, 50, 15);
+        voltCurrent.setBounds(145, 190, 60, 15);
         add(voltCurrent);
 
         for (int i = 0; i < bars.length; i++) {
@@ -227,26 +227,42 @@ public class Remote extends JFrame implements ActionListener {
                 break;
 
             case MESSAGE_PITCH_READ:
-                int p = Math.round(Float.parseFloat(line));
-                bars[0].setValue(p);
-                pitchCurrent.setText(p + "°");
+                try {
+                    float p = Float.parseFloat(line);
+                    bars[0].setValue(Math.round(p));
+                    pitchCurrent.setText(String.format("%.2f", p) + "°");
+                } catch (Exception e) {
+                    log(e.getMessage());
+                }
                 break;
 
             case MESSAGE_ROLL_READ:
-                int r = Math.round(Float.parseFloat(line));
-                bars[1].setValue(r);
-                rollCurrent.setText(r + "°");
+                try {
+                    float r = Float.parseFloat(line);
+                    bars[1].setValue(Math.round(r));
+                    rollCurrent.setText(String.format("%.2f", r) + "°");
+                } catch (Exception e) {
+                    log(e.getMessage());
+                }
                 break;
 
             case MESSAGE_YAW_READ :
-                int y = Math.round(Float.parseFloat(line));
-                bars[2].setValue(y);
-                yawCurrent.setText(y + "°");
+                try {
+                    float y = Float.parseFloat(line);
+                    bars[2].setValue(Math.round(y));
+                    yawCurrent.setText(String.format("%.2f", y) + "°");
+                } catch (Exception e) {
+                    log(e.getMessage());
+                }
                 break;
 
             case MESSAGE_VOLT_READ :
-                float v = Float.parseFloat(line);
-                voltCurrent.setText(String.format("%.2f", v) + "V");
+                try {
+                    float v = Float.parseFloat(line);
+                    voltCurrent.setText(String.format("%.2f", v) + "V");
+                } catch (Exception e) {
+                    log(e.getMessage());
+                }
                 break;
 
             default:

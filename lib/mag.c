@@ -49,6 +49,8 @@
 #define MAGREG_MR 0x02 /**< Magnetometer Mode Register */
 #define MAGREG_XH 0x03 /**< First Magnetometer Output Register */
 
+MagRange magRange; /**< Stored range to scale returned values. */
+
 /** Write a Magnetometer Register.
  * I2C should aready be initialized!
  *
@@ -79,6 +81,7 @@ Error magInit(MagRange r) {
         return e;
     }
     e = magWriteRegister(MAGREG_CRB, (r << 5)); // Set Range
+    magRange = r;
     return e;
 }
 
@@ -102,9 +105,58 @@ Error magRead(Vector3f *v) {
     uint8_t yh = twiReadAck();
     uint8_t yl = twiReadNak();
 
-    v->x = (int16_t)(xh << 8 | xl);
-    v->y = (int16_t)(yh << 8 | yl);
-    v->z = (int16_t)(zh << 8 | zl);
+    int16_t x = *(int8_t *)(&xh);
+    x *= (1 << 8);
+    x |= xl;
+
+    int16_t y = *(int8_t *)(&yh);
+    y *= (1 << 8);
+    y |= yl;
+
+    int16_t z = *(int8_t *)(&zh);
+    z *= (1 << 8);
+    z |= zl;
+
+    switch (magRange) {
+        case r1g3:
+            v->x = (((double)x) * 1.3 / 0x8000);
+            v->y = (((double)y) * 1.3 / 0x8000);
+            v->z = (((double)z) * 1.3 / 0x8000);
+            break;
+        case r1g9:
+            v->x = (((double)x) * 1.9 / 0x8000);
+            v->y = (((double)y) * 1.9 / 0x8000);
+            v->z = (((double)z) * 1.9 / 0x8000);
+            break;
+        case r2g5:
+            v->x = (((double)x) * 2.5 / 0x8000);
+            v->y = (((double)y) * 2.5 / 0x8000);
+            v->z = (((double)z) * 2.5 / 0x8000);
+            break;
+        case r4g0:
+            v->x = (((double)x) * 4.0 / 0x8000);
+            v->y = (((double)y) * 4.0 / 0x8000);
+            v->z = (((double)z) * 4.0 / 0x8000);
+            break;
+        case r4g7:
+            v->x = (((double)x) * 4.7 / 0x8000);
+            v->y = (((double)y) * 4.7 / 0x8000);
+            v->z = (((double)z) * 4.7 / 0x8000);
+            break;
+        case r5g6:
+            v->x = (((double)x) * 5.6 / 0x8000);
+            v->y = (((double)y) * 5.6 / 0x8000);
+            v->z = (((double)z) * 5.6 / 0x8000);
+            break;
+        case r8g1:
+            v->x = (((double)x) * 8.1 / 0x8000);
+            v->y = (((double)y) * 8.1 / 0x8000);
+            v->z = (((double)z) * 8.1 / 0x8000);
+            break;
+        default:
+            return ARGUMENT_ERROR;
+    }
+
     return SUCCESS;
 }
 /** @} */

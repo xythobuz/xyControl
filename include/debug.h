@@ -61,7 +61,7 @@
  *  Debug and Assert Header and Implementation
  */
 
-#define DEBUGOUT(x) printf(x) /**< Debug Output Function */
+#define DEBUGOUT(x) printf("!%s\n", x) /**< Debug Output Function */
 
 /** Simple Assert Implementation */
 #define ASSERTFUNC(x) ({ \

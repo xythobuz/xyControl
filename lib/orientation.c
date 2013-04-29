@@ -63,9 +63,11 @@ Angles orientationError = {.pitch = 0, .roll = 0, .yaw = 0};
 #if ORIENTATION_FILTER == FILTER_KALMAN
 Kalman pitchData; /**< Kalman-State for Pitch Angle */
 Kalman rollData; /**< Kalman-State for Roll Angle */
+Kalman yawData; //*> Kalman-State for Yaw Angle */
 #elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
 Complementary pitchData; /**< Complementary-State for Pitch Angle */
 Complementary rollData; /**< Complementary-State for Roll Angle */
+Complementary yawData; /**< Complementary-State for Yaw Angle */
 #else
 #error Define a Filter for the orientation Data
 #endif
@@ -81,19 +83,23 @@ Error orientationInit(void) {
 #if ORIENTATION_FILTER == FILTER_KALMAN
     kalmanInit(&pitchData);
     kalmanInit(&rollData);
+    kalmanInit(&yawData);
 #elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
     complementaryInit(&pitchData);
     complementaryInit(&rollData);
+    kalmanInit(&yawData);
 #endif
 
     return SUCCESS;
 }
 
 Error orientationTask(void) {
-    Vector3f g, a;
+    Vector3f g, a, m;
     Error e = accRead(&a); // Read Accelerometer
     CHECKERROR(e);
     e = gyroRead(&g); // Read Gyroscope
+    CHECKERROR(e);
+    e = magRead(&m); // Read Magnetometer
     CHECKERROR(e);
 
     // Calculate Pitch & Roll from Accelerometer Data
@@ -119,8 +125,20 @@ Error orientationTask(void) {
     orientation.roll -= orientationError.roll;
     orientation.pitch -= orientationError.pitch;
 
-    //orientation.roll = round(orientation.roll * 10) / 10;
-    //orientation.pitch = round(orientation.pitch * 10) / 10;
+    // Calculate Yaw from Magnetometer Data
+    double yaw = atan2(((-m.y * cos(orientation.roll)) + (m.z * sin(orientation.roll))), ((m.x * cos(orientation.pitch)) + (m.y * sin(orientation.pitch) * sin(orientation.roll)) + (m.z * sin(orientation.pitch) * cos(orientation.roll))));
+
+    // Filter Yaw with Gyroscope Data from the corresponding axis
+#if ORIENTATION_FILTER == FILTER_KALMAN
+    kalmanInnovate(&yawData, yaw, g.z);
+    orientation.pitch = yawData.x1;
+#elif ORIENTATION_FILTER == FILTER_COMPLEMENTARY
+    complementaryExecute(&yawData, yaw, g.z);
+    orientation.pitch = yawData.angle;
+#endif
+
+    // Zero Offset for yaw angle
+    orientation.yaw -= orientationError.yaw;
 
     return SUCCESS;
 }

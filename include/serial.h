@@ -42,6 +42,9 @@
  *  UART Library Header File
  */
 
+#define USB 0 /**< First UART Name */
+#define BLUETOOTH 1 /**< Second UART Name */
+
 /** Calculate Baudrate Register Value */
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
 

@@ -33,6 +33,9 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 
+#define DEBUG 1
+
+#include <debug.h>
 #include <tasks.h>
 #include <error.h>
 #include <xycontrol.h>
@@ -70,6 +73,7 @@ void motorBackward(void);
 void motorLeft(void);
 void motorRight(void);
 void parameterChange(void);
+void silent(void);
 
 char PROGMEM motorToggleString[] = "Motor On/Off";
 char PROGMEM motorUpString[] = "Up";
@@ -81,8 +85,13 @@ char PROGMEM motorBackwardString[] = "Backwards";
 char PROGMEM controlToggleString[] = "Toggle PID";
 char PROGMEM parameterChangeString[] = "Change PID Params";
 char PROGMEM zeroString[] = "Angles to Zero";
+char PROGMEM silentString[] = "Toggle Status Output";
 
-uint8_t state = 0; // Bit 0: Motor, Bit 1: PID
+#define STATE_MOTOR (1 << 0) // 1 -> Motor On
+#define STATE_PID (1 << 1) // 1 -> PID enabled
+#define STATE_OUTPUT (1 << 2) // 1 -> No Status Output
+uint8_t state = 0;
+
 uint8_t speed = 10;
 int16_t targetRoll = 0;
 int16_t targetPitch = 0;
@@ -94,6 +103,8 @@ int main(void) {
     pidInit();
     motorInit();
     orientationInit();
+
+    debugPrint("Initialized Hardware");
 
     addTask(&flightTask);
     addTask(&statusTask);
@@ -108,9 +119,12 @@ int main(void) {
     addMenuCommand('p', controlToggleString, &controlToggle);
     addMenuCommand('n', parameterChangeString, &parameterChange);
     addMenuCommand('z', zeroString, &zeroOrientation);
+    addMenuCommand('o', silentString, &silent);
 
     xyLed(LED_RED, LED_OFF);
     xyLed(LED_GREEN, LED_ON);
+
+    debugPrint("Starting Tasks");
 
     for(;;) {
         tasks();
@@ -146,7 +160,7 @@ void flightTask(void) {
 void statusTask(void) {
     static time_t last = 100; // Don't begin immediately
     static uint32_t lastDuration = 0;
-    if ((getSystemTime() - last) >= STATUSDELAY) {
+    if (((getSystemTime() - last) >= STATUSDELAY) && (!(state & STATE_OUTPUT))) {
         last = getSystemTime();
         printf("q%li %li\n", sumFlightTask / sumFlightCount, lastDuration);
         printf("r%.2f %.2f\n", o_pids[0].intMin, o_pids[0].intMax);
@@ -163,22 +177,22 @@ void statusTask(void) {
 }
 
 void controlToggle(void) {
-    if (state & 0x02) {
-        state &= ~0x02;
+    if (state & STATE_PID) {
+        state &= ~STATE_PID;
         printf("PID Off!\n");
     } else {
-        state |= 0x02;
+        state |= STATE_PID;
         printf("PID On!\n");
     }
 }
 
 void motorToggle(void) {
-    if (state & 0x01) {
-        state &= ~0x01;
+    if (state & STATE_MOTOR) {
+        state &= ~STATE_MOTOR;
         baseSpeed = 0;
         printf("Motor Off!\n");
     } else {
-        state |= 0x01;
+        state |= STATE_MOTOR;
         baseSpeed = speed = 10;
         printf("Motor On!\n");
     }
@@ -186,7 +200,7 @@ void motorToggle(void) {
 
 void motorUp(void) {
     if (speed <= (MAXMOTOR - MOTORSTEP)) {
-        if (state & 0x01) {
+        if (state & STATE_MOTOR) {
             speed += MOTORSTEP;
             baseSpeed = speed;
             printf("Throttle up to %i\n", speed);
@@ -196,7 +210,7 @@ void motorUp(void) {
 
 void motorDown(void) {
     if (speed >= MOTORSTEP) {
-        if (state & 0x01) {
+        if (state & STATE_MOTOR) {
             speed -= MOTORSTEP;
             baseSpeed = speed;
             printf("Throttle down to %i\n", speed);
@@ -244,5 +258,15 @@ void parameterChange(void) {
         pidSet(&o_pids[1], p, i, d, min, max, iMin, iMax);
     } else {
         printf("Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\n", c, p, i, d, min, max, iMin, iMax);
+    }
+}
+
+void silent(void) {
+    if (state & STATE_OUTPUT) {
+        // Currently disabled, bit set
+        state &= ~STATE_OUTPUT; // Unset Bit
+    } else {
+        // Currently enabled
+        state |= STATE_OUTPUT; // Set Bit
     }
 }
