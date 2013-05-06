@@ -264,7 +264,7 @@ Variables</h2></td></tr>
 
 <p>References <a class="el" href="acc_8c_source.html#l00053">accRange</a>, <a class="el" href="acc_8c_source.html#l00049">ACCREG_CTRL1</a>, <a class="el" href="acc_8c_source.html#l00050">ACCREG_CTRL4</a>, <a class="el" href="acc_8c_source.html#l00062">accWriteRegister()</a>, <a class="el" href="error_8h_source.html#l00052">ARGUMENT_ERROR</a>, <a class="el" href="acc_8h_source.html#l00051">r16G</a>, <a class="el" href="acc_8h_source.html#l00048">r2G</a>, <a class="el" href="acc_8h_source.html#l00049">r4G</a>, <a class="el" href="acc_8h_source.html#l00050">r8G</a>, and <a class="el" href="error_8h_source.html#l00047">SUCCESS</a>.</p>
 
-<p>Referenced by <a class="el" href="orientation_8c_source.html#l00075">orientationInit()</a>.</p>
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00073">orientationInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                          {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    uint8_t v;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">switch</span> (r) {</div>
@@ -317,13 +317,13 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__error.html#gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c" title="No answer from TWI Slave.">TWI_NO_ANSWER</a>, <a class="el" href="group__error.html#gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9" title="Error while writing to TWI Slave.">TWI_WRITE_ERROR</a>, <a class="el" href="group__error.html#gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc" title="Invalid arguments.">ARGUMENT_ERROR</a> or <a class="el" href="group__error.html#gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8" title="No Error.">SUCCESS</a>. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a16">hardwareTest.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a16">hardwareTest.c</a>, and <a class="el" href="uart_flight_8c-example.html#a34">uartFlight.c</a>.</dd>
 </dl>
 <p>Definition at line <a class="el" href="acc_8c_source.html#l00103">103</a> of file <a class="el" href="acc_8c_source.html">acc.c</a>.</p>
 
 <p>References <a class="el" href="config_8h_source.html#l00120">ACC_ADDRESS</a>, <a class="el" href="config_8h_source.html#l00059">ACCFILTERFACTOR</a>, <a class="el" href="acc_8c_source.html#l00053">accRange</a>, <a class="el" href="acc_8c_source.html#l00051">ACCREG_XL</a>, <a class="el" href="error_8h_source.html#l00052">ARGUMENT_ERROR</a>, <a class="el" href="acc_8h_source.html#l00051">r16G</a>, <a class="el" href="acc_8h_source.html#l00048">r2G</a>, <a class="el" href="acc_8h_source.html#l00049">r4G</a>, <a class="el" href="acc_8h_source.html#l00050">r8G</a>, <a class="el" href="error_8h_source.html#l00047">SUCCESS</a>, <a class="el" href="error_8h_source.html#l00048">TWI_NO_ANSWER</a>, <a class="el" href="twi_8h_source.html#l00043">TWI_READ</a>, <a class="el" href="twi_8h_source.html#l00044">TWI_WRITE</a>, <a class="el" href="error_8h_source.html#l00049">TWI_WRITE_ERROR</a>, <a class="el" href="twi_8c_source.html#l00179">twiReadAck()</a>, <a class="el" href="twi_8c_source.html#l00194">twiReadNak()</a>, <a class="el" href="twi_8c_source.html#l00127">twiRepStart()</a>, <a class="el" href="twi_8c_source.html#l00040">twiStart()</a>, <a class="el" href="twi_8c_source.html#l00155">twiWrite()</a>, <a class="el" href="xycontrol_8h_source.html#l00064">Vector3f::x</a>, <a class="el" href="xycontrol_8h_source.html#l00065">Vector3f::y</a>, and <a class="el" href="xycontrol_8h_source.html#l00066">Vector3f::z</a>.</p>
 
-<p>Referenced by <a class="el" href="orientation_8c_source.html#l00096">orientationTask()</a>.</p>
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                           {</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> accSumX = 0; <span class="comment">/* Buffer for X Low-Pass. */</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">double</span> accSumY = 0; <span class="comment">/* Buffer for Y Low-Pass. */</span></div>

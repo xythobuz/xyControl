@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  29 APR 2013 21:30
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  6 MAY 2013 22:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1197,29 +1197,30 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
 (Font)              scaled to size 18.66588pt on input line 66.
 (./index.tex
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 3.
+ (/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
 LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
-(Font)              scaled to size 10.79993pt on input line 5.
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 11.
- (/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/ts1phv.fd
+(Font)              scaled to size 10.79993pt on input line 7.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 13.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 11.
+(Font)              scaled to size 8.99994pt on input line 13.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 17.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 19.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 17.
+(Font)              scaled to size 12.9599pt on input line 19.
 LaTeX Font Info:    Font shape `OT1/phv/bc/n' will be
-(Font)              scaled to size 12.9599pt on input line 17.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 21.
-
-(/usr/local/texlive/2011/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [1
+(Font)              scaled to size 12.9599pt on input line 19.
+ [1
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 44.
+(Font)              scaled to size 7.19995pt on input line 46.
 ) [2]
 Chapter 2.
 (./modules.tex) [3
@@ -1427,11 +1428,11 @@ Underfull \vbox (badness 10000) detected at line 169
  []
 
 
-Underfull \vbox (badness 10000) detected at line 215
+Underfull \vbox (badness 10000) detected at line 211
  []
 
 [47]
-Underfull \vbox (badness 10000) detected at line 331
+Underfull \vbox (badness 10000) detected at line 323
  []
 
 [48]) [49]
@@ -1458,14 +1459,15 @@ l.178 R
 (./group__orientation.tex [53
 
 
-] [54] [55]) [56pdfTeX warning (ext4): destination with the same identifier (na
-me{group__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already use
-d, duplicate ignored
+] [54] [55pdfTeX warning (ext4): destination with the same identifier (name{gro
+up__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already used, dup
+licate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.89 \include{group__orientation}
-                                 ]
+l.247 R
+       eferenced by orientation\-Task(), pid\-Task(), and zero\-Orientation().]
+) [56]
 \openout2 = `group__pid.aux'.
 
  (./group__pid.tex [57
@@ -1930,13 +1932,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
  ) 
 Here is how much of TeX's memory you used:
- 13993 strings out of 493610
- 220346 string characters out of 3142404
- 309898 words of memory out of 3000000
- 15496 multiletter control sequences out of 15000+200000
- 86391 words of font info for 133 fonts, out of 3000000 for 9000
+ 13995 strings out of 493610
+ 220365 string characters out of 3142404
+ 309412 words of memory out of 3000000
+ 15497 multiletter control sequences out of 15000+200000
+ 87012 words of font info for 135 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 41i,13n,58p,694b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,58p,823b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{xycontrol_8c_source} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2073,10 +2075,10 @@ nts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvbo8ac.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb>
-Output written on refman.pdf (172 pages, 517556 bytes).
+Output written on refman.pdf (172 pages, 517637 bytes).
 PDF statistics:
- 6877 PDF objects out of 7423 (max. 8388607)
- 6627 compressed objects within 67 object streams
+ 6870 PDF objects out of 7423 (max. 8388607)
+ 6620 compressed objects within 67 object streams
  1279 named destinations out of 1440 (max. 500000)
  3801 words of extra memory for PDF output out of 10000 (max. 10000000)
 

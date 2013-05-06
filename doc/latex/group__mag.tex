@@ -172,30 +172,26 @@ Call before \hyperlink{group__mag_gacc0c83a48498170ef36451db2c684abb}{mag\-Read(
 \end{DoxyReturn}
 
 
-Definition at line 75 of file mag.\-c.
+Definition at line 77 of file mag.\-c.
 
 
 
 References A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, mag\-Range, M\-A\-G\-R\-E\-G\-\_\-\-C\-R\-B, M\-A\-G\-R\-E\-G\-\_\-\-M\-R, mag\-Write\-Register(), and S\-U\-C\-C\-E\-S\-S.
 
 
-
-Referenced by orientation\-Init().
-
-
 \begin{DoxyCode}
-75                           \{
-76     \textcolor{keywordflow}{if} ((r <= 0) || (r >= 8)) \{
-77         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-78     \}
-79     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__mag_gafaf03e3013fe2046847afc2518f23eed}{magWriteRegister}(\hyperlink{group__mag_ga54eabf3b296f6550c9f6d9826020c623}{MAGREG\_MR}, 0x00); \textcolor{comment}{// Continuous Conversion}
-80     \textcolor{keywordflow}{if} (e != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{
-81         \textcolor{keywordflow}{return} e;
-82     \}
-83     e = \hyperlink{group__mag_gafaf03e3013fe2046847afc2518f23eed}{magWriteRegister}(\hyperlink{group__mag_ga42f59dd3e4a9cb4d8d4dd4a1019b6ab5}{MAGREG\_CRB}, (r << 5)); \textcolor{comment}{// Set Range}
-84     \hyperlink{group__mag_gaae12e12b371d0bcebe05462384a519a2}{magRange} = r;
-85     \textcolor{keywordflow}{return} e;
-86 \}
+77                           \{
+78     \textcolor{keywordflow}{if} ((r <= 0) || (r >= 8)) \{
+79         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+80     \}
+81     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__mag_gafaf03e3013fe2046847afc2518f23eed}{magWriteRegister}(\hyperlink{group__mag_ga54eabf3b296f6550c9f6d9826020c623}{MAGREG\_MR}, 0x00); \textcolor{comment}{// Continuous Conversion}
+82     \textcolor{keywordflow}{if} (e != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{
+83         \textcolor{keywordflow}{return} e;
+84     \}
+85     e = \hyperlink{group__mag_gafaf03e3013fe2046847afc2518f23eed}{magWriteRegister}(\hyperlink{group__mag_ga42f59dd3e4a9cb4d8d4dd4a1019b6ab5}{MAGREG\_CRB}, (r << 5)); \textcolor{comment}{// Set Range}
+86     \hyperlink{group__mag_gaae12e12b371d0bcebe05462384a519a2}{magRange} = r;
+87     \textcolor{keywordflow}{return} e;
+88 \}
 \end{DoxyCode}
 \hypertarget{group__mag_gacc0c83a48498170ef36451db2c684abb}{\index{Magnetometer Driver@{Magnetometer Driver}!mag\-Read@{mag\-Read}}
 \index{mag\-Read@{mag\-Read}!Magnetometer Driver@{Magnetometer Driver}}
@@ -218,95 +214,91 @@ Magnetometer should already be initialized!
 \end{DoxyReturn}
 \begin{Desc}
 \item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
+\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}, and \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 88 of file mag.\-c.
+Definition at line 90 of file mag.\-c.
 
 
 
 References A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S, mag\-Range, M\-A\-G\-R\-E\-G\-\_\-\-X\-H, r1g3, r1g9, r2g5, r4g0, r4g7, r5g6, r8g1, S\-U\-C\-C\-E\-S\-S, T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R, T\-W\-I\-\_\-\-R\-E\-A\-D, T\-W\-I\-\_\-\-W\-R\-I\-T\-E, T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R, twi\-Read\-Ack(), twi\-Read\-Nak(), twi\-Rep\-Start(), twi\-Start(), twi\-Write(), Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
 
 
-
-Referenced by orientation\-Task().
-
-
 \begin{DoxyCode}
-88                            \{
-89     \textcolor{keywordflow}{if} (v == NULL) \{
-90         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-91     \}
-92     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
-93         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-94     \}
-95     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__mag_ga84e94fce89f9ba26ff3f33621c3a63bd}{MAGREG\_XH})) \{
-96         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-97     \}
-98     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twiRepStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{TWI\_READ})) \{
-99         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-100     \}
-101     uint8\_t xh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-102     uint8\_t xl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-103     uint8\_t zh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-104     uint8\_t zl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-105     uint8\_t yh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-106     uint8\_t yl = \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twiReadNak}();
-107 
-108     int16\_t x = *(int8\_t *)(&xh);
-109     x *= (1 << 8);
-110     x |= xl;
-111 
-112     int16\_t y = *(int8\_t *)(&yh);
-113     y *= (1 << 8);
-114     y |= yl;
-115 
-116     int16\_t z = *(int8\_t *)(&zh);
-117     z *= (1 << 8);
-118     z |= zl;
-119 
-120     \textcolor{keywordflow}{switch} (\hyperlink{group__mag_gaae12e12b371d0bcebe05462384a519a2}{magRange}) \{
-121         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa18e06791b32b1772765ff7e54d3e24fd}{r1g3}:
-122             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 1.3 / 0x8000);
-123             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 1.3 / 0x8000);
-124             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 1.3 / 0x8000);
-125             \textcolor{keywordflow}{break};
-126         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9}:
-127             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 1.9 / 0x8000);
-128             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 1.9 / 0x8000);
-129             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 1.9 / 0x8000);
-130             \textcolor{keywordflow}{break};
-131         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa19f90e5cf717669e72908f8d8a1c9f89}{r2g5}:
-132             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 2.5 / 0x8000);
-133             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 2.5 / 0x8000);
-134             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 2.5 / 0x8000);
-135             \textcolor{keywordflow}{break};
-136         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa402a6d56b75bc48c8521500dd8b38bd8}{r4g0}:
-137             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4.0 / 0x8000);
-138             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4.0 / 0x8000);
-139             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4.0 / 0x8000);
-140             \textcolor{keywordflow}{break};
-141         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aaa7401534bd82cade38cbb47c0ff4223e}{r4g7}:
-142             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4.7 / 0x8000);
-143             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4.7 / 0x8000);
-144             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4.7 / 0x8000);
-145             \textcolor{keywordflow}{break};
-146         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa815faf18742b2b13ba477eed930851f4}{r5g6}:
-147             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 5.6 / 0x8000);
-148             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 5.6 / 0x8000);
-149             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 5.6 / 0x8000);
-150             \textcolor{keywordflow}{break};
-151         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee}{r8g1}:
-152             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 8.1 / 0x8000);
-153             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 8.1 / 0x8000);
-154             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 8.1 / 0x8000);
-155             \textcolor{keywordflow}{break};
-156         \textcolor{keywordflow}{default}:
-157             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-158     \}
-159 
-160     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-161 \}
+90                            \{
+91     \textcolor{keywordflow}{if} (v == NULL) \{
+92         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+93     \}
+94     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+95         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+96     \}
+97     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__mag_ga84e94fce89f9ba26ff3f33621c3a63bd}{MAGREG\_XH})) \{
+98         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+99     \}
+100     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twiRepStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{TWI\_READ})) \{
+101         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+102     \}
+103     uint8\_t xh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+104     uint8\_t xl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+105     uint8\_t zh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+106     uint8\_t zl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+107     uint8\_t yh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+108     uint8\_t yl = \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twiReadNak}();
+109 
+110     int16\_t x = *(int8\_t *)(&xh);
+111     x *= (1 << 8);
+112     x |= xl;
+113 
+114     int16\_t y = *(int8\_t *)(&yh);
+115     y *= (1 << 8);
+116     y |= yl;
+117 
+118     int16\_t z = *(int8\_t *)(&zh);
+119     z *= (1 << 8);
+120     z |= zl;
+121 
+122     \textcolor{keywordflow}{switch} (\hyperlink{group__mag_gaae12e12b371d0bcebe05462384a519a2}{magRange}) \{
+123         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa18e06791b32b1772765ff7e54d3e24fd}{r1g3}:
+124             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 1.3 / MAG\_NORMALIZE);
+125             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 1.3 / MAG\_NORMALIZE);
+126             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 1.3 / MAG\_NORMALIZE);
+127             \textcolor{keywordflow}{break};
+128         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6}{r1g9}:
+129             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 1.9 / MAG\_NORMALIZE);
+130             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 1.9 / MAG\_NORMALIZE);
+131             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 1.9 / MAG\_NORMALIZE);
+132             \textcolor{keywordflow}{break};
+133         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa19f90e5cf717669e72908f8d8a1c9f89}{r2g5}:
+134             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 2.5 / MAG\_NORMALIZE);
+135             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 2.5 / MAG\_NORMALIZE);
+136             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 2.5 / MAG\_NORMALIZE);
+137             \textcolor{keywordflow}{break};
+138         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa402a6d56b75bc48c8521500dd8b38bd8}{r4g0}:
+139             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4.0 / MAG\_NORMALIZE);
+140             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4.0 / MAG\_NORMALIZE);
+141             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4.0 / MAG\_NORMALIZE);
+142             \textcolor{keywordflow}{break};
+143         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aaa7401534bd82cade38cbb47c0ff4223e}{r4g7}:
+144             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4.7 / MAG\_NORMALIZE);
+145             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4.7 / MAG\_NORMALIZE);
+146             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4.7 / MAG\_NORMALIZE);
+147             \textcolor{keywordflow}{break};
+148         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa815faf18742b2b13ba477eed930851f4}{r5g6}:
+149             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 5.6 / MAG\_NORMALIZE);
+150             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 5.6 / MAG\_NORMALIZE);
+151             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 5.6 / MAG\_NORMALIZE);
+152             \textcolor{keywordflow}{break};
+153         \textcolor{keywordflow}{case} \hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee}{r8g1}:
+154             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 8.1 / MAG\_NORMALIZE);
+155             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 8.1 / MAG\_NORMALIZE);
+156             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 8.1 / MAG\_NORMALIZE);
+157             \textcolor{keywordflow}{break};
+158         \textcolor{keywordflow}{default}:
+159             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+160     \}
+161 
+162     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+163 \}
 \end{DoxyCode}
 \hypertarget{group__mag_gafaf03e3013fe2046847afc2518f23eed}{\index{Magnetometer Driver@{Magnetometer Driver}!mag\-Write\-Register@{mag\-Write\-Register}}
 \index{mag\-Write\-Register@{mag\-Write\-Register}!Magnetometer Driver@{Magnetometer Driver}}
@@ -334,11 +326,11 @@ I2\-C should aready be initialized!
 \end{DoxyReturn}
 
 
-Definition at line 61 of file mag.\-c.
+Definition at line 63 of file mag.\-c.
 
 
 
-References T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R.
+References M\-A\-G\-\_\-\-A\-D\-D\-R\-E\-S\-S, S\-U\-C\-C\-E\-S\-S, T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R, T\-W\-I\-\_\-\-W\-R\-I\-T\-E, T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R, twi\-Start(), twi\-Stop(), and twi\-Write().
 
 
 
@@ -346,19 +338,19 @@ Referenced by mag\-Init().
 
 
 \begin{DoxyCode}
-61                                                  \{
-62     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
-63         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-64     \}
-65     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(reg)) \{
-66         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-67     \}
-68     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(val)) \{
-69         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-70     \}
-71     \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
-72     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-73 \}
+63                                                  \{
+64     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_gade4e63fac819c67040e374f08d2d7230}{MAG\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+65         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+66     \}
+67     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(reg)) \{
+68         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+69     \}
+70     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(val)) \{
+71         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+72     \}
+73     \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
+74     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+75 \}
 \end{DoxyCode}
 
 
@@ -372,7 +364,7 @@ Stored range to scale returned values.
 
 
 
-Definition at line 52 of file mag.\-c.
+Definition at line 54 of file mag.\-c.
 
 
 

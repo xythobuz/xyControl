@@ -166,8 +166,8 @@
 \contentsline {subsubsection}{\numberline {5.15.3.1}orientation\discretionary {-}{}{}Init}{54}{subsubsection.5.15.3.1}
 \contentsline {subsubsection}{\numberline {5.15.3.2}orientation\discretionary {-}{}{}Task}{54}{subsubsection.5.15.3.2}
 \contentsline {subsubsection}{\numberline {5.15.3.3}zero\discretionary {-}{}{}Orientation}{55}{subsubsection.5.15.3.3}
-\contentsline {subsection}{\numberline {5.15.4}Variable Documentation}{56}{subsection.5.15.4}
-\contentsline {subsubsection}{\numberline {5.15.4.1}orientation}{56}{subsubsection.5.15.4.1}
+\contentsline {subsection}{\numberline {5.15.4}Variable Documentation}{55}{subsection.5.15.4}
+\contentsline {subsubsection}{\numberline {5.15.4.1}orientation}{55}{subsubsection.5.15.4.1}
 \contentsline {subsubsection}{\numberline {5.15.4.2}orientation}{56}{subsubsection.5.15.4.2}
 \contentsline {subsubsection}{\numberline {5.15.4.3}orientation\discretionary {-}{}{}Error}{56}{subsubsection.5.15.4.3}
 \contentsline {subsubsection}{\numberline {5.15.4.4}pitch\discretionary {-}{}{}Data}{56}{subsubsection.5.15.4.4}

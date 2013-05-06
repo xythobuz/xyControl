@@ -156,6 +156,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> motorRight(<span class="keywordtype">void</span>);</div>
 <div class="line"><span class="keywordtype">void</span> parameterChange(<span class="keywordtype">void</span>);</div>
 <div class="line"><span class="keywordtype">void</span> silent(<span class="keywordtype">void</span>);</div>
+<div class="line"><span class="keywordtype">void</span> printRaw(<span class="keywordtype">void</span>);</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">char</span> PROGMEM motorToggleString[] = <span class="stringliteral">&quot;Motor On/Off&quot;</span>;</div>
 <div class="line"><span class="keywordtype">char</span> PROGMEM motorUpString[] = <span class="stringliteral">&quot;Up&quot;</span>;</div>
@@ -168,6 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">char</span> PROGMEM parameterChangeString[] = <span class="stringliteral">&quot;Change PID Params&quot;</span>;</div>
 <div class="line"><span class="keywordtype">char</span> PROGMEM zeroString[] = <span class="stringliteral">&quot;Angles to Zero&quot;</span>;</div>
 <div class="line"><span class="keywordtype">char</span> PROGMEM silentString[] = <span class="stringliteral">&quot;Toggle Status Output&quot;</span>;</div>
+<div class="line"><span class="keywordtype">char</span> PROGMEM sensorString[] = <span class="stringliteral">&quot;Raw Sensor Data&quot;</span>;</div>
 <div class="line"></div>
 <div class="line"><span class="preprocessor">#define STATE_MOTOR (1 &lt;&lt; 0) // 1 -&gt; Motor On</span></div>
 <div class="line"><span class="preprocessor"></span><span class="preprocessor">#define STATE_PID (1 &lt;&lt; 1) // 1 -&gt; PID enabled</span></div>
@@ -202,6 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <a class="code" href="group__uartmenu.html#gaba6c962adeaaeca40be02fb1098312ed" title="Add a command to the UART Menu.">addMenuCommand</a>(<span class="charliteral">&#39;n&#39;</span>, parameterChangeString, &amp;parameterChange);</div>
 <div class="line">    <a class="code" href="group__uartmenu.html#gaba6c962adeaaeca40be02fb1098312ed" title="Add a command to the UART Menu.">addMenuCommand</a>(<span class="charliteral">&#39;z&#39;</span>, zeroString, &amp;<a name="a7"></a><a class="code" href="group__orientation.html#ga0fab95dd407145abad293f7c91460eee" title="Sets the current orientation to zero.">zeroOrientation</a>);</div>
 <div class="line">    <a class="code" href="group__uartmenu.html#gaba6c962adeaaeca40be02fb1098312ed" title="Add a command to the UART Menu.">addMenuCommand</a>(<span class="charliteral">&#39;o&#39;</span>, silentString, &amp;silent);</div>
+<div class="line">    <a class="code" href="group__uartmenu.html#gaba6c962adeaaeca40be02fb1098312ed" title="Add a command to the UART Menu.">addMenuCommand</a>(<span class="charliteral">&#39;r&#39;</span>, sensorString, &amp;printRaw);</div>
 <div class="line"></div>
 <div class="line">    <a name="a8"></a><a class="code" href="group__xycontrol.html#ga783aead7f97dd462a9af56b7fc3b228f" title="Set the LEDs.">xyLed</a>(<a name="a9"></a><a class="code" href="group__xycontrol.html#ggaadcb6002d2b42fdfe01490f730ab00a6ad80f13022b6d309268fadc7b1da89cb9" title="Both red LEDs.">LED_RED</a>, <a name="a10"></a><a class="code" href="group__xycontrol.html#gga51a69e0b98357e170e63bc843e2fd1c0afc0ca8cc6cbe215fd3f1ae6d40255b40" title="LED Off.">LED_OFF</a>);</div>
 <div class="line">    <a class="code" href="group__xycontrol.html#ga783aead7f97dd462a9af56b7fc3b228f" title="Set the LEDs.">xyLed</a>(<a name="a11"></a><a class="code" href="group__xycontrol.html#ggaadcb6002d2b42fdfe01490f730ab00a6a0ad916c7f80666dc88f6b5b22a72e742" title="Both green LEDs.">LED_GREEN</a>, <a name="a12"></a><a class="code" href="group__xycontrol.html#gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d" title="LED On.">LED_ON</a>);</div>
@@ -351,6 +354,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        <span class="comment">// Currently enabled</span></div>
 <div class="line">        state |= STATE_OUTPUT; <span class="comment">// Set Bit</span></div>
 <div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> printRaw(<span class="keywordtype">void</span>) {</div>
+<div class="line">    <a name="_a33"></a><a class="code" href="struct_vector3f.html" title="The global 3-Dimensional Floating Point Vector.">Vector3f</a> v;</div>
+<div class="line">    <a name="a34"></a><a class="code" href="group__acc.html#ga4dd55defcab17af4ecc29562a5a28ab3" title="Read from the Accelerometer.">accRead</a>(&amp;v);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Ax: %f Ay: %f Az: %f\n&quot;</span>, v.<a name="a35"></a><a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a name="a36"></a><a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a name="a37"></a><a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
+<div class="line">    <a name="a38"></a><a class="code" href="group__gyro.html#gab90a6ac7c268152edb186ee699462fd8" title="Get a set of gyroscope data.">gyroRead</a>(&amp;v);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Gx: %f Gy: %f Gz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
+<div class="line">    <a name="a39"></a><a class="code" href="group__mag.html#gacc0c83a48498170ef36451db2c684abb" title="Read from the Magnetometer.">magRead</a>(&amp;v);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Mx: %f My: %f Mz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->

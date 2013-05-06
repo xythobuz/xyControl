@@ -76,6 +76,7 @@
 \textcolor{keywordtype}{void} motorRight(\textcolor{keywordtype}{void});
 \textcolor{keywordtype}{void} parameterChange(\textcolor{keywordtype}{void});
 \textcolor{keywordtype}{void} silent(\textcolor{keywordtype}{void});
+\textcolor{keywordtype}{void} printRaw(\textcolor{keywordtype}{void});
 
 \textcolor{keywordtype}{char} PROGMEM motorToggleString[] = \textcolor{stringliteral}{"Motor On/Off"};
 \textcolor{keywordtype}{char} PROGMEM motorUpString[] = \textcolor{stringliteral}{"Up"};
@@ -88,6 +89,7 @@
 \textcolor{keywordtype}{char} PROGMEM parameterChangeString[] = \textcolor{stringliteral}{"Change PID Params"};
 \textcolor{keywordtype}{char} PROGMEM zeroString[] = \textcolor{stringliteral}{"Angles to Zero"};
 \textcolor{keywordtype}{char} PROGMEM silentString[] = \textcolor{stringliteral}{"Toggle Status Output"};
+\textcolor{keywordtype}{char} PROGMEM sensorString[] = \textcolor{stringliteral}{"Raw Sensor Data"};
 
 \textcolor{preprocessor}{#define STATE\_MOTOR (1 << 0) // 1 -> Motor On}
 \textcolor{preprocessor}{}\textcolor{preprocessor}{#define STATE\_PID (1 << 1) // 1 -> PID enabled}
@@ -122,6 +124,7 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'n'}, parameterChangeString, &parameterChange);
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'z'}, zeroString, &\hyperlink{group__orientation_ga0fab95dd407145abad293f7c91460eee}{zeroOrientation});
     \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'o'}, silentString, &silent);
+    \hyperlink{group__uartmenu_gaba6c962adeaaeca40be02fb1098312ed}{addMenuCommand}(\textcolor{charliteral}{'r'}, sensorString, &printRaw);
 
     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6ad80f13022b6d309268fadc7b1da89cb9}{LED\_RED}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0afc0ca8cc6cbe215fd3f1ae6d40255b40}{LED\_OFF});
     \hyperlink{group__xycontrol_ga783aead7f97dd462a9af56b7fc3b228f}{xyLed}(\hyperlink{group__xycontrol_ggaadcb6002d2b42fdfe01490f730ab00a6a0ad916c7f80666dc88f6b5b22a72e742}{LED\_GREEN}, \hyperlink{group__xycontrol_gga51a69e0b98357e170e63bc843e2fd1c0add01b80eb93658fb4cf7eb9aceb89a1d}{LED\_ON});
@@ -274,6 +277,16 @@ uint32\_t sumFlightTask = 0, sumFlightCount = 0;
         \textcolor{comment}{// Currently enabled}
         state |= STATE\_OUTPUT; \textcolor{comment}{// Set Bit}
     \}
+\}
+
+\textcolor{keywordtype}{void} printRaw(\textcolor{keywordtype}{void}) \{
+    \hyperlink{struct_vector3f}{Vector3f} v;
+    \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{accRead}(&v);
+    printf(\textcolor{stringliteral}{"Ax: %f Ay: %f Az: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
+    \hyperlink{group__gyro_gab90a6ac7c268152edb186ee699462fd8}{gyroRead}(&v);
+    printf(\textcolor{stringliteral}{"Gx: %f Gy: %f Gz: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
+    \hyperlink{group__mag_gacc0c83a48498170ef36451db2c684abb}{magRead}(&v);
+    printf(\textcolor{stringliteral}{"Mx: %f My: %f Mz: %f\(\backslash\)n"}, v.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x}, v.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y}, v.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z});
 \}
 \end{DoxyCodeInclude}
  

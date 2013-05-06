@@ -692,9 +692,9 @@
   \item {O\discretionary {-}{}{}R\discretionary {-}{}{}I\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}T\discretionary {-}{}{}E\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{29}
   \item {orientation}
-    \subitem {Orientation Calculation}, \hyperpage{56}
+    \subitem {Orientation Calculation}, \hyperpage{55}
   \item {Orientation Calculation}, \hyperpage{53}
-    \subitem {orientation}, \hyperpage{56}
+    \subitem {orientation}, \hyperpage{55}
     \subitem {orientation\discretionary {-}{}{}Error}, \hyperpage{56}
     \subitem {orientation\discretionary {-}{}{}Init}, \hyperpage{54}
     \subitem {orientation\discretionary {-}{}{}Task}, \hyperpage{54}
