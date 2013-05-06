@@ -49,6 +49,8 @@
 #define MAGREG_MR 0x02 /**< Magnetometer Mode Register */
 #define MAGREG_XH 0x03 /**< First Magnetometer Output Register */
 
+#define MAG_NORMALIZE 1000
+
 MagRange magRange; /**< Stored range to scale returned values. */
 
 /** Write a Magnetometer Register.
@@ -119,39 +121,39 @@ Error magRead(Vector3f *v) {
 
     switch (magRange) {
         case r1g3:
-            v->x = (((double)x) * 1.3 / 0x8000);
-            v->y = (((double)y) * 1.3 / 0x8000);
-            v->z = (((double)z) * 1.3 / 0x8000);
+            v->x = (((double)x) * 1.3 / MAG_NORMALIZE);
+            v->y = (((double)y) * 1.3 / MAG_NORMALIZE);
+            v->z = (((double)z) * 1.3 / MAG_NORMALIZE);
             break;
         case r1g9:
-            v->x = (((double)x) * 1.9 / 0x8000);
-            v->y = (((double)y) * 1.9 / 0x8000);
-            v->z = (((double)z) * 1.9 / 0x8000);
+            v->x = (((double)x) * 1.9 / MAG_NORMALIZE);
+            v->y = (((double)y) * 1.9 / MAG_NORMALIZE);
+            v->z = (((double)z) * 1.9 / MAG_NORMALIZE);
             break;
         case r2g5:
-            v->x = (((double)x) * 2.5 / 0x8000);
-            v->y = (((double)y) * 2.5 / 0x8000);
-            v->z = (((double)z) * 2.5 / 0x8000);
+            v->x = (((double)x) * 2.5 / MAG_NORMALIZE);
+            v->y = (((double)y) * 2.5 / MAG_NORMALIZE);
+            v->z = (((double)z) * 2.5 / MAG_NORMALIZE);
             break;
         case r4g0:
-            v->x = (((double)x) * 4.0 / 0x8000);
-            v->y = (((double)y) * 4.0 / 0x8000);
-            v->z = (((double)z) * 4.0 / 0x8000);
+            v->x = (((double)x) * 4.0 / MAG_NORMALIZE);
+            v->y = (((double)y) * 4.0 / MAG_NORMALIZE);
+            v->z = (((double)z) * 4.0 / MAG_NORMALIZE);
             break;
         case r4g7:
-            v->x = (((double)x) * 4.7 / 0x8000);
-            v->y = (((double)y) * 4.7 / 0x8000);
-            v->z = (((double)z) * 4.7 / 0x8000);
+            v->x = (((double)x) * 4.7 / MAG_NORMALIZE);
+            v->y = (((double)y) * 4.7 / MAG_NORMALIZE);
+            v->z = (((double)z) * 4.7 / MAG_NORMALIZE);
             break;
         case r5g6:
-            v->x = (((double)x) * 5.6 / 0x8000);
-            v->y = (((double)y) * 5.6 / 0x8000);
-            v->z = (((double)z) * 5.6 / 0x8000);
+            v->x = (((double)x) * 5.6 / MAG_NORMALIZE);
+            v->y = (((double)y) * 5.6 / MAG_NORMALIZE);
+            v->z = (((double)z) * 5.6 / MAG_NORMALIZE);
             break;
         case r8g1:
-            v->x = (((double)x) * 8.1 / 0x8000);
-            v->y = (((double)y) * 8.1 / 0x8000);
-            v->z = (((double)z) * 8.1 / 0x8000);
+            v->x = (((double)x) * 8.1 / MAG_NORMALIZE);
+            v->y = (((double)y) * 8.1 / MAG_NORMALIZE);
+            v->z = (((double)z) * 8.1 / MAG_NORMALIZE);
             break;
         default:
             return ARGUMENT_ERROR;

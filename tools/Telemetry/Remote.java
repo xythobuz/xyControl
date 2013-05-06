@@ -49,19 +49,17 @@ public class Remote extends JFrame implements ActionListener {
     private JButton showLog;
     private JLabel rollLabel;
     private JLabel pitchLabel;
-    private JLabel yawLabel;
     private JLabel rollCurrent;
     private JLabel pitchCurrent;
-    private JLabel yawCurrent;
     private JLabel voltLabel;
     private JLabel voltCurrent;
 
     public SerialCommunicator serial = null;
     public SerialThread serialThread = null;
 
-    private JProgressBar[] bars = new JProgressBar[3];
-    private JLabel[] barLabels = new JLabel[3];
-    private String[] barText = {"P", "R", "Y"};
+    private JProgressBar[] bars = new JProgressBar[2];
+    private JLabel[] barLabels = new JLabel[2];
+    private String[] barText = {"P", "R"};
 
     public JFrame logF;
     public JTextArea logArea;
@@ -150,10 +148,6 @@ public class Remote extends JFrame implements ActionListener {
         pitchLabel.setText("Pitch:");
         pitchLabel.setBounds(105, 130, 35, 15);
         add(pitchLabel);
-        yawLabel = new JLabel();
-        yawLabel.setText("Yaw:");
-        yawLabel.setBounds(105, 160, 35, 15);
-        add(yawLabel);
 
         rollCurrent = new JLabel();
         rollCurrent.setText("-180.00°");
@@ -163,18 +157,14 @@ public class Remote extends JFrame implements ActionListener {
         pitchCurrent.setText("-180.00°");
         pitchCurrent.setBounds(145, 130, 60, 15);
         add(pitchCurrent);
-        yawCurrent = new JLabel();
-        yawCurrent.setText("-180.00°");
-        yawCurrent.setBounds(145, 160, 60, 15);
-        add(yawCurrent);
 
         voltLabel = new JLabel();
         voltLabel.setText("Batt: ");
-        voltLabel.setBounds(105, 190, 35, 15);
+        voltLabel.setBounds(105, 160, 35, 15);
         add(voltLabel);
         voltCurrent = new JLabel();
         voltCurrent.setText("11.11V");
-        voltCurrent.setBounds(145, 190, 60, 15);
+        voltCurrent.setBounds(145, 160, 60, 15);
         add(voltCurrent);
 
         for (int i = 0; i < bars.length; i++) {
@@ -247,13 +237,6 @@ public class Remote extends JFrame implements ActionListener {
                 break;
 
             case MESSAGE_YAW_READ :
-                try {
-                    float y = Float.parseFloat(line);
-                    bars[2].setValue(Math.round(y));
-                    yawCurrent.setText(String.format("%.2f", y) + "°");
-                } catch (Exception e) {
-                    log(e.getMessage());
-                }
                 break;
 
             case MESSAGE_VOLT_READ :

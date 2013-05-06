@@ -74,6 +74,7 @@ void motorLeft(void);
 void motorRight(void);
 void parameterChange(void);
 void silent(void);
+void printRaw(void);
 
 char PROGMEM motorToggleString[] = "Motor On/Off";
 char PROGMEM motorUpString[] = "Up";
@@ -86,6 +87,7 @@ char PROGMEM controlToggleString[] = "Toggle PID";
 char PROGMEM parameterChangeString[] = "Change PID Params";
 char PROGMEM zeroString[] = "Angles to Zero";
 char PROGMEM silentString[] = "Toggle Status Output";
+char PROGMEM sensorString[] = "Raw Sensor Data";
 
 #define STATE_MOTOR (1 << 0) // 1 -> Motor On
 #define STATE_PID (1 << 1) // 1 -> PID enabled
@@ -120,6 +122,7 @@ int main(void) {
     addMenuCommand('n', parameterChangeString, &parameterChange);
     addMenuCommand('z', zeroString, &zeroOrientation);
     addMenuCommand('o', silentString, &silent);
+    addMenuCommand('r', sensorString, &printRaw);
 
     xyLed(LED_RED, LED_OFF);
     xyLed(LED_GREEN, LED_ON);
@@ -269,4 +272,14 @@ void silent(void) {
         // Currently enabled
         state |= STATE_OUTPUT; // Set Bit
     }
+}
+
+void printRaw(void) {
+    Vector3f v;
+    accRead(&v);
+    printf("Ax: %f Ay: %f Az: %f\n", v.x, v.y, v.z);
+    gyroRead(&v);
+    printf("Gx: %f Gy: %f Gz: %f\n", v.x, v.y, v.z);
+    magRead(&v);
+    printf("Mx: %f My: %f Mz: %f\n", v.x, v.y, v.z);
 }
