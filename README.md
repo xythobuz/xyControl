@@ -69,7 +69,7 @@ Everything else is released under a BSD-Style license. See the [accompanying COP
  [xy1]: http://www.xythobuz.de/img/xycontrol1.jpg
  [xy2s]: http://www.xythobuz.de/img/xycontrol2_small.jpg
  [xy2]: http://www.xythobuz.de/img/xycontrol2.jpg
- [gh]: https://www.github.com/xythobuz/xyControl/
+ [gh]: http://www.xythobuz.de/xycontrol/
  [logo]: http://www.xythobuz.de/xycontrol/logo.png
  [adafruit]: https://github.com/adafruit/Adafruit_L3GD20
  [pololucode]: https://github.com/pololu/LSM303

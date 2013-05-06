@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  6 MAY 2013 22:38
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  6 MAY 2013 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1938,7 +1938,7 @@ Here is how much of TeX's memory you used:
  15497 multiletter control sequences out of 15000+200000
  87012 words of font info for 135 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 41i,13n,58p,823b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,58p,814b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{xycontrol_8c_source} has been referenced but does
  not exist, replaced by a fixed one
 
@@ -2075,7 +2075,7 @@ nts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvbo8ac.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb>
-Output written on refman.pdf (172 pages, 517637 bytes).
+Output written on refman.pdf (172 pages, 517575 bytes).
 PDF statistics:
  6870 PDF objects out of 7423 (max. 8388607)
  6620 compressed objects within 67 object streams
