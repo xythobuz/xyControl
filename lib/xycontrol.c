@@ -106,7 +106,7 @@ void xyInit(void) {
     spiInit(MODE_0, SPEED_2);
     adcInit(AVCC);
 
-    addMenuCommand('q', resetText, &resetSelf);
+    addMenuCommand('q', resetText, &xySelfReset);
     addMenuCommand('h', helpText, &uartMenuPrintHelp);
     addTask(&uartMenuTask);
 
@@ -176,7 +176,7 @@ double getVoltage(void) {
     return ((double)v / 1024.0);
 }
 
-void resetSelf(void) {
+void xySelfReset(void) {
     wdt_enable(WDTO_15MS);
     for(;;);
 }

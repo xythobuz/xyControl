@@ -84,7 +84,7 @@ void xyLed(LED l, LEDState v);
 double getVoltage(void);
 
 /** Use the Watchdog to reset yourself after 15ms. */
-void resetSelf(void);
+void xySelfReset(void);
 
 #endif
 /** @} */

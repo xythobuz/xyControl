@@ -118,6 +118,14 @@ Error orientationTask(void) {
     orientation.pitch -= orientationError.pitch;
     orientation.yaw -= orientationError.yaw;
 
+    // Self-Reset if data is garbage and we just came up
+    if (getSystemTime() < 1000) {
+        if (isnan(orientation.roll) || isnan(orientation.pitch) || isnan(orientation.yaw)) {
+            xySelfReset();
+            return ERROR;
+        }
+    }
+
     return SUCCESS;
 }
 

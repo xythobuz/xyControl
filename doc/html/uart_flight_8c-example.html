@@ -180,7 +180,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">int16_t targetRoll = 0;</div>
 <div class="line">int16_t targetPitch = 0;</div>
 <div class="line"></div>
-<div class="line">uint32_t sumFlightTask = 0, sumFlightCount = 0;</div>
+<div class="line">uint32_t sumFlightTask = 0, countFlightTask = 0;</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>) {</div>
 <div class="line">    <a name="a0"></a><a class="code" href="group__xycontrol.html#ga2b3fb0734a2675e6dbdcb2c7665a708f" title="Initialize the xyControl Hardware.">xyInit</a>();</div>
@@ -233,8 +233,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        <a name="a20"></a><a class="code" href="group__motor.html#gab10642c396b1a6dc22edf2b45288d781" title="Send the values stored in motorSpeed to the Controllers.">motorTask</a>();</div>
 <div class="line"></div>
 <div class="line">        uint32_t diff = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last;</div>
-<div class="line">        <span class="keywordflow">if</span> (++sumFlightCount &gt;= QUADFREQ) {</div>
-<div class="line">            sumFlightCount = 1;</div>
+<div class="line">        <span class="keywordflow">if</span> (++countFlightTask &gt;= QUADFREQ) {</div>
+<div class="line">            countFlightTask = 1;</div>
 <div class="line">            sumFlightTask = diff;</div>
 <div class="line">        } <span class="keywordflow">else</span> {</div>
 <div class="line">            sumFlightTask += diff;</div>
@@ -247,7 +247,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="keyword">static</span> uint32_t lastDuration = 0;</div>
 <div class="line">    <span class="keywordflow">if</span> (((<a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last) &gt;= STATUSDELAY) &amp;&amp; (!(state &amp; STATE_OUTPUT))) {</div>
 <div class="line">        last = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>();</div>
-<div class="line">        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / sumFlightCount, lastDuration);</div>
+<div class="line">        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / countFlightTask, lastDuration);</div>
 <div class="line">        printf(<span class="stringliteral">&quot;r%.2f %.2f\n&quot;</span>, <a name="a21"></a><a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].intMin, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].intMax);</div>
 <div class="line">        printf(<span class="stringliteral">&quot;s%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].outMin, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].outMax);</div>
 <div class="line">        printf(<span class="stringliteral">&quot;t%.3f %.3f %.3f\n&quot;</span>, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].kp, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].ki, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].kd);</div>

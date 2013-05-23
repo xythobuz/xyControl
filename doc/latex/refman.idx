@@ -273,8 +273,8 @@
 \indexentry{zero\discretionary {-}{}{}Orientation@{zero\discretionary {-}{}{}Orientation}!Orientation Calculation@{Orientation Calculation}|hyperpage}{55}
 \indexentry{Orientation Calculation@{Orientation Calculation}!orientation@{orientation}|hyperpage}{55}
 \indexentry{orientation@{orientation}!Orientation Calculation@{Orientation Calculation}|hyperpage}{55}
-\indexentry{Orientation Calculation@{Orientation Calculation}!orientation@{orientation}|hyperpage}{55}
-\indexentry{orientation@{orientation}!Orientation Calculation@{Orientation Calculation}|hyperpage}{55}
+\indexentry{Orientation Calculation@{Orientation Calculation}!orientation@{orientation}|hyperpage}{56}
+\indexentry{orientation@{orientation}!Orientation Calculation@{Orientation Calculation}|hyperpage}{56}
 \indexentry{Orientation Calculation@{Orientation Calculation}!orientation\discretionary {-}{}{}Error@{orientation\discretionary {-}{}{}Error}|hyperpage}{56}
 \indexentry{orientation\discretionary {-}{}{}Error@{orientation\discretionary {-}{}{}Error}!Orientation Calculation@{Orientation Calculation}|hyperpage}{56}
 \indexentry{Orientation Calculation@{Orientation Calculation}!pitch\discretionary {-}{}{}Data@{pitch\discretionary {-}{}{}Data}|hyperpage}{56}
@@ -527,18 +527,18 @@
 \indexentry{xy\-Control Hardware@{xy\-Control Hardware}!L\-E\-D\-\_\-\-T\-O\-G\-G\-L\-E@{L\-E\-D\-\_\-\-T\-O\-G\-G\-L\-E}|hyperpage}{97}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!get\discretionary {-}{}{}Voltage@{get\discretionary {-}{}{}Voltage}|hyperpage}{97}
 \indexentry{get\discretionary {-}{}{}Voltage@{get\discretionary {-}{}{}Voltage}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{97}
-\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!reset\discretionary {-}{}{}Self@{reset\discretionary {-}{}{}Self}|hyperpage}{98}
-\indexentry{reset\discretionary {-}{}{}Self@{reset\discretionary {-}{}{}Self}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{98}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!uartinput@{uartinput}|hyperpage}{98}
 \indexentry{uartinput@{uartinput}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{98}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!uartoutput@{uartoutput}|hyperpage}{98}
 \indexentry{uartoutput@{uartoutput}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{98}
-\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Init@{xy\discretionary {-}{}{}Init}|hyperpage}{99}
-\indexentry{xy\discretionary {-}{}{}Init@{xy\discretionary {-}{}{}Init}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{99}
+\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Init@{xy\discretionary {-}{}{}Init}|hyperpage}{98}
+\indexentry{xy\discretionary {-}{}{}Init@{xy\discretionary {-}{}{}Init}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{98}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Led@{xy\discretionary {-}{}{}Led}|hyperpage}{99}
 \indexentry{xy\discretionary {-}{}{}Led@{xy\discretionary {-}{}{}Led}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{99}
-\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal@{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}|hyperpage}{100}
-\indexentry{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal@{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{100}
+\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal@{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}|hyperpage}{99}
+\indexentry{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal@{xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{99}
+\indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset@{xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset}|hyperpage}{100}
+\indexentry{xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset@{xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{100}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!help\discretionary {-}{}{}Text@{help\discretionary {-}{}{}Text}|hyperpage}{100}
 \indexentry{help\discretionary {-}{}{}Text@{help\discretionary {-}{}{}Text}!xyControl Hardware@{xy\discretionary {-}{}{}Control Hardware}|hyperpage}{100}
 \indexentry{xy\discretionary {-}{}{}Control Hardware@{xy\discretionary {-}{}{}Control Hardware}!in\discretionary {-}{}{}File@{in\discretionary {-}{}{}File}|hyperpage}{100}

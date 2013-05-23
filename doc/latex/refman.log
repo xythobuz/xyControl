@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  6 MAY 2013 22:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2012.6.24)  23 MAY 2013 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1459,15 +1459,20 @@ l.178 R
 (./group__orientation.tex [53
 
 
-] [54] [55pdfTeX warning (ext4): destination with the same identifier (name{gro
-up__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already used, dup
-licate ignored
+]
+Underfull \hbox (badness 2119) in paragraph at lines 143--144
+[]\T1/phv/m/n/10 References acc-Read(), C-H-E-C-K-E-R-R-O-R, complementary-Exec
+ute(), E-R-R-O-R, get-System-Time(), gyro-Read(),
+ []
+
+[54] [55]) [56pdfTeX warning (ext4): destination with the same identifier (name
+{group__orientation_gacd4a2942520b68691db5aebde4e537a4}) has been already used,
+ duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.247 R
-       eferenced by orientation\-Task(), pid\-Task(), and zero\-Orientation().]
-) [56]
+l.89 \include{group__orientation}
+                                 ]
 \openout2 = `group__pid.aux'.
 
  (./group__pid.tex [57
@@ -1729,15 +1734,11 @@ l.98 \include{group__xmem}
 
 
 ] [97] [98]
-Underfull \vbox (badness 10000) detected at line 368
+Underfull \vbox (badness 10000) detected at line 342
  []
 
-
-Overfull \vbox (11.98845pt too high) has occurred while \output is active []
-
-
 [99]
-Underfull \vbox (badness 10000) detected at line 397
+Underfull \vbox (badness 10000) detected at line 371
  []
 
 ) [100]
@@ -1918,7 +1919,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 157.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 157.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 157.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: E7790C5CEFE62C6B0D23F8611403241E;68652.
+(rerunfilecheck)             Checksum: E689DA675A70358754A539518A2D4150;68662.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1934,7 +1935,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
 Here is how much of TeX's memory you used:
  13995 strings out of 493610
  220365 string characters out of 3142404
- 309412 words of memory out of 3000000
+ 309417 words of memory out of 3000000
  15497 multiletter control sequences out of 15000+200000
  87012 words of font info for 135 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
@@ -2075,10 +2076,10 @@ nts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvbo8ac.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/u
 rw/helvetic/uhvr8a.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/helv
 etic/uhvro8a.pfb>
-Output written on refman.pdf (172 pages, 517575 bytes).
+Output written on refman.pdf (172 pages, 518745 bytes).
 PDF statistics:
- 6870 PDF objects out of 7423 (max. 8388607)
- 6620 compressed objects within 67 object streams
+ 6885 PDF objects out of 7423 (max. 8388607)
+ 6635 compressed objects within 67 object streams
  1279 named destinations out of 1440 (max. 500000)
  3801 words of extra memory for PDF output out of 10000 (max. 10000000)
 

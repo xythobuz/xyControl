@@ -314,12 +314,12 @@
 \contentsline {subsubsection}{\numberline {5.25.2.2}L\discretionary {-}{}{}E\discretionary {-}{}{}D\discretionary {-}{}{}State}{97}{subsubsection.5.25.2.2}
 \contentsline {subsection}{\numberline {5.25.3}Function Documentation}{97}{subsection.5.25.3}
 \contentsline {subsubsection}{\numberline {5.25.3.1}get\discretionary {-}{}{}Voltage}{97}{subsubsection.5.25.3.1}
-\contentsline {subsubsection}{\numberline {5.25.3.2}reset\discretionary {-}{}{}Self}{98}{subsubsection.5.25.3.2}
-\contentsline {subsubsection}{\numberline {5.25.3.3}uartinput}{98}{subsubsection.5.25.3.3}
-\contentsline {subsubsection}{\numberline {5.25.3.4}uartoutput}{98}{subsubsection.5.25.3.4}
-\contentsline {subsubsection}{\numberline {5.25.3.5}xy\discretionary {-}{}{}Init}{99}{subsubsection.5.25.3.5}
-\contentsline {subsubsection}{\numberline {5.25.3.6}xy\discretionary {-}{}{}Led}{99}{subsubsection.5.25.3.6}
-\contentsline {subsubsection}{\numberline {5.25.3.7}xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}{100}{subsubsection.5.25.3.7}
+\contentsline {subsubsection}{\numberline {5.25.3.2}uartinput}{98}{subsubsection.5.25.3.2}
+\contentsline {subsubsection}{\numberline {5.25.3.3}uartoutput}{98}{subsubsection.5.25.3.3}
+\contentsline {subsubsection}{\numberline {5.25.3.4}xy\discretionary {-}{}{}Init}{98}{subsubsection.5.25.3.4}
+\contentsline {subsubsection}{\numberline {5.25.3.5}xy\discretionary {-}{}{}Led}{99}{subsubsection.5.25.3.5}
+\contentsline {subsubsection}{\numberline {5.25.3.6}xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}{99}{subsubsection.5.25.3.6}
+\contentsline {subsubsection}{\numberline {5.25.3.7}xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset}{100}{subsubsection.5.25.3.7}
 \contentsline {subsection}{\numberline {5.25.4}Variable Documentation}{100}{subsection.5.25.4}
 \contentsline {subsubsection}{\numberline {5.25.4.1}help\discretionary {-}{}{}Text}{100}{subsubsection.5.25.4.1}
 \contentsline {subsubsection}{\numberline {5.25.4.2}in\discretionary {-}{}{}File}{100}{subsubsection.5.25.4.2}

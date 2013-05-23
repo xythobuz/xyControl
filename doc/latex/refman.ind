@@ -692,9 +692,9 @@
   \item {O\discretionary {-}{}{}R\discretionary {-}{}{}I\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}T\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}I\discretionary {-}{}{}O\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}F\discretionary {-}{}{}I\discretionary {-}{}{}L\discretionary {-}{}{}T\discretionary {-}{}{}E\discretionary {-}{}{}R}
     \subitem {Configuration}, \hyperpage{29}
   \item {orientation}
-    \subitem {Orientation Calculation}, \hyperpage{55}
+    \subitem {Orientation Calculation}, \hyperpage{55, 56}
   \item {Orientation Calculation}, \hyperpage{53}
-    \subitem {orientation}, \hyperpage{55}
+    \subitem {orientation}, \hyperpage{55, 56}
     \subitem {orientation\discretionary {-}{}{}Error}, \hyperpage{56}
     \subitem {orientation\discretionary {-}{}{}Init}, \hyperpage{54}
     \subitem {orientation\discretionary {-}{}{}Task}, \hyperpage{54}
@@ -841,8 +841,6 @@
 		\hyperpage{63}
   \item {remove\discretionary {-}{}{}Task}
     \subitem {Task Handler}, \hyperpage{76}
-  \item {reset\discretionary {-}{}{}Self}
-    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
   \item {reset\discretionary {-}{}{}Text}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, 
 		\hyperpage{100}
@@ -1184,19 +1182,22 @@
     \subitem {L\discretionary {-}{}{}E\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
 		\hyperpage{97}
     \subitem {out\discretionary {-}{}{}File}, \hyperpage{100}
-    \subitem {reset\discretionary {-}{}{}Self}, \hyperpage{98}
     \subitem {reset\discretionary {-}{}{}Text}, \hyperpage{100}
     \subitem {uartinput}, \hyperpage{98}
     \subitem {uartoutput}, \hyperpage{98}
-    \subitem {xy\discretionary {-}{}{}Init}, \hyperpage{99}
+    \subitem {xy\discretionary {-}{}{}Init}, \hyperpage{98}
     \subitem {xy\discretionary {-}{}{}Led}, \hyperpage{99}
     \subitem {xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}, 
+		\hyperpage{99}
+    \subitem {xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset}, 
 		\hyperpage{100}
   \item {xy\discretionary {-}{}{}Init}
-    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{99}
+    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
   \item {xy\discretionary {-}{}{}Led}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{99}
   \item {xy\discretionary {-}{}{}Led\discretionary {-}{}{}Internal}
+    \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{99}
+  \item {xy\discretionary {-}{}{}Self\discretionary {-}{}{}Reset}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, 
 		\hyperpage{100}
 

@@ -18,7 +18,6 @@ var searchData=
   ['r8g1',['r8g1',['../group__mag.html#gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee',1,'mag.h']]],
   ['removetask',['removeTask',['../group__task.html#ga2651e32a00e6db5b77aa1042d3c7b9c7',1,'tasks.c']]],
   ['reporterror',['REPORTERROR',['../group__error.html#ga72d32a02ede7ed11eee387aa4f4c05d5',1,'error.h']]],
-  ['resetself',['resetSelf',['../group__xycontrol.html#gab80f101c0a50bca30d796fad70cfd8d7',1,'xycontrol.c']]],
   ['resettext',['resetText',['../group__xycontrol.html#ga27915b4caf41f74542980a4ea0f1726a',1,'xycontrol.c']]],
   ['restorestate',['restoreState',['../group__xmem.html#ga02e35ec14c8649b89dd91b5155031e2f',1,'xmem.c']]],
   ['reverselist',['reverseList',['../group__uartmenu.html#gaf51e7f5c38d5af643af09f6e21d2a4b9',1,'uartMenu.c']]],

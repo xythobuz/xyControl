@@ -98,7 +98,7 @@ uint8_t speed = 10;
 int16_t targetRoll = 0;
 int16_t targetPitch = 0;
 
-uint32_t sumFlightTask = 0, sumFlightCount = 0;
+uint32_t sumFlightTask = 0, countFlightTask = 0;
 
 int main(void) {
     xyInit();
@@ -151,8 +151,8 @@ void flightTask(void) {
         motorTask();
 
         uint32_t diff = getSystemTime() - last;
-        if (++sumFlightCount >= QUADFREQ) {
-            sumFlightCount = 1;
+        if (++countFlightTask >= QUADFREQ) {
+            countFlightTask = 1;
             sumFlightTask = diff;
         } else {
             sumFlightTask += diff;
@@ -165,7 +165,7 @@ void statusTask(void) {
     static uint32_t lastDuration = 0;
     if (((getSystemTime() - last) >= STATUSDELAY) && (!(state & STATE_OUTPUT))) {
         last = getSystemTime();
-        printf("q%li %li\n", sumFlightTask / sumFlightCount, lastDuration);
+        printf("q%li %li\n", sumFlightTask / countFlightTask, lastDuration);
         printf("r%.2f %.2f\n", o_pids[0].intMin, o_pids[0].intMax);
         printf("s%.2f %.2f\n", o_pids[0].outMin, o_pids[0].outMax);
         printf("t%.3f %.3f %.3f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);

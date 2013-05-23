@@ -186,7 +186,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;int16_t targetRoll = 0;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;int16_t targetPitch = 0;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;uint32_t sumFlightTask = 0, sumFlightCount = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;uint32_t sumFlightTask = 0, countFlightTask = 0;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>) {</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="group__xycontrol.html#ga2b3fb0734a2675e6dbdcb2c7665a708f" title="Initialize the xyControl Hardware.">xyInit</a>();</div>
@@ -239,8 +239,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="group__motor.html#gab10642c396b1a6dc22edf2b45288d781" title="Send the values stored in motorSpeed to the Controllers.">motorTask</a>();</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        uint32_t diff = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (++sumFlightCount &gt;= QUADFREQ) {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            sumFlightCount = 1;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (++countFlightTask &gt;= QUADFREQ) {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            countFlightTask = 1;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            sumFlightTask = diff;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            sumFlightTask += diff;</div>
@@ -253,7 +253,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">static</span> uint32_t lastDuration = 0;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">if</span> (((<a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last) &gt;= STATUSDELAY) &amp;&amp; (!(state &amp; STATE_OUTPUT))) {</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        last = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / sumFlightCount, lastDuration);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / countFlightTask, lastDuration);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        printf(<span class="stringliteral">&quot;r%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].intMin, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].intMax);</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        printf(<span class="stringliteral">&quot;s%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].outMin, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].outMax);</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        printf(<span class="stringliteral">&quot;t%.3f %.3f %.3f\n&quot;</span>, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].kp, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].ki, <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[0].kd);</div>
