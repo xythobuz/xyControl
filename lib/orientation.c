@@ -88,7 +88,7 @@ Error orientationInit(void) {
 }
 
 Error orientationTask(void) {
-    Vector3f g, a, m;
+    Vector3f g, a;
     Error e = accRead(&a); // Read Accelerometer
     CHECKERROR(e);
     e = gyroRead(&g); // Read Gyroscope
@@ -116,6 +116,7 @@ Error orientationTask(void) {
     // Zero Offset for angles
     orientation.roll -= orientationError.roll;
     orientation.pitch -= orientationError.pitch;
+    orientation.yaw -= orientationError.yaw;
 
     return SUCCESS;
 }

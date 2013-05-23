@@ -593,7 +593,7 @@ public class MainActivity extends Activity implements OnClickListener {
 					lastKnownP = mStrings[i];
 				else if (i == 1)
 					lastKnownI = mStrings[i];
-				else if (i == 3)
+				else if (i == 2)
 					lastKnownD = mStrings[i];
 			}
 		} else if (msg.what == MESSAGE_PIDRANGE_READ) {
