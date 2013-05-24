@@ -86,5 +86,15 @@ double getVoltage(void);
 /** Use the Watchdog to reset yourself after 15ms. */
 void xySelfReset(void);
 
+/** Map an Integer from one range to another range.
+ *  \param value Integer to operate on
+ *  \param oldMin Lower Limit of Input range
+ *  \param oldMax Upper Limit of Input range
+ *  \param newMin Lower Limit of Output range
+ *  \param newMax Upper Limit of Output range
+ *  \returns Value in new range
+ */
+int64_t map(int64_t value, int64_t oldMin, int64_t oldMax, int64_t newMin, int64_t newMax);
+
 #endif
 /** @} */

@@ -180,4 +180,8 @@ void xySelfReset(void) {
     wdt_enable(WDTO_15MS);
     for(;;);
 }
+
+int64_t map(int64_t value, int64_t oldMin, int64_t oldMax, int64_t newMin, int64_t newMax) {
+    return (value - oldMin) * (newMax - newMin) / (oldMax - oldMin) + newMin;
+}
 /** @} */
