@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['o_5foutput',['o_output',['../group__pid.html#gaf457b38bb75f72a89bac9b4a9570bd99',1,'o_output():&#160;pid.c'],['../group__pid.html#gaf457b38bb75f72a89bac9b4a9570bd99',1,'o_output():&#160;pid.c']]],
-  ['o_5fpids',['o_pids',['../group__pid.html#gaf8f428e17178b1f15edba7158fd831da',1,'o_pids():&#160;pid.c'],['../group__pid.html#gaf8f428e17178b1f15edba7158fd831da',1,'o_pids():&#160;pid.c']]],
-  ['o_5fshould',['o_should',['../group__pid.html#ga3e9b95260c17d0da155fb4eede660d03',1,'o_should():&#160;pid.c'],['../group__pid.html#ga3e9b95260c17d0da155fb4eede660d03',1,'o_should():&#160;pid.c']]],
   ['ocie',['OCIE',['../group__time.html#ga28e96a5f5c13f26d2e4e4feae1e3c0fe',1,'time.c']]],
   ['ocr',['OCR',['../group__time.html#gab38552082013ece744b4bff695e3b039',1,'time.c']]],
   ['orientation',['orientation',['../group__orientation.html#gacd4a2942520b68691db5aebde4e537a4',1,'orientation():&#160;orientation.c'],['../group__orientation.html#gacd4a2942520b68691db5aebde4e537a4',1,'orientation():&#160;orientation.c'],['../group__orientation.html',1,'(Global Namespace)']]],

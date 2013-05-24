@@ -144,10 +144,10 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
         last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
         \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__orientation_ga966edaeb4790aecd79b3c49ede459e56}{orientationTask}();
         \hyperlink{group__error_ga72d32a02ede7ed11eee387aa4f4c05d5}{REPORTERROR}(e);
-        \textcolor{keywordflow}{if} (state & 0x02) \{
+        \textcolor{keywordflow}{if} (state & STATE\_PID) \{
             \hyperlink{group__pid_ga2683c9ee5bad3c89577ddc1bf16a219c}{pidTask}();
         \} \textcolor{keywordflow}{else} \{
-            \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[0] = \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[1] = 0;
+            \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[0] = \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[1] = 0;
         \}
         \hyperlink{group__set_ga37f245c493d725009017f62a78505e64}{setTask}();
         \hyperlink{group__motor_gab10642c396b1a6dc22edf2b45288d781}{motorTask}();
@@ -168,11 +168,11 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
     \textcolor{keywordflow}{if} (((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= STATUSDELAY) && (!(state & STATE\_OUTPUT))) \{
         last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
         printf(\textcolor{stringliteral}{"q%li %li\(\backslash\)n"}, sumFlightTask / countFlightTask, lastDuration);
-        printf(\textcolor{stringliteral}{"r%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMin, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].intMax);
-        printf(\textcolor{stringliteral}{"s%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].outMin, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].outMax);
-        printf(\textcolor{stringliteral}{"t%.3f %.3f %.3f\(\backslash\)n"}, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].kp, \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].ki, 
-      \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0].kd);
-        printf(\textcolor{stringliteral}{"u%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}], \hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[
+        printf(\textcolor{stringliteral}{"r%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].intMin, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].intMax);
+        printf(\textcolor{stringliteral}{"s%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].outMin, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].outMax);
+        printf(\textcolor{stringliteral}{"t%.3f %.3f %.3f\(\backslash\)n"}, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].kp, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].ki, 
+      \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].kd);
+        printf(\textcolor{stringliteral}{"u%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}], \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[
       \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}]);
         printf(\textcolor{stringliteral}{"v%i %i %i %i\(\backslash\)n"}, \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[0], \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[1], 
       \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[2], \hyperlink{group__motor_ga0b3c12451554c9ee060319cbe2553d3a}{motorSpeed}[3]);
@@ -229,7 +229,7 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
 \textcolor{keywordtype}{void} motorForward(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (targetPitch >= (-1 * (MAXANGLE - ANGLESTEP))) \{
         targetPitch -= ANGLESTEP;
-        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
+        \hyperlink{group__pid_ga260bc1ef7a231f2252e6e69e1e459ba6}{pidTarget}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
         printf(\textcolor{stringliteral}{"Pitch Forward %i\(\backslash\)n"}, targetPitch);
     \}
 \}
@@ -237,7 +237,7 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
 \textcolor{keywordtype}{void} motorBackward(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (targetPitch <= (MAXANGLE - ANGLESTEP)) \{
         targetPitch += ANGLESTEP;
-        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
+        \hyperlink{group__pid_ga260bc1ef7a231f2252e6e69e1e459ba6}{pidTarget}[\hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}] = targetPitch;
         printf(\textcolor{stringliteral}{"Pitch Backwards %i\(\backslash\)n"}, targetPitch);
     \}
 \}
@@ -245,7 +245,7 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
 \textcolor{keywordtype}{void} motorLeft(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (targetRoll <= (MAXANGLE - ANGLESTEP)) \{
         targetRoll += ANGLESTEP;
-        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
+        \hyperlink{group__pid_ga260bc1ef7a231f2252e6e69e1e459ba6}{pidTarget}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
         printf(\textcolor{stringliteral}{"Roll Left %i\(\backslash\)n"}, targetRoll);
     \}
 \}
@@ -253,7 +253,7 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
 \textcolor{keywordtype}{void} motorRight(\textcolor{keywordtype}{void}) \{
     \textcolor{keywordflow}{if} (targetRoll >= (-1 * (MAXANGLE - ANGLESTEP))) \{
         targetRoll -= ANGLESTEP;
-        \hyperlink{group__pid_ga3e9b95260c17d0da155fb4eede660d03}{o\_should}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
+        \hyperlink{group__pid_ga260bc1ef7a231f2252e6e69e1e459ba6}{pidTarget}[\hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}] = targetRoll;
         printf(\textcolor{stringliteral}{"Roll Right %i\(\backslash\)n"}, targetRoll);
     \}
 \}
@@ -262,8 +262,8 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
     \textcolor{keywordtype}{double} p, i, d, min, max, iMin, iMax;
     \textcolor{keywordtype}{int} c = scanf(\textcolor{stringliteral}{"%lf %lf %lf %lf %lf %lf %lf"}, &p, &i, &d, &min, &max, &iMin, &iMax);
     \textcolor{keywordflow}{if} (c == 7) \{
-        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[0], p, i, d, min, max, iMin, iMax);
-        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[1], p, i, d, min, max, iMin, iMax);
+        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0], p, i, d, min, max, iMin, iMax);
+        \hyperlink{group__pid_ga1fc5e60f994041f4a534f18d1f307308}{pidSet}(&\hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[1], p, i, d, min, max, iMin, iMax);
     \} \textcolor{keywordflow}{else} \{
         printf(\textcolor{stringliteral}{"Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\(\backslash\)n"}, c, p, i, d, min, max, iMin, iMax);
     \}

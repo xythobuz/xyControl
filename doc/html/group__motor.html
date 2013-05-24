@@ -143,7 +143,7 @@ Variables</h2></td></tr>
 </dl>
 <p>Definition at line <a class="el" href="motor_8c_source.html#l00058">58</a> of file <a class="el" href="motor_8c_source.html">motor.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00107">MOTORCOUNT</a>, and <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00104">MOTORCOUNT</a>, and <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>.</p>
 <div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                     {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code" href="group__config.html#ga1a2c496f8bb7dbb5f1dfef5c32624a6d" title="Amount of motors.">MOTORCOUNT</a>; i++) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[i] = 0;</div>
@@ -187,9 +187,9 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="motor_8c_source.html#l00064">64</a> of file <a class="el" href="motor_8c_source.html">motor.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00107">MOTORCOUNT</a>, and <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00104">MOTORCOUNT</a>, and <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>.</p>
 
-<p>Referenced by <a class="el" href="set_8c_source.html#l00059">setMotorSpeeds()</a>.</p>
+<p>Referenced by <a class="el" href="set_8c_source.html#l00057">setMotorSpeeds()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                         {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">if</span> (<span class="keywordtype">id</span> &lt; <a class="code" href="group__config.html#ga1a2c496f8bb7dbb5f1dfef5c32624a6d" title="Amount of motors.">MOTORCOUNT</a>) {</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[id] = speed;</div>
@@ -222,7 +222,7 @@ Variables</h2></td></tr>
 </dl>
 <p>Definition at line <a class="el" href="motor_8c_source.html#l00050">50</a> of file <a class="el" href="motor_8c_source.html">motor.c</a>.</p>
 
-<p>References <a class="el" href="config_8h_source.html#l00123">MOTOR_BASEADDRESS</a>, <a class="el" href="config_8h_source.html#l00107">MOTORCOUNT</a>, <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>, <a class="el" href="twi_8h_source.html#l00044">TWI_WRITE</a>, <a class="el" href="twi_8c_source.html#l00040">twiStart()</a>, <a class="el" href="twi_8c_source.html#l00137">twiStop()</a>, and <a class="el" href="twi_8c_source.html#l00155">twiWrite()</a>.</p>
+<p>References <a class="el" href="config_8h_source.html#l00120">MOTOR_BASEADDRESS</a>, <a class="el" href="config_8h_source.html#l00104">MOTORCOUNT</a>, <a class="el" href="motor_8c_source.html#l00048">motorSpeed</a>, <a class="el" href="twi_8h_source.html#l00044">TWI_WRITE</a>, <a class="el" href="twi_8c_source.html#l00040">twiStart()</a>, <a class="el" href="twi_8c_source.html#l00137">twiStop()</a>, and <a class="el" href="twi_8c_source.html#l00155">twiWrite()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                     {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; <a class="code" href="group__config.html#ga1a2c496f8bb7dbb5f1dfef5c32624a6d" title="Amount of motors.">MOTORCOUNT</a>; i++) {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="group__twi.html#ga4f86edc73f37ce976ea2225519ab31cd" title="Start an I2C Transfer.">twiStart</a>(<a class="code" href="group__config.html#ga6e8ab18bbb1ef1b1e929c627f18224a3" title="Address of first motor controller.">MOTOR_BASEADDRESS</a> + (i &lt;&lt; 1) + <a class="code" href="group__twi.html#ga3b68e8e777b71520f9dbfac733774d5f" title="I2C Write Bit.">TWI_WRITE</a>);</div>

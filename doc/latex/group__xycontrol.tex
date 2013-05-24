@@ -49,6 +49,8 @@ double \hyperlink{group__xycontrol_ga97874cf2a7f8e6964188b54fe85084a6}{get\-Volt
 \begin{DoxyCompactList}\small\item\em Calculate and return the Battery Voltage. \end{DoxyCompactList}\item 
 void \hyperlink{group__xycontrol_ga26f242fc9cc1fb7dfdb78daae5579a63}{xy\-Self\-Reset} (void)
 \begin{DoxyCompactList}\small\item\em Use the Watchdog to reset yourself after 15ms. \end{DoxyCompactList}\item 
+int64\-\_\-t \hyperlink{group__xycontrol_gabcbffb9fdac0122e1d64b53119d03c63}{map} (int64\-\_\-t value, int64\-\_\-t old\-Min, int64\-\_\-t old\-Max, int64\-\_\-t new\-Min, int64\-\_\-t new\-Max)
+\begin{DoxyCompactList}\small\item\em Map an Integer from one range to another range. \end{DoxyCompactList}\item 
 int \hyperlink{group__xycontrol_ga7e2be90354ccc3af05947764858bc0b1}{uartoutput} (char c, F\-I\-L\-E $\ast$f)
 \begin{DoxyCompactList}\small\item\em Method used to write to stdout and stderr. \end{DoxyCompactList}\item 
 int \hyperlink{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{uartinput} (F\-I\-L\-E $\ast$f)
@@ -183,6 +185,47 @@ References adc\-Get(), adc\-Ready(), adc\-Start(), B\-A\-T\-T\-\_\-\-C\-H\-A\-N\
 175     uint16\_t v = \hyperlink{group__adc_ga50d95c156a0eaea87bd65f5abfc1b5cb}{adcGet}(0) * \hyperlink{group__config_gac873c87f494ea2b22e7eb5fc74ad5a82}{BATT\_MAX};
 176     \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{double})v / 1024.0);
 177 \}
+\end{DoxyCode}
+\hypertarget{group__xycontrol_gabcbffb9fdac0122e1d64b53119d03c63}{\index{xy\-Control Hardware@{xy\-Control Hardware}!map@{map}}
+\index{map@{map}!xyControl Hardware@{xy\-Control Hardware}}
+\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}int64\-\_\-t map (
+\begin{DoxyParamCaption}
+\item[{int64\-\_\-t}]{value, }
+\item[{int64\-\_\-t}]{old\-Min, }
+\item[{int64\-\_\-t}]{old\-Max, }
+\item[{int64\-\_\-t}]{new\-Min, }
+\item[{int64\-\_\-t}]{new\-Max}
+\end{DoxyParamCaption}
+)}}\label{group__xycontrol_gabcbffb9fdac0122e1d64b53119d03c63}
+
+
+Map an Integer from one range to another range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Integer to operate on \\
+\hline
+{\em old\-Min} & Lower Limit of Input range \\
+\hline
+{\em old\-Max} & Upper Limit of Input range \\
+\hline
+{\em new\-Min} & Lower Limit of Output range \\
+\hline
+{\em new\-Max} & Upper Limit of Output range \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value in new range 
+\end{DoxyReturn}
+
+
+Definition at line 184 of file xycontrol.\-c.
+
+
+\begin{DoxyCode}
+184                                                                                            \{
+185     \textcolor{keywordflow}{return} (value - oldMin) * (newMax - newMin) / (oldMax - oldMin) + newMin;
+186 \}
 \end{DoxyCode}
 \hypertarget{group__xycontrol_ga3f158de66529c4606b8d8a380e5a5b07}{\index{xy\-Control Hardware@{xy\-Control Hardware}!uartinput@{uartinput}}
 \index{uartinput@{uartinput}!xyControl Hardware@{xy\-Control Hardware}}

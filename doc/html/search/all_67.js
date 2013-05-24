@@ -9,7 +9,7 @@ var searchData=
   ['gyro_5faddress',['GYRO_ADDRESS',['../group__config.html#ga8ed1f343e82440b4ef900e5fe42d74f0',1,'config.h']]],
   ['gyrofilterfactor',['GYROFILTERFACTOR',['../group__config.html#ga1b5d47810976ecbfd688513246db3ba9',1,'config.h']]],
   ['gyroinit',['gyroInit',['../group__gyro.html#ga276b9ab6ac85c65b5a55356c00958be7',1,'gyro.c']]],
-  ['gyrorange',['GyroRange',['../group__gyro.html#ga12b0e0572fdceaa90874f9364c862ead',1,'GyroRange():&#160;gyro.h'],['../group__gyro.html#gaa2ed27a7e4a0d8a5f492ef6059a04615',1,'gyroRange():&#160;gyro.c']]],
+  ['gyrorange',['gyroRange',['../group__gyro.html#gaa2ed27a7e4a0d8a5f492ef6059a04615',1,'gyroRange():&#160;gyro.c'],['../group__gyro.html#ga12b0e0572fdceaa90874f9364c862ead',1,'GyroRange():&#160;gyro.h']]],
   ['gyroread',['gyroRead',['../group__gyro.html#gab90a6ac7c268152edb186ee699462fd8',1,'gyro.c']]],
   ['gyroreg_5fctrl1',['GYROREG_CTRL1',['../group__gyro.html#ga59d5eec860eab49733b4a814731e356c',1,'gyro.c']]],
   ['gyroreg_5fctrl4',['GYROREG_CTRL4',['../group__gyro.html#gae9b6f4aab3818fdb4c99970918e0a705',1,'gyro.c']]],

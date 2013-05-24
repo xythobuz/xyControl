@@ -13,7 +13,7 @@ var searchData=
   ['magwriteregister',['magWriteRegister',['../group__mag.html#gafaf03e3013fe2046847afc2518f23eed',1,'mag.c']]],
   ['malloc_5ffail',['MALLOC_FAIL',['../group__error.html#gga2c3e4bb40f36b262a5214e2da2bca9c5a89a164ff453c45893033cf318906c2d7',1,'error.h']]],
   ['mallocstate',['MallocState',['../struct_malloc_state.html',1,'']]],
-  ['maxdiff',['MAXDIFF',['../group__set.html#ga3d4060e583ff657db3505ec8933d9b12',1,'set.c']]],
+  ['map',['map',['../group__xycontrol.html#gabcbffb9fdac0122e1d64b53119d03c63',1,'xycontrol.c']]],
   ['membanks',['MEMBANKS',['../group__xmem.html#ga1ed280cb3dd0a4a03aeda6aaccc180d3',1,'xmem.h']]],
   ['memswitch',['MEMSWITCH',['../group__xmem.html#ga253830e5022f2aa99177acd8a0ba0bfe',1,'xmem.h']]],
   ['memswitchback',['MEMSWITCHBACK',['../group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34',1,'xmem.h']]],

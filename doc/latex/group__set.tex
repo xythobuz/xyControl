@@ -13,11 +13,6 @@ file \hyperlink{set_8h}{set.\-h}
 \begin{DoxyCompactList}\small\item\em Motor Mixer Library Header. \end{DoxyCompactList}\item 
 file \hyperlink{set_8c}{set.\-c}
 \begin{DoxyCompactList}\small\item\em Motor Mixer Library Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{group__set_ga3d4060e583ff657db3505ec8933d9b12}{M\-A\-X\-D\-I\-F\-F}~(\hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{base\-Speed} $\ast$ \hyperlink{group__config_ga0eb032986beceb6759aebd761c35a879}{P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R})
-\begin{DoxyCompactList}\small\item\em Maximum Speed difference on one axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,24 +31,6 @@ uint8\-\_\-t \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{base\-Spe
 
 \subsection{Detailed Description}
 Takes the Base Speed and P\-I\-D-\/\-Output and sets Motor Speed accordingly. 
-
-\subsection{Macro Definition Documentation}
-\hypertarget{group__set_ga3d4060e583ff657db3505ec8933d9b12}{\index{Motor Speed Mixer@{Motor Speed Mixer}!M\-A\-X\-D\-I\-F\-F@{M\-A\-X\-D\-I\-F\-F}}
-\index{M\-A\-X\-D\-I\-F\-F@{M\-A\-X\-D\-I\-F\-F}!Motor Speed Mixer@{Motor Speed Mixer}}
-\subsubsection[{M\-A\-X\-D\-I\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-D\-I\-F\-F~({\bf base\-Speed} $\ast$ {\bf P\-I\-D\-\_\-\-F\-A\-C\-T\-O\-R})}}\label{group__set_ga3d4060e583ff657db3505ec8933d9b12}
-
-
-Maximum Speed difference on one axis. 
-
-
-
-Definition at line 51 of file set.\-c.
-
-
-
-Referenced by set\-Task().
-
-
 
 \subsection{Function Documentation}
 \hypertarget{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{\index{Motor Speed Mixer@{Motor Speed Mixer}!set\-Motor\-Speeds@{set\-Motor\-Speeds}}
@@ -77,11 +54,11 @@ Set the Motor Speeds according to the S\-E\-T\-\_\-$\ast$ Motor Position Constan
 \end{DoxyParams}
 
 
-Definition at line 59 of file set.\-c.
+Definition at line 57 of file set.\-c.
 
 
 
-References motor\-Set(), S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S, and S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S.
+References motor\-Set(), P\-I\-T\-C\-H, R\-O\-L\-L, S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-M\-I\-N\-U\-S, S\-E\-T\-\_\-\-P\-I\-T\-C\-H\-P\-L\-U\-S, S\-E\-T\-\_\-\-R\-O\-L\-L\-M\-I\-N\-U\-S, and S\-E\-T\-\_\-\-R\-O\-L\-L\-P\-L\-U\-S.
 
 
 
@@ -89,15 +66,15 @@ Referenced by set\-Task().
 
 
 \begin{DoxyCode}
-59                                                         \{
-60     \textcolor{keywordflow}{if} (axis == \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}) \{
-61         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga460dbe0039d252579c5ce8beef7cc709}{SET\_ROLLPLUS}, vals[0]);
-62         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga9921670161925a1d7b946aeb65d5767a}{SET\_ROLLMINUS}, vals[1]);
-63     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (axis == \hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}) \{
-64         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_gaf0a00d922db66d875ca53f6db34e7307}{SET\_PITCHPLUS}, vals[0]);
-65         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga8c969dbb07dc504226fc2c69484b9768}{SET\_PITCHMINUS}, vals[1]);
-66     \}
-67 \}
+57                                                         \{
+58     \textcolor{keywordflow}{if} (axis == \hyperlink{group__pid_gaf902416f65138704a180dbae2dc9d8f2}{ROLL}) \{
+59         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga460dbe0039d252579c5ce8beef7cc709}{SET\_ROLLPLUS}, vals[0]);
+60         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga9921670161925a1d7b946aeb65d5767a}{SET\_ROLLMINUS}, vals[1]);
+61     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (axis == \hyperlink{group__pid_gacd633835a520a62245ec6cfeb6d00e97}{PITCH}) \{
+62         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_gaf0a00d922db66d875ca53f6db34e7307}{SET\_PITCHPLUS}, vals[0]);
+63         \hyperlink{group__motor_gafde1750cdf4354c295108eec552d899d}{motorSet}(\hyperlink{group__config_ga8c969dbb07dc504226fc2c69484b9768}{SET\_PITCHMINUS}, vals[1]);
+64     \}
+65 \}
 \end{DoxyCode}
 \hypertarget{group__set_ga37f245c493d725009017f62a78505e64}{\index{Motor Speed Mixer@{Motor Speed Mixer}!set\-Task@{set\-Task}}
 \index{set\-Task@{set\-Task}!Motor Speed Mixer@{Motor Speed Mixer}}
@@ -115,21 +92,24 @@ Read the P\-I\-D Output and Set the Motor Speeds.
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 69 of file set.\-c.
+Definition at line 67 of file set.\-c.
 
 
 
-References base\-Speed, M\-A\-X\-D\-I\-F\-F, o\-\_\-output, o\-\_\-pids, and set\-Motor\-Speeds().
+References base\-Speed, pid\-Output, and set\-Motor\-Speeds().
 
 
 \begin{DoxyCode}
-69                    \{
-70     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < 2; i++) \{
-71         \textcolor{keywordtype}{double} diff = (\hyperlink{group__pid_gaf457b38bb75f72a89bac9b4a9570bd99}{o\_output}[i] * \hyperlink{group__set_ga3d4060e583ff657db3505ec8933d9b12}{MAXDIFF}) / \hyperlink{group__pid_gaf8f428e17178b1f15edba7158fd831da}{o\_pids}[i].outMax;
-72         uint8\_t v[2] = \{ \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} + diff, \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} - diff \};
-73         \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(i, v);
-74     \}
-75 \}
+67                    \{
+68     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < 2; i++) \{
+69         uint8\_t diff = \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[i];
+70         \textcolor{keywordflow}{if} (diff > \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}) \{
+71             diff = \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}; \textcolor{comment}{// Limit PID}
+72         \}
+73         uint8\_t v[2] = \{ \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} + diff, \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} - diff \};
+74         \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(i, v);
+75     \}
+76 \}
 \end{DoxyCode}
 
 
@@ -146,7 +126,7 @@ Motor Base Speed.
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 53 of file set.\-c.
+Definition at line 51 of file set.\-c.
 
 
 
@@ -161,7 +141,7 @@ Motor Base Speed.
 
 
 
-Definition at line 53 of file set.\-c.
+Definition at line 51 of file set.\-c.
 
 
 

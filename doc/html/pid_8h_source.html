@@ -139,9 +139,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2">   60</a></span>&#160;<span class="preprocessor">#define ROLL 0 </span></div>
 <div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97">   61</a></span>&#160;<span class="preprocessor">#define PITCH 1 </span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">extern double o_should[2]; </span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">extern double o_output[2]; </span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">extern PIDState o_pids[2]; </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">extern double pidTarget[2]; </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">extern double pidOutput[2]; </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">extern PIDState pidStates[2]; </span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">void pidInit(void);</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__pid.html#ga2683c9ee5bad3c89577ddc1bf16a219c" title="Step the Roll and Pitch PID Controllers.">pidTask</a>(<span class="keywordtype">void</span>);</div>

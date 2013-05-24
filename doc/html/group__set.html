@@ -80,7 +80,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#files">Files</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -99,12 +98,6 @@ Files</h2></td></tr>
 <tr class="memitem:set_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="set_8c.html">set.c</a></td></tr>
 <tr class="memdesc:set_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor Mixer Library Implementation. <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ga3d4060e583ff657db3505ec8933d9b12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__set.html#ga3d4060e583ff657db3505ec8933d9b12">MAXDIFF</a>&#160;&#160;&#160;(<a class="el" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a> * <a class="el" href="group__config.html#ga0eb032986beceb6759aebd761c35a879">PID_FACTOR</a>)</td></tr>
-<tr class="memdesc:ga3d4060e583ff657db3505ec8933d9b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum Speed difference on one axis.  <a href="#ga3d4060e583ff657db3505ec8933d9b12">More...</a><br/></td></tr>
-<tr class="separator:ga3d4060e583ff657db3505ec8933d9b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -126,25 +119,6 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Takes the Base Speed and PID-Output and sets Motor Speed accordingly. </p>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ga3d4060e583ff657db3505ec8933d9b12"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAXDIFF&#160;&#160;&#160;(<a class="el" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b">baseSpeed</a> * <a class="el" href="group__config.html#ga0eb032986beceb6759aebd761c35a879">PID_FACTOR</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Maximum Speed difference on one axis. </p>
-
-<p>Definition at line <a class="el" href="set_8c_source.html#l00051">51</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
-
-<p>Referenced by <a class="el" href="set_8c_source.html#l00069">setTask()</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ga4173baf06c19647e0c60ef2e910bbc87"></a>
 <div class="memitem">
@@ -187,20 +161,20 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="set_8c_source.html#l00059">59</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
+<p>Definition at line <a class="el" href="set_8c_source.html#l00057">57</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
 
-<p>References <a class="el" href="motor_8c_source.html#l00064">motorSet()</a>, <a class="el" href="config_8h_source.html#l00091">SET_ROLLMINUS</a>, and <a class="el" href="config_8h_source.html#l00090">SET_ROLLPLUS</a>.</p>
+<p>References <a class="el" href="motor_8c_source.html#l00064">motorSet()</a>, <a class="el" href="pid_8h_source.html#l00061">PITCH</a>, <a class="el" href="pid_8h_source.html#l00060">ROLL</a>, <a class="el" href="config_8h_source.html#l00090">SET_PITCHMINUS</a>, <a class="el" href="config_8h_source.html#l00089">SET_PITCHPLUS</a>, <a class="el" href="config_8h_source.html#l00088">SET_ROLLMINUS</a>, and <a class="el" href="config_8h_source.html#l00087">SET_ROLLPLUS</a>.</p>
 
-<p>Referenced by <a class="el" href="set_8c_source.html#l00069">setTask()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                        {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> (axis == <a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for o_should, o_output and o_pids.">ROLL</a>) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga460dbe0039d252579c5ce8beef7cc709" title="Second Motor at the Right.">SET_ROLLPLUS</a>, vals[0]);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga9921670161925a1d7b946aeb65d5767a" title="Fourth Motor at the Left.">SET_ROLLMINUS</a>, vals[1]);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (axis == <a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for o_should, o_output and o_pids.">PITCH</a>) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#gaf0a00d922db66d875ca53f6db34e7307" title="First Motor at the Top.">SET_PITCHPLUS</a>, vals[0]);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga8c969dbb07dc504226fc2c69484b9768" title="Third Motor at the Bottom.">SET_PITCHMINUS</a>, vals[1]);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<p>Referenced by <a class="el" href="set_8c_source.html#l00067">setTask()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                                        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span> (axis == <a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga460dbe0039d252579c5ce8beef7cc709" title="Second Motor at the Right.">SET_ROLLPLUS</a>, vals[0]);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga9921670161925a1d7b946aeb65d5767a" title="Fourth Motor at the Left.">SET_ROLLMINUS</a>, vals[1]);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (axis == <a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#gaf0a00d922db66d875ca53f6db34e7307" title="First Motor at the Top.">SET_PITCHPLUS</a>, vals[0]);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="group__motor.html#gafde1750cdf4354c295108eec552d899d" title="Set the speed of one or all motors.">motorSet</a>(<a class="code" href="group__config.html#ga8c969dbb07dc504226fc2c69484b9768" title="Third Motor at the Bottom.">SET_PITCHMINUS</a>, vals[1]);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,16 +195,19 @@ Variables</h2></td></tr>
 <p>Read the PID Output and Set the Motor Speeds. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a19">uartFlight.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="set_8c_source.html#l00069">69</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
+<p>Definition at line <a class="el" href="set_8c_source.html#l00067">67</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
 
-<p>References <a class="el" href="set_8c_source.html#l00053">baseSpeed</a>, <a class="el" href="set_8c_source.html#l00051">MAXDIFF</a>, <a class="el" href="pid_8c_source.html#l00052">o_output</a>, <a class="el" href="pid_8c_source.html#l00050">o_pids</a>, and <a class="el" href="set_8c_source.html#l00059">setMotorSpeeds()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                   {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 2; i++) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">double</span> diff = (<a class="code" href="group__pid.html#gaf457b38bb75f72a89bac9b4a9570bd99" title="Roll and Pitch PID Output.">o_output</a>[i] * <a class="code" href="group__set.html#ga3d4060e583ff657db3505ec8933d9b12" title="Maximum Speed difference on one axis.">MAXDIFF</a>) / <a class="code" href="group__pid.html#gaf8f428e17178b1f15edba7158fd831da" title="Roll and Pitch PID States.">o_pids</a>[i].outMax;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        uint8_t v[2] = { <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> + diff, <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> - diff };</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="group__set.html#ga4173baf06c19647e0c60ef2e910bbc87" title="Set the Motor Speeds according to the SET_* Motor Position Constants.">setMotorSpeeds</a>(i, v);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<p>References <a class="el" href="set_8c_source.html#l00051">baseSpeed</a>, <a class="el" href="pid_8c_source.html#l00052">pidOutput</a>, and <a class="el" href="set_8c_source.html#l00057">setMotorSpeeds()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                   {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 2; i++) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        uint8_t diff = <a class="code" href="group__pid.html#ga5b70790e470e0c5812d24a8a098c01e0" title="Roll and Pitch PID Output.">pidOutput</a>[i];</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> (diff &gt; <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a>) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            diff = <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a>; <span class="comment">// Limit PID</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        uint8_t v[2] = { <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> + diff, <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> - diff };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="group__set.html#ga4173baf06c19647e0c60ef2e910bbc87" title="Set the Motor Speeds according to the SET_* Motor Position Constants.">setMotorSpeeds</a>(i, v);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -248,9 +225,9 @@ Variables</h2></td></tr>
 <p>Motor Base Speed. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a30">uartFlight.c</a>.</dd>
 </dl>
-<p>Definition at line <a class="el" href="set_8c_source.html#l00053">53</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
+<p>Definition at line <a class="el" href="set_8c_source.html#l00051">51</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
 
-<p>Referenced by <a class="el" href="set_8c_source.html#l00069">setTask()</a>.</p>
+<p>Referenced by <a class="el" href="set_8c_source.html#l00067">setTask()</a>.</p>
 
 </div>
 </div>
@@ -266,9 +243,9 @@ Variables</h2></td></tr>
 
 <p>Motor Base Speed. </p>
 
-<p>Definition at line <a class="el" href="set_8c_source.html#l00053">53</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
+<p>Definition at line <a class="el" href="set_8c_source.html#l00051">51</a> of file <a class="el" href="set_8c_source.html">set.c</a>.</p>
 
-<p>Referenced by <a class="el" href="set_8c_source.html#l00069">setTask()</a>.</p>
+<p>Referenced by <a class="el" href="set_8c_source.html#l00067">setTask()</a>.</p>
 
 </div>
 </div>
