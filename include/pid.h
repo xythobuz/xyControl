@@ -57,22 +57,22 @@ typedef struct {
     time_t last; /**< Last execution time. For dT calculation. */
 } PIDState;
 
-#define ROLL 0 /**< Roll index for #o_should, #o_output and #o_pids. */
-#define PITCH 1 /**< Pitch index for #o_should, #o_output and #o_pids. */
+#define ROLL 0 /**< Roll index for #pidTarget, #pidOutput and #pidStates. */
+#define PITCH 1 /**< Pitch index for #pidTarget, #pidOutput and #pidStates. */
 
-extern double o_should[2]; /**< Roll and Pitch target angles. */
-extern double o_output[2]; /**< Roll and Pitch PID Output. */
-extern PIDState o_pids[2]; /**< Roll and Pitch PID States. */
+extern double pidTarget[2]; /**< Roll and Pitch target angles. */
+extern double pidOutput[2]; /**< Roll and Pitch PID Output. */
+extern PIDState pidStates[2]; /**< Roll and Pitch PID States. */
 
 /** Initialize Roll and Pitch PID.
- * Stores the PID States in #o_pids.
- * Also resets #o_should to zero.
+ * Stores the PID States in #pidStates.
+ * Also resets #pidTarget to zero.
  */
 void pidInit(void);
 
 /** Step the Roll and Pitch PID Controllers.
- * Placing their output in #o_output and reading the input
- * from #o_should and the global orientation Angles.
+ * Placing their output in #pidOutput and reading the input
+ * from #pidTarget and the global orientation Angles.
  */
 void pidTask(void);
 

@@ -142,10 +142,10 @@ void flightTask(void) {
         last = getSystemTime();
         Error e = orientationTask();
         REPORTERROR(e);
-        if (state & 0x02) {
+        if (state & STATE_PID) {
             pidTask();
         } else {
-            o_output[0] = o_output[1] = 0;
+            pidOutput[0] = pidOutput[1] = 0;
         }
         setTask();
         motorTask();
@@ -166,10 +166,10 @@ void statusTask(void) {
     if (((getSystemTime() - last) >= STATUSDELAY) && (!(state & STATE_OUTPUT))) {
         last = getSystemTime();
         printf("q%li %li\n", sumFlightTask / countFlightTask, lastDuration);
-        printf("r%.2f %.2f\n", o_pids[0].intMin, o_pids[0].intMax);
-        printf("s%.2f %.2f\n", o_pids[0].outMin, o_pids[0].outMax);
-        printf("t%.3f %.3f %.3f\n", o_pids[0].kp, o_pids[0].ki, o_pids[0].kd);
-        printf("u%.2f %.2f\n", o_output[PITCH], o_output[ROLL]);
+        printf("r%.2f %.2f\n", pidStates[0].intMin, pidStates[0].intMax);
+        printf("s%.2f %.2f\n", pidStates[0].outMin, pidStates[0].outMax);
+        printf("t%.3f %.3f %.3f\n", pidStates[0].kp, pidStates[0].ki, pidStates[0].kd);
+        printf("u%.2f %.2f\n", pidOutput[PITCH], pidOutput[ROLL]);
         printf("v%i %i %i %i\n", motorSpeed[0], motorSpeed[1], motorSpeed[2], motorSpeed[3]);
         printf("w%.2f\n", orientation.pitch);
         printf("x%.2f\n", orientation.roll);
@@ -224,7 +224,7 @@ void motorDown(void) {
 void motorForward(void) {
     if (targetPitch >= (-1 * (MAXANGLE - ANGLESTEP))) {
         targetPitch -= ANGLESTEP;
-        o_should[PITCH] = targetPitch;
+        pidTarget[PITCH] = targetPitch;
         printf("Pitch Forward %i\n", targetPitch);
     }
 }
@@ -232,7 +232,7 @@ void motorForward(void) {
 void motorBackward(void) {
     if (targetPitch <= (MAXANGLE - ANGLESTEP)) {
         targetPitch += ANGLESTEP;
-        o_should[PITCH] = targetPitch;
+        pidTarget[PITCH] = targetPitch;
         printf("Pitch Backwards %i\n", targetPitch);
     }
 }
@@ -240,7 +240,7 @@ void motorBackward(void) {
 void motorLeft(void) {
     if (targetRoll <= (MAXANGLE - ANGLESTEP)) {
         targetRoll += ANGLESTEP;
-        o_should[ROLL] = targetRoll;
+        pidTarget[ROLL] = targetRoll;
         printf("Roll Left %i\n", targetRoll);
     }
 }
@@ -248,7 +248,7 @@ void motorLeft(void) {
 void motorRight(void) {
     if (targetRoll >= (-1 * (MAXANGLE - ANGLESTEP))) {
         targetRoll -= ANGLESTEP;
-        o_should[ROLL] = targetRoll;
+        pidTarget[ROLL] = targetRoll;
         printf("Roll Right %i\n", targetRoll);
     }
 }
@@ -257,8 +257,8 @@ void parameterChange(void) {
     double p, i, d, min, max, iMin, iMax;
     int c = scanf("%lf %lf %lf %lf %lf %lf %lf", &p, &i, &d, &min, &max, &iMin, &iMax);
     if (c == 7) {
-        pidSet(&o_pids[0], p, i, d, min, max, iMin, iMax);
-        pidSet(&o_pids[1], p, i, d, min, max, iMin, iMax);
+        pidSet(&pidStates[0], p, i, d, min, max, iMin, iMax);
+        pidSet(&pidStates[1], p, i, d, min, max, iMin, iMax);
     } else {
         printf("Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\n", c, p, i, d, min, max, iMin, iMax);
     }

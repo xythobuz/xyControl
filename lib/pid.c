@@ -47,9 +47,9 @@
  *  PID Library Implementation
  */
 
-PIDState o_pids[2];
-double o_should[2];
-double o_output[2];
+PIDState pidStates[2];
+double pidTarget[2];
+double pidOutput[2];
 
 double pidExecute(double should, double is, PIDState *state) {
     time_t now = getSystemTime();
@@ -73,8 +73,8 @@ double pidExecute(double should, double is, PIDState *state) {
 
 void pidInit(void) {
     for (uint8_t i = 0; i < 2; i++) {
-        pidSet(&o_pids[i], PID_P, PID_I, PID_D, PID_OUTMIN, PID_OUTMAX, PID_INTMIN, PID_INTMAX);
-        o_should[i] = 0.0;
+        pidSet(&pidStates[i], PID_P, PID_I, PID_D, PID_OUTMIN, PID_OUTMAX, PID_INTMIN, PID_INTMAX);
+        pidTarget[i] = 0.0;
     }
 }
 
@@ -92,7 +92,7 @@ void pidSet(PIDState *pid, double kp, double ki, double kd, double min, double m
 }
 
 void pidTask(void) {
-    o_output[ROLL] = pidExecute(o_should[ROLL], orientation.roll, &o_pids[ROLL]);
-    o_output[PITCH] = pidExecute(o_should[PITCH], orientation.pitch, &o_pids[PITCH]);
+    pidOutput[ROLL] = pidExecute(pidTarget[ROLL], orientation.roll, &pidStates[ROLL]);
+    pidOutput[PITCH] = pidExecute(pidTarget[PITCH], orientation.pitch, &pidStates[PITCH]);
 }
 /** @} */
