@@ -64,9 +64,6 @@
 #define PID_INTMAX PID_OUTMAX /**< Maximum PID Integral Sum */
 #define PID_INTMIN PID_OUTMIN /**< Minimal PID Integral Sum */
 
-// #define MAXDIFF (baseSpeed * PID_FACTOR)
-#define PID_FACTOR 4 / 5 /**< Influence of PID in relation to Base Speed */
-
 //  -----------------
 // |    Kalman      |
 //  -----------------

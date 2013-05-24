@@ -48,8 +48,6 @@
  *  Motor Mixer Library Implementation
  */
 
-#define MAXDIFF (baseSpeed * PID_FACTOR) /**< Maximum Speed difference on one axis */
-
 uint8_t baseSpeed = 0; /**< Motor Base Speed */
 
 /** Set the Motor Speeds according to the SET_* Motor Position Constants.
@@ -68,8 +66,7 @@ inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
 
 void setTask(void) {
     for (uint8_t i = 0; i < 2; i++) {
-        double diff = (o_output[i] * MAXDIFF) / o_pids[i].outMax;
-        uint8_t v[2] = { baseSpeed + diff, baseSpeed - diff };
+        uint8_t v[2] = { baseSpeed + o_output[i], baseSpeed - o_output[i] };
         setMotorSpeeds(i, v);
     }
 }
