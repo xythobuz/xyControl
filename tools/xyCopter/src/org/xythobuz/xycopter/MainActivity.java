@@ -406,12 +406,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		// If there are paired devices
 		if (pairedDev.size() > 1) {
 			// Loop through paired devices
-			int i = 0;
 			final BluetoothDevice[] pairedDevices = (BluetoothDevice[]) pairedDev
 					.toArray(new BluetoothDevice[0]);
 			String[] pairedName = new String[pairedDev.size()];
-			for (BluetoothDevice device : pairedDevices) {
-				pairedName[i] = device.getName() + " (" + device.getAddress()
+			for (int i = 0; i < pairedDev.size(); i++) {
+				pairedName[i] = pairedDevices[i].getName() + " (" + pairedDevices[i].getAddress()
 						+ ")";
 			}
 

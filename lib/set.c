@@ -65,13 +65,31 @@ inline void setMotorSpeeds(uint8_t axis, uint8_t *vals) {
 }
 
 void setTask(void) {
-    for (uint8_t i = 0; i < 2; i++) {
-        uint8_t diff = pidOutput[i];
-        if (diff > baseSpeed) {
-            diff = baseSpeed; // Limit PID
+    if (baseSpeed != 0) {
+        for (uint8_t i = 0; i < 2; i++) {
+            int16_t diff = pidOutput[i];
+            // Base-Speed is always positive, diff could be negative
+            if (diff > 0) {
+                if (diff > baseSpeed) {
+                    diff = baseSpeed; // Limit PID
+                }
+            } else {
+                if (diff < -baseSpeed) {
+                    diff = -baseSpeed; // Limit PID
+                }
+            }
+            uint8_t v[2] = { baseSpeed + diff, baseSpeed - diff };
+            if (v[0] < 10)
+                v[0] = 10; // Keep Motors running
+            if (v[1] < 10)
+                v[1] = 10;
+            setMotorSpeeds(i, v);
         }
-        uint8_t v[2] = { baseSpeed + diff, baseSpeed - diff };
-        setMotorSpeeds(i, v);
+    } else {
+        // Motors stopped
+        uint8_t v[2] = {0, 0};
+        setMotorSpeeds(0, v);
+        setMotorSpeeds(1, v);
     }
 }
 /** @} */
