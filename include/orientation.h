@@ -36,7 +36,7 @@
 /** \addtogroup orientation Orientation Calculation
  *  \ingroup Flight
  *  Calculate Orientation using the Kalman-Filter, Accelerometer and Gyroscope.
- *  
+ *
  *  @{
  */
 
@@ -49,6 +49,9 @@ typedef struct {
     double pitch; /**< Pitch Angle in Degrees */
     double roll; /**< Roll Angle in Degrees */
     double yaw; /**< Yaw Angle in Degrees */
+    double vPitch; /**< Pitch Angle Speed in Degrees per Second */
+    double vRoll; /**< Roll Angle Speed in Degrees per Second */
+    double vYaw; /**< Yaw Angle Speed in Degrees per Second */
 } Angles;
 
 extern Angles orientation; /**< Current Aircraft orientation */

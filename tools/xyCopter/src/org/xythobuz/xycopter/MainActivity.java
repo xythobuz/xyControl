@@ -98,6 +98,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public final static int MESSAGE_ALERT_DIALOG = 19;
 	public final static int MESSAGE_PIDINTRANGE_READ = 20;
 	public final static int MESSAGE_FREQ_READ = 21;
+	public final static int MESSAGE_ANGLES_READ = 22;
 
 	private final static String APP_KEY = "gnbnnowfgpv5jej";
 	private final static String APP_SECRET = "uxy6uf661xyd46q";
@@ -131,10 +132,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	// private static int SERIES_M2 = 6;
 	// private static int SERIES_M3 = 7;
 	// private static int SERIES_M4 = 8;
-	private GraphViewSeries[] graphViewSeries = new GraphViewSeries[9];
-	GraphViewData[][] graphViewDatas = new GraphViewData[9][];
+	private static int SERIES_VPITCH = 9;
+	private static int SERIES_VROLL = 10;
+	private static int SERIES_VYAW = 11;
+	private GraphViewSeries[] graphViewSeries = new GraphViewSeries[12];
+	GraphViewData[][] graphViewDatas = new GraphViewData[12][];
 	private String[] graphViewName = { "Roll", "Pitch", "Yaw", "PID-Roll",
-			"PID-Pitch", "M1", "M2", "M3", "M4" };
+			"PID-Pitch", "M1", "M2", "M3", "M4", "vP", "vR", "vY" };
 	private GraphViewSeriesStyle[] graphViewStyle = {
 			new GraphViewSeriesStyle(Color.RED, 2),
 			new GraphViewSeriesStyle(Color.GREEN, 2),
@@ -144,7 +148,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			new GraphViewSeriesStyle(Color.BLACK, 1),
 			new GraphViewSeriesStyle(Color.CYAN, 1),
 			new GraphViewSeriesStyle(Color.GRAY, 1),
-			new GraphViewSeriesStyle(Color.WHITE, 1) };
+			new GraphViewSeriesStyle(Color.WHITE, 1),
+			new GraphViewSeriesStyle(Color.LTGRAY, 1),
+			new GraphViewSeriesStyle(Color.LTGRAY, 1),
+			new GraphViewSeriesStyle(Color.LTGRAY, 1)};
 	private double graphIncrement = 1 / STATUSFREQ;
 	private double graphX = graphIncrement;
 
@@ -631,6 +638,23 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 			}
 			t.setText(s);
+		} else if (msg.what == MESSAGE_ANGLES_READ) {
+			String s = (String)msg.obj;
+			String[] mStrings = s.split("\\s+");
+			if (mStrings.length == 3) {
+				try {
+					double pitch = Double.parseDouble(mStrings[0]);
+					double roll = Double.parseDouble(mStrings[1]);
+					double yaw = Double.parseDouble(mStrings[2]);
+					graphViewSeries[SERIES_VPITCH].appendData(
+							new GraphViewData(graphX, pitch), true);
+					graphViewSeries[SERIES_VROLL].appendData(
+							new GraphViewData(graphX, roll), true);
+					graphViewSeries[SERIES_VYAW].appendData(
+							new GraphViewData(graphX, yaw), true);
+				} catch (NumberFormatException e) {
+				}
+			}
 		} else if (msg.what == MESSAGE_HEX_ERROR) {
 			showErrorAndDo(R.string.hex_title, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_DROPBOX_FAIL) {

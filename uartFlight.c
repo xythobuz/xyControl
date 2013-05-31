@@ -165,6 +165,7 @@ void statusTask(void) {
     static uint32_t lastDuration = 0;
     if (((getSystemTime() - last) >= STATUSDELAY) && (!(state & STATE_OUTPUT))) {
         last = getSystemTime();
+        printf("p%.2f %.2f %.2f\n", orientation.vPitch, orientation.vRoll, orientation.vYaw);
         printf("q%li %li\n", sumFlightTask / countFlightTask, lastDuration);
         printf("r%.2f %.2f\n", pidStates[0].intMin, pidStates[0].intMax);
         printf("s%.2f %.2f\n", pidStates[0].outMin, pidStates[0].outMax);
