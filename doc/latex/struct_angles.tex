@@ -18,7 +18,13 @@ double \hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch}
 double \hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll}
 \begin{DoxyCompactList}\small\item\em Roll Angle in Degrees. \end{DoxyCompactList}\item 
 double \hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw}
-\begin{DoxyCompactList}\small\item\em Yaw Angle in Degrees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Yaw Angle in Degrees. \end{DoxyCompactList}\item 
+double \hyperlink{struct_angles_acd2ab495f15d37525f00fa358444a7e8}{v\-Pitch}
+\begin{DoxyCompactList}\small\item\em Pitch Angle Speed in Degrees per Second. \end{DoxyCompactList}\item 
+double \hyperlink{struct_angles_ae5dfe118046f69d156389c62c33de4fc}{v\-Roll}
+\begin{DoxyCompactList}\small\item\em Roll Angle Speed in Degrees per Second. \end{DoxyCompactList}\item 
+double \hyperlink{struct_angles_a87a17eab9b8d06fdb255aae737aedcbf}{v\-Yaw}
+\begin{DoxyCompactList}\small\item\em Yaw Angle Speed in Degrees per Second. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -64,6 +70,60 @@ Definition at line 50 of file orientation.\-h.
 
 
 Referenced by orientation\-Task(), pid\-Task(), and zero\-Orientation().
+
+\hypertarget{struct_angles_acd2ab495f15d37525f00fa358444a7e8}{\index{Angles@{Angles}!v\-Pitch@{v\-Pitch}}
+\index{v\-Pitch@{v\-Pitch}!Angles@{Angles}}
+\subsubsection[{v\-Pitch}]{\setlength{\rightskip}{0pt plus 5cm}double v\-Pitch}}\label{struct_angles_acd2ab495f15d37525f00fa358444a7e8}
+
+
+Pitch Angle Speed in Degrees per Second. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 52 of file orientation.\-h.
+
+
+
+Referenced by orientation\-Task().
+
+\hypertarget{struct_angles_ae5dfe118046f69d156389c62c33de4fc}{\index{Angles@{Angles}!v\-Roll@{v\-Roll}}
+\index{v\-Roll@{v\-Roll}!Angles@{Angles}}
+\subsubsection[{v\-Roll}]{\setlength{\rightskip}{0pt plus 5cm}double v\-Roll}}\label{struct_angles_ae5dfe118046f69d156389c62c33de4fc}
+
+
+Roll Angle Speed in Degrees per Second. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 53 of file orientation.\-h.
+
+
+
+Referenced by orientation\-Task().
+
+\hypertarget{struct_angles_a87a17eab9b8d06fdb255aae737aedcbf}{\index{Angles@{Angles}!v\-Yaw@{v\-Yaw}}
+\index{v\-Yaw@{v\-Yaw}!Angles@{Angles}}
+\subsubsection[{v\-Yaw}]{\setlength{\rightskip}{0pt plus 5cm}double v\-Yaw}}\label{struct_angles_a87a17eab9b8d06fdb255aae737aedcbf}
+
+
+Yaw Angle Speed in Degrees per Second. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
+
+
+Definition at line 54 of file orientation.\-h.
+
+
+
+Referenced by orientation\-Task().
 
 \hypertarget{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{\index{Angles@{Angles}!yaw@{yaw}}
 \index{yaw@{yaw}!Angles@{Angles}}

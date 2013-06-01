@@ -328,53 +328,56 @@
 \contentsline {subsection}{\numberline {6.1.1}Detailed Description}{103}{subsection.6.1.1}
 \contentsline {subsection}{\numberline {6.1.2}Field Documentation}{103}{subsection.6.1.2}
 \contentsline {subsubsection}{\numberline {6.1.2.1}pitch}{103}{subsubsection.6.1.2.1}
-\contentsline {subsubsection}{\numberline {6.1.2.2}roll}{103}{subsubsection.6.1.2.2}
-\contentsline {subsubsection}{\numberline {6.1.2.3}yaw}{104}{subsubsection.6.1.2.3}
-\contentsline {section}{\numberline {6.2}Complementary Struct Reference}{104}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{104}{subsection.6.2.1}
-\contentsline {section}{\numberline {6.3}Kalman Struct Reference}{104}{section.6.3}
+\contentsline {subsubsection}{\numberline {6.1.2.2}roll}{104}{subsubsection.6.1.2.2}
+\contentsline {subsubsection}{\numberline {6.1.2.3}v\discretionary {-}{}{}Pitch}{104}{subsubsection.6.1.2.3}
+\contentsline {subsubsection}{\numberline {6.1.2.4}v\discretionary {-}{}{}Roll}{104}{subsubsection.6.1.2.4}
+\contentsline {subsubsection}{\numberline {6.1.2.5}v\discretionary {-}{}{}Yaw}{104}{subsubsection.6.1.2.5}
+\contentsline {subsubsection}{\numberline {6.1.2.6}yaw}{104}{subsubsection.6.1.2.6}
+\contentsline {section}{\numberline {6.2}Complementary Struct Reference}{105}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{105}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}Kalman Struct Reference}{105}{section.6.3}
 \contentsline {subsection}{\numberline {6.3.1}Detailed Description}{105}{subsection.6.3.1}
 \contentsline {subsection}{\numberline {6.3.2}Field Documentation}{105}{subsection.6.3.2}
 \contentsline {subsubsection}{\numberline {6.3.2.1}p33}{105}{subsubsection.6.3.2.1}
 \contentsline {subsubsection}{\numberline {6.3.2.2}x3}{105}{subsubsection.6.3.2.2}
-\contentsline {section}{\numberline {6.4}Malloc\discretionary {-}{}{}State Struct Reference}{105}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{105}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.4}Malloc\discretionary {-}{}{}State Struct Reference}{106}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{106}{subsection.6.4.1}
 \contentsline {subsection}{\numberline {6.4.2}Field Documentation}{106}{subsection.6.4.2}
 \contentsline {subsubsection}{\numberline {6.4.2.1}end}{106}{subsubsection.6.4.2.1}
 \contentsline {subsubsection}{\numberline {6.4.2.2}fl}{106}{subsubsection.6.4.2.2}
 \contentsline {subsubsection}{\numberline {6.4.2.3}start}{106}{subsubsection.6.4.2.3}
-\contentsline {subsubsection}{\numberline {6.4.2.4}val}{106}{subsubsection.6.4.2.4}
-\contentsline {section}{\numberline {6.5}Menu\discretionary {-}{}{}Entry Struct Reference}{106}{section.6.5}
+\contentsline {subsubsection}{\numberline {6.4.2.4}val}{107}{subsubsection.6.4.2.4}
+\contentsline {section}{\numberline {6.5}Menu\discretionary {-}{}{}Entry Struct Reference}{107}{section.6.5}
 \contentsline {subsection}{\numberline {6.5.1}Detailed Description}{107}{subsection.6.5.1}
 \contentsline {subsection}{\numberline {6.5.2}Field Documentation}{107}{subsection.6.5.2}
 \contentsline {subsubsection}{\numberline {6.5.2.1}cmd}{107}{subsubsection.6.5.2.1}
 \contentsline {subsubsection}{\numberline {6.5.2.2}f}{107}{subsubsection.6.5.2.2}
-\contentsline {subsubsection}{\numberline {6.5.2.3}help\discretionary {-}{}{}Text}{107}{subsubsection.6.5.2.3}
-\contentsline {subsubsection}{\numberline {6.5.2.4}next}{107}{subsubsection.6.5.2.4}
-\contentsline {section}{\numberline {6.6}P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State Struct Reference}{107}{section.6.6}
+\contentsline {subsubsection}{\numberline {6.5.2.3}help\discretionary {-}{}{}Text}{108}{subsubsection.6.5.2.3}
+\contentsline {subsubsection}{\numberline {6.5.2.4}next}{108}{subsubsection.6.5.2.4}
+\contentsline {section}{\numberline {6.6}P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State Struct Reference}{108}{section.6.6}
 \contentsline {subsection}{\numberline {6.6.1}Detailed Description}{108}{subsection.6.6.1}
-\contentsline {subsection}{\numberline {6.6.2}Field Documentation}{108}{subsection.6.6.2}
-\contentsline {subsubsection}{\numberline {6.6.2.1}int\discretionary {-}{}{}Max}{108}{subsubsection.6.6.2.1}
-\contentsline {subsubsection}{\numberline {6.6.2.2}int\discretionary {-}{}{}Min}{108}{subsubsection.6.6.2.2}
-\contentsline {subsubsection}{\numberline {6.6.2.3}kd}{108}{subsubsection.6.6.2.3}
+\contentsline {subsection}{\numberline {6.6.2}Field Documentation}{109}{subsection.6.6.2}
+\contentsline {subsubsection}{\numberline {6.6.2.1}int\discretionary {-}{}{}Max}{109}{subsubsection.6.6.2.1}
+\contentsline {subsubsection}{\numberline {6.6.2.2}int\discretionary {-}{}{}Min}{109}{subsubsection.6.6.2.2}
+\contentsline {subsubsection}{\numberline {6.6.2.3}kd}{109}{subsubsection.6.6.2.3}
 \contentsline {subsubsection}{\numberline {6.6.2.4}ki}{109}{subsubsection.6.6.2.4}
 \contentsline {subsubsection}{\numberline {6.6.2.5}kp}{109}{subsubsection.6.6.2.5}
 \contentsline {subsubsection}{\numberline {6.6.2.6}last}{109}{subsubsection.6.6.2.6}
-\contentsline {subsubsection}{\numberline {6.6.2.7}last\discretionary {-}{}{}Error}{109}{subsubsection.6.6.2.7}
-\contentsline {subsubsection}{\numberline {6.6.2.8}out\discretionary {-}{}{}Max}{109}{subsubsection.6.6.2.8}
-\contentsline {subsubsection}{\numberline {6.6.2.9}out\discretionary {-}{}{}Min}{109}{subsubsection.6.6.2.9}
-\contentsline {subsubsection}{\numberline {6.6.2.10}sum\discretionary {-}{}{}Error}{109}{subsubsection.6.6.2.10}
+\contentsline {subsubsection}{\numberline {6.6.2.7}last\discretionary {-}{}{}Error}{110}{subsubsection.6.6.2.7}
+\contentsline {subsubsection}{\numberline {6.6.2.8}out\discretionary {-}{}{}Max}{110}{subsubsection.6.6.2.8}
+\contentsline {subsubsection}{\numberline {6.6.2.9}out\discretionary {-}{}{}Min}{110}{subsubsection.6.6.2.9}
+\contentsline {subsubsection}{\numberline {6.6.2.10}sum\discretionary {-}{}{}Error}{110}{subsubsection.6.6.2.10}
 \contentsline {section}{\numberline {6.7}Task\discretionary {-}{}{}Element Struct Reference}{110}{section.6.7}
 \contentsline {subsection}{\numberline {6.7.1}Detailed Description}{110}{subsection.6.7.1}
-\contentsline {subsection}{\numberline {6.7.2}Field Documentation}{110}{subsection.6.7.2}
-\contentsline {subsubsection}{\numberline {6.7.2.1}next}{110}{subsubsection.6.7.2.1}
-\contentsline {subsubsection}{\numberline {6.7.2.2}task}{110}{subsubsection.6.7.2.2}
-\contentsline {section}{\numberline {6.8}Vector3f Struct Reference}{110}{section.6.8}
+\contentsline {subsection}{\numberline {6.7.2}Field Documentation}{111}{subsection.6.7.2}
+\contentsline {subsubsection}{\numberline {6.7.2.1}next}{111}{subsubsection.6.7.2.1}
+\contentsline {subsubsection}{\numberline {6.7.2.2}task}{111}{subsubsection.6.7.2.2}
+\contentsline {section}{\numberline {6.8}Vector3f Struct Reference}{111}{section.6.8}
 \contentsline {subsection}{\numberline {6.8.1}Detailed Description}{111}{subsection.6.8.1}
 \contentsline {subsection}{\numberline {6.8.2}Field Documentation}{111}{subsection.6.8.2}
 \contentsline {subsubsection}{\numberline {6.8.2.1}x}{111}{subsubsection.6.8.2.1}
-\contentsline {subsubsection}{\numberline {6.8.2.2}y}{111}{subsubsection.6.8.2.2}
-\contentsline {subsubsection}{\numberline {6.8.2.3}z}{111}{subsubsection.6.8.2.3}
+\contentsline {subsubsection}{\numberline {6.8.2.2}y}{112}{subsubsection.6.8.2.2}
+\contentsline {subsubsection}{\numberline {6.8.2.3}z}{112}{subsubsection.6.8.2.3}
 \contentsline {chapter}{\numberline {7}File Documentation}{113}{chapter.7}
 \contentsline {section}{\numberline {7.1}include/acc.h File Reference}{113}{section.7.1}
 \contentsline {subsection}{\numberline {7.1.1}Detailed Description}{113}{subsection.7.1.1}

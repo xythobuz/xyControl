@@ -550,15 +550,21 @@
 \indexentry{pitch@{pitch}!Angles@{Angles}|hyperpage}{103}
 \indexentry{Angles@{Angles}!roll@{roll}|hyperpage}{103}
 \indexentry{roll@{roll}!Angles@{Angles}|hyperpage}{103}
+\indexentry{Angles@{Angles}!v\discretionary {-}{}{}Pitch@{v\discretionary {-}{}{}Pitch}|hyperpage}{104}
+\indexentry{v\discretionary {-}{}{}Pitch@{v\discretionary {-}{}{}Pitch}!Angles@{Angles}|hyperpage}{104}
+\indexentry{Angles@{Angles}!v\discretionary {-}{}{}Roll@{v\discretionary {-}{}{}Roll}|hyperpage}{104}
+\indexentry{v\discretionary {-}{}{}Roll@{v\discretionary {-}{}{}Roll}!Angles@{Angles}|hyperpage}{104}
+\indexentry{Angles@{Angles}!v\discretionary {-}{}{}Yaw@{v\discretionary {-}{}{}Yaw}|hyperpage}{104}
+\indexentry{v\discretionary {-}{}{}Yaw@{v\discretionary {-}{}{}Yaw}!Angles@{Angles}|hyperpage}{104}
 \indexentry{Angles@{Angles}!yaw@{yaw}|hyperpage}{104}
 \indexentry{yaw@{yaw}!Angles@{Angles}|hyperpage}{104}
-\indexentry{Complementary@{Complementary}|hyperpage}{104}
-\indexentry{Kalman@{Kalman}|hyperpage}{104}
+\indexentry{Complementary@{Complementary}|hyperpage}{105}
+\indexentry{Kalman@{Kalman}|hyperpage}{105}
 \indexentry{Kalman@{Kalman}!p33@{p33}|hyperpage}{105}
 \indexentry{p33@{p33}!Kalman@{Kalman}|hyperpage}{105}
 \indexentry{Kalman@{Kalman}!x3@{x3}|hyperpage}{105}
 \indexentry{x3@{x3}!Kalman@{Kalman}|hyperpage}{105}
-\indexentry{Malloc\discretionary {-}{}{}State@{Malloc\discretionary {-}{}{}State}|hyperpage}{105}
+\indexentry{Malloc\discretionary {-}{}{}State@{Malloc\discretionary {-}{}{}State}|hyperpage}{106}
 \indexentry{Malloc\discretionary {-}{}{}State@{Malloc\discretionary {-}{}{}State}!end@{end}|hyperpage}{106}
 \indexentry{end@{end}!MallocState@{Malloc\discretionary {-}{}{}State}|hyperpage}{106}
 \indexentry{Malloc\discretionary {-}{}{}State@{Malloc\discretionary {-}{}{}State}!fl@{fl}|hyperpage}{106}
@@ -567,48 +573,48 @@
 \indexentry{start@{start}!MallocState@{Malloc\discretionary {-}{}{}State}|hyperpage}{106}
 \indexentry{Malloc\discretionary {-}{}{}State@{Malloc\discretionary {-}{}{}State}!val@{val}|hyperpage}{106}
 \indexentry{val@{val}!MallocState@{Malloc\discretionary {-}{}{}State}|hyperpage}{106}
-\indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{106}
+\indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{107}
 \indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}!cmd@{cmd}|hyperpage}{107}
 \indexentry{cmd@{cmd}!MenuEntry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{107}
 \indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}!f@{f}|hyperpage}{107}
 \indexentry{f@{f}!MenuEntry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{107}
 \indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}!help\discretionary {-}{}{}Text@{help\discretionary {-}{}{}Text}|hyperpage}{107}
 \indexentry{help\discretionary {-}{}{}Text@{help\discretionary {-}{}{}Text}!MenuEntry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{107}
-\indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}!next@{next}|hyperpage}{107}
-\indexentry{next@{next}!MenuEntry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{107}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{107}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!int\discretionary {-}{}{}Max@{int\discretionary {-}{}{}Max}|hyperpage}{108}
-\indexentry{int\discretionary {-}{}{}Max@{int\discretionary {-}{}{}Max}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{108}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!int\discretionary {-}{}{}Min@{int\discretionary {-}{}{}Min}|hyperpage}{108}
-\indexentry{int\discretionary {-}{}{}Min@{int\discretionary {-}{}{}Min}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{108}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!kd@{kd}|hyperpage}{108}
-\indexentry{kd@{kd}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{108}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!ki@{ki}|hyperpage}{108}
-\indexentry{ki@{ki}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{108}
+\indexentry{Menu\discretionary {-}{}{}Entry@{Menu\discretionary {-}{}{}Entry}!next@{next}|hyperpage}{108}
+\indexentry{next@{next}!MenuEntry@{Menu\discretionary {-}{}{}Entry}|hyperpage}{108}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{108}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!int\discretionary {-}{}{}Max@{int\discretionary {-}{}{}Max}|hyperpage}{109}
+\indexentry{int\discretionary {-}{}{}Max@{int\discretionary {-}{}{}Max}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!int\discretionary {-}{}{}Min@{int\discretionary {-}{}{}Min}|hyperpage}{109}
+\indexentry{int\discretionary {-}{}{}Min@{int\discretionary {-}{}{}Min}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!kd@{kd}|hyperpage}{109}
+\indexentry{kd@{kd}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!ki@{ki}|hyperpage}{109}
+\indexentry{ki@{ki}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
 \indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!kp@{kp}|hyperpage}{109}
 \indexentry{kp@{kp}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
 \indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!last@{last}|hyperpage}{109}
 \indexentry{last@{last}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
 \indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!last\discretionary {-}{}{}Error@{last\discretionary {-}{}{}Error}|hyperpage}{109}
 \indexentry{last\discretionary {-}{}{}Error@{last\discretionary {-}{}{}Error}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!out\discretionary {-}{}{}Max@{out\discretionary {-}{}{}Max}|hyperpage}{109}
-\indexentry{out\discretionary {-}{}{}Max@{out\discretionary {-}{}{}Max}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!out\discretionary {-}{}{}Min@{out\discretionary {-}{}{}Min}|hyperpage}{109}
-\indexentry{out\discretionary {-}{}{}Min@{out\discretionary {-}{}{}Min}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
-\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!sum\discretionary {-}{}{}Error@{sum\discretionary {-}{}{}Error}|hyperpage}{109}
-\indexentry{sum\discretionary {-}{}{}Error@{sum\discretionary {-}{}{}Error}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{109}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!out\discretionary {-}{}{}Max@{out\discretionary {-}{}{}Max}|hyperpage}{110}
+\indexentry{out\discretionary {-}{}{}Max@{out\discretionary {-}{}{}Max}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{110}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!out\discretionary {-}{}{}Min@{out\discretionary {-}{}{}Min}|hyperpage}{110}
+\indexentry{out\discretionary {-}{}{}Min@{out\discretionary {-}{}{}Min}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{110}
+\indexentry{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}!sum\discretionary {-}{}{}Error@{sum\discretionary {-}{}{}Error}|hyperpage}{110}
+\indexentry{sum\discretionary {-}{}{}Error@{sum\discretionary {-}{}{}Error}!PIDState@{P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}|hyperpage}{110}
 \indexentry{Task\discretionary {-}{}{}Element@{Task\discretionary {-}{}{}Element}|hyperpage}{110}
-\indexentry{Task\discretionary {-}{}{}Element@{Task\discretionary {-}{}{}Element}!next@{next}|hyperpage}{110}
-\indexentry{next@{next}!TaskElement@{Task\discretionary {-}{}{}Element}|hyperpage}{110}
-\indexentry{Task\discretionary {-}{}{}Element@{Task\discretionary {-}{}{}Element}!task@{task}|hyperpage}{110}
-\indexentry{task@{task}!TaskElement@{Task\discretionary {-}{}{}Element}|hyperpage}{110}
-\indexentry{Vector3f@{Vector3f}|hyperpage}{110}
+\indexentry{Task\discretionary {-}{}{}Element@{Task\discretionary {-}{}{}Element}!next@{next}|hyperpage}{111}
+\indexentry{next@{next}!TaskElement@{Task\discretionary {-}{}{}Element}|hyperpage}{111}
+\indexentry{Task\discretionary {-}{}{}Element@{Task\discretionary {-}{}{}Element}!task@{task}|hyperpage}{111}
+\indexentry{task@{task}!TaskElement@{Task\discretionary {-}{}{}Element}|hyperpage}{111}
+\indexentry{Vector3f@{Vector3f}|hyperpage}{111}
 \indexentry{Vector3f@{Vector3f}!x@{x}|hyperpage}{111}
 \indexentry{x@{x}!Vector3f@{Vector3f}|hyperpage}{111}
-\indexentry{Vector3f@{Vector3f}!y@{y}|hyperpage}{111}
-\indexentry{y@{y}!Vector3f@{Vector3f}|hyperpage}{111}
-\indexentry{Vector3f@{Vector3f}!z@{z}|hyperpage}{111}
-\indexentry{z@{z}!Vector3f@{Vector3f}|hyperpage}{111}
+\indexentry{Vector3f@{Vector3f}!y@{y}|hyperpage}{112}
+\indexentry{y@{y}!Vector3f@{Vector3f}|hyperpage}{112}
+\indexentry{Vector3f@{Vector3f}!z@{z}|hyperpage}{112}
+\indexentry{z@{z}!Vector3f@{Vector3f}|hyperpage}{112}
 \indexentry{include/acc.\discretionary {-}{}{}h@{include/acc.\discretionary {-}{}{}h}|hyperpage}{113}
 \indexentry{include/adc.\discretionary {-}{}{}h@{include/adc.\discretionary {-}{}{}h}|hyperpage}{113}
 \indexentry{include/complementary.\discretionary {-}{}{}h@{include/complementary.\discretionary {-}{}{}h}|hyperpage}{114}

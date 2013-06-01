@@ -253,124 +253,125 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">static</span> uint32_t lastDuration = 0;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">if</span> (((<a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last) &gt;= STATUSDELAY) &amp;&amp; (!(state &amp; STATE_OUTPUT))) {</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        last = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / countFlightTask, lastDuration);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        printf(<span class="stringliteral">&quot;r%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].intMin, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].intMax);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        printf(<span class="stringliteral">&quot;s%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].outMin, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].outMax);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        printf(<span class="stringliteral">&quot;t%.3f %.3f %.3f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].kp, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].ki, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].kd);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        printf(<span class="stringliteral">&quot;u%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga5b70790e470e0c5812d24a8a098c01e0" title="Roll and Pitch PID Output.">pidOutput</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>], <a class="code" href="group__pid.html#ga5b70790e470e0c5812d24a8a098c01e0" title="Roll and Pitch PID Output.">pidOutput</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>]);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        printf(<span class="stringliteral">&quot;v%i %i %i %i\n&quot;</span>, <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[0], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[1], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[2], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[3]);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        printf(<span class="stringliteral">&quot;w%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a34c057a0378030db67bd6a129f37d938" title="Pitch Angle in Degrees.">pitch</a>);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        printf(<span class="stringliteral">&quot;x%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a1d3228afa3a1d6773954f40c1e519eb9" title="Roll Angle in Degrees.">roll</a>);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        printf(<span class="stringliteral">&quot;y%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a21cd490f6191f66678f55b4c242a10cf" title="Yaw Angle in Degrees.">yaw</a>);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        printf(<span class="stringliteral">&quot;z%.2f\n&quot;</span>, <a class="code" href="group__xycontrol.html#ga97874cf2a7f8e6964188b54fe85084a6" title="Calculate and return the Battery Voltage.">getVoltage</a>());</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        lastDuration = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;}</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keywordtype">void</span> controlToggle(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_PID) {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        state &amp;= ~STATE_PID;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        printf(<span class="stringliteral">&quot;PID Off!\n&quot;</span>);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        state |= STATE_PID;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        printf(<span class="stringliteral">&quot;PID On!\n&quot;</span>);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keywordtype">void</span> motorToggle(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        state &amp;= ~STATE_MOTOR;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = 0;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        printf(<span class="stringliteral">&quot;Motor Off!\n&quot;</span>);</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        state |= STATE_MOTOR;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed = 10;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        printf(<span class="stringliteral">&quot;Motor On!\n&quot;</span>);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keywordtype">void</span> motorUp(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">if</span> (speed &lt;= (MAXMOTOR - MOTORSTEP)) {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            speed += MOTORSTEP;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            printf(<span class="stringliteral">&quot;Throttle up to %i\n&quot;</span>, speed);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        }</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="keywordtype">void</span> motorDown(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">if</span> (speed &gt;= MOTORSTEP) {</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            speed -= MOTORSTEP;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            printf(<span class="stringliteral">&quot;Throttle down to %i\n&quot;</span>, speed);</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        }</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="keywordtype">void</span> motorForward(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">if</span> (targetPitch &gt;= (-1 * (MAXANGLE - ANGLESTEP))) {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        targetPitch -= ANGLESTEP;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>] = targetPitch;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        printf(<span class="stringliteral">&quot;Pitch Forward %i\n&quot;</span>, targetPitch);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;}</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keywordtype">void</span> motorBackward(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">if</span> (targetPitch &lt;= (MAXANGLE - ANGLESTEP)) {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        targetPitch += ANGLESTEP;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>] = targetPitch;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        printf(<span class="stringliteral">&quot;Pitch Backwards %i\n&quot;</span>, targetPitch);</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;}</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="keywordtype">void</span> motorLeft(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (targetRoll &lt;= (MAXANGLE - ANGLESTEP)) {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        targetRoll += ANGLESTEP;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>] = targetRoll;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        printf(<span class="stringliteral">&quot;Roll Left %i\n&quot;</span>, targetRoll);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="keywordtype">void</span> motorRight(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">if</span> (targetRoll &gt;= (-1 * (MAXANGLE - ANGLESTEP))) {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        targetRoll -= ANGLESTEP;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>] = targetRoll;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        printf(<span class="stringliteral">&quot;Roll Right %i\n&quot;</span>, targetRoll);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="keywordtype">void</span> parameterChange(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">double</span> p, i, d, min, max, iMin, iMax;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordtype">int</span> c = scanf(<span class="stringliteral">&quot;%lf %lf %lf %lf %lf %lf %lf&quot;</span>, &amp;p, &amp;i, &amp;d, &amp;min, &amp;max, &amp;iMin, &amp;iMax);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordflow">if</span> (c == 7) {</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <a class="code" href="group__pid.html#ga1fc5e60f994041f4a534f18d1f307308" title="Set the parameters of a PID controller.">pidSet</a>(&amp;<a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0], p, i, d, min, max, iMin, iMax);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <a class="code" href="group__pid.html#ga1fc5e60f994041f4a534f18d1f307308" title="Set the parameters of a PID controller.">pidSet</a>(&amp;<a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[1], p, i, d, min, max, iMin, iMax);</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        printf(<span class="stringliteral">&quot;Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\n&quot;</span>, c, p, i, d, min, max, iMin, iMax);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;}</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keywordtype">void</span> silent(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_OUTPUT) {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="comment">// Currently disabled, bit set</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        state &amp;= ~STATE_OUTPUT; <span class="comment">// Unset Bit</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="comment">// Currently enabled</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        state |= STATE_OUTPUT; <span class="comment">// Set Bit</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    }</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keywordtype">void</span> printRaw(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <a class="code" href="struct_vector3f.html" title="The global 3-Dimensional Floating Point Vector.">Vector3f</a> v;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <a class="code" href="group__acc.html#ga4dd55defcab17af4ecc29562a5a28ab3" title="Read from the Accelerometer.">accRead</a>(&amp;v);</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    printf(<span class="stringliteral">&quot;Ax: %f Ay: %f Az: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="group__gyro.html#gab90a6ac7c268152edb186ee699462fd8" title="Get a set of gyroscope data.">gyroRead</a>(&amp;v);</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    printf(<span class="stringliteral">&quot;Gx: %f Gy: %f Gz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <a class="code" href="group__mag.html#gacc0c83a48498170ef36451db2c684abb" title="Read from the Magnetometer.">magRead</a>(&amp;v);</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    printf(<span class="stringliteral">&quot;Mx: %f My: %f Mz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;}</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        printf(<span class="stringliteral">&quot;p%.2f %.2f %.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#acd2ab495f15d37525f00fa358444a7e8" title="Pitch Angle Speed in Degrees per Second.">vPitch</a>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#ae5dfe118046f69d156389c62c33de4fc" title="Roll Angle Speed in Degrees per Second.">vRoll</a>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a87a17eab9b8d06fdb255aae737aedcbf" title="Yaw Angle Speed in Degrees per Second.">vYaw</a>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        printf(<span class="stringliteral">&quot;q%li %li\n&quot;</span>, sumFlightTask / countFlightTask, lastDuration);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        printf(<span class="stringliteral">&quot;r%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].intMin, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].intMax);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        printf(<span class="stringliteral">&quot;s%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].outMin, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].outMax);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        printf(<span class="stringliteral">&quot;t%.3f %.3f %.3f\n&quot;</span>, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].kp, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].ki, <a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0].kd);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        printf(<span class="stringliteral">&quot;u%.2f %.2f\n&quot;</span>, <a class="code" href="group__pid.html#ga5b70790e470e0c5812d24a8a098c01e0" title="Roll and Pitch PID Output.">pidOutput</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>], <a class="code" href="group__pid.html#ga5b70790e470e0c5812d24a8a098c01e0" title="Roll and Pitch PID Output.">pidOutput</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>]);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        printf(<span class="stringliteral">&quot;v%i %i %i %i\n&quot;</span>, <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[0], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[1], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[2], <a class="code" href="group__motor.html#ga0b3c12451554c9ee060319cbe2553d3a" title="Speed for the four motors.">motorSpeed</a>[3]);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        printf(<span class="stringliteral">&quot;w%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a34c057a0378030db67bd6a129f37d938" title="Pitch Angle in Degrees.">pitch</a>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        printf(<span class="stringliteral">&quot;x%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a1d3228afa3a1d6773954f40c1e519eb9" title="Roll Angle in Degrees.">roll</a>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        printf(<span class="stringliteral">&quot;y%.2f\n&quot;</span>, <a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.<a class="code" href="struct_angles.html#a21cd490f6191f66678f55b4c242a10cf" title="Yaw Angle in Degrees.">yaw</a>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        printf(<span class="stringliteral">&quot;z%.2f\n&quot;</span>, <a class="code" href="group__xycontrol.html#ga97874cf2a7f8e6964188b54fe85084a6" title="Calculate and return the Battery Voltage.">getVoltage</a>());</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        lastDuration = <a class="code" href="group__time.html#ga158463b7abdb2191a9a364bce1faac83" title="Get the System Uptime.">getSystemTime</a>() - last;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordtype">void</span> controlToggle(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_PID) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        state &amp;= ~STATE_PID;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        printf(<span class="stringliteral">&quot;PID Off!\n&quot;</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        state |= STATE_PID;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        printf(<span class="stringliteral">&quot;PID On!\n&quot;</span>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="keywordtype">void</span> motorToggle(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        state &amp;= ~STATE_MOTOR;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = 0;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        printf(<span class="stringliteral">&quot;Motor Off!\n&quot;</span>);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        state |= STATE_MOTOR;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed = 10;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        printf(<span class="stringliteral">&quot;Motor On!\n&quot;</span>);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keywordtype">void</span> motorUp(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span> (speed &lt;= (MAXMOTOR - MOTORSTEP)) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            speed += MOTORSTEP;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            printf(<span class="stringliteral">&quot;Throttle up to %i\n&quot;</span>, speed);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;}</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keywordtype">void</span> motorDown(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">if</span> (speed &gt;= MOTORSTEP) {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">if</span> (state &amp; STATE_MOTOR) {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            speed -= MOTORSTEP;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <a class="code" href="group__set.html#gab2b0c78a81e045d7a8f28be307b8c61b" title="Motor Base Speed.">baseSpeed</a> = speed;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            printf(<span class="stringliteral">&quot;Throttle down to %i\n&quot;</span>, speed);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="keywordtype">void</span> motorForward(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">if</span> (targetPitch &gt;= (-1 * (MAXANGLE - ANGLESTEP))) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        targetPitch -= ANGLESTEP;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>] = targetPitch;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        printf(<span class="stringliteral">&quot;Pitch Forward %i\n&quot;</span>, targetPitch);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;}</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="keywordtype">void</span> motorBackward(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">if</span> (targetPitch &lt;= (MAXANGLE - ANGLESTEP)) {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        targetPitch += ANGLESTEP;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gacd633835a520a62245ec6cfeb6d00e97" title="Pitch index for pidTarget, pidOutput and pidStates.">PITCH</a>] = targetPitch;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        printf(<span class="stringliteral">&quot;Pitch Backwards %i\n&quot;</span>, targetPitch);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;}</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keywordtype">void</span> motorLeft(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">if</span> (targetRoll &lt;= (MAXANGLE - ANGLESTEP)) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        targetRoll += ANGLESTEP;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>] = targetRoll;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        printf(<span class="stringliteral">&quot;Roll Left %i\n&quot;</span>, targetRoll);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keywordtype">void</span> motorRight(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">if</span> (targetRoll &gt;= (-1 * (MAXANGLE - ANGLESTEP))) {</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        targetRoll -= ANGLESTEP;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="group__pid.html#ga260bc1ef7a231f2252e6e69e1e459ba6" title="Roll and Pitch target angles.">pidTarget</a>[<a class="code" href="group__pid.html#gaf902416f65138704a180dbae2dc9d8f2" title="Roll index for pidTarget, pidOutput and pidStates.">ROLL</a>] = targetRoll;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        printf(<span class="stringliteral">&quot;Roll Right %i\n&quot;</span>, targetRoll);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="keywordtype">void</span> parameterChange(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordtype">double</span> p, i, d, min, max, iMin, iMax;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordtype">int</span> c = scanf(<span class="stringliteral">&quot;%lf %lf %lf %lf %lf %lf %lf&quot;</span>, &amp;p, &amp;i, &amp;d, &amp;min, &amp;max, &amp;iMin, &amp;iMax);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">if</span> (c == 7) {</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <a class="code" href="group__pid.html#ga1fc5e60f994041f4a534f18d1f307308" title="Set the parameters of a PID controller.">pidSet</a>(&amp;<a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[0], p, i, d, min, max, iMin, iMax);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <a class="code" href="group__pid.html#ga1fc5e60f994041f4a534f18d1f307308" title="Set the parameters of a PID controller.">pidSet</a>(&amp;<a class="code" href="group__pid.html#ga9ce36f9a8e0e12e30b448e0161e3e5ec" title="Roll and Pitch PID States.">pidStates</a>[1], p, i, d, min, max, iMin, iMax);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        printf(<span class="stringliteral">&quot;Only got %i (%lf %lf %lf %lf %lf %lf %lf)!\n&quot;</span>, c, p, i, d, min, max, iMin, iMax);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;}</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="keywordtype">void</span> silent(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">if</span> (state &amp; STATE_OUTPUT) {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="comment">// Currently disabled, bit set</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        state &amp;= ~STATE_OUTPUT; <span class="comment">// Unset Bit</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="comment">// Currently enabled</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        state |= STATE_OUTPUT; <span class="comment">// Set Bit</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;}</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="keywordtype">void</span> printRaw(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <a class="code" href="struct_vector3f.html" title="The global 3-Dimensional Floating Point Vector.">Vector3f</a> v;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="group__acc.html#ga4dd55defcab17af4ecc29562a5a28ab3" title="Read from the Accelerometer.">accRead</a>(&amp;v);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    printf(<span class="stringliteral">&quot;Ax: %f Ay: %f Az: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <a class="code" href="group__gyro.html#gab90a6ac7c268152edb186ee699462fd8" title="Get a set of gyroscope data.">gyroRead</a>(&amp;v);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    printf(<span class="stringliteral">&quot;Gx: %f Gy: %f Gz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="code" href="group__mag.html#gacc0c83a48498170ef36451db2c684abb" title="Read from the Magnetometer.">magRead</a>(&amp;v);</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    printf(<span class="stringliteral">&quot;Mx: %f My: %f Mz: %f\n&quot;</span>, v.<a class="code" href="struct_vector3f.html#af88b946fb90d5f08b5fb740c70e98c10" title="X Part.">x</a>, v.<a class="code" href="struct_vector3f.html#ab927965981178aa1fba979a37168db2a" title="Y Part.">y</a>, v.<a class="code" href="struct_vector3f.html#ab3e6ed577a7c669c19de1f9c1b46c872" title="Z Part.">z</a>);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

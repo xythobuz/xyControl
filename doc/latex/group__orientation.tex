@@ -140,7 +140,7 @@ Definition at line 90 of file orientation.\-c.
 
 
 
-References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, complementary\-Execute(), E\-R\-R\-O\-R, get\-System\-Time(), gyro\-Read(), kalman\-Innovate(), orientation, Angles\-::pitch, Angles\-::roll, S\-U\-C\-C\-E\-S\-S, T\-O\-D\-E\-G, Vector3f\-::x, xy\-Self\-Reset(), Vector3f\-::y, Angles\-::yaw, and Vector3f\-::z.
+References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, complementary\-Execute(), E\-R\-R\-O\-R, get\-System\-Time(), gyro\-Read(), kalman\-Innovate(), orientation, Angles\-::pitch, Angles\-::roll, S\-U\-C\-C\-E\-S\-S, T\-O\-D\-E\-G, Angles\-::v\-Pitch, Angles\-::v\-Roll, Angles\-::v\-Yaw, Vector3f\-::x, xy\-Self\-Reset(), Vector3f\-::y, Angles\-::yaw, and Vector3f\-::z.
 
 
 \begin{DoxyCode}
@@ -175,17 +175,22 @@ References acc\-Read(), C\-H\-E\-C\-K\-E\-R\-R\-O\-R, complementary\-Execute(), 
 118     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} -= \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
 119     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} -= \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw};
 120 
-121     \textcolor{comment}{// Self-Reset if data is garbage and we just came up}
-122     \textcolor{keywordflow}{if} (\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() < 1000) \{
-123         \textcolor{keywordflow}{if} (isnan(\hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll}) || isnan(\hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.
+121     \textcolor{comment}{// Store Angle Speeds}
+122     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_ae5dfe118046f69d156389c62c33de4fc}{vRoll} = g.\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y};
+123     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_acd2ab495f15d37525f00fa358444a7e8}{vPitch} = g.\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x};
+124     \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a87a17eab9b8d06fdb255aae737aedcbf}{vYaw} = g.\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z};
+125 
+126     \textcolor{comment}{// Self-Reset if data is garbage and we just came up}
+127     \textcolor{keywordflow}{if} (\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() < 2000) \{
+128         \textcolor{keywordflow}{if} (isnan(\hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll}) || isnan(\hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.
       \hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch}) || isnan(\hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw})) \{
-124             \hyperlink{group__xycontrol_ga26f242fc9cc1fb7dfdb78daae5579a63}{xySelfReset}();
-125             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}{ERROR};
-126         \}
-127     \}
-128 
-129     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-130 \}
+129             \hyperlink{group__xycontrol_ga26f242fc9cc1fb7dfdb78daae5579a63}{xySelfReset}();
+130             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a2fd6f336d08340583bd620a7f5694c90}{ERROR};
+131         \}
+132     \}
+133 
+134     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+135 \}
 \end{DoxyCode}
 \hypertarget{group__orientation_ga0fab95dd407145abad293f7c91460eee}{\index{Orientation Calculation@{Orientation Calculation}!zero\-Orientation@{zero\-Orientation}}
 \index{zero\-Orientation@{zero\-Orientation}!Orientation Calculation@{Orientation Calculation}}
@@ -203,7 +208,7 @@ Sets the current orientation to zero.
 \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 132 of file orientation.\-c.
+Definition at line 137 of file orientation.\-c.
 
 
 
@@ -211,14 +216,14 @@ References orientation, Angles\-::pitch, Angles\-::roll, and Angles\-::yaw.
 
 
 \begin{DoxyCode}
-132                            \{
-133     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} + 
+137                            \{
+138     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a1d3228afa3a1d6773954f40c1e519eb9}{roll};
-134     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} + 
+139     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a34c057a0378030db67bd6a129f37d938}{pitch};
-135     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} + 
+140     \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} = \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw} + 
       \hyperlink{group__orientation_gab42c272957b0a5cdc11845ade183c2f9}{orientationError}.\hyperlink{struct_angles_a21cd490f6191f66678f55b4c242a10cf}{yaw};
-136 \}
+141 \}
 \end{DoxyCode}
 
 

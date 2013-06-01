@@ -167,6 +167,8 @@ uint32\_t sumFlightTask = 0, countFlightTask = 0;
     \textcolor{keyword}{static} uint32\_t lastDuration = 0;
     \textcolor{keywordflow}{if} (((\hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}() - last) >= STATUSDELAY) && (!(state & STATE\_OUTPUT))) \{
         last = \hyperlink{group__time_ga158463b7abdb2191a9a364bce1faac83}{getSystemTime}();
+        printf(\textcolor{stringliteral}{"p%.2f %.2f %.2f\(\backslash\)n"}, \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_acd2ab495f15d37525f00fa358444a7e8}{vPitch}, 
+      \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_ae5dfe118046f69d156389c62c33de4fc}{vRoll}, \hyperlink{group__orientation_gacd4a2942520b68691db5aebde4e537a4}{orientation}.\hyperlink{struct_angles_a87a17eab9b8d06fdb255aae737aedcbf}{vYaw});
         printf(\textcolor{stringliteral}{"q%li %li\(\backslash\)n"}, sumFlightTask / countFlightTask, lastDuration);
         printf(\textcolor{stringliteral}{"r%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].intMin, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].intMax);
         printf(\textcolor{stringliteral}{"s%.2f %.2f\(\backslash\)n"}, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].outMin, \hyperlink{group__pid_ga9ce36f9a8e0e12e30b448e0161e3e5ec}{pidStates}[0].outMax);

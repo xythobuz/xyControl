@@ -101,15 +101,33 @@ References base\-Speed, pid\-Output, and set\-Motor\-Speeds().
 
 \begin{DoxyCode}
 67                    \{
-68     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < 2; i++) \{
-69         uint8\_t diff = \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[i];
-70         \textcolor{keywordflow}{if} (diff > \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}) \{
-71             diff = \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}; \textcolor{comment}{// Limit PID}
-72         \}
-73         uint8\_t v[2] = \{ \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} + diff, \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} - diff \};
-74         \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(i, v);
-75     \}
-76 \}
+68     \textcolor{keywordflow}{if} (\hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} != 0) \{
+69         \textcolor{keywordflow}{for} (uint8\_t i = 0; i < 2; i++) \{
+70             int16\_t diff = \hyperlink{group__pid_ga5b70790e470e0c5812d24a8a098c01e0}{pidOutput}[i];
+71             \textcolor{comment}{// Base-Speed is always positive, diff could be negative}
+72             \textcolor{keywordflow}{if} (diff > 0) \{
+73                 \textcolor{keywordflow}{if} (diff > \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}) \{
+74                     diff = \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}; \textcolor{comment}{// Limit PID}
+75                 \}
+76             \} \textcolor{keywordflow}{else} \{
+77                 \textcolor{keywordflow}{if} (diff < -\hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}) \{
+78                     diff = -\hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed}; \textcolor{comment}{// Limit PID}
+79                 \}
+80             \}
+81             uint8\_t v[2] = \{ \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} + diff, \hyperlink{group__set_gab2b0c78a81e045d7a8f28be307b8c61b}{baseSpeed} - diff \};
+82             \textcolor{keywordflow}{if} (v[0] < 10)
+83                 v[0] = 10; \textcolor{comment}{// Keep Motors running}
+84             \textcolor{keywordflow}{if} (v[1] < 10)
+85                 v[1] = 10;
+86             \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(i, v);
+87         \}
+88     \} \textcolor{keywordflow}{else} \{
+89         \textcolor{comment}{// Motors stopped}
+90         uint8\_t v[2] = \{0, 0\};
+91         \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(0, v);
+92         \hyperlink{group__set_ga4173baf06c19647e0c60ef2e910bbc87}{setMotorSpeeds}(1, v);
+93     \}
+94 \}
 \end{DoxyCode}
 
 

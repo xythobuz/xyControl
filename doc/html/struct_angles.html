@@ -107,6 +107,15 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a21cd490f6191f66678f55b4c242a10cf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_angles.html#a21cd490f6191f66678f55b4c242a10cf">yaw</a></td></tr>
 <tr class="memdesc:a21cd490f6191f66678f55b4c242a10cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yaw Angle in Degrees.  <a href="#a21cd490f6191f66678f55b4c242a10cf">More...</a><br/></td></tr>
 <tr class="separator:a21cd490f6191f66678f55b4c242a10cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd2ab495f15d37525f00fa358444a7e8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_angles.html#acd2ab495f15d37525f00fa358444a7e8">vPitch</a></td></tr>
+<tr class="memdesc:acd2ab495f15d37525f00fa358444a7e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pitch Angle Speed in Degrees per Second.  <a href="#acd2ab495f15d37525f00fa358444a7e8">More...</a><br/></td></tr>
+<tr class="separator:acd2ab495f15d37525f00fa358444a7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5dfe118046f69d156389c62c33de4fc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_angles.html#ae5dfe118046f69d156389c62c33de4fc">vRoll</a></td></tr>
+<tr class="memdesc:ae5dfe118046f69d156389c62c33de4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Roll Angle Speed in Degrees per Second.  <a href="#ae5dfe118046f69d156389c62c33de4fc">More...</a><br/></td></tr>
+<tr class="separator:ae5dfe118046f69d156389c62c33de4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a17eab9b8d06fdb255aae737aedcbf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_angles.html#a87a17eab9b8d06fdb255aae737aedcbf">vYaw</a></td></tr>
+<tr class="memdesc:a87a17eab9b8d06fdb255aae737aedcbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yaw Angle Speed in Degrees per Second.  <a href="#a87a17eab9b8d06fdb255aae737aedcbf">More...</a><br/></td></tr>
+<tr class="separator:a87a17eab9b8d06fdb255aae737aedcbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Can store orientation in Euler Space. </p>
@@ -124,11 +133,11 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pitch Angle in Degrees. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a26">uartFlight.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a29">uartFlight.c</a>.</dd>
 </dl>
 <p>Definition at line <a class="el" href="orientation_8h_source.html#l00049">49</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
 
-<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, <a class="el" href="pid_8c_source.html#l00094">pidTask()</a>, and <a class="el" href="orientation_8c_source.html#l00132">zeroOrientation()</a>.</p>
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, <a class="el" href="pid_8c_source.html#l00094">pidTask()</a>, and <a class="el" href="orientation_8c_source.html#l00137">zeroOrientation()</a>.</p>
 
 </div>
 </div>
@@ -143,11 +152,68 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Roll Angle in Degrees. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a27">uartFlight.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a30">uartFlight.c</a>.</dd>
 </dl>
 <p>Definition at line <a class="el" href="orientation_8h_source.html#l00050">50</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
 
-<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, <a class="el" href="pid_8c_source.html#l00094">pidTask()</a>, and <a class="el" href="orientation_8c_source.html#l00132">zeroOrientation()</a>.</p>
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, <a class="el" href="pid_8c_source.html#l00094">pidTask()</a>, and <a class="el" href="orientation_8c_source.html#l00137">zeroOrientation()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd2ab495f15d37525f00fa358444a7e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vPitch</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pitch Angle Speed in Degrees per Second. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a22">uartFlight.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="orientation_8h_source.html#l00052">52</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
+
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5dfe118046f69d156389c62c33de4fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vRoll</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Roll Angle Speed in Degrees per Second. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a23">uartFlight.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="orientation_8h_source.html#l00053">53</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
+
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a87a17eab9b8d06fdb255aae737aedcbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vYaw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Yaw Angle Speed in Degrees per Second. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a24">uartFlight.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="orientation_8h_source.html#l00054">54</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
+
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>.</p>
 
 </div>
 </div>
@@ -162,11 +228,11 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Yaw Angle in Degrees. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a28">uartFlight.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="uart_flight_8c-example.html#a31">uartFlight.c</a>.</dd>
 </dl>
 <p>Definition at line <a class="el" href="orientation_8h_source.html#l00051">51</a> of file <a class="el" href="orientation_8h_source.html">orientation.h</a>.</p>
 
-<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, and <a class="el" href="orientation_8c_source.html#l00132">zeroOrientation()</a>.</p>
+<p>Referenced by <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, and <a class="el" href="orientation_8c_source.html#l00137">zeroOrientation()</a>.</p>
 
 </div>
 </div>

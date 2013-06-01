@@ -96,6 +96,9 @@
   \item {Angles}, \hyperpage{103}
     \subitem {pitch}, \hyperpage{103}
     \subitem {roll}, \hyperpage{103}
+    \subitem {v\discretionary {-}{}{}Pitch}, \hyperpage{104}
+    \subitem {v\discretionary {-}{}{}Roll}, \hyperpage{104}
+    \subitem {v\discretionary {-}{}{}Yaw}, \hyperpage{104}
     \subitem {yaw}, \hyperpage{104}
   \item {assert}
     \subitem {Debug Output}, \hyperpage{33}
@@ -143,7 +146,7 @@
     \subitem {Configuration}, \hyperpage{27}
   \item {cmd}
     \subitem {Menu\discretionary {-}{}{}Entry}, \hyperpage{107}
-  \item {Complementary}, \hyperpage{104}
+  \item {Complementary}, \hyperpage{105}
   \item {Complementary-\/\discretionary {-}{}{}Filter}, \hyperpage{21}
     \subitem {complementary\discretionary {-}{}{}Execute}, 
 		\hyperpage{21}
@@ -468,14 +471,14 @@
     \subitem {Time Keeping}, \hyperpage{81}
   \item {int\discretionary {-}{}{}Max}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{108}
+		\hyperpage{109}
   \item {int\discretionary {-}{}{}Min}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{108}
+		\hyperpage{109}
 
   \indexspace
 
-  \item {Kalman}, \hyperpage{104}
+  \item {Kalman}, \hyperpage{105}
     \subitem {p33}, \hyperpage{105}
     \subitem {x3}, \hyperpage{105}
   \item {Kalman-\/\discretionary {-}{}{}Filter}, \hyperpage{42}
@@ -487,10 +490,10 @@
     \subitem {Kalman-\/\discretionary {-}{}{}Filter}, \hyperpage{43}
   \item {kd}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{108}
+		\hyperpage{109}
   \item {ki}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{108}
+		\hyperpage{109}
   \item {kp}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
 		\hyperpage{109}
@@ -633,18 +636,18 @@
     \subitem {r4g7}, \hyperpage{46}
     \subitem {r5g6}, \hyperpage{46}
     \subitem {r8g1}, \hyperpage{46}
-  \item {Malloc\discretionary {-}{}{}State}, \hyperpage{105}
+  \item {Malloc\discretionary {-}{}{}State}, \hyperpage{106}
     \subitem {end}, \hyperpage{106}
     \subitem {fl}, \hyperpage{106}
     \subitem {start}, \hyperpage{106}
     \subitem {val}, \hyperpage{106}
   \item {map}
     \subitem {xy\discretionary {-}{}{}Control Hardware}, \hyperpage{98}
-  \item {Menu\discretionary {-}{}{}Entry}, \hyperpage{106}
+  \item {Menu\discretionary {-}{}{}Entry}, \hyperpage{107}
     \subitem {cmd}, \hyperpage{107}
     \subitem {f}, \hyperpage{107}
     \subitem {help\discretionary {-}{}{}Text}, \hyperpage{107}
-    \subitem {next}, \hyperpage{107}
+    \subitem {next}, \hyperpage{108}
   \item {Motor Controller Driver}, \hyperpage{50}
     \subitem {motor\discretionary {-}{}{}Init}, \hyperpage{50}
     \subitem {motor\discretionary {-}{}{}Set}, \hyperpage{50}
@@ -667,8 +670,8 @@
   \indexspace
 
   \item {next}
-    \subitem {Menu\discretionary {-}{}{}Entry}, \hyperpage{107}
-    \subitem {Task\discretionary {-}{}{}Element}, \hyperpage{110}
+    \subitem {Menu\discretionary {-}{}{}Entry}, \hyperpage{108}
+    \subitem {Task\discretionary {-}{}{}Element}, \hyperpage{111}
 
   \indexspace
 
@@ -701,10 +704,10 @@
 		\hyperpage{101}
   \item {out\discretionary {-}{}{}Max}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{109}
+		\hyperpage{110}
   \item {out\discretionary {-}{}{}Min}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{109}
+		\hyperpage{110}
 
   \indexspace
 
@@ -738,17 +741,17 @@
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}P}
     \subitem {Configuration}, \hyperpage{30}
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{107}
-    \subitem {int\discretionary {-}{}{}Max}, \hyperpage{108}
-    \subitem {int\discretionary {-}{}{}Min}, \hyperpage{108}
-    \subitem {kd}, \hyperpage{108}
-    \subitem {ki}, \hyperpage{108}
+		\hyperpage{108}
+    \subitem {int\discretionary {-}{}{}Max}, \hyperpage{109}
+    \subitem {int\discretionary {-}{}{}Min}, \hyperpage{109}
+    \subitem {kd}, \hyperpage{109}
+    \subitem {ki}, \hyperpage{109}
     \subitem {kp}, \hyperpage{109}
     \subitem {last}, \hyperpage{109}
     \subitem {last\discretionary {-}{}{}Error}, \hyperpage{109}
-    \subitem {out\discretionary {-}{}{}Max}, \hyperpage{109}
-    \subitem {out\discretionary {-}{}{}Min}, \hyperpage{109}
-    \subitem {sum\discretionary {-}{}{}Error}, \hyperpage{109}
+    \subitem {out\discretionary {-}{}{}Max}, \hyperpage{110}
+    \subitem {out\discretionary {-}{}{}Min}, \hyperpage{110}
+    \subitem {sum\discretionary {-}{}{}Error}, \hyperpage{110}
   \item {P\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}C\discretionary {-}{}{}H}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D-\/\discretionary {-}{}{}Controller}, 
 		\hyperpage{58}
@@ -960,7 +963,7 @@
     \subitem {External Memory Interface}, \hyperpage{95}
   \item {sum\discretionary {-}{}{}Error}
     \subitem {P\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}State}, 
-		\hyperpage{109}
+		\hyperpage{110}
   \item {System}, \hyperpage{10}
   \item {system\discretionary {-}{}{}Time}
     \subitem {Time Keeping}, \hyperpage{81}
@@ -990,7 +993,7 @@
   \item {Task}
     \subitem {Task Handler}, \hyperpage{75}
   \item {task}
-    \subitem {Task\discretionary {-}{}{}Element}, \hyperpage{110}
+    \subitem {Task\discretionary {-}{}{}Element}, \hyperpage{111}
   \item {Task Handler}, \hyperpage{75}
     \subitem {add\discretionary {-}{}{}Task}, \hyperpage{76}
     \subitem {remove\discretionary {-}{}{}Task}, \hyperpage{76}
@@ -999,8 +1002,8 @@
     \subitem {tasks}, \hyperpage{77}
     \subitem {tasks\discretionary {-}{}{}Registered}, \hyperpage{77}
   \item {Task\discretionary {-}{}{}Element}, \hyperpage{110}
-    \subitem {next}, \hyperpage{110}
-    \subitem {task}, \hyperpage{110}
+    \subitem {next}, \hyperpage{111}
+    \subitem {task}, \hyperpage{111}
   \item {task\discretionary {-}{}{}List}
     \subitem {Task Handler}, \hyperpage{77, 78}
   \item {tasks}
@@ -1127,12 +1130,18 @@
 
   \indexspace
 
+  \item {v\discretionary {-}{}{}Pitch}
+    \subitem {Angles}, \hyperpage{104}
+  \item {v\discretionary {-}{}{}Roll}
+    \subitem {Angles}, \hyperpage{104}
+  \item {v\discretionary {-}{}{}Yaw}
+    \subitem {Angles}, \hyperpage{104}
   \item {val}
     \subitem {Malloc\discretionary {-}{}{}State}, \hyperpage{106}
-  \item {Vector3f}, \hyperpage{110}
+  \item {Vector3f}, \hyperpage{111}
     \subitem {x}, \hyperpage{111}
-    \subitem {y}, \hyperpage{111}
-    \subitem {z}, \hyperpage{111}
+    \subitem {y}, \hyperpage{112}
+    \subitem {z}, \hyperpage{112}
 
   \indexspace
 
@@ -1198,14 +1207,14 @@
   \indexspace
 
   \item {y}
-    \subitem {Vector3f}, \hyperpage{111}
+    \subitem {Vector3f}, \hyperpage{112}
   \item {yaw}
     \subitem {Angles}, \hyperpage{104}
 
   \indexspace
 
   \item {z}
-    \subitem {Vector3f}, \hyperpage{111}
+    \subitem {Vector3f}, \hyperpage{112}
   \item {zero\discretionary {-}{}{}Orientation}
     \subitem {Orientation Calculation}, \hyperpage{55}
 
