@@ -157,8 +157,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private final String ParameterCommand = "n";
 	private final byte[] commands = { 'a', 'w', 's', 'd', 'x', 'y', 'p', 'm',
-			'q', 'z' };
-	private final Button[] buttons = new Button[10];
+			'q', 'z', 'o' };
+	private final Button[] buttons = new Button[commands.length];
 	private final static int B_LEFT = 0;
 	private final static int B_FORW = 1;
 	private final static int B_BACK = 2;
@@ -169,6 +169,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private final static int B_TOGGLE = 7;
 	private final static int B_RESET = 8;
 	private final static int B_ZERO = 9;
+	private final static int B_SILENT = 10;
 
 	private TestGraphThread testGraphThread = null;
 	private FlashThread flashThread = null;
@@ -242,6 +243,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		buttons[B_TOGGLE] = (Button) findViewById(R.id.bTog);
 		buttons[B_RESET] = (Button) findViewById(R.id.bReset);
 		buttons[B_ZERO] = (Button) findViewById(R.id.bZero);
+		buttons[B_SILENT] = (Button) findViewById(R.id.bSilent);
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].setOnClickListener(this);
 		}
@@ -662,6 +664,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		} else if (msg.what == MESSAGE_ERROR) {
 			showErrorAndDo(R.string.general_error, (String) msg.obj, null);
 		} else if (msg.what == MESSAGE_HEX_PARSED) {
+			if (connectedThread != null) {
+				connectedThread.cancel();
+				connectedThread.interrupt();
+				connectedThread = null;
+			}
 			startConnection(new Function() {
 				public void execute() {
 					newYASAB();

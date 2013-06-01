@@ -55,5 +55,6 @@
     <string name="bAng">PID</string>
     <string name="bZero">Zero</string>
     <string name="bReset">Reset</string>
+    <string name="bSilent">Silent</string>
 
 </resources>

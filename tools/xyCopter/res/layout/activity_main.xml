@@ -259,6 +259,14 @@
                 android:text="@string/bZero" />
 
             <Button
+                android:id="@+id/bSilent"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bSilent" />
+            
+            <Button
                 android:id="@+id/bReset"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
