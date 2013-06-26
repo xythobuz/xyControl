@@ -1,5 +1,5 @@
 /*
- * doc.h
+ * flight.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,25 +27,29 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <stdint.h>
+#include <avr/io.h>
+#include <stdlib.h>
 
-/** \file doc.h
- *  Contains Doxygen Group Definitions
- */
+#include <acc.h>
+#include <adc.h>
+#include <gyro.h>
+#include <mag.h>
+#include <serial.h>
+#include <time.h>
+#include <twi.h>
+#include <xmem.h>
 
-/** \defgroup Software Software
- *  Software Libraries
- */
+/** \example flight.c */
 
-/** \defgroup System System
- *  \ingroup Software
- *  System Libraries
- */
 
-/** \defgroup Flight Flight
- *  \ingroup Software
- *  Flight Control Libraries
- */
+int main(void) {
 
- /** \defgroup Hardware Hardware
- *  Hardware Libraries
- */
+
+
+    for(;;) {
+
+    }
+
+    return 0;
+}

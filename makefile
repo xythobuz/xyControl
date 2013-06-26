@@ -40,25 +40,14 @@ AVRDUDE = $(BASEDIR)/avrdude
 YASAB = $(YASABDIR)/yasab
 DOXYGEN = /Applications/Doxygen.app/Contents/Resources/doxygen
 
-SRC = lib/time.c
-SRC += lib/spi.c
-SRC += lib/serial.c
-SRC += lib/xmem.c
-SRC += lib/xycontrol.c
-SRC += lib/tasks.c
-SRC += lib/twi.c
-SRC += lib/gyro.c
+SRC = lib/lowlevel/adc.c
+SRC += lib/lowlevel/serial.c
+SRC += lib/lowlevel/time.c
+SRC += lib/lowlevel/twi.c
+SRC += lib/lowlevel/xmem.c
 SRC += lib/acc.c
+SRC += lib/gyro.c
 SRC += lib/mag.c
-SRC += lib/motor.c
-SRC += lib/adc.c
-SRC += lib/uartMenu.c
-SRC += lib/orientation.c
-SRC += lib/error.c
-SRC += lib/pid.c
-SRC += lib/set.c
-SRC += lib/kalman.c
-SRC += lib/complementary.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -74,10 +63,11 @@ CARGS += -Wpointer-arith -Wcast-qual -Wextra
 CARGS += -Wno-write-strings -Wno-unused-parameter
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
-CARGS += -lm -lprintf_flt
+# CARGS += -lm -lprintf_flt
 CARGS += -ffunction-sections
 
-LINKER = -Wl,--relax,-u,vfprintf,-lm,-lprintf_flt,-u,vfscanf,-lscanf_flt
+LINKER = -Wl,--relax
+# LINKER = -Wl,-u,vfprintf,-lm,-lprintf_flt
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 LINKER += -Wl,-gc-sections
 
@@ -86,7 +76,7 @@ ISPPORT = usb
 BOOTLOADER = /dev/tty.usbserial-AE01539L
 #BOOTLOADER = /dev/tty.xyRobot-DevB
 
-TARGETSRC = uartFlight.c
+TARGETSRC = flight.c
 
 TARGETHEX = $(TARGETSRC:.c=.hex)
 TARGETFLASH = $(TARGETSRC:.c=.flash)

@@ -1,7 +1,8 @@
 /*
- * complementary.h
+ * datatypes.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,39 +27,21 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _complementary_h
-#define _complementary_h
+#ifndef _mag_h
+#define _mag_h
 
-#include <time.h>
+#include <error.h>
+#include <xycontrol.h>
 
-/** \addtogroup complementary Complementary-Filter
- *  \ingroup Flight
- *  Complementary-Filter. Inspired by <a href="http://web.mit.edu/scolton/www/filter.pdf">this presentation</a>...
- *
+/** \addtogroup datatypes
+ *  \ingroup System
  *  @{
  */
 
-/** \file complementary.h
- *  Complementary-Filter Header.
+/** \file datatypes.h
  */
 
-/** Cmplementary-Filter State data */
-typedef struct {
-    double angle;
-    time_t lastExecute;
-} Complementary;
 
-/** Step the Complementary Filter.
- *  \param data Complementary-Filter State
- *  \param acc Angle from Accelerometer
- *  \param gyro Corresponding Gyroscope data
- */
-void complementaryExecute(Complementary *data, double acc, double gyro);
-
-/** Initialize a Complementary-State.
- *  \param data Complementary-State to be initialized
- */
-void complementaryInit(Complementary *data);
 
 #endif
 /** @} */
