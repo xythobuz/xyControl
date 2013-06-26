@@ -115,8 +115,11 @@ uint8_t serialAvailable(void) {
 }
 
 void serialInit(uint8_t uart, uint16_t baud) {
-    if (uart >= UART_COUNT)
-        return;
+    if (uart >= UART_COUNT) {
+        for (uint8_t i = 0; i < UART_COUNT; i++) {
+            serialInit(i, baud);
+        }
+    }
 
     // Initialize state variables
     rxRead[uart] = 0;

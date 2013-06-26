@@ -42,10 +42,16 @@
 
 /** \example flight.c */
 
-
 int main(void) {
 
-
+    xmemInit();
+    adcInit(AVCC);
+    twiInit();
+    initSystemTimer();
+    serialInit(serialAvailable(), BAUD(38400, F_CPU));
+    accInit(r4G);
+    gyroInit(r2000DPS);
+    magInit(r8g1);
 
     for(;;) {
 

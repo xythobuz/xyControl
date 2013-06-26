@@ -65,10 +65,12 @@ CARGS += -Wno-write-strings -Wno-unused-parameter
 CARGS += -std=$(CSTANDARD)
 CARGS += -DF_CPU=$(F_CPU)
 # CARGS += -lm -lprintf_flt
+CARGS += -lm
 CARGS += -ffunction-sections
 
 LINKER = -Wl,--relax
-# LINKER = -Wl,-u,vfprintf,-lm,-lprintf_flt
+# LINKER += -Wl,-u,vfprintf,-lm,-lprintf_flt
+LINKER += -Wl,-lm
 LINKER += -Wl,--defsym=__heap_start=0x802200,--defsym=__heap_end=0x80ffff
 LINKER += -Wl,-gc-sections
 
