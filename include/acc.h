@@ -30,6 +30,7 @@
 #ifndef _acc_h
 #define _acc_h
 
+#include <error.h>
 #include <datatypes.h>
 
 /** \addtogroup acc Accelerometer Driver

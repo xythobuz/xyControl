@@ -1,5 +1,5 @@
 /*
- * mag.h
+ * error.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,47 +27,47 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _mag_h
-#define _mag_h
+#ifndef _error_h
+#define _error_h
 
-#include <error.h>
-#include <datatypes.h>
-
-/** \addtogroup mag Magnetometer Driver
- *  \ingroup Hardware
- *  Configuring and reading an LSM303DLHC Magnetometer.
+/** \addtogroup error Error Reporting
+ *  \ingroup System
+ *  Error reporting with human readable strings.
  *  @{
  */
 
-/** \file mag.h
- *  LSM303DLHC Magnetometer API Header.
+/** \file error.h
+ *  Global listing of different error conditions.
+ *  Can be returned to signalise error or success.
+ *  Also allows to print human-readable error descriptions.
  */
 
-/** Magnetometer Range options */
+/** Error Conditions */
 typedef enum {
-    r1g3 = 1, /**< +- 1.3 Gauss */
-    r1g9 = 2, /**< +- 1.9 Gauss */
-    r2g5 = 3, /**< +- 2.5 Gauss */
-    r4g0 = 4, /**< +- 4.0 Gauss */
-    r4g7 = 5, /**< +- 4.7 Gauss */
-    r5g6 = 6, /**< +- 5.6 Gauss */
-    r8g1 = 7, /**< +- 8.1 Gauss */
-} MagRange;
+    SUCCESS = 0, /**< No Error */
+    TWI_NO_ANSWER, /**< No answer from TWI Slave */
+    TWI_WRITE_ERROR, /**< Error while writing to TWI Slave */
+    MALLOC_FAIL, /**< Malloc failed */
+    ERROR, /**< General Error */
+    ARGUMENT_ERROR, /**< Invalid arguments */
+} Error;
 
-/** Initialize the Magnetometer.
- *  Call before magRead(). I2C should already be initialized!
- *
- *  \param r #MagRange to use.
- *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
- */
-Error magInit(MagRange r);
+/** Check an Error Code. Return it if an error occured. */
+#define CHECKERROR(x) if(x!=SUCCESS){return x;}
 
-/** Read from the Magnetometer.
- *  Magnetometer should already be initialized!
- *  \param v #Vector3f for the read values
- *  \returns #TWI_NO_ANSWER, #TWI_WRITE_ERROR, #ARGUMENT_ERROR or #SUCCESS.
+/** Report an error, if it occured. Using printf() */
+#define REPORTERROR(x) { \
+    if (x != SUCCESS) { \
+        char *s = getErrorString(x); \
+        printf("Error: %s\n", s); \
+        free(s); \
+    } \
+}
+
+/** Returns a human-readable error description.
+ *  Free the string after use!
  */
-Error magRead(Vector3f *v);
+char *getErrorString(Error e);
 
 #endif
 /** @} */

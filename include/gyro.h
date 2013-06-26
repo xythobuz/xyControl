@@ -30,6 +30,7 @@
 #ifndef _gyro_h
 #define _gyro_h
 
+#include <error.h>
 #include <datatypes.h>
 
 /** \addtogroup gyro Gyroscope Driver
