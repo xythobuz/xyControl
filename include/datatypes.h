@@ -27,11 +27,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _mag_h
-#define _mag_h
-
-#include <error.h>
-#include <xycontrol.h>
+#ifndef _datatypes_h
+#define _datatypes_h
 
 /** \addtogroup datatypes
  *  \ingroup System
@@ -41,7 +38,12 @@
 /** \file datatypes.h
  */
 
-
+/** The global 3-Dimensional Floating Point Vector. */
+typedef struct {
+    double x; /**< X Part */
+    double y; /**< Y Part */
+    double z; /**< Z Part */
+} Vector3f;
 
 #endif
 /** @} */

@@ -30,8 +30,7 @@
 #ifndef _mag_h
 #define _mag_h
 
-#include <error.h>
-#include <xycontrol.h>
+#include <datatypes.h>
 
 /** \addtogroup mag Magnetometer Driver
  *  \ingroup Hardware
