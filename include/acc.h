@@ -43,6 +43,11 @@
  *  LSM303DLHC Accelerometer API Header.
  */
 
+#define ACC_ADDRESS 0x32 /**< Accelerometer Address (0011001r) */
+
+// 1 has no effect, bigger numbers dampen the signal more
+#define ACCFILTERFACTOR 1 /**< Accelerometer Low Pass Factor */
+
 /** Accelerometer Range options */
 typedef enum {
     r2G, /**< +- 2G */

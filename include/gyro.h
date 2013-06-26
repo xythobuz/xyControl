@@ -43,6 +43,11 @@
  * L3GD20 Gyroscope API Header
  */
 
+#define GYRO_ADDRESS 0xD6 /**< Gyroscope Address (110101xr, x = 1) */
+
+// 1 has no effect, bigger numbers dampen the signal more
+#define GYROFILTERFACTOR 1 /**< Gyroscope Low Pass Factor */
+
 /** Gyroscope Range options */
 typedef enum {
     r250DPS, /**< +- 250 Degrees per Second */

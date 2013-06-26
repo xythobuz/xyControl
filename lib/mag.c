@@ -31,10 +31,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <twi.h>
+#include <lowlevel/twi.h>
 #include <mag.h>
 #include <error.h>
-#include <config.h>
 
 /** \addtogroup mag
  *  \ingroup Hardware

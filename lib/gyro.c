@@ -31,10 +31,9 @@
 #include <stdint.h>
 #include <avr/io.h>
 
-#include <twi.h>
+#include <lowlevel/twi.h>
 #include <gyro.h>
 #include <error.h>
-#include <config.h>
 
 /** \addtogroup gyro Gyroscope Driver
  *  \ingroup Hardware

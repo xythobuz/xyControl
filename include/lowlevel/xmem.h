@@ -54,6 +54,16 @@
 #define MEMBANKS 8 /**< Available Memory Banks */
 #define BANK_GENERIC 0 /**< Generic Memory Bank */
 
+#define BANK0PORT PORTG /**< First Bank Selection Port */
+#define BANK0DDR DDRG   /**< First Bank Selection Data Direction Register */
+#define BANK0PIN PG3    /**< First Bank Selection Pin */
+#define BANK1PORT PORTG /**< Second Bank Selection Port */
+#define BANK1DDR DDRG   /**< Second Bank Selection Data Direction Register */
+#define BANK1PIN PG4    /**< Second Bank Selection Pin */
+#define BANK2PORT PORTL /**< Third Bank Selection Port */
+#define BANK2DDR DDRL   /**< Third Bank Selection Data Direction Register */
+#define BANK2PIN PL5    /**< Third Bank Selection Pin */
+
 /** All Malloc related State.
  *  The Heap is bank-switched, so this state
  *  has to be switched with the banks to allow

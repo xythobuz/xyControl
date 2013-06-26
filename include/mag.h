@@ -43,6 +43,8 @@
  *  LSM303DLHC Magnetometer API Header.
  */
 
+#define MAG_ADDRESS 0x3C /**< Magnetometer Address */
+
 /** Magnetometer Range options */
 typedef enum {
     r1g3 = 1, /**< +- 1.3 Gauss */

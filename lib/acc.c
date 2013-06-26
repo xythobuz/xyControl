@@ -31,11 +31,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <twi.h>
+#include <lowlevel/twi.h>
 #include <acc.h>
 #include <error.h>
-#include <stdlib.h>
-#include <config.h>
 
 /** \addtogroup acc
  *  \ingroup Hardware

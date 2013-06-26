@@ -45,6 +45,9 @@
 #define USB 0 /**< First UART Name */
 #define BLUETOOTH 1 /**< Second UART Name */
 
+#define RX_BUFFER_SIZE 64 /**< UART Receive Buffer Size */
+#define TX_BUFFER_SIZE 64 /**< UART Transmit Buffer Size */
+
 /** Calculate Baudrate Register Value */
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
 
