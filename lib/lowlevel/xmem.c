@@ -31,7 +31,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <xmem.h>
+#include <lowlevel/xmem.h>
 
 /** \addtogroup xmem External Memory Interface
  *  \ingroup System

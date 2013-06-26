@@ -32,13 +32,13 @@
 #include <stdlib.h>
 
 #include <acc.h>
-#include <adc.h>
 #include <gyro.h>
 #include <mag.h>
-#include <serial.h>
-#include <time.h>
-#include <twi.h>
-#include <xmem.h>
+#include <lowlevel/adc.h>
+#include <lowlevel/serial.h>
+#include <lowlevel/time.h>
+#include <lowlevel/twi.h>
+#include <lowlevel/xmem.h>
 
 /** \example flight.c */
 

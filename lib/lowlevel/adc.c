@@ -30,7 +30,7 @@
 #include <avr/io.h>
 #include <stdint.h>
 
-#include <adc.h>
+#include <lowlevel/adc.h>
 
 /** \addtogroup adc ADC Driver
  *  \ingroup Hardware

@@ -31,9 +31,8 @@
 #include <avr/interrupt.h>
 #include <stdint.h>
 
-#include "serial.h"
-#include "serial_device.h"
-#include "config.h"
+#include <lowlevel/serial.h>
+#include <lowlevel/serial_device.h>
 
 /** \addtogroup uart UART Library
  *  UART Library enabling you to control all available

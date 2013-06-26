@@ -1,5 +1,5 @@
 /*
- * time.c
+ * error.c
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,45 +27,39 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <stdlib.h>
-#include <stdint.h>
 #include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/atomic.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <avr/pgmspace.h>
 
-#include <lowlevel/time.h>
+#include <error.h>
 
-/** \addtogroup time Time Keeping
- *  \ingroup System
- *  @{
+/** \file error.c
+ * Global listing of different error conditions.
+ * Can be returned to signalise error or success.
+ * Also allows to print human-readable error descriptions.
  */
 
-/** \file time.c
- *  Time API Implementation.
+char PROGMEM error0[] = "Success"; /**< String for SUCCESS */
+char PROGMEM error1[] = "TWI doesn't answer"; /**< String for TWI_NO_ANSWER */
+char PROGMEM error2[] = "TWI could not write"; /**< String for TWI_WRITE_ERROR */
+char PROGMEM error3[] = "Not enough memory"; /**< String for MALLOC_FAIL */
+char PROGMEM error4[] = "General Error"; /**< String for ERROR */
+char PROGMEM error5[] = "Argument Error"; /**< String for ARGUMENT_ERROR */
+
+/** Array of all error descriptions in Flash Memory */
+PGM_P PROGMEM errorTable[] = {
+    error0, error1, error2, error3, error4, error5
+};
+
+/** Returns a human-readable error description.
+ * Free the string after use!
  */
-
-volatile time_t systemTime = 0; /**< Current System Uptime */
-
-#define TCRA TCCR2A /**< Timer 2 Control Register A */
-#define TCRB TCCR2B /**< Timer 2 Control Register B */
-#define OCR OCR2A /**< Timer 2 Compare Register A */
-#define TIMS TIMSK2 /**< Timer 2 Interrupt Mask */
-#define OCIE OCIE2A /**< Timer 2 Compare Match A Interrupt Enable */
-
-void initSystemTimer() {
-    // Timer initialization
-    TCRA |= (1 << WGM21); // CTC Mode
-    TCRB |= (1 << CS22); // Prescaler: 64
-    OCR = 250;
-    TIMS |= (1 << OCIE); // Enable compare match interrupt
+char *getErrorString(Error e) {
+    char *buff = (char *)malloc(strlen_P((PGM_P)pgm_read_word(&(errorTable[e]))));
+    if (buff == NULL) {
+        return NULL;
+    }
+    strcpy_P(buff, (PGM_P)pgm_read_word(&(errorTable[e])));
+    return buff;
 }
-
-/** Timer 2 Compare Match A Interrupt */
-ISR(TIMER2_COMPA_vect) {
-    systemTime++;
-}
-
-time_t getSystemTime(void) {
-    return systemTime;
-}
-/** @} */

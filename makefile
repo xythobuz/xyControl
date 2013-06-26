@@ -46,6 +46,7 @@ SRC += lib/lowlevel/time.c
 SRC += lib/lowlevel/twi.c
 SRC += lib/lowlevel/xmem.c
 SRC += lib/acc.c
+SRC += lib/error.c
 SRC += lib/gyro.c
 SRC += lib/mag.c
 
