@@ -1,5 +1,5 @@
 /*
- * flight.c
+ * doc.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,40 +27,20 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <stdint.h>
-#include <avr/io.h>
-#include <stdlib.h>
-#include <avr/interrupt.h>
 
-#include <acc.h>
-#include <gyro.h>
-#include <mag.h>
-#include <remote.h>
-#include <lowlevel/adc.h>
-#include <lowlevel/serial.h>
-#include <lowlevel/time.h>
-#include <lowlevel/twi.h>
-#include <lowlevel/xmem.h>
+/** \file doc.h
+ *  Contains Doxygen Group Definitions
+ */
 
-/** \example flight.c */
+/** \defgroup Software Software
+ *  Software Libraries
+ */
 
-int main(void) {
+/** \defgroup System System
+ *  \ingroup Software
+ *  System Libraries
+ */
 
-    xmemInit();
-    adcInit(AVCC);
-    twiInit();
-    initSystemTimer();
-    serialInit(serialAvailable(), BAUD(38400, F_CPU));
-    accInit(r4G);
-    gyroInit(r2000DPS);
-    magInit(r8g1);
-    rcInit();
-
-    sei();
-
-    for(;;) {
-
-    }
-
-    return 0;
-}
+ /** \defgroup Hardware Hardware
+ *  Hardware Libraries
+ */

@@ -1,5 +1,5 @@
 /*
- * flight.c
+ * remote.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,40 +27,26 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <stdint.h>
-#include <avr/io.h>
-#include <stdlib.h>
-#include <avr/interrupt.h>
+#ifndef _remote_h
+#define _remote_h
 
-#include <acc.h>
-#include <gyro.h>
-#include <mag.h>
-#include <remote.h>
-#include <lowlevel/adc.h>
-#include <lowlevel/serial.h>
-#include <lowlevel/time.h>
-#include <lowlevel/twi.h>
-#include <lowlevel/xmem.h>
+/** \addtogroup remote Remote Control Interface
+ *  \ingroup System
+ *  Read RC Receiver Sum Signal
+ *  @{
+ */
 
-/** \example flight.c */
+/** \file remote.h
+ *  Remote API Header.
+ */
 
-int main(void) {
+#define RC_EXTINT 4 /**< External Interrupt connected to sum signal */
 
-    xmemInit();
-    adcInit(AVCC);
-    twiInit();
-    initSystemTimer();
-    serialInit(serialAvailable(), BAUD(38400, F_CPU));
-    accInit(r4G);
-    gyroInit(r2000DPS);
-    magInit(r8g1);
-    rcInit();
+#define RC_CHANNELS 6 /**< Number of Channels in RC Receiver */
 
-    sei();
+extern volatile int8_t rcValues[RC_CHANNELS]; /**< Stick positions of remote control */
 
-    for(;;) {
+void rcInit(void); /**< Initialize RC Receiver */
 
-    }
-
-    return 0;
-}
+#endif
+/** @} */

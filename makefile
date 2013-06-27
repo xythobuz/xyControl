@@ -49,6 +49,7 @@ SRC += lib/acc.c
 SRC += lib/error.c
 SRC += lib/gyro.c
 SRC += lib/mag.c
+SRC += lib/remote.c
 
 OBJ = $(SRC:.c=.o)
 

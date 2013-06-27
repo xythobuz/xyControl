@@ -40,12 +40,12 @@
  * Also allows to print human-readable error descriptions.
  */
 
-char PROGMEM error0[] = "Success"; /**< String for SUCCESS */
-char PROGMEM error1[] = "TWI doesn't answer"; /**< String for TWI_NO_ANSWER */
-char PROGMEM error2[] = "TWI could not write"; /**< String for TWI_WRITE_ERROR */
-char PROGMEM error3[] = "Not enough memory"; /**< String for MALLOC_FAIL */
-char PROGMEM error4[] = "General Error"; /**< String for ERROR */
-char PROGMEM error5[] = "Argument Error"; /**< String for ARGUMENT_ERROR */
+char PROGMEM error0[] = "SUCC"; /**< String for SUCCESS */
+char PROGMEM error1[] = "TWI_ANSWER"; /**< String for TWI_NO_ANSWER */
+char PROGMEM error2[] = "TWI_WRITE"; /**< String for TWI_WRITE_ERROR */
+char PROGMEM error3[] = "NO_MEM"; /**< String for MALLOC_FAIL */
+char PROGMEM error4[] = "ERROR"; /**< String for ERROR */
+char PROGMEM error5[] = "ARG"; /**< String for ARGUMENT_ERROR */
 
 /** Array of all error descriptions in Flash Memory */
 PGM_P PROGMEM errorTable[] = {
