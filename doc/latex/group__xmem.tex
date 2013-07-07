@@ -28,7 +28,27 @@ struct \hyperlink{struct_malloc_state}{Malloc\-State}
 \#define \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{M\-E\-M\-B\-A\-N\-K\-S}~8
 \begin{DoxyCompactList}\small\item\em Available Memory Banks. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C}~0
-\begin{DoxyCompactList}\small\item\em Generic Memory Bank. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Generic Memory Bank. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L}~0
+\begin{DoxyCompactList}\small\item\em Bank for serial buffers. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gabeec1986c81588dde8863b7936028fc9}{B\-A\-N\-K0\-P\-O\-R\-T}~P\-O\-R\-T\-G
+\begin{DoxyCompactList}\small\item\em First Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gafba0bbf9336cfc754622a5e9b3d12d80}{B\-A\-N\-K0\-D\-D\-R}~D\-D\-R\-G
+\begin{DoxyCompactList}\small\item\em First Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{B\-A\-N\-K0\-P\-I\-N}~P\-G3
+\begin{DoxyCompactList}\small\item\em First Bank Selection Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}{B\-A\-N\-K1\-P\-O\-R\-T}~P\-O\-R\-T\-G
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gada13cb9312072b48628763a6e1fd50d3}{B\-A\-N\-K1\-D\-D\-R}~D\-D\-R\-G
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{B\-A\-N\-K1\-P\-I\-N}~P\-G4
+\begin{DoxyCompactList}\small\item\em Second Bank Selection Pin. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_gad35afb0251524c201c2d60f3d035af32}{B\-A\-N\-K2\-P\-O\-R\-T}~P\-O\-R\-T\-L
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Port. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_ga62f56230c5f5f7220c44ab1c93d677ab}{B\-A\-N\-K2\-D\-D\-R}~D\-D\-R\-L
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Data Direction Register. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{B\-A\-N\-K2\-P\-I\-N}~P\-L5
+\begin{DoxyCompactList}\small\item\em Third Bank Selection Pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,6 +83,141 @@ void $\ast$ \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\-\_\-\-\
 Allows access to external R\-A\-M with bank-\/switching. 
 
 \subsection{Macro Definition Documentation}
+\hypertarget{group__xmem_gafba0bbf9336cfc754622a5e9b3d12d80}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K0\-D\-D\-R@{B\-A\-N\-K0\-D\-D\-R}}
+\index{B\-A\-N\-K0\-D\-D\-R@{B\-A\-N\-K0\-D\-D\-R}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K0\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-D\-D\-R~D\-D\-R\-G}}\label{group__xmem_gafba0bbf9336cfc754622a5e9b3d12d80}
+
+
+First Bank Selection Data Direction Register. 
+
+
+
+Definition at line 59 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K0\-P\-I\-N@{B\-A\-N\-K0\-P\-I\-N}}
+\index{B\-A\-N\-K0\-P\-I\-N@{B\-A\-N\-K0\-P\-I\-N}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K0\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-P\-I\-N~P\-G3}}\label{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}
+
+
+First Bank Selection Pin. 
+
+
+
+Definition at line 60 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__xmem_gabeec1986c81588dde8863b7936028fc9}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K0\-P\-O\-R\-T@{B\-A\-N\-K0\-P\-O\-R\-T}}
+\index{B\-A\-N\-K0\-P\-O\-R\-T@{B\-A\-N\-K0\-P\-O\-R\-T}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K0\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K0\-P\-O\-R\-T~P\-O\-R\-T\-G}}\label{group__xmem_gabeec1986c81588dde8863b7936028fc9}
+
+
+First Bank Selection Port. 
+
+
+
+Definition at line 58 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__xmem_gada13cb9312072b48628763a6e1fd50d3}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K1\-D\-D\-R@{B\-A\-N\-K1\-D\-D\-R}}
+\index{B\-A\-N\-K1\-D\-D\-R@{B\-A\-N\-K1\-D\-D\-R}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K1\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-D\-D\-R~D\-D\-R\-G}}\label{group__xmem_gada13cb9312072b48628763a6e1fd50d3}
+
+
+Second Bank Selection Data Direction Register. 
+
+
+
+Definition at line 62 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K1\-P\-I\-N@{B\-A\-N\-K1\-P\-I\-N}}
+\index{B\-A\-N\-K1\-P\-I\-N@{B\-A\-N\-K1\-P\-I\-N}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K1\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-P\-I\-N~P\-G4}}\label{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}
+
+
+Second Bank Selection Pin. 
+
+
+
+Definition at line 63 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K1\-P\-O\-R\-T@{B\-A\-N\-K1\-P\-O\-R\-T}}
+\index{B\-A\-N\-K1\-P\-O\-R\-T@{B\-A\-N\-K1\-P\-O\-R\-T}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K1\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K1\-P\-O\-R\-T~P\-O\-R\-T\-G}}\label{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}
+
+
+Second Bank Selection Port. 
+
+
+
+Definition at line 61 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__xmem_ga62f56230c5f5f7220c44ab1c93d677ab}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K2\-D\-D\-R@{B\-A\-N\-K2\-D\-D\-R}}
+\index{B\-A\-N\-K2\-D\-D\-R@{B\-A\-N\-K2\-D\-D\-R}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K2\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-D\-D\-R~D\-D\-R\-L}}\label{group__xmem_ga62f56230c5f5f7220c44ab1c93d677ab}
+
+
+Third Bank Selection Data Direction Register. 
+
+
+
+Definition at line 65 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init().
+
+\hypertarget{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K2\-P\-I\-N@{B\-A\-N\-K2\-P\-I\-N}}
+\index{B\-A\-N\-K2\-P\-I\-N@{B\-A\-N\-K2\-P\-I\-N}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K2\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-P\-I\-N~P\-L5}}\label{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}
+
+
+Third Bank Selection Pin. 
+
+
+
+Definition at line 66 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
+\hypertarget{group__xmem_gad35afb0251524c201c2d60f3d035af32}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K2\-P\-O\-R\-T@{B\-A\-N\-K2\-P\-O\-R\-T}}
+\index{B\-A\-N\-K2\-P\-O\-R\-T@{B\-A\-N\-K2\-P\-O\-R\-T}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K2\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K2\-P\-O\-R\-T~P\-O\-R\-T\-L}}\label{group__xmem_gad35afb0251524c201c2d60f3d035af32}
+
+
+Third Bank Selection Port. 
+
+
+
+Definition at line 64 of file xmem.\-h.
+
+
+
+Referenced by xmem\-Init(), and xmem\-Set\-Bank().
+
 \hypertarget{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C@{B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C}}
 \index{B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C@{B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C}!External Memory Interface@{External Memory Interface}}
 \subsubsection[{B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K\-\_\-\-G\-E\-N\-E\-R\-I\-C~0}}\label{group__xmem_ga6b1167d0078b33af8ec17ededaebe0cb}
@@ -74,9 +229,20 @@ Generic Memory Bank.
 
 Definition at line 55 of file xmem.\-h.
 
+\hypertarget{group__xmem_gaa5177871b2303418ed492a18405273f9}{\index{External Memory Interface@{External Memory Interface}!B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L@{B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L}}
+\index{B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L@{B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L}!External Memory Interface@{External Memory Interface}}
+\subsubsection[{B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L~0}}\label{group__xmem_gaa5177871b2303418ed492a18405273f9}
 
 
-Referenced by add\-Menu\-Command(), add\-Task(), remove\-Task(), tasks(), tasks\-Registered(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
+Bank for serial buffers. 
+
+
+
+Definition at line 56 of file xmem.\-h.
+
+
+
+Referenced by serial\-Close(), serial\-Get(), serial\-Init(), and serial\-Write().
 
 \hypertarget{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{\index{External Memory Interface@{External Memory Interface}!M\-E\-M\-B\-A\-N\-K\-S@{M\-E\-M\-B\-A\-N\-K\-S}}
 \index{M\-E\-M\-B\-A\-N\-K\-S@{M\-E\-M\-B\-A\-N\-K\-S}!External Memory Interface@{External Memory Interface}}
@@ -85,9 +251,6 @@ Referenced by add\-Menu\-Command(), add\-Task(), remove\-Task(), tasks(), tasks\
 
 Available Memory Banks. 
 
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 54 of file xmem.\-h.
@@ -118,7 +281,7 @@ Definition at line 47 of file xmem.\-h.
 
 
 
-Referenced by add\-Task(), remove\-Task(), tasks(), and tasks\-Registered().
+Referenced by serial\-Close(), serial\-Get(), serial\-Init(), and serial\-Write().
 
 \hypertarget{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{\index{External Memory Interface@{External Memory Interface}!M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K@{M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K}}
 \index{M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K@{M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K}!External Memory Interface@{External Memory Interface}}
@@ -142,7 +305,7 @@ Definition at line 52 of file xmem.\-h.
 
 
 
-Referenced by add\-Task(), remove\-Task(), tasks(), and tasks\-Registered().
+Referenced by serial\-Close(), serial\-Get(), serial\-Init(), and serial\-Write().
 
 
 
@@ -165,7 +328,7 @@ Restore the malloc state.
 \end{DoxyParams}
 
 
-Definition at line 65 of file xmem.\-c.
+Definition at line 64 of file xmem.\-c.
 
 
 
@@ -177,12 +340,12 @@ Referenced by xmem\-Set\-Bank().
 
 
 \begin{DoxyCode}
-65                                 \{
-66     \_\_malloc\_heap\_start = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{start};
-67     \_\_malloc\_heap\_end = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{end};
-68     \hyperlink{group__xmem_ga8d18204366e8a385c441663ed41f1ae4}{\_\_brkval} = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{val};
-69     \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\_\_flp} = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{fl};
-70 \}
+64                                 \{
+65     \_\_malloc\_heap\_start = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{start};
+66     \_\_malloc\_heap\_end = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{end};
+67     \hyperlink{group__xmem_ga8d18204366e8a385c441663ed41f1ae4}{\_\_brkval} = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{val};
+68     \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\_\_flp} = \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{fl};
+69 \}
 \end{DoxyCode}
 \hypertarget{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{\index{External Memory Interface@{External Memory Interface}!save\-State@{save\-State}}
 \index{save\-State@{save\-State}!External Memory Interface@{External Memory Interface}}
@@ -202,7 +365,7 @@ Save the current malloc state.
 \end{DoxyParams}
 
 
-Definition at line 55 of file xmem.\-c.
+Definition at line 54 of file xmem.\-c.
 
 
 
@@ -214,12 +377,12 @@ Referenced by xmem\-Init(), and xmem\-Set\-Bank().
 
 
 \begin{DoxyCode}
-55                              \{
-56     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{start} = \_\_malloc\_heap\_start;
-57     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{end} = \_\_malloc\_heap\_end;
-58     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{val} = \hyperlink{group__xmem_ga8d18204366e8a385c441663ed41f1ae4}{\_\_brkval};
-59     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{fl} = \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\_\_flp};
-60 \}
+54                              \{
+55     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab40328f79e021050ac262dc0a6019667}{start} = \_\_malloc\_heap\_start;
+56     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a8fd806ad19b8f5513a4cf18cbf77532c}{end} = \_\_malloc\_heap\_end;
+57     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_ab03f36f103bdec81305fd301f1f93885}{val} = \hyperlink{group__xmem_ga8d18204366e8a385c441663ed41f1ae4}{\_\_brkval};
+58     \hyperlink{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{states}[bank].\hyperlink{struct_malloc_state_a2cd9ff81854efd20b4a1e414ac69f3dc}{fl} = \hyperlink{group__xmem_gadc2de04ee0c18717273d0ab52fd6dc1b}{\_\_flp};
+59 \}
 \end{DoxyCode}
 \hypertarget{group__xmem_ga575f63170f6fc636556f8d955cbd42cd}{\index{External Memory Interface@{External Memory Interface}!xmem\-Get\-Bank@{xmem\-Get\-Bank}}
 \index{xmem\-Get\-Bank@{xmem\-Get\-Bank}!External Memory Interface@{External Memory Interface}}
@@ -235,26 +398,19 @@ Get the current memory bank.
 \begin{DoxyReturn}{Returns}
 Current Memory Bank. 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
-Definition at line 105 of file xmem.\-c.
+Definition at line 104 of file xmem.\-c.
 
 
 
 References current\-Bank.
 
 
-
-Referenced by add\-Menu\-Command(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
-
-
 \begin{DoxyCode}
-105                           \{
-106     \textcolor{keywordflow}{return} \hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank};
-107 \}
+104                           \{
+105     \textcolor{keywordflow}{return} \hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank};
+106 \}
 \end{DoxyCode}
 \hypertarget{group__xmem_ga9744de3b2aca21a564b151e770ed7384}{\index{External Memory Interface@{External Memory Interface}!xmem\-Init@{xmem\-Init}}
 \index{xmem\-Init@{xmem\-Init}!External Memory Interface@{External Memory Interface}}
@@ -267,36 +423,35 @@ Referenced by add\-Menu\-Command(), uart\-Menu\-Print\-Help(), and uart\-Menu\-T
 
 Initialize the External Memory Interface. 
 
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
 
 
-Definition at line 72 of file xmem.\-c.
+Definition at line 71 of file xmem.\-c.
 
 
 
 References B\-A\-N\-K0\-D\-D\-R, B\-A\-N\-K0\-P\-I\-N, B\-A\-N\-K0\-P\-O\-R\-T, B\-A\-N\-K1\-D\-D\-R, B\-A\-N\-K1\-P\-I\-N, B\-A\-N\-K1\-P\-O\-R\-T, B\-A\-N\-K2\-D\-D\-R, B\-A\-N\-K2\-P\-I\-N, B\-A\-N\-K2\-P\-O\-R\-T, M\-E\-M\-B\-A\-N\-K\-S, and save\-State().
 
 
-
-Referenced by xy\-Init().
-
-
 \begin{DoxyCode}
-72                     \{
-73     \hyperlink{group__config_gafba0bbf9336cfc754622a5e9b3d12d80}{BANK0DDR} |= (1 << \hyperlink{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
-74     \hyperlink{group__config_gada13cb9312072b48628763a6e1fd50d3}{BANK1DDR} |= (1 << \hyperlink{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
-75     \hyperlink{group__config_ga62f56230c5f5f7220c44ab1c93d677ab}{BANK2DDR} |= (1 << \hyperlink{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
-76     \hyperlink{group__config_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} &= ~(1 << \hyperlink{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
-77     \hyperlink{group__config_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} &= ~(1 << \hyperlink{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
-78     \hyperlink{group__config_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} &= ~(1 << \hyperlink{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
-79 
-80     XMCRB = 0; \textcolor{comment}{// Use full address space}
-81     XMCRA = (1 << SRW11) | (1 << SRW10); \textcolor{comment}{// 3 Wait cycles}
-82     XMCRA |= (1 << SRE); \textcolor{comment}{// Enable XMEM}
-83 
-84     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
-85         \hyperlink{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{saveState}(i);
-86     \}
-87 \}
+71                     \{
+72     \hyperlink{group__xmem_gafba0bbf9336cfc754622a5e9b3d12d80}{BANK0DDR} |= (1 << \hyperlink{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
+73     \hyperlink{group__xmem_gada13cb9312072b48628763a6e1fd50d3}{BANK1DDR} |= (1 << \hyperlink{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
+74     \hyperlink{group__xmem_ga62f56230c5f5f7220c44ab1c93d677ab}{BANK2DDR} |= (1 << \hyperlink{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
+75     \hyperlink{group__xmem_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} &= ~(1 << \hyperlink{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
+76     \hyperlink{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} &= ~(1 << \hyperlink{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
+77     \hyperlink{group__xmem_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} &= ~(1 << \hyperlink{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
+78 
+79     XMCRB = 0; \textcolor{comment}{// Use full address space}
+80     XMCRA = (1 << SRW11) | (1 << SRW10); \textcolor{comment}{// 3 Wait cycles}
+81     XMCRA |= (1 << SRE); \textcolor{comment}{// Enable XMEM}
+82 
+83     \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}; i++) \{
+84         \hyperlink{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{saveState}(i);
+85     \}
+86 \}
 \end{DoxyCode}
 \hypertarget{group__xmem_ga619fa66b9f38be684f4331951fc91730}{\index{External Memory Interface@{External Memory Interface}!xmem\-Set\-Bank@{xmem\-Set\-Bank}}
 \index{xmem\-Set\-Bank@{xmem\-Set\-Bank}!External Memory Interface@{External Memory Interface}}
@@ -314,38 +469,31 @@ Switch the active memory bank.
 {\em bank} & New Memory Bank \\
 \hline
 \end{DoxyParams}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
-Definition at line 89 of file xmem.\-c.
+Definition at line 88 of file xmem.\-c.
 
 
 
 References B\-A\-N\-K0\-P\-I\-N, B\-A\-N\-K0\-P\-O\-R\-T, B\-A\-N\-K1\-P\-I\-N, B\-A\-N\-K1\-P\-O\-R\-T, B\-A\-N\-K2\-P\-I\-N, B\-A\-N\-K2\-P\-O\-R\-T, current\-Bank, M\-E\-M\-B\-A\-N\-K\-S, restore\-State(), and save\-State().
 
 
-
-Referenced by add\-Menu\-Command(), uart\-Menu\-Print\-Help(), and uart\-Menu\-Task().
-
-
 \begin{DoxyCode}
-89                                \{
-90     \textcolor{keywordflow}{if} (bank < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}) \{
-91         \hyperlink{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{saveState}(\hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank});
-92 
-93         \hyperlink{group__config_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} &= ~(1 << \hyperlink{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
-94         \hyperlink{group__config_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} &= ~(1 << \hyperlink{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
-95         \hyperlink{group__config_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} &= ~(1 << \hyperlink{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
-96         \hyperlink{group__config_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} |= ((bank & 0x01) << \hyperlink{group__config_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
-97         \hyperlink{group__config_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} |= (((bank & 0x02) >> 1) << \hyperlink{group__config_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
-98         \hyperlink{group__config_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} |= (((bank & 0x04) >> 2) << \hyperlink{group__config_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
-99 
-100         \hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank} = bank;
-101         \hyperlink{group__xmem_ga02e35ec14c8649b89dd91b5155031e2f}{restoreState}(bank);
-102     \}
-103 \}
+88                                \{
+89     \textcolor{keywordflow}{if} (bank < \hyperlink{group__xmem_ga1ed280cb3dd0a4a03aeda6aaccc180d3}{MEMBANKS}) \{
+90         \hyperlink{group__xmem_ga1b5d7ce361c908dce9af0faf79987124}{saveState}(\hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank});
+91 
+92         \hyperlink{group__xmem_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} &= ~(1 << \hyperlink{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
+93         \hyperlink{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} &= ~(1 << \hyperlink{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
+94         \hyperlink{group__xmem_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} &= ~(1 << \hyperlink{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
+95         \hyperlink{group__xmem_gabeec1986c81588dde8863b7936028fc9}{BANK0PORT} |= ((bank & 0x01) << \hyperlink{group__xmem_gaa176e9b2752f764cd7e7d9fd49d46af8}{BANK0PIN});
+96         \hyperlink{group__xmem_ga8b3ee7126196f6e939989eae097c3ac4}{BANK1PORT} |= (((bank & 0x02) >> 1) << \hyperlink{group__xmem_gacfebedc2067e3c52e6ae1f627afcc1e1}{BANK1PIN});
+97         \hyperlink{group__xmem_gad35afb0251524c201c2d60f3d035af32}{BANK2PORT} |= (((bank & 0x04) >> 2) << \hyperlink{group__xmem_ga74c95f6ccdb5e482e97a5af53ed74229}{BANK2PIN});
+98 
+99         \hyperlink{group__xmem_ga4a1acf2db179d35f089bd00881d1c2eb}{currentBank} = bank;
+100         \hyperlink{group__xmem_ga02e35ec14c8649b89dd91b5155031e2f}{restoreState}(bank);
+101     \}
+102 \}
 \end{DoxyCode}
 
 
@@ -381,7 +529,7 @@ Current active Memory Bank.
 
 
 
-Definition at line 47 of file xmem.\-c.
+Definition at line 46 of file xmem.\-c.
 
 
 
@@ -396,7 +544,7 @@ Current active Memory Bank.
 
 
 
-Definition at line 47 of file xmem.\-c.
+Definition at line 46 of file xmem.\-c.
 
 
 
@@ -411,7 +559,7 @@ Referenced by xmem\-Get\-Bank(), and xmem\-Set\-Bank().
 
 
 
-Definition at line 46 of file xmem.\-c.
+Definition at line 45 of file xmem.\-c.
 
 \hypertarget{group__xmem_gabe6eb8575dfb63d41e3ca7fe774d1b27}{\index{External Memory Interface@{External Memory Interface}!states@{states}}
 \index{states@{states}!External Memory Interface@{External Memory Interface}}
@@ -422,5 +570,5 @@ Definition at line 46 of file xmem.\-c.
 
 
 
-Definition at line 46 of file xmem.\-c.
+Definition at line 45 of file xmem.\-c.
 

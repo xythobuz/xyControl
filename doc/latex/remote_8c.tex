@@ -1,0 +1,33 @@
+\hypertarget{remote_8c}{\section{lib/remote.c File Reference}
+\label{remote_8c}\index{lib/remote.\-c@{lib/remote.\-c}}
+}
+
+
+Remote A\-P\-I Implementation.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$avr/interrupt.\-h$>$}\\*
+{\ttfamily \#include $<$remote.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__remote_gadd2d7cdddfb682dcc0391e60cf42c7d6}{I\-S\-R} (T\-I\-M\-E\-R0\-\_\-\-O\-V\-F\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em External Interrupt detecting Timer0 Overflow, invalidating signal matching. \end{DoxyCompactList}\item 
+\hyperlink{group__remote_ga42903a094ebf380298719ce14486b703}{I\-S\-R} (I\-N\-Tn\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em External Interrupt Service Routine for received sum signal. \end{DoxyCompactList}\item 
+void \hyperlink{group__remote_gaa187b2b0f831259c5e4b7dd83b153dc4}{rc\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize R\-C Receiver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile int8\-\_\-t \hyperlink{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{rc\-Values} \mbox{[}\hyperlink{group__remote_gaad403df27c4671b0787f75525ee666ad}{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stick positions of remote control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Remote A\-P\-I Implementation. Uses Timer0! Base on \href{http://www.rn-wissen.de/index.php/RC-Empf}{\tt http\-://www.\-rn-\/wissen.\-de/index.\-php/\-R\-C-\/\-Empf}änger\-\_\-auswerten\-::\-C-\/\-Programmbeispiel\-\_\-.\-28\-Auslesen\-\_\-mit\-\_\-\-Timer0.\-29 
+
+Definition in file \hyperlink{remote_8c_source}{remote.\-c}.
+

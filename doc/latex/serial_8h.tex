@@ -1,5 +1,5 @@
-\hypertarget{serial_8h}{\section{include/serial.h File Reference}
-\label{serial_8h}\index{include/serial.\-h@{include/serial.\-h}}
+\hypertarget{serial_8h}{\section{include/lowlevel/serial.h File Reference}
+\label{serial_8h}\index{include/lowlevel/serial.\-h@{include/lowlevel/serial.\-h}}
 }
 
 
@@ -11,8 +11,12 @@ U\-A\-R\-T Library Header File.
 \item 
 \#define \hyperlink{group__uart_ga779bf099075a999d1074357fccbd466b}{U\-S\-B}~0
 \begin{DoxyCompactList}\small\item\em First U\-A\-R\-T Name. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__uart_ga3f30897fa8435dc9811642367a328be8}{B\-L\-U\-E\-T\-O\-O\-T\-H}~1
+\#define \hyperlink{group__uart_gab4bf926a45354a2f328f1a7b94ebd3c5}{D\-I\-S\-P\-L\-A\-Y}~1
 \begin{DoxyCompactList}\small\item\em Second U\-A\-R\-T Name. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Receive Buffer Size. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Transmit Buffer Size. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{B\-A\-U\-D}(baud\-Rate, xtal\-Cpu)~((xtal\-Cpu)/((baud\-Rate)$\ast$16l)-\/1)
 \begin{DoxyCompactList}\small\item\em Calculate Baudrate Register Value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
@@ -20,7 +24,7 @@ U\-A\-R\-T Library Header File.
 \item 
 uint8\-\_\-t \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serial\-Available} (void)
 \begin{DoxyCompactList}\small\item\em Get number of available U\-A\-R\-T modules. \end{DoxyCompactList}\item 
-void \hyperlink{group__uart_ga73d4335cb201753c580c87954f493886}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
+uint8\-\_\-t \hyperlink{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
 \begin{DoxyCompactList}\small\item\em Initialize the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
 void \hyperlink{group__uart_gaa16a5ecaf9e40660ded50737ff1d0a88}{serial\-Close} (uint8\-\_\-t uart)
 \begin{DoxyCompactList}\small\item\em Stop the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 

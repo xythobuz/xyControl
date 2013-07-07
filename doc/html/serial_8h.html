@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>xyControl: include/serial.h File Reference</title>
+<title>xyControl: include/lowlevel/serial.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b92be75897491f7deb10c5c99e35bdca.html">lowlevel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -106,9 +106,15 @@ Macros</h2></td></tr>
 <tr class="memitem:ga779bf099075a999d1074357fccbd466b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga779bf099075a999d1074357fccbd466b">USB</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:ga779bf099075a999d1074357fccbd466b"><td class="mdescLeft">&#160;</td><td class="mdescRight">First UART Name.  <a href="group__uart.html#ga779bf099075a999d1074357fccbd466b">More...</a><br/></td></tr>
 <tr class="separator:ga779bf099075a999d1074357fccbd466b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3f30897fa8435dc9811642367a328be8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga3f30897fa8435dc9811642367a328be8">BLUETOOTH</a>&#160;&#160;&#160;1</td></tr>
-<tr class="memdesc:ga3f30897fa8435dc9811642367a328be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second UART Name.  <a href="group__uart.html#ga3f30897fa8435dc9811642367a328be8">More...</a><br/></td></tr>
-<tr class="separator:ga3f30897fa8435dc9811642367a328be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab4bf926a45354a2f328f1a7b94ebd3c5">DISPLAY</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second UART Name.  <a href="group__uart.html#gab4bf926a45354a2f328f1a7b94ebd3c5">More...</a><br/></td></tr>
+<tr class="separator:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092">RX_BUFFER_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="memdesc:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Receive Buffer Size.  <a href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092">More...</a><br/></td></tr>
+<tr class="separator:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9ab33647617098646990fe263600b650"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="memdesc:ga9ab33647617098646990fe263600b650"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Transmit Buffer Size.  <a href="group__uart.html#ga9ab33647617098646990fe263600b650">More...</a><br/></td></tr>
+<tr class="separator:ga9ab33647617098646990fe263600b650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafccfd7d1315f0763ac404c6104883341"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gafccfd7d1315f0763ac404c6104883341">BAUD</a>(baudRate, xtalCpu)&#160;&#160;&#160;((xtalCpu)/((baudRate)*16l)-1)</td></tr>
 <tr class="memdesc:gafccfd7d1315f0763ac404c6104883341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Baudrate Register Value.  <a href="group__uart.html#gafccfd7d1315f0763ac404c6104883341">More...</a><br/></td></tr>
 <tr class="separator:gafccfd7d1315f0763ac404c6104883341"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,9 +124,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1ea963b291215ad9c5e8a0610f116b90"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1ea963b291215ad9c5e8a0610f116b90">serialAvailable</a> (void)</td></tr>
 <tr class="memdesc:ga1ea963b291215ad9c5e8a0610f116b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of available UART modules.  <a href="group__uart.html#ga1ea963b291215ad9c5e8a0610f116b90">More...</a><br/></td></tr>
 <tr class="separator:ga1ea963b291215ad9c5e8a0610f116b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga73d4335cb201753c580c87954f493886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga73d4335cb201753c580c87954f493886">serialInit</a> (uint8_t uart, uint16_t baud)</td></tr>
-<tr class="memdesc:ga73d4335cb201753c580c87954f493886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the UART Hardware.  <a href="group__uart.html#ga73d4335cb201753c580c87954f493886">More...</a><br/></td></tr>
-<tr class="separator:ga73d4335cb201753c580c87954f493886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga8d59ee8831dd38c77b52deb7af9410e3">serialInit</a> (uint8_t uart, uint16_t baud)</td></tr>
+<tr class="memdesc:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the UART Hardware.  <a href="group__uart.html#ga8d59ee8831dd38c77b52deb7af9410e3">More...</a><br/></td></tr>
+<tr class="separator:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaa16a5ecaf9e40660ded50737ff1d0a88">serialClose</a> (uint8_t uart)</td></tr>
 <tr class="memdesc:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the UART Hardware.  <a href="group__uart.html#gaa16a5ecaf9e40660ded50737ff1d0a88">More...</a><br/></td></tr>
 <tr class="separator:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="memSeparator" colspan="2">&#160;</td></tr>

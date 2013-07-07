@@ -50,7 +50,7 @@ int main(void) {
     adcInit(AVCC);
     twiInit();
     initSystemTimer();
-    serialInit(serialAvailable(), BAUD(38400, F_CPU));
+    serialInit(1, BAUD(38400, F_CPU)); // LCD
     accInit(r4G);
     gyroInit(r2000DPS);
     magInit(r8g1);

@@ -107,9 +107,15 @@ Macros</h2></td></tr>
 <tr class="memitem:ga779bf099075a999d1074357fccbd466b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga779bf099075a999d1074357fccbd466b">USB</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:ga779bf099075a999d1074357fccbd466b"><td class="mdescLeft">&#160;</td><td class="mdescRight">First UART Name.  <a href="#ga779bf099075a999d1074357fccbd466b">More...</a><br/></td></tr>
 <tr class="separator:ga779bf099075a999d1074357fccbd466b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3f30897fa8435dc9811642367a328be8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga3f30897fa8435dc9811642367a328be8">BLUETOOTH</a>&#160;&#160;&#160;1</td></tr>
-<tr class="memdesc:ga3f30897fa8435dc9811642367a328be8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second UART Name.  <a href="#ga3f30897fa8435dc9811642367a328be8">More...</a><br/></td></tr>
-<tr class="separator:ga3f30897fa8435dc9811642367a328be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gab4bf926a45354a2f328f1a7b94ebd3c5">DISPLAY</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second UART Name.  <a href="#gab4bf926a45354a2f328f1a7b94ebd3c5">More...</a><br/></td></tr>
+<tr class="separator:gab4bf926a45354a2f328f1a7b94ebd3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092">RX_BUFFER_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="memdesc:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Receive Buffer Size.  <a href="#ga739a2a1a0047c98ac1b18ecd25dac092">More...</a><br/></td></tr>
+<tr class="separator:ga739a2a1a0047c98ac1b18ecd25dac092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9ab33647617098646990fe263600b650"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga9ab33647617098646990fe263600b650">TX_BUFFER_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="memdesc:ga9ab33647617098646990fe263600b650"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Transmit Buffer Size.  <a href="#ga9ab33647617098646990fe263600b650">More...</a><br/></td></tr>
+<tr class="separator:ga9ab33647617098646990fe263600b650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafccfd7d1315f0763ac404c6104883341"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gafccfd7d1315f0763ac404c6104883341">BAUD</a>(baudRate, xtalCpu)&#160;&#160;&#160;((xtalCpu)/((baudRate)*16l)-1)</td></tr>
 <tr class="memdesc:gafccfd7d1315f0763ac404c6104883341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate Baudrate Register Value.  <a href="#gafccfd7d1315f0763ac404c6104883341">More...</a><br/></td></tr>
 <tr class="separator:gafccfd7d1315f0763ac404c6104883341"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,9 +143,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1ea963b291215ad9c5e8a0610f116b90"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga1ea963b291215ad9c5e8a0610f116b90">serialAvailable</a> (void)</td></tr>
 <tr class="memdesc:ga1ea963b291215ad9c5e8a0610f116b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of available UART modules.  <a href="#ga1ea963b291215ad9c5e8a0610f116b90">More...</a><br/></td></tr>
 <tr class="separator:ga1ea963b291215ad9c5e8a0610f116b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga73d4335cb201753c580c87954f493886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga73d4335cb201753c580c87954f493886">serialInit</a> (uint8_t uart, uint16_t baud)</td></tr>
-<tr class="memdesc:ga73d4335cb201753c580c87954f493886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the UART Hardware.  <a href="#ga73d4335cb201753c580c87954f493886">More...</a><br/></td></tr>
-<tr class="separator:ga73d4335cb201753c580c87954f493886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#ga8d59ee8831dd38c77b52deb7af9410e3">serialInit</a> (uint8_t uart, uint16_t baud)</td></tr>
+<tr class="memdesc:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the UART Hardware.  <a href="#ga8d59ee8831dd38c77b52deb7af9410e3">More...</a><br/></td></tr>
+<tr class="separator:ga8d59ee8831dd38c77b52deb7af9410e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart.html#gaa16a5ecaf9e40660ded50737ff1d0a88">serialClose</a> (uint8_t uart)</td></tr>
 <tr class="memdesc:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the UART Hardware.  <a href="#gaa16a5ecaf9e40660ded50737ff1d0a88">More...</a><br/></td></tr>
 <tr class="separator:gaa16a5ecaf9e40660ded50737ff1d0a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,26 +209,24 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calculate Baudrate Register Value. </p>
-
-<p>Definition at line <a class="el" href="serial_8h_source.html#l00049">49</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="flight_8c-example.html#a6">flight.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00052">52</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ga3f30897fa8435dc9811642367a328be8"></a>
+<a class="anchor" id="gab4bf926a45354a2f328f1a7b94ebd3c5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BLUETOOTH&#160;&#160;&#160;1</td>
+          <td class="memname">#define DISPLAY&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Second UART Name. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a26">hardwareTest.c</a>.</dd>
-</dl>
+
 <p>Definition at line <a class="el" href="serial_8h_source.html#l00046">46</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
@@ -239,7 +243,7 @@ Functions</h2></td></tr>
 
 <p>Defining this enables incoming XON XOFF (sends XOFF if rx buff is full) </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00063">63</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00064">64</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
 </div>
 </div>
@@ -255,9 +259,25 @@ Functions</h2></td></tr>
 
 <p>Space remaining to trigger xoff/xon. </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00065">65</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00066">66</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00218">serialGet()</a>.</p>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00245">serialGet()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga739a2a1a0047c98ac1b18ecd25dac092"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RX_BUFFER_SIZE&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART Receive Buffer Size. </p>
+
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00048">48</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
 </div>
@@ -274,9 +294,25 @@ Functions</h2></td></tr>
 <p>If you define this, a '\r' (CR) will be put in front of a '\n' (LF) when sending a byte. </p>
 <p>Binary Communication will then be impossible!RX Buffer Size in Bytes (Power of 2) </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00055">55</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00056">56</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00218">serialGet()</a>, and <a class="el" href="serial_8c_source.html#l00252">serialRxBufferFull()</a>.</p>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00245">serialGet()</a>, <a class="el" href="serial_8c_source.html#l00119">serialInit()</a>, and <a class="el" href="serial_8c_source.html#l00281">serialRxBufferFull()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga9ab33647617098646990fe263600b650"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TX_BUFFER_SIZE&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART Transmit Buffer Size. </p>
+
+<p>Definition at line <a class="el" href="serial_8h_source.html#l00049">49</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
 </div>
@@ -292,9 +328,9 @@ Functions</h2></td></tr>
 
 <p>TX Buffer Size in Bytes (Power of 2) </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00059">59</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00060">60</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00311">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00274">serialWrite()</a>.</p>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00119">serialInit()</a>, <a class="el" href="serial_8c_source.html#l00342">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00303">serialWrite()</a>.</p>
 
 </div>
 </div>
@@ -309,8 +345,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>First UART Name. </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a28">hardwareTest.c</a>.</dd>
-</dl>
+
 <p>Definition at line <a class="el" href="serial_8h_source.html#l00045">45</a> of file <a class="el" href="serial_8h_source.html">serial.h</a>.</p>
 
 </div>
@@ -327,9 +362,9 @@ Functions</h2></td></tr>
 
 <p>XOFF Value. </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00067">67</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00068">68</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00164">setFlow()</a>.</p>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00191">setFlow()</a>.</p>
 
 </div>
 </div>
@@ -345,9 +380,9 @@ Functions</h2></td></tr>
 
 <p>XON Value. </p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00066">66</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00067">67</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00218">serialGet()</a>, and <a class="el" href="serial_8c_source.html#l00164">setFlow()</a>.</p>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00245">serialGet()</a>, and <a class="el" href="serial_8c_source.html#l00191">setFlow()</a>.</p>
 
 </div>
 </div>
@@ -369,12 +404,10 @@ Functions</h2></td></tr>
 <p>Get number of available UART modules. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of modules </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00114">114</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00081">uartinput()</a>, <a class="el" href="uart_menu_8c_source.html#l00131">uartMenuTask()</a>, <a class="el" href="xycontrol_8c_source.html#l00066">uartoutput()</a>, and <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                              {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> UART_COUNT;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00115">115</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                              {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span> UART_COUNT;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -400,22 +433,26 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00149">149</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00172">172</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00318">serialTxBufferEmpty()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                               {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    uint8_t sreg = SREG;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    sei();</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">while</span> (!<a class="code" href="group__uart.html#ga14c345ea0707111e988a80ef1da65e32" title="Check if the transmit buffer is empty.">serialTxBufferEmpty</a>(uart));</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">while</span> (*serialRegisters[uart][SERIALB] &amp; (1 &lt;&lt; serialBits[uart][SERIALUDRIE])); <span class="comment">// Wait while Transmit Interrupt is on</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    cli();</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    *serialRegisters[uart][SERIALB] = 0;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    *serialRegisters[uart][SERIALC] = 0;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    SREG = sreg;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;}</div>
+<p>References <a class="el" href="xmem_8h_source.html#l00056">BANK_SERIAL</a>, <a class="el" href="xmem_8h_source.html#l00047">MEMSWITCH</a>, <a class="el" href="xmem_8h_source.html#l00052">MEMSWITCHBACK</a>, and <a class="el" href="serial_8c_source.html#l00349">serialTxBufferEmpty()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                               {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <a class="code" href="group__xmem.html#ga253830e5022f2aa99177acd8a0ba0bfe" title="Switch the bank, if needed.">MEMSWITCH</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    uint8_t sreg = SREG;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    sei();</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">while</span> (!<a class="code" href="group__uart.html#ga14c345ea0707111e988a80ef1da65e32" title="Check if the transmit buffer is empty.">serialTxBufferEmpty</a>(uart));</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">while</span> (*serialRegisters[uart][SERIALB] &amp; (1 &lt;&lt; serialBits[uart][SERIALUDRIE])); <span class="comment">// Wait while Transmit Interrupt is on</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    cli();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    *serialRegisters[uart][SERIALB] = 0;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    *serialRegisters[uart][SERIALC] = 0;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    SREG = sreg;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    free(rxBuffer[uart]);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    free(txBuffer[uart]);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -441,46 +478,47 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Received byte or 0 </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a29">hardwareTest.c</a>.</dd>
-</dl>
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00218">218</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00065">FLOWMARK</a>, <a class="el" href="serial_8c_source.html#l00055">RX_BUFFER_SIZE</a>, and <a class="el" href="serial_8c_source.html#l00066">XON</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00245">245</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00210">serialGetBlocking()</a>, <a class="el" href="xycontrol_8c_source.html#l00081">uartinput()</a>, and <a class="el" href="uart_menu_8c_source.html#l00131">uartMenuTask()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    uint8_t c;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#ifdef FLOWCONTROL</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor"></span>    rxBufferElements[uart]--;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">if</span> ((flow[uart] == 0) &amp;&amp; (rxBufferElements[uart] &lt;= <a class="code" href="group__uart.html#gaa7907a070ef8e6d68d7d774b34eebe66" title="Space remaining to trigger xoff/xon.">FLOWMARK</a>)) {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">while</span> (sendThisNext[uart] != 0);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        sendThisNext[uart] = <a class="code" href="group__uart.html#gacdf721774c51e08c6609e6fa8cf82cc9" title="XON Value.">XON</a>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        flow[uart] = 1;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            shouldStartTransmission[uart] = 0;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]); <span class="comment">// Enable Interrupt</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        }</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        c = rxBuffer[uart][rxRead[uart]];</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        rxBuffer[uart][rxRead[uart]] = 0;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">if</span> (rxRead[uart] &lt; (<a class="code" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="If you define this, a &#39;\r&#39; (CR) will be put in front of a &#39;\n&#39; (LF) when sending a byte...">RX_BUFFER_SIZE</a> - 1)) {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            rxRead[uart]++;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            rxRead[uart] = 0;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">return</span> c;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;}</div>
+<p>References <a class="el" href="xmem_8h_source.html#l00056">BANK_SERIAL</a>, <a class="el" href="serial_8c_source.html#l00066">FLOWMARK</a>, <a class="el" href="xmem_8h_source.html#l00047">MEMSWITCH</a>, <a class="el" href="xmem_8h_source.html#l00052">MEMSWITCHBACK</a>, <a class="el" href="serial_8c_source.html#l00056">RX_BUFFER_SIZE</a>, and <a class="el" href="serial_8c_source.html#l00067">XON</a>.</p>
+
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00237">serialGetBlocking()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                                {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    uint8_t c;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="group__xmem.html#ga253830e5022f2aa99177acd8a0ba0bfe" title="Switch the bank, if needed.">MEMSWITCH</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="preprocessor">#ifdef FLOWCONTROL</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor"></span>    rxBufferElements[uart]--;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> ((flow[uart] == 0) &amp;&amp; (rxBufferElements[uart] &lt;= <a class="code" href="group__uart.html#gaa7907a070ef8e6d68d7d774b34eebe66" title="Space remaining to trigger xoff/xon.">FLOWMARK</a>)) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">while</span> (sendThisNext[uart] != 0);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        sendThisNext[uart] = <a class="code" href="group__uart.html#gacdf721774c51e08c6609e6fa8cf82cc9" title="XON Value.">XON</a>;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        flow[uart] = 1;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            shouldStartTransmission[uart] = 0;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]); <span class="comment">// Enable Interrupt</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        }</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        c = rxBuffer[uart][rxRead[uart]];</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        rxBuffer[uart][rxRead[uart]] = 0;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">if</span> (rxRead[uart] &lt; (<a class="code" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="If you define this, a &#39;\r&#39; (CR) will be put in front of a &#39;\n&#39; (LF) when sending a byte...">RX_BUFFER_SIZE</a> - 1)) {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            rxRead[uart]++;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            rxRead[uart] = 0;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">return</span> c;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -507,16 +545,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Received byte </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00210">210</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00237">237</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00218">serialGet()</a>, and <a class="el" href="serial_8c_source.html#l00199">serialHasChar()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                                        {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">while</span>(!<a class="code" href="group__uart.html#ga266a54dcf3c4b85d92bf6b16bdcb5069" title="Check if a byte was received.">serialHasChar</a>(uart));</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__uart.html#gaa9d6e44600b215154c3f66193df151f6" title="Read a single byte.">serialGet</a>(uart);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;}</div>
+<p>References <a class="el" href="serial_8c_source.html#l00245">serialGet()</a>, and <a class="el" href="serial_8c_source.html#l00226">serialHasChar()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                                        {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">while</span>(!<a class="code" href="group__uart.html#ga266a54dcf3c4b85d92bf6b16bdcb5069" title="Check if a byte was received.">serialHasChar</a>(uart));</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__uart.html#gaa9d6e44600b215154c3f66193df151f6" title="Read a single byte.">serialGet</a>(uart);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -542,30 +580,29 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if a byte was received, 0 if not </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a25">hardwareTest.c</a>.</dd>
-</dl>
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00199">199</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00210">serialGetBlocking()</a>, <a class="el" href="xycontrol_8c_source.html#l00081">uartinput()</a>, and <a class="el" href="uart_menu_8c_source.html#l00131">uartMenuTask()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                                    {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) { <span class="comment">// True if char available</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00226">226</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00237">serialGetBlocking()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                                    {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) { <span class="comment">// True if char available</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ga73d4335cb201753c580c87954f493886"></a>
+<a class="anchor" id="ga8d59ee8831dd38c77b52deb7af9410e3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void serialInit </td>
+          <td class="memname">uint8_t serialInit </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>uart</em>, </td>
@@ -592,40 +629,64 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if not enough memory for buffers, 0 on success </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="flight_8c-example.html#a5">flight.c</a>.</dd>
+</dl>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00119">119</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00118">118</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                             {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="comment">// Initialize state variables</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    rxRead[uart] = 0;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    rxWrite[uart] = 0;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    txRead[uart] = 0;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    txWrite[uart] = 0;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    shouldStartTransmission[uart] = 1;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifdef FLOWCONTROL</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor"></span>    sendThisNext[uart] = 0;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    flow[uart] = 1;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    rxBufferElements[uart] = 0;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// Default Configuration: 8N1</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    *serialRegisters[uart][SERIALC] = (1 &lt;&lt; serialBits[uart][SERIALUCSZ0]) | (1 &lt;&lt; serialBits[uart][SERIALUCSZ1]);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">// Set baudrate</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#if SERIALBAUDBIT == 8</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor"></span>    *serialRegisters[uart][SERIALUBRRH] = (baud &gt;&gt; 8);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    *serialRegisters[uart][SERIALUBRRL] = baud;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor"></span>    *serialBaudRegisters[uart] = baud;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    *serialRegisters[uart][SERIALB] = (1 &lt;&lt; serialBits[uart][SERIALRXCIE]); <span class="comment">// Enable Interrupts</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALRXEN]) | (1 &lt;&lt; serialBits[uart][SERIALTXEN]); <span class="comment">// Enable Receiver/Transmitter</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<p>References <a class="el" href="xmem_8h_source.html#l00056">BANK_SERIAL</a>, <a class="el" href="xmem_8h_source.html#l00047">MEMSWITCH</a>, <a class="el" href="xmem_8h_source.html#l00052">MEMSWITCHBACK</a>, <a class="el" href="serial_8c_source.html#l00056">RX_BUFFER_SIZE</a>, and <a class="el" href="serial_8c_source.html#l00060">TX_BUFFER_SIZE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                                                {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT) {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; UART_COUNT; i++) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <a class="code" href="group__uart.html#ga8d59ee8831dd38c77b52deb7af9410e3" title="Initialize the UART Hardware.">serialInit</a>(i, baud);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="group__xmem.html#ga253830e5022f2aa99177acd8a0ba0bfe" title="Switch the bank, if needed.">MEMSWITCH</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    rxBuffer[uart] = (uint8_t *)malloc(<a class="code" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="If you define this, a &#39;\r&#39; (CR) will be put in front of a &#39;\n&#39; (LF) when sending a byte...">RX_BUFFER_SIZE</a>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">if</span> (rxBuffer[uart] == NULL) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    txBuffer[uart] = (uint8_t *)malloc(<a class="code" href="group__uart.html#ga9ab33647617098646990fe263600b650" title="TX Buffer Size in Bytes (Power of 2)">TX_BUFFER_SIZE</a>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">if</span> (txBuffer[uart] == NULL) {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        free((<span class="keywordtype">void</span> *)rxBuffer[uart]);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// Initialize state variables</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    rxRead[uart] = 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    rxWrite[uart] = 0;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    txRead[uart] = 0;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    txWrite[uart] = 0;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    shouldStartTransmission[uart] = 1;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#ifdef FLOWCONTROL</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor"></span>    sendThisNext[uart] = 0;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    flow[uart] = 1;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    rxBufferElements[uart] = 0;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">// Default Configuration: 8N1</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    *serialRegisters[uart][SERIALC] = (1 &lt;&lt; serialBits[uart][SERIALUCSZ0]) | (1 &lt;&lt; serialBits[uart][SERIALUCSZ1]);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="comment">// Set baudrate</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#if SERIALBAUDBIT == 8</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor"></span>    *serialRegisters[uart][SERIALUBRRH] = (baud &gt;&gt; 8);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    *serialRegisters[uart][SERIALUBRRL] = baud;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor"></span>    *serialBaudRegisters[uart] = baud;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    *serialRegisters[uart][SERIALB] = (1 &lt;&lt; serialBits[uart][SERIALRXCIE]); <span class="comment">// Enable Interrupts</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALRXEN]) | (1 &lt;&lt; serialBits[uart][SERIALTXEN]); <span class="comment">// Enable Receiver/Transmitter</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -652,17 +713,17 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if buffer is empty, 0 if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00259">259</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                                          {</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;}</div>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00288">288</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                                          {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">if</span> (rxRead[uart] != rxWrite[uart]) {</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    }</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -689,15 +750,15 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if buffer is full, 0 if not </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00252">252</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00281">281</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00055">RX_BUFFER_SIZE</a>.</p>
-<div class="fragment"><div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                         {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">return</span> (((rxWrite[uart] + 1) == rxRead[uart]) || ((rxRead[uart] == 0) &amp;&amp; ((rxWrite[uart] + 1) == <a class="code" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="If you define this, a &#39;\r&#39; (CR) will be put in front of a &#39;\n&#39; (LF) when sending a byte...">RX_BUFFER_SIZE</a>)));</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;}</div>
+<p>References <a class="el" href="serial_8c_source.html#l00056">RX_BUFFER_SIZE</a>.</p>
+<div class="fragment"><div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                                         {</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">return</span> (((rxWrite[uart] + 1) == rxRead[uart]) || ((rxRead[uart] == 0) &amp;&amp; ((rxWrite[uart] + 1) == <a class="code" href="group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092" title="If you define this, a &#39;\r&#39; (CR) will be put in front of a &#39;\n&#39; (LF) when sending a byte...">RX_BUFFER_SIZE</a>)));</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -724,19 +785,19 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if buffer is empty, 0 if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00318">318</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00349">349</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00149">serialClose()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                                          {</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    <span class="keywordflow">if</span> (txRead[uart] != txWrite[uart]) {</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;}</div>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00172">serialClose()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                                          {</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordflow">if</span> (txRead[uart] != txWrite[uart]) {</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    }</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -763,17 +824,17 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if buffer is full, 0 if not </dd></dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00311">311</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00342">342</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00059">TX_BUFFER_SIZE</a>.</p>
+<p>References <a class="el" href="serial_8c_source.html#l00060">TX_BUFFER_SIZE</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00274">serialWrite()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                                         {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordflow">return</span> (((txWrite[uart] + 1) == txRead[uart]) || ((txRead[uart] == 0) &amp;&amp; ((txWrite[uart] + 1) == <a class="code" href="group__uart.html#ga9ab33647617098646990fe263600b650" title="TX Buffer Size in Bytes (Power of 2)">TX_BUFFER_SIZE</a>)));</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;}</div>
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00303">serialWrite()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                                         {</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">return</span> (((txWrite[uart] + 1) == txRead[uart]) || ((txRead[uart] == 0) &amp;&amp; ((txWrite[uart] + 1) == <a class="code" href="group__uart.html#ga9ab33647617098646990fe263600b650" title="TX Buffer Size in Bytes (Power of 2)">TX_BUFFER_SIZE</a>)));</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -809,36 +870,37 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a27">hardwareTest.c</a>.</dd>
-</dl>
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00274">274</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00311">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00059">TX_BUFFER_SIZE</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00303">303</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>Referenced by <a class="el" href="serial_8c_source.html#l00298">serialWriteString()</a>, and <a class="el" href="xycontrol_8c_source.html#l00066">uartoutput()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                                             {</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#ifdef SERIALINJECTCR</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (data == <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <a class="code" href="group__uart.html#ga388583adaa7db4fad121b6454668b347" title="Send a byte.">serialWrite</a>(uart, <span class="charliteral">&#39;\r&#39;</span>);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">while</span> (<a class="code" href="group__uart.html#ga8a6adfd3c350ceb55605d003a62a36a4" title="Check if the transmit buffer is full.">serialTxBufferFull</a>(uart));</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    txBuffer[uart][txWrite[uart]] = data;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keywordflow">if</span> (txWrite[uart] &lt; (<a class="code" href="group__uart.html#ga9ab33647617098646990fe263600b650" title="TX Buffer Size in Bytes (Power of 2)">TX_BUFFER_SIZE</a> - 1)) {</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        txWrite[uart]++;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        txWrite[uart] = 0;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    }</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        shouldStartTransmission[uart] = 0;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]); <span class="comment">// Enable Interrupt</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;}</div>
+<p>References <a class="el" href="xmem_8h_source.html#l00056">BANK_SERIAL</a>, <a class="el" href="xmem_8h_source.html#l00047">MEMSWITCH</a>, <a class="el" href="xmem_8h_source.html#l00052">MEMSWITCHBACK</a>, <a class="el" href="serial_8c_source.html#l00342">serialTxBufferFull()</a>, and <a class="el" href="serial_8c_source.html#l00060">TX_BUFFER_SIZE</a>.</p>
+
+<p>Referenced by <a class="el" href="serial_8c_source.html#l00329">serialWriteString()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                                             {</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="group__xmem.html#ga253830e5022f2aa99177acd8a0ba0bfe" title="Switch the bank, if needed.">MEMSWITCH</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#ifdef SERIALINJECTCR</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span> (data == <span class="charliteral">&#39;\n&#39;</span>) {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <a class="code" href="group__uart.html#ga388583adaa7db4fad121b6454668b347" title="Send a byte.">serialWrite</a>(uart, <span class="charliteral">&#39;\r&#39;</span>);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">while</span> (<a class="code" href="group__uart.html#ga8a6adfd3c350ceb55605d003a62a36a4" title="Check if the transmit buffer is full.">serialTxBufferFull</a>(uart));</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    txBuffer[uart][txWrite[uart]] = data;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">if</span> (txWrite[uart] &lt; (<a class="code" href="group__uart.html#ga9ab33647617098646990fe263600b650" title="TX Buffer Size in Bytes (Power of 2)">TX_BUFFER_SIZE</a> - 1)) {</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        txWrite[uart]++;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        txWrite[uart] = 0;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        shouldStartTransmission[uart] = 0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]); <span class="comment">// Enable Interrupt</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="group__xmem.html#ga96199c8c5e6fbc65dd60aa67de63fd34" title="Switch back to the last bank, if needed.">MEMSWITCHBACK</a>(<a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9" title="Bank for serial buffers.">BANK_SERIAL</a>);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -875,21 +937,21 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00298">298</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00329">329</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00274">serialWrite()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                                                       {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">if</span> (data == 0) {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <a class="code" href="group__uart.html#ga054d68834f9ca19f3b2cf9d714337de4" title="Send a string.">serialWriteString</a>(uart, <span class="stringliteral">&quot;NULL&quot;</span>);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">while</span> (*data != <span class="charliteral">&#39;\0&#39;</span>) {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <a class="code" href="group__uart.html#ga388583adaa7db4fad121b6454668b347" title="Send a byte.">serialWrite</a>(uart, *data++);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;}</div>
+<p>References <a class="el" href="serial_8c_source.html#l00303">serialWrite()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                                                       {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">if</span> (data == 0) {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <a class="code" href="group__uart.html#ga054d68834f9ca19f3b2cf9d714337de4" title="Send a string.">serialWriteString</a>(uart, <span class="stringliteral">&quot;NULL&quot;</span>);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        <span class="keywordflow">while</span> (*data != <span class="charliteral">&#39;\0&#39;</span>) {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <a class="code" href="group__uart.html#ga388583adaa7db4fad121b6454668b347" title="Send a byte.">serialWrite</a>(uart, *data++);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -927,38 +989,38 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="serial_8c_source.html#l00164">164</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
+<p>Definition at line <a class="el" href="serial_8c_source.html#l00191">191</a> of file <a class="el" href="serial_8c_source.html">serial.c</a>.</p>
 
-<p>References <a class="el" href="serial_8c_source.html#l00067">XOFF</a>, and <a class="el" href="serial_8c_source.html#l00066">XON</a>.</p>
-<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                                       {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordflow">if</span> (flow[uart] != on) {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">if</span> (on == 1) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <span class="comment">// Send XON</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">while</span> (sendThisNext[uart] != 0);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            sendThisNext[uart] = <a class="code" href="group__uart.html#gacdf721774c51e08c6609e6fa8cf82cc9" title="XON Value.">XON</a>;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            flow[uart] = 1;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                shouldStartTransmission[uart] = 0;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="comment">// Send XOFF</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            sendThisNext[uart] = <a class="code" href="group__uart.html#ga67fd78ae15d2b67c10d44d69a49ab1c5" title="XOFF Value.">XOFF</a>;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            flow[uart] = 0;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                shouldStartTransmission[uart] = 0;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// Wait till it&#39;s transmitted</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">while</span> (*serialRegisters[uart][SERIALB] &amp; (1 &lt;&lt; serialBits[uart][SERIALUDRIE]));</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    }</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;}</div>
+<p>References <a class="el" href="serial_8c_source.html#l00068">XOFF</a>, and <a class="el" href="serial_8c_source.html#l00067">XON</a>.</p>
+<div class="fragment"><div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                                       {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">if</span> (uart &gt;= UART_COUNT)</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">if</span> (flow[uart] != on) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordflow">if</span> (on == 1) {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="comment">// Send XON</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">while</span> (sendThisNext[uart] != 0);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            sendThisNext[uart] = <a class="code" href="group__uart.html#gacdf721774c51e08c6609e6fa8cf82cc9" title="XON Value.">XON</a>;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            flow[uart] = 1;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                shouldStartTransmission[uart] = 0;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <span class="comment">// Send XOFF</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            sendThisNext[uart] = <a class="code" href="group__uart.html#ga67fd78ae15d2b67c10d44d69a49ab1c5" title="XOFF Value.">XOFF</a>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            flow[uart] = 0;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">if</span> (shouldStartTransmission[uart]) {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                shouldStartTransmission[uart] = 0;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                *serialRegisters[uart][SERIALB] |= (1 &lt;&lt; serialBits[uart][SERIALUDRIE]);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                *serialRegisters[uart][SERIALA] |= (1 &lt;&lt; serialBits[uart][SERIALUDRE]); <span class="comment">// Trigger Interrupt</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="comment">// Wait till it&#39;s transmitted</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">while</span> (*serialRegisters[uart][SERIALB] &amp; (1 &lt;&lt; serialBits[uart][SERIALUDRIE]));</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

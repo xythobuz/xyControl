@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>xyControl: include/xmem.h Source File</title>
+<title>xyControl: include/lowlevel/xmem.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b92be75897491f7deb10c5c99e35bdca.html">lowlevel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -130,23 +130,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="group__xmem.html#ga1ed280cb3dd0a4a03aeda6aaccc180d3">   54</a></span>&#160;<span class="preprocessor">#define MEMBANKS 8 </span></div>
 <div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb">   55</a></span>&#160;<span class="preprocessor">#define BANK_GENERIC 0 </span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="struct_malloc_state.html">   62</a></span>&#160;<span class="preprocessor">typedef struct {</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#ab40328f79e021050ac262dc0a6019667">   63</a></span>&#160;<span class="preprocessor"></span>    <span class="keywordtype">char</span> *<a class="code" href="struct_malloc_state.html#ab40328f79e021050ac262dc0a6019667" title="Start of Heap.">start</a>; </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#a8fd806ad19b8f5513a4cf18cbf77532c">   64</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="struct_malloc_state.html#a8fd806ad19b8f5513a4cf18cbf77532c" title="End of Heap.">end</a>; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#ab03f36f103bdec81305fd301f1f93885">   65</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="struct_malloc_state.html#ab03f36f103bdec81305fd301f1f93885" title="Highest Heap Point.">val</a>; </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#a2cd9ff81854efd20b4a1e414ac69f3dc">   66</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="struct_malloc_state.html#a2cd9ff81854efd20b4a1e414ac69f3dc" title="Free List.">fl</a>; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <a class="code" href="struct_malloc_state.html" title="All Malloc related State.">MallocState</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct_malloc_state.html" title="All Malloc related State.">MallocState</a> <a class="code" href="group__xmem.html#gabe6eb8575dfb63d41e3ca7fe774d1b27" title="MallocState for all Memory Banks.">states</a>[<a class="code" href="group__xmem.html#ga1ed280cb3dd0a4a03aeda6aaccc180d3" title="Available Memory Banks.">MEMBANKS</a>]; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> uint8_t <a class="code" href="group__xmem.html#ga4a1acf2db179d35f089bd00881d1c2eb" title="Current active Memory Bank.">currentBank</a>; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__xmem.html#ga9744de3b2aca21a564b151e770ed7384" title="Initialize the External Memory Interface.">xmemInit</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(uint8_t bank);</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9">   56</a></span>&#160;<span class="preprocessor">#define BANK_SERIAL 0 </span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="group__xmem.html#gabeec1986c81588dde8863b7936028fc9">   58</a></span>&#160;<span class="preprocessor">#define BANK0PORT PORTG </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="group__xmem.html#gafba0bbf9336cfc754622a5e9b3d12d80">   59</a></span>&#160;<span class="preprocessor">#define BANK0DDR DDRG   </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="group__xmem.html#gaa176e9b2752f764cd7e7d9fd49d46af8">   60</a></span>&#160;<span class="preprocessor">#define BANK0PIN PG3    </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="group__xmem.html#ga8b3ee7126196f6e939989eae097c3ac4">   61</a></span>&#160;<span class="preprocessor">#define BANK1PORT PORTG </span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="group__xmem.html#gada13cb9312072b48628763a6e1fd50d3">   62</a></span>&#160;<span class="preprocessor">#define BANK1DDR DDRG   </span></div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="group__xmem.html#gacfebedc2067e3c52e6ae1f627afcc1e1">   63</a></span>&#160;<span class="preprocessor">#define BANK1PIN PG4    </span></div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="group__xmem.html#gad35afb0251524c201c2d60f3d035af32">   64</a></span>&#160;<span class="preprocessor">#define BANK2PORT PORTL </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="group__xmem.html#ga62f56230c5f5f7220c44ab1c93d677ab">   65</a></span>&#160;<span class="preprocessor">#define BANK2DDR DDRL   </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="group__xmem.html#ga74c95f6ccdb5e482e97a5af53ed74229">   66</a></span>&#160;<span class="preprocessor">#define BANK2PIN PL5    </span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="struct_malloc_state.html">   73</a></span>&#160;<span class="preprocessor">typedef struct {</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#ab40328f79e021050ac262dc0a6019667">   74</a></span>&#160;<span class="preprocessor"></span>    <span class="keywordtype">char</span> *<a class="code" href="struct_malloc_state.html#ab40328f79e021050ac262dc0a6019667" title="Start of Heap.">start</a>; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#a8fd806ad19b8f5513a4cf18cbf77532c">   75</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="struct_malloc_state.html#a8fd806ad19b8f5513a4cf18cbf77532c" title="End of Heap.">end</a>; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#ab03f36f103bdec81305fd301f1f93885">   76</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="struct_malloc_state.html#ab03f36f103bdec81305fd301f1f93885" title="Highest Heap Point.">val</a>; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="struct_malloc_state.html#a2cd9ff81854efd20b4a1e414ac69f3dc">   77</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="struct_malloc_state.html#a2cd9ff81854efd20b4a1e414ac69f3dc" title="Free List.">fl</a>; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <a class="code" href="struct_malloc_state.html" title="All Malloc related State.">MallocState</a>;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;uint8_t <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct_malloc_state.html" title="All Malloc related State.">MallocState</a> <a class="code" href="group__xmem.html#gabe6eb8575dfb63d41e3ca7fe774d1b27" title="MallocState for all Memory Banks.">states</a>[<a class="code" href="group__xmem.html#ga1ed280cb3dd0a4a03aeda6aaccc180d3" title="Available Memory Banks.">MEMBANKS</a>]; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">extern</span> uint8_t <a class="code" href="group__xmem.html#ga4a1acf2db179d35f089bd00881d1c2eb" title="Current active Memory Bank.">currentBank</a>; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__xmem.html#ga9744de3b2aca21a564b151e770ed7384" title="Initialize the External Memory Interface.">xmemInit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__xmem.html#ga619fa66b9f38be684f4331951fc91730" title="Switch the active memory bank.">xmemSetBank</a>(uint8_t bank);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;uint8_t <a class="code" href="group__xmem.html#ga575f63170f6fc636556f8d955cbd42cd" title="Get the current memory bank.">xmemGetBank</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

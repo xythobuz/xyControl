@@ -98,85 +98,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;[![Photo 1][xy1s]][xy1]</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;[![Photo 2][xy2s]][xy2]</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;[![Screenshot][sss]][ss]</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;## Flight Control Software Flow</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;Three <a class="code" href="group__task.html#gabf4510e1aba7b08f11d447c2b530d661" title="Executes registered Tasks.">tasks</a> are controlling the Quadrocopter Orientation in Space.</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;+ The [Orientation <a class="code" href="group__task.html#gaa9c5b8d3ac838189ed335dbe4ec9fa6b" title="A Task has no arguments and returns nothing.">Task</a>][orient] reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct &quot;<a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>&quot;.</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;+ The [PID <a class="code" href="group__task.html#gaa9c5b8d3ac838189ed335dbe4ec9fa6b" title="A Task has no arguments and returns nothing.">Task</a>][pid] is then feeding these angles into two PID controllers. Their output is then used by...</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;+ The [Set <a class="code" href="group__task.html#gaa9c5b8d3ac838189ed335dbe4ec9fa6b" title="A Task has no arguments and returns nothing.">Task</a>][set], which calculates the motor speeds and gives them to...</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;+ The [motor task][motor], which sends the new values via TWI to the motor controllers.</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;# Software used</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; + [Peter Fleurys TWI Library][fleury]</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;# License</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;Peter Fleurys TWI Library (twi.c &amp; twi.h) is released under the [GNU GPL license][gpl].</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;Everything <span class="keywordflow">else</span> is released under a BSD-Style license. See the [accompanying COPYING file][bsd].</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;# Supported Hardware</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;+ Gyroscope L3GD20, code based on the [Adafruit Example][adafruit].</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;+ Accelerometer and Magnetometer LSM303DLHC, code based on the [Pololu Example][pololucode].</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;+ I got both of these Sensors on the [MinIMU-9 v2][pololu].</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;+ Brushless Motor Driver [BL-Ctrl V1.2][ctrl] with eg. the [Robbe Roxxy Outrunner 2824-34][mot] Brushless Motor.</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;+ BTM-222 Bluetooth UART Bridge ([PCB][bt])</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;## External Memory ([xmem.h][xmem])</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;The external memory consists of a 512Kx8 SRAM, bank-switched onto the 16bit avr address space.</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;This gives us 8 memory banks, consisting of 56KB. All memory from 0x0000 to 0x21FF is the AVRs internal memory. The memory banks are switched into 0x2200 to 0xFFFF.</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;This gives us 8 banks with 56KB each, resulting in 448KB external RAM.</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;## Orientation Calculation ([<a class="code" href="group__orientation.html#gacd4a2942520b68691db5aebde4e537a4" title="Current Aircraft orientation.">orientation</a>.h][orient])</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a <a class="code" href="struct_kalman.html" title="Kalman-Filter State data.">Kalman</a> Filter. It is using this slightly modified [<a class="code" href="struct_kalman.html" title="Kalman-Filter State data.">Kalman</a> Filter Implementation][kalman] by Linus Helgesson.</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;# PC and Android Tools</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;You can find some PC Software in the [tools][tools] directory. Each one should be accompanied by it&#39;s own Readme file.</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;## UART-Flight Status Packet Format</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    printf(&quot;t%.2f %.2f %.2f\n<span class="stringliteral">&quot;, kp, ki, kd);</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">    printf(&quot;</span>u%.2f %.2f\n<span class="stringliteral">&quot;, pid_output[1], pid_output[0]); // Pitch, Roll</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">    printf(&quot;</span>v%i %i %i %i\n<span class="stringliteral">&quot;, motorSpeed[0], ..., motorSpeed[3]);</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="stringliteral">    printf(&quot;</span>w%.2f\n<span class="stringliteral">&quot;, orientation.pitch);</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="stringliteral">    printf(&quot;</span>x%.2f\n<span class="stringliteral">&quot;, orientation.roll);</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">    printf(&quot;</span>y%.2f\n<span class="stringliteral">&quot;, orientation.yaw);</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">    printf(&quot;</span>z%.2f\n<span class="stringliteral">&quot;, getVoltage());</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral"># Software used</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral"> + [Peter Fleurys TWI Library][fleury]</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral"># License</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">Peter Fleurys TWI Library (twi.c &amp; twi.h) is released under the [GNU GPL license][gpl].</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">Everything else is released under a BSD-Style license. See the [accompanying COPYING file][bsd].</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral"> [sss]: http://www.xythobuz.de/img/xyCopterOsci_small.png</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral"> [ss]: http://www.xythobuz.de/img/xyCopterOsci.png</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral"> [xy1s]: http://www.xythobuz.de/img/xycontrol1_small.jpg</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral"> [xy1]: http://www.xythobuz.de/img/xycontrol1.jpg</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral"> [xy2s]: http://www.xythobuz.de/img/xycontrol2_small.jpg</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral"> [xy2]: http://www.xythobuz.de/img/xycontrol2.jpg</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral"> [gh]: http://www.xythobuz.de/xycontrol/</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral"> [logo]: http://www.xythobuz.de/xycontrol/logo.png</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral"> [adafruit]: https://github.com/adafruit/Adafruit_L3GD20</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral"> [pololucode]: https://github.com/pololu/LSM303</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral"> [pololu]: http://www.pololu.com/catalog/product/1268</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral"> [ctrl]: http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral"> [mot]: http://www.conrad.de/ce/de/product/231867</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="stringliteral"> [bt]: http://xythobuz.de/bluetooth.html</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="stringliteral"> [kalman]: http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="stringliteral"> [fleury]: http://homepage.hispeed.ch/peterfleury/avr-software.html</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="stringliteral"> [gpl]: http://www.gnu.org/licenses/gpl.html</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="stringliteral"> [bsd]: https://github.com/xythobuz/xyControl/blob/master/COPYING</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral"> [xmem]: https://github.com/xythobuz/xyControl/blob/master/include/xmem.h</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="stringliteral"> [orient]: https://github.com/xythobuz/xyControl/blob/master/include/orientation.h</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral"> [tools]: https://github.com/xythobuz/xyControl/tree/master/tools</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral"> [pid]: https://github.com/xythobuz/xyControl/blob/master/include/pid.h</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="stringliteral"> [set]: https://github.com/xythobuz/xyControl/blob/master/include/set.h</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral"> [motor]: https://github.com/xythobuz/xyControl/blob/master/include/motor.h</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; [xy1s]: http:<span class="comment">//www.xythobuz.de/img/xycontrol1_small.jpg</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; [xy1]: http:<span class="comment">//www.xythobuz.de/img/xycontrol1.jpg</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; [xy2s]: http:<span class="comment">//www.xythobuz.de/img/xycontrol2_small.jpg</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; [xy2]: http:<span class="comment">//www.xythobuz.de/img/xycontrol2.jpg</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; [gh]: http:<span class="comment">//www.xythobuz.de/xycontrol/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; [logo]: http:<span class="comment">//www.xythobuz.de/xycontrol/logo.png</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

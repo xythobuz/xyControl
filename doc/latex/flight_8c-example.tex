@@ -1,0 +1,70 @@
+\hypertarget{flight_8c-example}{\section{flight.\-c}
+}
+
+\begin{DoxyCodeInclude}
+\textcolor{comment}{/*}
+\textcolor{comment}{ * flight.c}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>}
+\textcolor{comment}{ * All rights reserved.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}
+\textcolor{comment}{ * modification, are permitted provided that the following conditions}
+\textcolor{comment}{ * are met:}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions of source code must retain the above copyright notice,}
+\textcolor{comment}{ *   this list of conditions and the following disclaimer.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * - Redistributions in binary form must reproduce the above copyright}
+\textcolor{comment}{ *   notice, this list of conditions and the following disclaimer in the}
+\textcolor{comment}{ *   documentation and/or other materials provided with the distribution.}
+\textcolor{comment}{ *}
+\textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS}
+\textcolor{comment}{ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED}
+\textcolor{comment}{ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR}
+\textcolor{comment}{ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR}
+\textcolor{comment}{ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,}
+\textcolor{comment}{ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,}
+\textcolor{comment}{ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR}
+\textcolor{comment}{ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF}
+\textcolor{comment}{ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING}
+\textcolor{comment}{ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS}
+\textcolor{comment}{ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}
+\textcolor{comment}{ */}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include <avr/io.h>}
+\textcolor{preprocessor}{#include <stdlib.h>}
+\textcolor{preprocessor}{#include <avr/interrupt.h>}
+
+\textcolor{preprocessor}{#include <\hyperlink{acc_8h}{acc.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{gyro_8h}{gyro.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{mag_8h}{mag.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{remote_8h}{remote.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{adc_8h}{lowlevel/adc.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{serial_8h}{lowlevel/serial.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{time_8h}{lowlevel/time.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{twi_8h}{lowlevel/twi.h}>}
+\textcolor{preprocessor}{#include <\hyperlink{xmem_8h}{lowlevel/xmem.h}>}
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+
+    \hyperlink{group__xmem_ga9744de3b2aca21a564b151e770ed7384}{xmemInit}();
+    \hyperlink{group__adc_ga658c8b976878603187b79166345319e0}{adcInit}(\hyperlink{group__adc_gga7fc3dc0de11790b4393b4be70d79a02faead1f65bef727ff7542b8139baceae9c}{AVCC});
+    \hyperlink{group__twi_ga1a9c88673ee82a5a84274814f168ea78}{twiInit}();
+    \hyperlink{group__time_ga66bac2517b216a802f8fb2233eccfa66}{initSystemTimer}();
+    \hyperlink{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{serialInit}(1, \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{BAUD}(38400, F\_CPU)); \textcolor{comment}{// LCD}
+    \hyperlink{group__acc_ga7674eb1b940f183abe5e0b0913a87613}{accInit}(\hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G});
+    \hyperlink{group__gyro_ga276b9ab6ac85c65b5a55356c00958be7}{gyroInit}(\hyperlink{group__gyro_gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3}{r2000DPS});
+    \hyperlink{group__mag_ga7e5d5e6448efb84e8805e2fbea9cb374}{magInit}(\hyperlink{group__mag_gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee}{r8g1});
+    \hyperlink{group__remote_gaa187b2b0f831259c5e4b7dd83b153dc4}{rcInit}();
+
+    sei();
+
+    \textcolor{keywordflow}{for}(;;) \{
+
+    \}
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

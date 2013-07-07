@@ -1,5 +1,5 @@
-\hypertarget{serial_8c}{\section{lib/serial.c File Reference}
-\label{serial_8c}\index{lib/serial.\-c@{lib/serial.\-c}}
+\hypertarget{serial_8c}{\section{lib/lowlevel/serial.c File Reference}
+\label{serial_8c}\index{lib/lowlevel/serial.\-c@{lib/lowlevel/serial.\-c}}
 }
 
 
@@ -9,9 +9,10 @@ U\-A\-R\-T Library Implementation.
 {\ttfamily \#include $<$avr/io.\-h$>$}\\*
 {\ttfamily \#include $<$avr/interrupt.\-h$>$}\\*
 {\ttfamily \#include $<$stdint.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}serial.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}serial\-\_\-device.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}config.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$lowlevel/serial.\-h$>$}\\*
+{\ttfamily \#include $<$lowlevel/serial\-\_\-device.\-h$>$}\\*
+{\ttfamily \#include $<$lowlevel/xmem.\-h$>$}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,7 +33,7 @@ U\-A\-R\-T Library Implementation.
 \item 
 uint8\-\_\-t \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serial\-Available} (void)
 \begin{DoxyCompactList}\small\item\em Get number of available U\-A\-R\-T modules. \end{DoxyCompactList}\item 
-void \hyperlink{group__uart_ga73d4335cb201753c580c87954f493886}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
+uint8\-\_\-t \hyperlink{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
 \begin{DoxyCompactList}\small\item\em Initialize the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
 void \hyperlink{group__uart_gaa16a5ecaf9e40660ded50737ff1d0a88}{serial\-Close} (uint8\-\_\-t uart)
 \begin{DoxyCompactList}\small\item\em Stop the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 

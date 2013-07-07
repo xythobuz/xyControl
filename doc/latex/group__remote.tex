@@ -1,0 +1,192 @@
+\hypertarget{group__remote}{\section{Remote Control Interface}
+\label{group__remote}\index{Remote Control Interface@{Remote Control Interface}}
+}
+
+
+Read R\-C Receiver Sum Signal.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{remote_8h}{remote.\-h}
+\begin{DoxyCompactList}\small\item\em Remote A\-P\-I Header. \end{DoxyCompactList}\item 
+file \hyperlink{remote_8c}{remote.\-c}
+\begin{DoxyCompactList}\small\item\em Remote A\-P\-I Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__remote_gaea99c3c3bfae9e9643e6f1b3f2885bf6}{R\-C\-\_\-\-E\-X\-T\-I\-N\-T}~4
+\begin{DoxyCompactList}\small\item\em External Interrupt connected to sum signal. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__remote_gaad403df27c4671b0787f75525ee666ad}{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}~6
+\begin{DoxyCompactList}\small\item\em Number of Channels in R\-C Receiver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__remote_gaa187b2b0f831259c5e4b7dd83b153dc4}{rc\-Init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize R\-C Receiver. \end{DoxyCompactList}\item 
+\hyperlink{group__remote_gadd2d7cdddfb682dcc0391e60cf42c7d6}{I\-S\-R} (T\-I\-M\-E\-R0\-\_\-\-O\-V\-F\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em External Interrupt detecting Timer0 Overflow, invalidating signal matching. \end{DoxyCompactList}\item 
+\hyperlink{group__remote_ga42903a094ebf380298719ce14486b703}{I\-S\-R} (I\-N\-Tn\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em External Interrupt Service Routine for received sum signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile int8\-\_\-t \hyperlink{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{rc\-Values} \mbox{[}\hyperlink{group__remote_gaad403df27c4671b0787f75525ee666ad}{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stick positions of remote control. \end{DoxyCompactList}\item 
+volatile int8\-\_\-t \hyperlink{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{rc\-Values} \mbox{[}\hyperlink{group__remote_gaad403df27c4671b0787f75525ee666ad}{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stick positions of remote control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Read R\-C Receiver Sum Signal. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__remote_gaad403df27c4671b0787f75525ee666ad}{\index{Remote Control Interface@{Remote Control Interface}!R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S@{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}}
+\index{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S@{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S~6}}\label{group__remote_gaad403df27c4671b0787f75525ee666ad}
+
+
+Number of Channels in R\-C Receiver. 
+
+
+
+Definition at line 45 of file remote.\-h.
+
+\hypertarget{group__remote_gaea99c3c3bfae9e9643e6f1b3f2885bf6}{\index{Remote Control Interface@{Remote Control Interface}!R\-C\-\_\-\-E\-X\-T\-I\-N\-T@{R\-C\-\_\-\-E\-X\-T\-I\-N\-T}}
+\index{R\-C\-\_\-\-E\-X\-T\-I\-N\-T@{R\-C\-\_\-\-E\-X\-T\-I\-N\-T}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{R\-C\-\_\-\-E\-X\-T\-I\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-C\-\_\-\-E\-X\-T\-I\-N\-T~4}}\label{group__remote_gaea99c3c3bfae9e9643e6f1b3f2885bf6}
+
+
+External Interrupt connected to sum signal. 
+
+
+
+Definition at line 43 of file remote.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__remote_gadd2d7cdddfb682dcc0391e60cf42c7d6}{\index{Remote Control Interface@{Remote Control Interface}!I\-S\-R@{I\-S\-R}}
+\index{I\-S\-R@{I\-S\-R}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}I\-S\-R (
+\begin{DoxyParamCaption}
+\item[{T\-I\-M\-E\-R0\-\_\-\-O\-V\-F\-\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}\label{group__remote_gadd2d7cdddfb682dcc0391e60cf42c7d6}
+
+
+External Interrupt detecting Timer0 Overflow, invalidating signal matching. 
+
+
+
+Definition at line 62 of file remote.\-c.
+
+
+\begin{DoxyCode}
+62                      \{
+63     rcSignalCounter = 0; \textcolor{comment}{// Reset Channel Counter}
+64     rcSignalValid = 0; \textcolor{comment}{// Block measurement until next pulse starts}
+65 \}
+\end{DoxyCode}
+\hypertarget{group__remote_ga42903a094ebf380298719ce14486b703}{\index{Remote Control Interface@{Remote Control Interface}!I\-S\-R@{I\-S\-R}}
+\index{I\-S\-R@{I\-S\-R}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}I\-S\-R (
+\begin{DoxyParamCaption}
+\item[{I\-N\-Tn\-\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}\label{group__remote_ga42903a094ebf380298719ce14486b703}
+
+
+External Interrupt Service Routine for received sum signal. 
+
+
+
+Definition at line 68 of file remote.\-c.
+
+
+
+References rc\-Values.
+
+
+\begin{DoxyCode}
+68                \{
+69     \textcolor{keywordflow}{if} (rcSignalValid == 1) \{ \textcolor{comment}{// Start with first pulse}
+70         \hyperlink{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{rcValues}[rcSignalCounter] = TCNT0; \textcolor{comment}{// Store pulse length}
+71     \} \textcolor{keywordflow}{else} \{
+72         rcSignalValid = 1; \textcolor{comment}{// First pulse received, start!}
+73     \}
+74     TCNT0 = RC\_TIMER\_RELOAD; \textcolor{comment}{// Reset Timer}
+75 \}
+\end{DoxyCode}
+\hypertarget{group__remote_gaa187b2b0f831259c5e4b7dd83b153dc4}{\index{Remote Control Interface@{Remote Control Interface}!rc\-Init@{rc\-Init}}
+\index{rc\-Init@{rc\-Init}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{rc\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void rc\-Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{group__remote_gaa187b2b0f831259c5e4b7dd83b153dc4}
+
+
+Initialize R\-C Receiver. 
+
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
+
+
+Definition at line 77 of file remote.\-c.
+
+
+\begin{DoxyCode}
+77                   \{
+78     TIMSK0 |= (1 << TOIE0); \textcolor{comment}{// Enable Overflow Interrupt}
+79     TCNT0 = RC\_TIMER\_RELOAD; \textcolor{comment}{// Overflow after 3,68ms}
+80     TCCR0B |= (1 << CS02); \textcolor{comment}{// Prescaler 256}
+81 
+82     \textcolor{comment}{// Select matching External Interrupt Control Register}
+83 \textcolor{preprocessor}{#if RC\_EXTINT < 4}
+84 \textcolor{preprocessor}{}    \textcolor{keyword}{volatile} uint8\_t *extIntReg = &EICRA;
+85 \textcolor{preprocessor}{#elif RC\_EXTINT < 8}
+86 \textcolor{preprocessor}{}    \textcolor{keyword}{volatile} uint8\_t *extIntReg = &EICRB;
+87 \textcolor{preprocessor}{#else}
+88 \textcolor{preprocessor}{}\textcolor{preprocessor}{#error EXTINT too high!}
+89 \textcolor{preprocessor}{}\textcolor{preprocessor}{#endif}
+90 \textcolor{preprocessor}{}
+91     *extIntReg |= (1 << ISCn0) | (1 << ISCn1); \textcolor{comment}{// Trigger on rising edge}
+92     EIMSK |= (1 << INTn); \textcolor{comment}{// Enable external interrupt}
+93 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{\index{Remote Control Interface@{Remote Control Interface}!rc\-Values@{rc\-Values}}
+\index{rc\-Values@{rc\-Values}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{rc\-Values}]{\setlength{\rightskip}{0pt plus 5cm}volatile int8\-\_\-t rc\-Values\mbox{[}{\bf R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}\mbox{]}}}\label{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}
+
+
+Stick positions of remote control. 
+
+
+
+Definition at line 54 of file remote.\-c.
+
+
+
+Referenced by I\-S\-R().
+
+\hypertarget{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}{\index{Remote Control Interface@{Remote Control Interface}!rc\-Values@{rc\-Values}}
+\index{rc\-Values@{rc\-Values}!Remote Control Interface@{Remote Control Interface}}
+\subsubsection[{rc\-Values}]{\setlength{\rightskip}{0pt plus 5cm}volatile int8\-\_\-t rc\-Values\mbox{[}{\bf R\-C\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S}\mbox{]}}}\label{group__remote_gabcacf6e881a9c8d7e83e8bdf7f72dda5}
+
+
+Stick positions of remote control. 
+
+
+
+Definition at line 54 of file remote.\-c.
+
+
+
+Referenced by I\-S\-R().
+

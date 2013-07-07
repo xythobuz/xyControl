@@ -220,8 +220,6 @@ Functions</h2></td></tr>
 <p>Definition at line <a class="el" href="adc_8c_source.html#l00096">96</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="adc_8c_source.html#l00086">adcReady()</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00172">getVoltage()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                              {</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// Return measurements result</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// Start next conversion</span></div>
@@ -256,12 +254,11 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="flight_8c-example.html#a1">flight.c</a>.</dd>
+</dl>
 <p>Definition at line <a class="el" href="adc_8c_source.html#l00044">44</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
 
 <p>References <a class="el" href="adc_8h_source.html#l00048">AINT1</a>, <a class="el" href="adc_8h_source.html#l00049">AINT2</a>, <a class="el" href="adc_8h_source.html#l00046">AREF</a>, and <a class="el" href="adc_8h_source.html#l00047">AVCC</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                         {</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Enable ADC Module, start one conversion, wait for finish</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    PRR0 &amp;= ~(1 &lt;&lt; PRADC); <span class="comment">// Disable ADC Power Reduction (Enable it...)</span></div>
@@ -309,7 +306,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="adc_8c_source.html#l00086">86</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="adc_8c_source.html#l00096">adcGet()</a>, and <a class="el" href="xycontrol_8c_source.html#l00172">getVoltage()</a>.</p>
+<p>Referenced by <a class="el" href="adc_8c_source.html#l00096">adcGet()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                   {</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Is the measurement finished</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> (ADCSRA &amp; (1 &lt;&lt; ADSC)) {</div>
@@ -345,8 +342,6 @@ Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="adc_8c_source.html#l00070">70</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00172">getVoltage()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                               {</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// Start a measurement on channel</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">if</span> (channel &gt; 15) {</div>

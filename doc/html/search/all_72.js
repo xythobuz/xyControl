@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['r1',['R1',['../group__config.html#ga918f64eb53db8e8dc694f36a87646476',1,'config.h']]],
   ['r16g',['r16G',['../group__acc.html#gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183',1,'acc.h']]],
   ['r1g3',['r1g3',['../group__mag.html#gga3af649d913d146d6654db2354d88c18aa18e06791b32b1772765ff7e54d3e24fd',1,'mag.h']]],
   ['r1g9',['r1g9',['../group__mag.html#gga3af649d913d146d6654db2354d88c18aa8cab223a26c8b984d14dd7214ec4f5f6',1,'mag.h']]],
-  ['r2',['R2',['../group__config.html#ga7a255a2815b9453060f51c6eb22cfed8',1,'config.h']]],
   ['r2000dps',['r2000DPS',['../group__gyro.html#gga12b0e0572fdceaa90874f9364c862eada738587d78e73a4947f7d00572e6a09b3',1,'gyro.h']]],
   ['r250dps',['r250DPS',['../group__gyro.html#gga12b0e0572fdceaa90874f9364c862eadad13cb337046598ead5e1fd8de0536efd',1,'gyro.h']]],
   ['r2g',['r2G',['../group__acc.html#gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4',1,'acc.h']]],
@@ -16,12 +14,14 @@ var searchData=
   ['r5g6',['r5g6',['../group__mag.html#gga3af649d913d146d6654db2354d88c18aa815faf18742b2b13ba477eed930851f4',1,'mag.h']]],
   ['r8g',['r8G',['../group__acc.html#gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf',1,'acc.h']]],
   ['r8g1',['r8g1',['../group__mag.html#gga3af649d913d146d6654db2354d88c18aa1cb5526ddb90c9b33beb87c0d5ad97ee',1,'mag.h']]],
-  ['removetask',['removeTask',['../group__task.html#ga2651e32a00e6db5b77aa1042d3c7b9c7',1,'tasks.c']]],
+  ['rc_5fchannels',['RC_CHANNELS',['../group__remote.html#gaad403df27c4671b0787f75525ee666ad',1,'remote.h']]],
+  ['rc_5fextint',['RC_EXTINT',['../group__remote.html#gaea99c3c3bfae9e9643e6f1b3f2885bf6',1,'remote.h']]],
+  ['rcinit',['rcInit',['../group__remote.html#gaa187b2b0f831259c5e4b7dd83b153dc4',1,'remote.c']]],
+  ['rcvalues',['rcValues',['../group__remote.html#gabcacf6e881a9c8d7e83e8bdf7f72dda5',1,'rcValues():&#160;remote.c'],['../group__remote.html#gabcacf6e881a9c8d7e83e8bdf7f72dda5',1,'rcValues():&#160;remote.c']]],
+  ['remote_20control_20interface',['Remote Control Interface',['../group__remote.html',1,'']]],
+  ['remote_2ec',['remote.c',['../remote_8c.html',1,'']]],
+  ['remote_2eh',['remote.h',['../remote_8h.html',1,'']]],
   ['reporterror',['REPORTERROR',['../group__error.html#ga72d32a02ede7ed11eee387aa4f4c05d5',1,'error.h']]],
-  ['resettext',['resetText',['../group__xycontrol.html#ga27915b4caf41f74542980a4ea0f1726a',1,'xycontrol.c']]],
   ['restorestate',['restoreState',['../group__xmem.html#ga02e35ec14c8649b89dd91b5155031e2f',1,'xmem.c']]],
-  ['reverselist',['reverseList',['../group__uartmenu.html#gaf51e7f5c38d5af643af09f6e21d2a4b9',1,'uartMenu.c']]],
-  ['roll',['roll',['../struct_angles.html#a1d3228afa3a1d6773954f40c1e519eb9',1,'Angles::roll()'],['../group__pid.html#gaf902416f65138704a180dbae2dc9d8f2',1,'ROLL():&#160;pid.h']]],
-  ['rolldata',['rollData',['../group__orientation.html#ga327c51463b7ca66c1ed8d0f400ffbfec',1,'orientation.c']]],
-  ['rx_5fbuffer_5fsize',['RX_BUFFER_SIZE',['../group__config.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;config.h'],['../group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;serial.c']]]
+  ['rx_5fbuffer_5fsize',['RX_BUFFER_SIZE',['../group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;serial.h'],['../group__uart.html#ga739a2a1a0047c98ac1b18ecd25dac092',1,'RX_BUFFER_SIZE():&#160;serial.c']]]
 ];

@@ -86,45 +86,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <img src="http://www.xythobuz.de/xycontrol/logo.png"  alt="Logo"/>
 </div>
 <p><a href="http://www.xythobuz.de/xycontrol/">xyControl</a> is a Quadrocopter Flight Controller based on Atmels Atmega2560 microcontroller. It features 512KB SRAM on-board, using the external memory interface of this processor. Also included is a switched power supply as well as a USB connection to communicate with and program the target. All I/O pins, including 3 additional UARTs, SPI, I2C (TWI) and 16 ADC Channels, are accessible via standard 2.54mm connectors. The Board can be powered from an external stable 5V supply, USB or 7V or more, via the on-board switched power supply. All voltage sources can be selected via jumpers.</p>
-<p><a href="http://www.xythobuz.de/img/xycontrol1.jpg">![Photo 1][xy1s]</a> <a href="http://www.xythobuz.de/img/xycontrol2.jpg">![Photo 2][xy2s]</a> <a href="http://www.xythobuz.de/img/xyCopterOsci.png">![Screenshot][sss]</a></p>
-<h2>Flight Control Software Flow</h2>
-<p>Three tasks are controlling the Quadrocopter Orientation in Space.</p>
+<p><a href="http://www.xythobuz.de/img/xycontrol1.jpg">![Photo 1][xy1s]</a> <a href="http://www.xythobuz.de/img/xycontrol2.jpg">![Photo 2][xy2s]</a></p>
+<h1>Software used</h1>
 <ul>
-<li>The <a href="https://github.com/xythobuz/xyControl/blob/master/include/orientation.h">Orientation Task</a> reads the Gyroscope and Accelerometer and calculates the current Roll and Pitch angles. They are stored in the global struct "orientation".</li>
-<li>The <a href="https://github.com/xythobuz/xyControl/blob/master/include/pid.h">PID Task</a> is then feeding these angles into two PID controllers. Their output is then used by...</li>
-<li>The <a href="https://github.com/xythobuz/xyControl/blob/master/include/set.h">Set Task</a>, which calculates the motor speeds and gives them to...</li>
-<li>The <a href="https://github.com/xythobuz/xyControl/blob/master/include/motor.h">motor task</a>, which sends the new values via TWI to the motor controllers.</li>
-</ul>
-<h1>Supported Hardware</h1>
-<ul>
-<li>Gyroscope L3GD20, code based on the <a href="https://github.com/adafruit/Adafruit_L3GD20">Adafruit Example</a>.</li>
-<li>Accelerometer and Magnetometer LSM303DLHC, code based on the <a href="https://github.com/pololu/LSM303">Pololu Example</a>.</li>
-<li>I got both of these Sensors on the <a href="http://www.pololu.com/catalog/product/1268">MinIMU-9 v2</a>.</li>
-<li>Brushless Motor Driver <a href="http://www.mikrokopter.de/ucwiki/en/BL-Ctrl_V1.2">BL-Ctrl V1.2</a> with eg. the <a href="http://www.conrad.de/ce/de/product/231867">Robbe Roxxy Outrunner 2824-34</a> Brushless Motor.</li>
-<li>BTM-222 Bluetooth UART Bridge (<a href="http://xythobuz.de/bluetooth.html">PCB</a>)</li>
-</ul>
-<h2>External Memory (<a href="https://github.com/xythobuz/xyControl/blob/master/include/xmem.h">xmem.h</a>)</h2>
-<p>The external memory consists of a 512Kx8 SRAM, bank-switched onto the 16bit avr address space. This gives us 8 memory banks, consisting of 56KB. All memory from 0x0000 to 0x21FF is the AVRs internal memory. The memory banks are switched into 0x2200 to 0xFFFF. This gives us 8 banks with 56KB each, resulting in 448KB external RAM.</p>
-<p>The data and bss memory sections, as well as the Stack are located in the internal RAM. The external RAM is used only for dynamically allocated memory.</p>
-<h2>Orientation Calculation (<a href="https://github.com/xythobuz/xyControl/blob/master/include/orientation.h">orientation.h</a>)</h2>
-<p>Calculates the current angles of the platform, using Gyroscope and Accelerometer Data with a <a class="el" href="struct_kalman.html" title="Kalman-Filter State data.">Kalman</a> Filter. It is using this slightly modified <a href="http://www.linushelgesson.se/2012/04/pitch-and-roll-estimating-kalman-filter-for-stabilizing-quadrocopters/">Kalman Filter Implementation</a> by Linus Helgesson.</p>
-<h1>PC and Android Tools</h1>
-<p>You can find some PC Software in the <a href="https://github.com/xythobuz/xyControl/tree/master/tools">tools</a> directory. Each one should be accompanied by it's own Readme file.</p>
-<h2>UART-Flight Status Packet Format</h2>
-<pre class="fragment">printf("t%.2f %.2f %.2f\n", kp, ki, kd);
-printf("u%.2f %.2f\n", pid_output[1], pid_output[0]); // Pitch, Roll
-printf("v%i %i %i %i\n", motorSpeed[0], ..., motorSpeed[3]);
-printf("w%.2f\n", orientation.pitch);
-printf("x%.2f\n", orientation.roll);
-printf("y%.2f\n", orientation.yaw);
-printf("z%.2f\n", getVoltage());
-</pre><h1>Software used</h1>
-<ul>
-<li><a href="http://homepage.hispeed.ch/peterfleury/avr-software.html">Peter Fleurys TWI Library</a></li>
+<li>[Peter Fleurys TWI Library][fleury]</li>
 </ul>
 <h1>License</h1>
-<p>Peter Fleurys TWI Library (<a class="el" href="twi_8c_source.html">twi.c</a> &amp; <a class="el" href="twi_8h.html" title="I2C API Header.">twi.h</a>) is released under the <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL license</a>.</p>
-<p>Everything else is released under a BSD-Style license. See the <a href="https://github.com/xythobuz/xyControl/blob/master/COPYING">accompanying COPYING file</a>. </p>
+<p>Peter Fleurys TWI Library (<a class="el" href="twi_8c_source.html">twi.c</a> &amp; <a class="el" href="twi_8h.html" title="I2C API Header.">twi.h</a>) is released under the [GNU GPL license][gpl].</p>
+<p>Everything else is released under a BSD-Style license. See the [accompanying COPYING file][bsd]. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

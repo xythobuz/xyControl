@@ -6,22 +6,11 @@ Also included is a switched power supply as well as a USB connection to communic
 All I/O pins, including 3 additional UARTs, SPI, I2C (TWI) and 16 ADC Channels, are accessible via standard 2.54mm connectors.
 The Board can be powered from an external stable 5V supply, USB or 7V or more, via the on-board switched power supply. All voltage sources can be selected via jumpers.
 
-[![Photo 1][xy1s]][xy1]
-[![Photo 2][xy2s]][xy2]
-
-# Software used
-
- + [Peter Fleurys TWI Library][fleury]
-
 # License
 
-Peter Fleurys TWI Library (twi.c & twi.h) is released under the [GNU GPL license][gpl].
+Peter Fleurys TWI Library (twi.c & twi.h) is released under the GNU GPL license.
 
-Everything else is released under a BSD-Style license. See the [accompanying COPYING file][bsd].
+Everything else is released under a BSD-Style license. See the accompanying COPYING file.
 
- [xy1s]: http://www.xythobuz.de/img/xycontrol1_small.jpg
- [xy1]: http://www.xythobuz.de/img/xycontrol1.jpg
- [xy2s]: http://www.xythobuz.de/img/xycontrol2_small.jpg
- [xy2]: http://www.xythobuz.de/img/xycontrol2.jpg
  [gh]: http://www.xythobuz.de/xycontrol/
  [logo]: http://www.xythobuz.de/xycontrol/logo.png

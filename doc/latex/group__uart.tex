@@ -20,8 +20,12 @@ file \hyperlink{serial_8c}{serial.\-c}
 \item 
 \#define \hyperlink{group__uart_ga779bf099075a999d1074357fccbd466b}{U\-S\-B}~0
 \begin{DoxyCompactList}\small\item\em First U\-A\-R\-T Name. \end{DoxyCompactList}\item 
-\#define \hyperlink{group__uart_ga3f30897fa8435dc9811642367a328be8}{B\-L\-U\-E\-T\-O\-O\-T\-H}~1
+\#define \hyperlink{group__uart_gab4bf926a45354a2f328f1a7b94ebd3c5}{D\-I\-S\-P\-L\-A\-Y}~1
 \begin{DoxyCompactList}\small\item\em Second U\-A\-R\-T Name. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Receive Buffer Size. \end{DoxyCompactList}\item 
+\#define \hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~128
+\begin{DoxyCompactList}\small\item\em U\-A\-R\-T Transmit Buffer Size. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{B\-A\-U\-D}(baud\-Rate, xtal\-Cpu)~((xtal\-Cpu)/((baud\-Rate)$\ast$16l)-\/1)
 \begin{DoxyCompactList}\small\item\em Calculate Baudrate Register Value. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~32
@@ -41,7 +45,7 @@ file \hyperlink{serial_8c}{serial.\-c}
 \item 
 uint8\-\_\-t \hyperlink{group__uart_ga1ea963b291215ad9c5e8a0610f116b90}{serial\-Available} (void)
 \begin{DoxyCompactList}\small\item\em Get number of available U\-A\-R\-T modules. \end{DoxyCompactList}\item 
-void \hyperlink{group__uart_ga73d4335cb201753c580c87954f493886}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
+uint8\-\_\-t \hyperlink{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{serial\-Init} (uint8\-\_\-t uart, uint16\-\_\-t baud)
 \begin{DoxyCompactList}\small\item\em Initialize the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
 void \hyperlink{group__uart_gaa16a5ecaf9e40660ded50737ff1d0a88}{serial\-Close} (uint8\-\_\-t uart)
 \begin{DoxyCompactList}\small\item\em Stop the U\-A\-R\-T Hardware. \end{DoxyCompactList}\item 
@@ -83,24 +87,20 @@ U\-A\-R\-T Library enabling you to control all available U\-A\-R\-T Modules. Wit
 
 Calculate Baudrate Register Value. 
 
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
 
 
-Definition at line 49 of file serial.\-h.
+Definition at line 52 of file serial.\-h.
 
-
-
-Referenced by xy\-Init().
-
-\hypertarget{group__uart_ga3f30897fa8435dc9811642367a328be8}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}}
-\index{B\-L\-U\-E\-T\-O\-O\-T\-H@{B\-L\-U\-E\-T\-O\-O\-T\-H}!UART Library@{U\-A\-R\-T Library}}
-\subsubsection[{B\-L\-U\-E\-T\-O\-O\-T\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-L\-U\-E\-T\-O\-O\-T\-H~1}}\label{group__uart_ga3f30897fa8435dc9811642367a328be8}
+\hypertarget{group__uart_gab4bf926a45354a2f328f1a7b94ebd3c5}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!D\-I\-S\-P\-L\-A\-Y@{D\-I\-S\-P\-L\-A\-Y}}
+\index{D\-I\-S\-P\-L\-A\-Y@{D\-I\-S\-P\-L\-A\-Y}!UART Library@{U\-A\-R\-T Library}}
+\subsubsection[{D\-I\-S\-P\-L\-A\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-I\-S\-P\-L\-A\-Y~1}}\label{group__uart_gab4bf926a45354a2f328f1a7b94ebd3c5}
 
 
 Second U\-A\-R\-T Name. 
 
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 46 of file serial.\-h.
@@ -114,7 +114,7 @@ Defining this enables incoming X\-O\-N X\-O\-F\-F (sends X\-O\-F\-F if rx buff i
 
 
 
-Definition at line 63 of file serial.\-c.
+Definition at line 64 of file serial.\-c.
 
 \hypertarget{group__uart_gaa7907a070ef8e6d68d7d774b34eebe66}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!F\-L\-O\-W\-M\-A\-R\-K@{F\-L\-O\-W\-M\-A\-R\-K}}
 \index{F\-L\-O\-W\-M\-A\-R\-K@{F\-L\-O\-W\-M\-A\-R\-K}!UART Library@{U\-A\-R\-T Library}}
@@ -125,11 +125,22 @@ Space remaining to trigger xoff/xon.
 
 
 
-Definition at line 65 of file serial.\-c.
+Definition at line 66 of file serial.\-c.
 
 
 
 Referenced by serial\-Get().
+
+\hypertarget{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!UART Library@{U\-A\-R\-T Library}}
+\subsubsection[{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}
+
+
+U\-A\-R\-T Receive Buffer Size. 
+
+
+
+Definition at line 48 of file serial.\-h.
 
 \hypertarget{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
 \index{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!UART Library@{U\-A\-R\-T Library}}
@@ -140,11 +151,22 @@ If you define this, a '\textbackslash{}r' (C\-R) will be put in front of a '\tex
 
 Binary Communication will then be impossible!\-R\-X Buffer Size in Bytes (Power of 2) 
 
-Definition at line 55 of file serial.\-c.
+Definition at line 56 of file serial.\-c.
 
 
 
-Referenced by serial\-Get(), and serial\-Rx\-Buffer\-Full().
+Referenced by serial\-Get(), serial\-Init(), and serial\-Rx\-Buffer\-Full().
+
+\hypertarget{group__uart_ga9ab33647617098646990fe263600b650}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!UART Library@{U\-A\-R\-T Library}}
+\subsubsection[{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~128}}\label{group__uart_ga9ab33647617098646990fe263600b650}
+
+
+U\-A\-R\-T Transmit Buffer Size. 
+
+
+
+Definition at line 49 of file serial.\-h.
 
 \hypertarget{group__uart_ga9ab33647617098646990fe263600b650}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
 \index{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!UART Library@{U\-A\-R\-T Library}}
@@ -155,11 +177,11 @@ T\-X Buffer Size in Bytes (Power of 2)
 
 
 
-Definition at line 59 of file serial.\-c.
+Definition at line 60 of file serial.\-c.
 
 
 
-Referenced by serial\-Tx\-Buffer\-Full(), and serial\-Write().
+Referenced by serial\-Init(), serial\-Tx\-Buffer\-Full(), and serial\-Write().
 
 \hypertarget{group__uart_ga779bf099075a999d1074357fccbd466b}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!U\-S\-B@{U\-S\-B}}
 \index{U\-S\-B@{U\-S\-B}!UART Library@{U\-A\-R\-T Library}}
@@ -168,9 +190,6 @@ Referenced by serial\-Tx\-Buffer\-Full(), and serial\-Write().
 
 First U\-A\-R\-T Name. 
 
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
 Definition at line 45 of file serial.\-h.
@@ -184,7 +203,7 @@ X\-O\-F\-F Value.
 
 
 
-Definition at line 67 of file serial.\-c.
+Definition at line 68 of file serial.\-c.
 
 
 
@@ -199,7 +218,7 @@ X\-O\-N Value.
 
 
 
-Definition at line 66 of file serial.\-c.
+Definition at line 67 of file serial.\-c.
 
 
 
@@ -224,17 +243,13 @@ number of modules
 \end{DoxyReturn}
 
 
-Definition at line 114 of file serial.\-c.
-
-
-
-Referenced by uartinput(), uart\-Menu\-Task(), uartoutput(), and xy\-Init().
+Definition at line 115 of file serial.\-c.
 
 
 \begin{DoxyCode}
-114                               \{
-115     \textcolor{keywordflow}{return} UART\_COUNT;
-116 \}
+115                               \{
+116     \textcolor{keywordflow}{return} UART\_COUNT;
+117 \}
 \end{DoxyCode}
 \hypertarget{group__uart_gaa16a5ecaf9e40660ded50737ff1d0a88}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Close@{serial\-Close}}
 \index{serial\-Close@{serial\-Close}!UART Library@{U\-A\-R\-T Library}}
@@ -254,28 +269,32 @@ Stop the U\-A\-R\-T Hardware.
 \end{DoxyParams}
 
 
-Definition at line 149 of file serial.\-c.
+Definition at line 172 of file serial.\-c.
 
 
 
-References serial\-Tx\-Buffer\-Empty().
+References B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, and serial\-Tx\-Buffer\-Empty().
 
 
 \begin{DoxyCode}
-149                                \{
-150     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-151         \textcolor{keywordflow}{return};
-152 
-153     uint8\_t sreg = SREG;
-154     sei();
-155     \textcolor{keywordflow}{while} (!\hyperlink{group__uart_ga14c345ea0707111e988a80ef1da65e32}{serialTxBufferEmpty}(uart));
-156     \textcolor{keywordflow}{while} (*serialRegisters[uart][SERIALB] & (1 << serialBits[uart][SERIALUDRIE])); \textcolor{comment}{// Wait while Transmit
+172                                \{
+173     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+174         \textcolor{keywordflow}{return};
+175 
+176     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+177     uint8\_t sreg = SREG;
+178     sei();
+179     \textcolor{keywordflow}{while} (!\hyperlink{group__uart_ga14c345ea0707111e988a80ef1da65e32}{serialTxBufferEmpty}(uart));
+180     \textcolor{keywordflow}{while} (*serialRegisters[uart][SERIALB] & (1 << serialBits[uart][SERIALUDRIE])); \textcolor{comment}{// Wait while Transmit
        Interrupt is on}
-157     cli();
-158     *serialRegisters[uart][SERIALB] = 0;
-159     *serialRegisters[uart][SERIALC] = 0;
-160     SREG = sreg;
-161 \}
+181     cli();
+182     *serialRegisters[uart][SERIALB] = 0;
+183     *serialRegisters[uart][SERIALC] = 0;
+184     SREG = sreg;
+185     free(rxBuffer[uart]);
+186     free(txBuffer[uart]);
+187     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+188 \}
 \end{DoxyCode}
 \hypertarget{group__uart_gaa9d6e44600b215154c3f66193df151f6}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Get@{serial\-Get}}
 \index{serial\-Get@{serial\-Get}!UART Library@{U\-A\-R\-T Library}}
@@ -296,56 +315,55 @@ Read a single byte.
 \begin{DoxyReturn}{Returns}
 Received byte or 0 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
-Definition at line 218 of file serial.\-c.
+Definition at line 245 of file serial.\-c.
 
 
 
-References F\-L\-O\-W\-M\-A\-R\-K, R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E, and X\-O\-N.
+References B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L, F\-L\-O\-W\-M\-A\-R\-K, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E, and X\-O\-N.
 
 
 
-Referenced by serial\-Get\-Blocking(), uartinput(), and uart\-Menu\-Task().
+Referenced by serial\-Get\-Blocking().
 
 
 \begin{DoxyCode}
-218                                 \{
-219     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-220         \textcolor{keywordflow}{return} 0;
-221 
-222     uint8\_t c;
-223 
-224 \textcolor{preprocessor}{#ifdef FLOWCONTROL}
-225 \textcolor{preprocessor}{}    rxBufferElements[uart]--;
-226     \textcolor{keywordflow}{if} ((flow[uart] == 0) && (rxBufferElements[uart] <= \hyperlink{group__uart_gaa7907a070ef8e6d68d7d774b34eebe66}{FLOWMARK})) \{
-227         \textcolor{keywordflow}{while} (sendThisNext[uart] != 0);
-228         sendThisNext[uart] = \hyperlink{group__uart_gacdf721774c51e08c6609e6fa8cf82cc9}{XON};
-229         flow[uart] = 1;
-230         \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
-231             shouldStartTransmission[uart] = 0;
-232             *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]); \textcolor{comment}{// Enable Interrupt}
-233             *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger Interrupt}
-234         \}
-235     \}
-236 \textcolor{preprocessor}{#endif}
-237 \textcolor{preprocessor}{}
-238     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{
-239         c = rxBuffer[uart][rxRead[uart]];
-240         rxBuffer[uart][rxRead[uart]] = 0;
-241         \textcolor{keywordflow}{if} (rxRead[uart] < (\hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{RX\_BUFFER\_SIZE} - 1)) \{
-242             rxRead[uart]++;
-243         \} \textcolor{keywordflow}{else} \{
-244             rxRead[uart] = 0;
-245         \}
-246         \textcolor{keywordflow}{return} c;
-247     \} \textcolor{keywordflow}{else} \{
-248         \textcolor{keywordflow}{return} 0;
-249     \}
-250 \}
+245                                 \{
+246     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+247         \textcolor{keywordflow}{return} 0;
+248 
+249     uint8\_t c;
+250     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+251 \textcolor{preprocessor}{#ifdef FLOWCONTROL}
+252 \textcolor{preprocessor}{}    rxBufferElements[uart]--;
+253     \textcolor{keywordflow}{if} ((flow[uart] == 0) && (rxBufferElements[uart] <= \hyperlink{group__uart_gaa7907a070ef8e6d68d7d774b34eebe66}{FLOWMARK})) \{
+254         \textcolor{keywordflow}{while} (sendThisNext[uart] != 0);
+255         sendThisNext[uart] = \hyperlink{group__uart_gacdf721774c51e08c6609e6fa8cf82cc9}{XON};
+256         flow[uart] = 1;
+257         \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
+258             shouldStartTransmission[uart] = 0;
+259             *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]); \textcolor{comment}{// Enable Interrupt}
+260             *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger Interrupt}
+261         \}
+262     \}
+263 \textcolor{preprocessor}{#endif}
+264 \textcolor{preprocessor}{}
+265     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{
+266         c = rxBuffer[uart][rxRead[uart]];
+267         rxBuffer[uart][rxRead[uart]] = 0;
+268         \textcolor{keywordflow}{if} (rxRead[uart] < (\hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{RX\_BUFFER\_SIZE} - 1)) \{
+269             rxRead[uart]++;
+270         \} \textcolor{keywordflow}{else} \{
+271             rxRead[uart] = 0;
+272         \}
+273         \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+274         \textcolor{keywordflow}{return} c;
+275     \} \textcolor{keywordflow}{else} \{
+276         \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+277         \textcolor{keywordflow}{return} 0;
+278     \}
+279 \}
 \end{DoxyCode}
 \hypertarget{group__uart_gaf7c4238a9a5e8fff64af1faf1689a5a4}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Get\-Blocking@{serial\-Get\-Blocking}}
 \index{serial\-Get\-Blocking@{serial\-Get\-Blocking}!UART Library@{U\-A\-R\-T Library}}
@@ -368,7 +386,7 @@ Received byte
 \end{DoxyReturn}
 
 
-Definition at line 210 of file serial.\-c.
+Definition at line 237 of file serial.\-c.
 
 
 
@@ -376,13 +394,13 @@ References serial\-Get(), and serial\-Has\-Char().
 
 
 \begin{DoxyCode}
-210                                         \{
-211     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-212         \textcolor{keywordflow}{return} 0;
-213 
-214     \textcolor{keywordflow}{while}(!\hyperlink{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{serialHasChar}(uart));
-215     \textcolor{keywordflow}{return} \hyperlink{group__uart_gaa9d6e44600b215154c3f66193df151f6}{serialGet}(uart);
-216 \}
+237                                         \{
+238     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+239         \textcolor{keywordflow}{return} 0;
+240 
+241     \textcolor{keywordflow}{while}(!\hyperlink{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{serialHasChar}(uart));
+242     \textcolor{keywordflow}{return} \hyperlink{group__uart_gaa9d6e44600b215154c3f66193df151f6}{serialGet}(uart);
+243 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga266a54dcf3c4b85d92bf6b16bdcb5069}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Has\-Char@{serial\-Has\-Char}}
 \index{serial\-Has\-Char@{serial\-Has\-Char}!UART Library@{U\-A\-R\-T Library}}
@@ -403,38 +421,35 @@ Check if a byte was received.
 \begin{DoxyReturn}{Returns}
 1 if a byte was received, 0 if not 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
-Definition at line 199 of file serial.\-c.
+Definition at line 226 of file serial.\-c.
 
 
 
-Referenced by serial\-Get\-Blocking(), uartinput(), and uart\-Menu\-Task().
+Referenced by serial\-Get\-Blocking().
 
 
 \begin{DoxyCode}
-199                                     \{
-200     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-201         \textcolor{keywordflow}{return} 0;
-202 
-203     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{ \textcolor{comment}{// True if char available}
-204         \textcolor{keywordflow}{return} 1;
-205     \} \textcolor{keywordflow}{else} \{
-206         \textcolor{keywordflow}{return} 0;
-207     \}
-208 \}
+226                                     \{
+227     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+228         \textcolor{keywordflow}{return} 0;
+229 
+230     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{ \textcolor{comment}{// True if char available}
+231         \textcolor{keywordflow}{return} 1;
+232     \} \textcolor{keywordflow}{else} \{
+233         \textcolor{keywordflow}{return} 0;
+234     \}
+235 \}
 \end{DoxyCode}
-\hypertarget{group__uart_ga73d4335cb201753c580c87954f493886}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Init@{serial\-Init}}
+\hypertarget{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Init@{serial\-Init}}
 \index{serial\-Init@{serial\-Init}!UART Library@{U\-A\-R\-T Library}}
-\subsubsection[{serial\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void serial\-Init (
+\subsubsection[{serial\-Init}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t serial\-Init (
 \begin{DoxyParamCaption}
 \item[{uint8\-\_\-t}]{uart, }
 \item[{uint16\-\_\-t}]{baud}
 \end{DoxyParamCaption}
-)}}\label{group__uart_ga73d4335cb201753c580c87954f493886}
+)}}\label{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}
 
 
 Initialize the U\-A\-R\-T Hardware. 
@@ -446,48 +461,76 @@ Initialize the U\-A\-R\-T Hardware.
 {\em baud} & Baudrate. Use the \hyperlink{group__uart_gafccfd7d1315f0763ac404c6104883341}{B\-A\-U\-D()} macro! \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if not enough memory for buffers, 0 on success 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
 
 
-Definition at line 118 of file serial.\-c.
+Definition at line 119 of file serial.\-c.
 
 
 
-Referenced by xy\-Init().
+References B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E, and T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E.
 
 
 \begin{DoxyCode}
-118                                              \{
-119     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-120         \textcolor{keywordflow}{return};
-121 
-122     \textcolor{comment}{// Initialize state variables}
-123     rxRead[uart] = 0;
-124     rxWrite[uart] = 0;
-125     txRead[uart] = 0;
-126     txWrite[uart] = 0;
-127     shouldStartTransmission[uart] = 1;
-128 \textcolor{preprocessor}{#ifdef FLOWCONTROL}
-129 \textcolor{preprocessor}{}    sendThisNext[uart] = 0;
-130     flow[uart] = 1;
-131     rxBufferElements[uart] = 0;
-132 \textcolor{preprocessor}{#endif}
-133 \textcolor{preprocessor}{}
-134     \textcolor{comment}{// Default Configuration: 8N1}
-135     *serialRegisters[uart][SERIALC] = (1 << serialBits[uart][SERIALUCSZ0]) | (1 << serialBits[uart][
+119                                                 \{
+120     \textcolor{keywordflow}{if} (uart >= UART\_COUNT) \{
+121         \textcolor{keywordflow}{for} (uint8\_t i = 0; i < UART\_COUNT; i++) \{
+122             \hyperlink{group__uart_ga8d59ee8831dd38c77b52deb7af9410e3}{serialInit}(i, baud);
+123         \}
+124     \}
+125 
+126     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+127 
+128     rxBuffer[uart] = (uint8\_t *)malloc(\hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{RX\_BUFFER\_SIZE});
+129     \textcolor{keywordflow}{if} (rxBuffer[uart] == NULL) \{
+130         \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+131         \textcolor{keywordflow}{return} 1;
+132     \}
+133 
+134     txBuffer[uart] = (uint8\_t *)malloc(\hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{TX\_BUFFER\_SIZE});
+135     \textcolor{keywordflow}{if} (txBuffer[uart] == NULL) \{
+136         free((\textcolor{keywordtype}{void} *)rxBuffer[uart]);
+137         \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+138         \textcolor{keywordflow}{return} 1;
+139     \}
+140 
+141     \textcolor{comment}{// Initialize state variables}
+142     rxRead[uart] = 0;
+143     rxWrite[uart] = 0;
+144     txRead[uart] = 0;
+145     txWrite[uart] = 0;
+146     shouldStartTransmission[uart] = 1;
+147 \textcolor{preprocessor}{#ifdef FLOWCONTROL}
+148 \textcolor{preprocessor}{}    sendThisNext[uart] = 0;
+149     flow[uart] = 1;
+150     rxBufferElements[uart] = 0;
+151 \textcolor{preprocessor}{#endif}
+152 \textcolor{preprocessor}{}
+153     \textcolor{comment}{// Default Configuration: 8N1}
+154     *serialRegisters[uart][SERIALC] = (1 << serialBits[uart][SERIALUCSZ0]) | (1 << serialBits[uart][
       SERIALUCSZ1]);
-136 
-137     \textcolor{comment}{// Set baudrate}
-138 \textcolor{preprocessor}{#if SERIALBAUDBIT == 8}
-139 \textcolor{preprocessor}{}    *serialRegisters[uart][SERIALUBRRH] = (baud >> 8);
-140     *serialRegisters[uart][SERIALUBRRL] = baud;
-141 \textcolor{preprocessor}{#else}
-142 \textcolor{preprocessor}{}    *serialBaudRegisters[uart] = baud;
-143 \textcolor{preprocessor}{#endif}
-144 \textcolor{preprocessor}{}
-145     *serialRegisters[uart][SERIALB] = (1 << serialBits[uart][SERIALRXCIE]); \textcolor{comment}{// Enable Interrupts}
-146     *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALRXEN]) | (1 << serialBits[uart][
+155 
+156     \textcolor{comment}{// Set baudrate}
+157 \textcolor{preprocessor}{#if SERIALBAUDBIT == 8}
+158 \textcolor{preprocessor}{}    *serialRegisters[uart][SERIALUBRRH] = (baud >> 8);
+159     *serialRegisters[uart][SERIALUBRRL] = baud;
+160 \textcolor{preprocessor}{#else}
+161 \textcolor{preprocessor}{}    *serialBaudRegisters[uart] = baud;
+162 \textcolor{preprocessor}{#endif}
+163 \textcolor{preprocessor}{}
+164     *serialRegisters[uart][SERIALB] = (1 << serialBits[uart][SERIALRXCIE]); \textcolor{comment}{// Enable Interrupts}
+165     *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALRXEN]) | (1 << serialBits[uart][
       SERIALTXEN]); \textcolor{comment}{// Enable Receiver/Transmitter}
-147 \}
+166 
+167     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+168 
+169     \textcolor{keywordflow}{return} 0;
+170 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga742268372398b85935564fded999b198}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Rx\-Buffer\-Empty@{serial\-Rx\-Buffer\-Empty}}
 \index{serial\-Rx\-Buffer\-Empty@{serial\-Rx\-Buffer\-Empty}!UART Library@{U\-A\-R\-T Library}}
@@ -510,20 +553,20 @@ Check if the receive buffer is empty.
 \end{DoxyReturn}
 
 
-Definition at line 259 of file serial.\-c.
+Definition at line 288 of file serial.\-c.
 
 
 \begin{DoxyCode}
-259                                           \{
-260     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-261         \textcolor{keywordflow}{return} 0;
-262 
-263     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{
-264         \textcolor{keywordflow}{return} 0;
-265     \} \textcolor{keywordflow}{else} \{
-266         \textcolor{keywordflow}{return} 1;
-267     \}
-268 \}
+288                                           \{
+289     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+290         \textcolor{keywordflow}{return} 0;
+291 
+292     \textcolor{keywordflow}{if} (rxRead[uart] != rxWrite[uart]) \{
+293         \textcolor{keywordflow}{return} 0;
+294     \} \textcolor{keywordflow}{else} \{
+295         \textcolor{keywordflow}{return} 1;
+296     \}
+297 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga73d16b244172336e7306ea2e4cf90fa1}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Rx\-Buffer\-Full@{serial\-Rx\-Buffer\-Full}}
 \index{serial\-Rx\-Buffer\-Full@{serial\-Rx\-Buffer\-Full}!UART Library@{U\-A\-R\-T Library}}
@@ -546,7 +589,7 @@ Check if the receive buffer is full.
 \end{DoxyReturn}
 
 
-Definition at line 252 of file serial.\-c.
+Definition at line 281 of file serial.\-c.
 
 
 
@@ -554,13 +597,13 @@ References R\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E.
 
 
 \begin{DoxyCode}
-252                                          \{
-253     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-254         \textcolor{keywordflow}{return} 0;
-255 
-256     \textcolor{keywordflow}{return} (((rxWrite[uart] + 1) == rxRead[uart]) || ((rxRead[uart] == 0) && ((rxWrite[uart] + 1) == 
+281                                          \{
+282     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+283         \textcolor{keywordflow}{return} 0;
+284 
+285     \textcolor{keywordflow}{return} (((rxWrite[uart] + 1) == rxRead[uart]) || ((rxRead[uart] == 0) && ((rxWrite[uart] + 1) == 
       \hyperlink{group__uart_ga739a2a1a0047c98ac1b18ecd25dac092}{RX\_BUFFER\_SIZE})));
-257 \}
+286 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga14c345ea0707111e988a80ef1da65e32}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Tx\-Buffer\-Empty@{serial\-Tx\-Buffer\-Empty}}
 \index{serial\-Tx\-Buffer\-Empty@{serial\-Tx\-Buffer\-Empty}!UART Library@{U\-A\-R\-T Library}}
@@ -583,7 +626,7 @@ Check if the transmit buffer is empty.
 \end{DoxyReturn}
 
 
-Definition at line 318 of file serial.\-c.
+Definition at line 349 of file serial.\-c.
 
 
 
@@ -591,16 +634,16 @@ Referenced by serial\-Close().
 
 
 \begin{DoxyCode}
-318                                           \{
-319     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-320         \textcolor{keywordflow}{return} 0;
-321 
-322     \textcolor{keywordflow}{if} (txRead[uart] != txWrite[uart]) \{
-323         \textcolor{keywordflow}{return} 0;
-324     \} \textcolor{keywordflow}{else} \{
-325         \textcolor{keywordflow}{return} 1;
-326     \}
-327 \}
+349                                           \{
+350     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+351         \textcolor{keywordflow}{return} 0;
+352 
+353     \textcolor{keywordflow}{if} (txRead[uart] != txWrite[uart]) \{
+354         \textcolor{keywordflow}{return} 0;
+355     \} \textcolor{keywordflow}{else} \{
+356         \textcolor{keywordflow}{return} 1;
+357     \}
+358 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga8a6adfd3c350ceb55605d003a62a36a4}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Tx\-Buffer\-Full@{serial\-Tx\-Buffer\-Full}}
 \index{serial\-Tx\-Buffer\-Full@{serial\-Tx\-Buffer\-Full}!UART Library@{U\-A\-R\-T Library}}
@@ -623,7 +666,7 @@ Check if the transmit buffer is full.
 \end{DoxyReturn}
 
 
-Definition at line 311 of file serial.\-c.
+Definition at line 342 of file serial.\-c.
 
 
 
@@ -635,13 +678,13 @@ Referenced by serial\-Write().
 
 
 \begin{DoxyCode}
-311                                          \{
-312     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-313         \textcolor{keywordflow}{return} 0;
-314 
-315     \textcolor{keywordflow}{return} (((txWrite[uart] + 1) == txRead[uart]) || ((txRead[uart] == 0) && ((txWrite[uart] + 1) == 
+342                                          \{
+343     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+344         \textcolor{keywordflow}{return} 0;
+345 
+346     \textcolor{keywordflow}{return} (((txWrite[uart] + 1) == txRead[uart]) || ((txRead[uart] == 0) && ((txWrite[uart] + 1) == 
       \hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{TX\_BUFFER\_SIZE})));
-316 \}
+347 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga388583adaa7db4fad121b6454668b347}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Write@{serial\-Write}}
 \index{serial\-Write@{serial\-Write}!UART Library@{U\-A\-R\-T Library}}
@@ -662,46 +705,45 @@ Send a byte.
 {\em data} & Byte to send \\
 \hline
 \end{DoxyParams}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}.\end{Desc}
 
 
-Definition at line 274 of file serial.\-c.
+Definition at line 303 of file serial.\-c.
 
 
 
-References serial\-Tx\-Buffer\-Full(), and T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E.
+References B\-A\-N\-K\-\_\-\-S\-E\-R\-I\-A\-L, M\-E\-M\-S\-W\-I\-T\-C\-H, M\-E\-M\-S\-W\-I\-T\-C\-H\-B\-A\-C\-K, serial\-Tx\-Buffer\-Full(), and T\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E.
 
 
 
-Referenced by serial\-Write\-String(), and uartoutput().
+Referenced by serial\-Write\-String().
 
 
 \begin{DoxyCode}
-274                                              \{
-275     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-276         \textcolor{keywordflow}{return};
-277 
-278 \textcolor{preprocessor}{#ifdef SERIALINJECTCR}
-279 \textcolor{preprocessor}{}    \textcolor{keywordflow}{if} (data == \textcolor{charliteral}{'\(\backslash\)n'}) \{
-280         \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(uart, \textcolor{charliteral}{'\(\backslash\)r'});
-281     \}
-282 \textcolor{preprocessor}{#endif}
-283 \textcolor{preprocessor}{}    \textcolor{keywordflow}{while} (\hyperlink{group__uart_ga8a6adfd3c350ceb55605d003a62a36a4}{serialTxBufferFull}(uart));
-284 
-285     txBuffer[uart][txWrite[uart]] = data;
-286     \textcolor{keywordflow}{if} (txWrite[uart] < (\hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{TX\_BUFFER\_SIZE} - 1)) \{
-287         txWrite[uart]++;
-288     \} \textcolor{keywordflow}{else} \{
-289         txWrite[uart] = 0;
-290     \}
-291     \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
-292         shouldStartTransmission[uart] = 0;
-293         *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]); \textcolor{comment}{// Enable Interrupt}
-294         *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger Interrupt}
-295     \}
-296 \}
+303                                              \{
+304     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+305         \textcolor{keywordflow}{return};
+306 
+307     \hyperlink{group__xmem_ga253830e5022f2aa99177acd8a0ba0bfe}{MEMSWITCH}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+308 \textcolor{preprocessor}{#ifdef SERIALINJECTCR}
+309 \textcolor{preprocessor}{}    \textcolor{keywordflow}{if} (data == \textcolor{charliteral}{'\(\backslash\)n'}) \{
+310         \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(uart, \textcolor{charliteral}{'\(\backslash\)r'});
+311     \}
+312 \textcolor{preprocessor}{#endif}
+313 \textcolor{preprocessor}{}    \textcolor{keywordflow}{while} (\hyperlink{group__uart_ga8a6adfd3c350ceb55605d003a62a36a4}{serialTxBufferFull}(uart));
+314 
+315     txBuffer[uart][txWrite[uart]] = data;
+316     \textcolor{keywordflow}{if} (txWrite[uart] < (\hyperlink{group__uart_ga9ab33647617098646990fe263600b650}{TX\_BUFFER\_SIZE} - 1)) \{
+317         txWrite[uart]++;
+318     \} \textcolor{keywordflow}{else} \{
+319         txWrite[uart] = 0;
+320     \}
+321     \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
+322         shouldStartTransmission[uart] = 0;
+323         *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]); \textcolor{comment}{// Enable Interrupt}
+324         *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger Interrupt}
+325     \}
+326     \hyperlink{group__xmem_ga96199c8c5e6fbc65dd60aa67de63fd34}{MEMSWITCHBACK}(\hyperlink{group__xmem_gaa5177871b2303418ed492a18405273f9}{BANK\_SERIAL});
+327 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga054d68834f9ca19f3b2cf9d714337de4}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!serial\-Write\-String@{serial\-Write\-String}}
 \index{serial\-Write\-String@{serial\-Write\-String}!UART Library@{U\-A\-R\-T Library}}
@@ -724,7 +766,7 @@ Send a string.
 \end{DoxyParams}
 
 
-Definition at line 298 of file serial.\-c.
+Definition at line 329 of file serial.\-c.
 
 
 
@@ -732,18 +774,18 @@ References serial\-Write().
 
 
 \begin{DoxyCode}
-298                                                        \{
-299     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-300         \textcolor{keywordflow}{return};
-301 
-302     \textcolor{keywordflow}{if} (data == 0) \{
-303         \hyperlink{group__uart_ga054d68834f9ca19f3b2cf9d714337de4}{serialWriteString}(uart, \textcolor{stringliteral}{"NULL"});
-304     \} \textcolor{keywordflow}{else} \{
-305         \textcolor{keywordflow}{while} (*data != \textcolor{charliteral}{'\(\backslash\)0'}) \{
-306             \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(uart, *data++);
-307         \}
-308     \}
-309 \}
+329                                                        \{
+330     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+331         \textcolor{keywordflow}{return};
+332 
+333     \textcolor{keywordflow}{if} (data == 0) \{
+334         \hyperlink{group__uart_ga054d68834f9ca19f3b2cf9d714337de4}{serialWriteString}(uart, \textcolor{stringliteral}{"NULL"});
+335     \} \textcolor{keywordflow}{else} \{
+336         \textcolor{keywordflow}{while} (*data != \textcolor{charliteral}{'\(\backslash\)0'}) \{
+337             \hyperlink{group__uart_ga388583adaa7db4fad121b6454668b347}{serialWrite}(uart, *data++);
+338         \}
+339     \}
+340 \}
 \end{DoxyCode}
 \hypertarget{group__uart_ga5d5de9e3ed5a0be11f707113cfff33f5}{\index{U\-A\-R\-T Library@{U\-A\-R\-T Library}!set\-Flow@{set\-Flow}}
 \index{set\-Flow@{set\-Flow}!UART Library@{U\-A\-R\-T Library}}
@@ -766,7 +808,7 @@ Flow Control has to be compiled into the library!
 \end{DoxyParams}
 
 
-Definition at line 164 of file serial.\-c.
+Definition at line 191 of file serial.\-c.
 
 
 
@@ -774,35 +816,35 @@ References X\-O\-F\-F, and X\-O\-N.
 
 
 \begin{DoxyCode}
-164                                        \{
-165     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
-166         \textcolor{keywordflow}{return};
-167 
-168     \textcolor{keywordflow}{if} (flow[uart] != on) \{
-169         \textcolor{keywordflow}{if} (on == 1) \{
-170             \textcolor{comment}{// Send XON}
-171             \textcolor{keywordflow}{while} (sendThisNext[uart] != 0);
-172             sendThisNext[uart] = \hyperlink{group__uart_gacdf721774c51e08c6609e6fa8cf82cc9}{XON};
-173             flow[uart] = 1;
-174             \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
-175                 shouldStartTransmission[uart] = 0;
-176                 *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]);
-177                 *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger
+191                                        \{
+192     \textcolor{keywordflow}{if} (uart >= UART\_COUNT)
+193         \textcolor{keywordflow}{return};
+194 
+195     \textcolor{keywordflow}{if} (flow[uart] != on) \{
+196         \textcolor{keywordflow}{if} (on == 1) \{
+197             \textcolor{comment}{// Send XON}
+198             \textcolor{keywordflow}{while} (sendThisNext[uart] != 0);
+199             sendThisNext[uart] = \hyperlink{group__uart_gacdf721774c51e08c6609e6fa8cf82cc9}{XON};
+200             flow[uart] = 1;
+201             \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
+202                 shouldStartTransmission[uart] = 0;
+203                 *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]);
+204                 *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger
        Interrupt}
-178             \}
-179         \} \textcolor{keywordflow}{else} \{
-180             \textcolor{comment}{// Send XOFF}
-181             sendThisNext[uart] = \hyperlink{group__uart_ga67fd78ae15d2b67c10d44d69a49ab1c5}{XOFF};
-182             flow[uart] = 0;
-183             \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
-184                 shouldStartTransmission[uart] = 0;
-185                 *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]);
-186                 *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger
+205             \}
+206         \} \textcolor{keywordflow}{else} \{
+207             \textcolor{comment}{// Send XOFF}
+208             sendThisNext[uart] = \hyperlink{group__uart_ga67fd78ae15d2b67c10d44d69a49ab1c5}{XOFF};
+209             flow[uart] = 0;
+210             \textcolor{keywordflow}{if} (shouldStartTransmission[uart]) \{
+211                 shouldStartTransmission[uart] = 0;
+212                 *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]);
+213                 *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); \textcolor{comment}{// Trigger
        Interrupt}
-187             \}
-188         \}
-189         \textcolor{comment}{// Wait till it's transmitted}
-190         \textcolor{keywordflow}{while} (*serialRegisters[uart][SERIALB] & (1 << serialBits[uart][SERIALUDRIE]));
-191     \}
-192 \}
+214             \}
+215         \}
+216         \textcolor{comment}{// Wait till it's transmitted}
+217         \textcolor{keywordflow}{while} (*serialRegisters[uart][SERIALB] & (1 << serialBits[uart][SERIALUDRIE]));
+218     \}
+219 \}
 \end{DoxyCode}

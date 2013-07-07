@@ -129,10 +129,6 @@ Definition at line 96 of file adc.\-c.
 References adc\-Ready().
 
 
-
-Referenced by get\-Voltage().
-
-
 \begin{DoxyCode}
 96                               \{
 97     \textcolor{comment}{// Return measurements result}
@@ -161,6 +157,9 @@ Initialize the A\-D\-C Hardware.
 {\em ref} & Reference Voltage. \\
 \hline
 \end{DoxyParams}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
 
 
 Definition at line 44 of file adc.\-c.
@@ -168,10 +167,6 @@ Definition at line 44 of file adc.\-c.
 
 
 References A\-I\-N\-T1, A\-I\-N\-T2, A\-R\-E\-F, and A\-V\-C\-C.
-
-
-
-Referenced by xy\-Init().
 
 
 \begin{DoxyCode}
@@ -221,7 +216,7 @@ Definition at line 86 of file adc.\-c.
 
 
 
-Referenced by adc\-Get(), and get\-Voltage().
+Referenced by adc\-Get().
 
 
 \begin{DoxyCode}
@@ -254,10 +249,6 @@ Start a conversion on a given channel.
 
 
 Definition at line 70 of file adc.\-c.
-
-
-
-Referenced by get\-Voltage().
 
 
 \begin{DoxyCode}

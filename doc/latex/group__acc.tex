@@ -16,6 +16,10 @@ file \hyperlink{acc_8c}{acc.\-c}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \hyperlink{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}~0x32
+\begin{DoxyCompactList}\small\item\em Accelerometer Address (0011001r) \end{DoxyCompactList}\item 
+\#define \hyperlink{group__acc_gaace41596724b03f3f2b2ee28b7e87272}{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}~1
+\begin{DoxyCompactList}\small\item\em Accelerometer Low Pass Factor. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1}~0x20
 \begin{DoxyCompactList}\small\item\em Accelerometer Control Register 1. \end{DoxyCompactList}\item 
 \#define \hyperlink{group__acc_ga4369b46f297623a18b9d937623b7f783}{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L4}~0x23
@@ -51,6 +55,36 @@ enum \hyperlink{group__acc_ga3d56e56c162b045de727006a11880324}{Acc\-Range} \{ \h
 Configuring and reading an L\-S\-M303\-D\-L\-H\-C Accelerometer. 
 
 \subsection{Macro Definition Documentation}
+\hypertarget{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{\index{Accelerometer Driver@{Accelerometer Driver}!A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}}
+\index{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}!Accelerometer Driver@{Accelerometer Driver}}
+\subsubsection[{A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S~0x32}}\label{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}
+
+
+Accelerometer Address (0011001r) 
+
+
+
+Definition at line 46 of file acc.\-h.
+
+
+
+Referenced by acc\-Read().
+
+\hypertarget{group__acc_gaace41596724b03f3f2b2ee28b7e87272}{\index{Accelerometer Driver@{Accelerometer Driver}!A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}}
+\index{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R@{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}!Accelerometer Driver@{Accelerometer Driver}}
+\subsubsection[{A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R~1}}\label{group__acc_gaace41596724b03f3f2b2ee28b7e87272}
+
+
+Accelerometer Low Pass Factor. 
+
+
+
+Definition at line 49 of file acc.\-h.
+
+
+
+Referenced by acc\-Read().
+
 \hypertarget{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}{\index{Accelerometer Driver@{Accelerometer Driver}!A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1@{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1}}
 \index{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1@{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1}!Accelerometer Driver@{Accelerometer Driver}}
 \subsubsection[{A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1~0x20}}\label{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}
@@ -60,7 +94,7 @@ Accelerometer Control Register 1.
 
 
 
-Definition at line 49 of file acc.\-c.
+Definition at line 47 of file acc.\-c.
 
 
 
@@ -75,7 +109,7 @@ Accelerometer Control Register 4.
 
 
 
-Definition at line 50 of file acc.\-c.
+Definition at line 48 of file acc.\-c.
 
 
 
@@ -90,7 +124,7 @@ First Accelerometer Output Register.
 
 
 
-Definition at line 51 of file acc.\-c.
+Definition at line 49 of file acc.\-c.
 
 
 
@@ -121,16 +155,16 @@ Accelerometer Range options.
 \end{Desc}
 
 
-Definition at line 47 of file acc.\-h.
+Definition at line 52 of file acc.\-h.
 
 
 \begin{DoxyCode}
-47              \{
-48     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}, 
-49     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}, 
-50     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}, 
-51     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}, 
-52 \} \hyperlink{group__acc_ga3d56e56c162b045de727006a11880324}{AccRange};
+52              \{
+53     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}, 
+54     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}, 
+55     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}, 
+56     \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}, 
+57 \} \hyperlink{group__acc_ga3d56e56c162b045de727006a11880324}{AccRange};
 \end{DoxyCode}
 
 
@@ -156,47 +190,46 @@ Call before \hyperlink{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{acc\-Read(
 \begin{DoxyReturn}{Returns}
 \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}. 
 \end{DoxyReturn}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
 
 
-Definition at line 76 of file acc.\-c.
+Definition at line 74 of file acc.\-c.
 
 
 
 References acc\-Range, A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L1, A\-C\-C\-R\-E\-G\-\_\-\-C\-T\-R\-L4, acc\-Write\-Register(), A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, r16\-G, r2\-G, r4\-G, r8\-G, and S\-U\-C\-C\-E\-S\-S.
 
 
-
-Referenced by orientation\-Init().
-
-
 \begin{DoxyCode}
-76                           \{
-77     uint8\_t v;
-78     \textcolor{keywordflow}{switch} (r) \{
-79         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}:
-80             v = 0x00;
-81             \textcolor{keywordflow}{break};
-82         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}:
-83             v = 0x10;
-84             \textcolor{keywordflow}{break};
-85         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}:
-86             v = 0x20;
-87             \textcolor{keywordflow}{break};
-88         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}:
-89             v = 0x30;
-90             \textcolor{keywordflow}{break};
-91         \textcolor{keywordflow}{default}:
-92             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-93     \}
-94     \hyperlink{group__acc_ga450bb9262f697cdcab7185674b9fc6a3}{accRange} = r;
-95     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga277bcee14b8033f6da9790a8afe03348}{accWriteRegister}(\hyperlink{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}{ACCREG\_CTRL1}, 0x57); \textcolor{comment}{// Enable all axes,
+74                           \{
+75     uint8\_t v;
+76     \textcolor{keywordflow}{switch} (r) \{
+77         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}:
+78             v = 0x00;
+79             \textcolor{keywordflow}{break};
+80         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}:
+81             v = 0x10;
+82             \textcolor{keywordflow}{break};
+83         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}:
+84             v = 0x20;
+85             \textcolor{keywordflow}{break};
+86         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}:
+87             v = 0x30;
+88             \textcolor{keywordflow}{break};
+89         \textcolor{keywordflow}{default}:
+90             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+91     \}
+92     \hyperlink{group__acc_ga450bb9262f697cdcab7185674b9fc6a3}{accRange} = r;
+93     \hyperlink{group__error_ga2c3e4bb40f36b262a5214e2da2bca9c5}{Error} e = \hyperlink{group__acc_ga277bcee14b8033f6da9790a8afe03348}{accWriteRegister}(\hyperlink{group__acc_gae81a43863d896c9afe65cc45bf8db9dc}{ACCREG\_CTRL1}, 0x57); \textcolor{comment}{// Enable all axes,
        100Hz}
-96     \textcolor{keywordflow}{if} (e != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{
-97         \textcolor{keywordflow}{return} e;
-98     \}
-99     e = \hyperlink{group__acc_ga277bcee14b8033f6da9790a8afe03348}{accWriteRegister}(\hyperlink{group__acc_ga4369b46f297623a18b9d937623b7f783}{ACCREG\_CTRL4}, v);
-100     \textcolor{keywordflow}{return} e;
-101 \}
+94     \textcolor{keywordflow}{if} (e != \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}) \{
+95         \textcolor{keywordflow}{return} e;
+96     \}
+97     e = \hyperlink{group__acc_ga277bcee14b8033f6da9790a8afe03348}{accWriteRegister}(\hyperlink{group__acc_ga4369b46f297623a18b9d937623b7f783}{ACCREG\_CTRL4}, v);
+98     \textcolor{keywordflow}{return} e;
+99 \}
 \end{DoxyCode}
 \hypertarget{group__acc_ga4dd55defcab17af4ecc29562a5a28ab3}{\index{Accelerometer Driver@{Accelerometer Driver}!acc\-Read@{acc\-Read}}
 \index{acc\-Read@{acc\-Read}!Accelerometer Driver@{Accelerometer Driver}}
@@ -217,102 +250,95 @@ Accelerometer should already be initialized!
 \begin{DoxyReturn}{Returns}
 \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R}, \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R} or \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{S\-U\-C\-C\-E\-S\-S}. 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}, and \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
-Definition at line 103 of file acc.\-c.
+Definition at line 101 of file acc.\-c.
 
 
 
 References A\-C\-C\-\_\-\-A\-D\-D\-R\-E\-S\-S, A\-C\-C\-F\-I\-L\-T\-E\-R\-F\-A\-C\-T\-O\-R, acc\-Range, A\-C\-C\-R\-E\-G\-\_\-\-X\-L, A\-R\-G\-U\-M\-E\-N\-T\-\_\-\-E\-R\-R\-O\-R, r16\-G, r2\-G, r4\-G, r8\-G, S\-U\-C\-C\-E\-S\-S, T\-W\-I\-\_\-\-N\-O\-\_\-\-A\-N\-S\-W\-E\-R, T\-W\-I\-\_\-\-R\-E\-A\-D, T\-W\-I\-\_\-\-W\-R\-I\-T\-E, T\-W\-I\-\_\-\-W\-R\-I\-T\-E\-\_\-\-E\-R\-R\-O\-R, twi\-Read\-Ack(), twi\-Read\-Nak(), twi\-Rep\-Start(), twi\-Start(), twi\-Write(), Vector3f\-::x, Vector3f\-::y, and Vector3f\-::z.
 
 
-
-Referenced by orientation\-Task().
-
-
 \begin{DoxyCode}
-103                            \{
-104     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumX = 0; \textcolor{comment}{/* Buffer for X Low-Pass. */}
-105     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumY = 0; \textcolor{comment}{/* Buffer for Y Low-Pass. */}
-106     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumZ = 0; \textcolor{comment}{/* Buffer for Z Low-Pass. */}
-107     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterX = 0; \textcolor{comment}{/* Buffer for X Low-Pass. */}
-108     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterY = 0; \textcolor{comment}{/* Buffer for Y Low-Pass. */}
-109     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterZ = 0; \textcolor{comment}{/* Buffer for Z Low-Pass. */}
-110 
-111     \textcolor{keywordflow}{if} (v == NULL) \{
-112         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-113     \}
-114     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
-115         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-116     \}
-117     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__acc_ga9d03f89f2f3ef006967f84157a21075b}{ACCREG\_XL} | (1 << 7))) \{ \textcolor{comment}{// Auto Increment}
-118         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-119     \}
-120     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twiRepStart}(\hyperlink{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{TWI\_READ})) \{
-121         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-122     \}
-123 
-124     uint8\_t xl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-125     uint8\_t xh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-126     uint8\_t yl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-127     uint8\_t yh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-128     uint8\_t zl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
-129     uint8\_t zh = \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twiReadNak}();
-130 
-131     int16\_t x = *(int8\_t *)(&xh);
-132     x *= (1 << 8);
-133     x |= xl;
-134 
-135     int16\_t y = *(int8\_t *)(&yh);
-136     y *= (1 << 8);
-137     y |= yl;
-138 
-139     int16\_t z = *(int8\_t *)(&zh);
-140     z *= (1 << 8);
-141     z |= zl;
-142 
-143     \textcolor{keywordflow}{switch} (\hyperlink{group__acc_ga450bb9262f697cdcab7185674b9fc6a3}{accRange}) \{
-144         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}:
-145             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 2 / 0x8000);
-146             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 2 / 0x8000);
-147             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 2 / 0x8000);
-148             \textcolor{keywordflow}{break};
-149         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}:
-150             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4 / 0x8000);
-151             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4 / 0x8000);
-152             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4 / 0x8000);
-153             \textcolor{keywordflow}{break};
-154         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}:
-155             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 8 / 0x8000);
-156             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 8 / 0x8000);
-157             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 8 / 0x8000);
-158             \textcolor{keywordflow}{break};
-159         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}:
-160             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 16 / 0x8000);
-161             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 16 / 0x8000);
-162             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 16 / 0x8000);
-163             \textcolor{keywordflow}{break};
-164         \textcolor{keywordflow}{default}:
-165             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
-166     \}
-167 
-168     accSumX = accSumX - accFilterX + v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x};
-169     accFilterX = accSumX / \hyperlink{group__config_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
-170     v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = accFilterX;
-171 
-172     accSumY = accSumY - accFilterY + v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y};
-173     accFilterY = accSumY / \hyperlink{group__config_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
-174     v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = accFilterY;
-175 
-176     accSumZ = accSumZ - accFilterZ + v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z};
-177     accFilterZ = accSumZ / \hyperlink{group__config_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
-178     v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = accFilterZ;
-179 
-180     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-181 \}
+101                            \{
+102     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumX = 0; \textcolor{comment}{/* Buffer for X Low-Pass. */}
+103     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumY = 0; \textcolor{comment}{/* Buffer for Y Low-Pass. */}
+104     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accSumZ = 0; \textcolor{comment}{/* Buffer for Z Low-Pass. */}
+105     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterX = 0; \textcolor{comment}{/* Buffer for X Low-Pass. */}
+106     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterY = 0; \textcolor{comment}{/* Buffer for Y Low-Pass. */}
+107     \textcolor{keyword}{static} \textcolor{keywordtype}{double} accFilterZ = 0; \textcolor{comment}{/* Buffer for Z Low-Pass. */}
+108 
+109     \textcolor{keywordflow}{if} (v == NULL) \{
+110         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+111     \}
+112     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+113         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+114     \}
+115     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(\hyperlink{group__acc_ga9d03f89f2f3ef006967f84157a21075b}{ACCREG\_XL} | (1 << 7))) \{ \textcolor{comment}{// Auto Increment}
+116         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+117     \}
+118     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga996e3cbbbb7239e2278bd286e61f0791}{twiRepStart}(\hyperlink{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_gaaf9a8abccd811954f9cc316f2b2f87b3}{TWI\_READ})) \{
+119         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+120     \}
+121 
+122     uint8\_t xl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+123     uint8\_t xh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+124     uint8\_t yl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+125     uint8\_t yh = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+126     uint8\_t zl = \hyperlink{group__twi_ga0ab816bd0abcc24d6817f8395de7eafd}{twiReadAck}();
+127     uint8\_t zh = \hyperlink{group__twi_ga5fad19b3784aeaa9ae995e64f9e965b8}{twiReadNak}();
+128 
+129     int16\_t x = *(int8\_t *)(&xh);
+130     x *= (1 << 8);
+131     x |= xl;
+132 
+133     int16\_t y = *(int8\_t *)(&yh);
+134     y *= (1 << 8);
+135     y |= yl;
+136 
+137     int16\_t z = *(int8\_t *)(&zh);
+138     z *= (1 << 8);
+139     z |= zl;
+140 
+141     \textcolor{keywordflow}{switch} (\hyperlink{group__acc_ga450bb9262f697cdcab7185674b9fc6a3}{accRange}) \{
+142         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a4a2974e8d1854463238577802e1253f4}{r2G}:
+143             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 2 / 0x8000);
+144             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 2 / 0x8000);
+145             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 2 / 0x8000);
+146             \textcolor{keywordflow}{break};
+147         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324a9b1fcfa48172993a069412d5eecd6689}{r4G}:
+148             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 4 / 0x8000);
+149             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 4 / 0x8000);
+150             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 4 / 0x8000);
+151             \textcolor{keywordflow}{break};
+152         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324ac131fa2bab37bb0c8e152a91ce2b6bcf}{r8G}:
+153             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 8 / 0x8000);
+154             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 8 / 0x8000);
+155             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 8 / 0x8000);
+156             \textcolor{keywordflow}{break};
+157         \textcolor{keywordflow}{case} \hyperlink{group__acc_gga3d56e56c162b045de727006a11880324af3fee93850514c5235659c573611f183}{r16G}:
+158             v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = (((double)x) * 16 / 0x8000);
+159             v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = (((double)y) * 16 / 0x8000);
+160             v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = (((double)z) * 16 / 0x8000);
+161             \textcolor{keywordflow}{break};
+162         \textcolor{keywordflow}{default}:
+163             \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a49ccf277a69dd938c591928aa27c66cc}{ARGUMENT\_ERROR};
+164     \}
+165 
+166     accSumX = accSumX - accFilterX + v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x};
+167     accFilterX = accSumX / \hyperlink{group__acc_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
+168     v->\hyperlink{struct_vector3f_af88b946fb90d5f08b5fb740c70e98c10}{x} = accFilterX;
+169 
+170     accSumY = accSumY - accFilterY + v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y};
+171     accFilterY = accSumY / \hyperlink{group__acc_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
+172     v->\hyperlink{struct_vector3f_ab927965981178aa1fba979a37168db2a}{y} = accFilterY;
+173 
+174     accSumZ = accSumZ - accFilterZ + v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z};
+175     accFilterZ = accSumZ / \hyperlink{group__acc_gaace41596724b03f3f2b2ee28b7e87272}{ACCFILTERFACTOR};
+176     v->\hyperlink{struct_vector3f_ab3e6ed577a7c669c19de1f9c1b46c872}{z} = accFilterZ;
+177 
+178     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+179 \}
 \end{DoxyCode}
 \hypertarget{group__acc_ga277bcee14b8033f6da9790a8afe03348}{\index{Accelerometer Driver@{Accelerometer Driver}!acc\-Write\-Register@{acc\-Write\-Register}}
 \index{acc\-Write\-Register@{acc\-Write\-Register}!Accelerometer Driver@{Accelerometer Driver}}
@@ -340,7 +366,7 @@ I2\-C should aready be initialized!
 \end{DoxyReturn}
 
 
-Definition at line 62 of file acc.\-c.
+Definition at line 60 of file acc.\-c.
 
 
 
@@ -352,19 +378,19 @@ Referenced by acc\-Init().
 
 
 \begin{DoxyCode}
-62                                                  \{
-63     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__config_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
-64         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
-65     \}
-66     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(reg)) \{
-67         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-68     \}
-69     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(val)) \{
-70         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
-71     \}
-72     \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
-73     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
-74 \}
+60                                                  \{
+61     \textcolor{keywordflow}{if} (\hyperlink{group__twi_ga4f86edc73f37ce976ea2225519ab31cd}{twiStart}(\hyperlink{group__acc_ga27341a8e1cb1a6ace5a5cf3caea1c99f}{ACC\_ADDRESS} | \hyperlink{group__twi_ga3b68e8e777b71520f9dbfac733774d5f}{TWI\_WRITE})) \{
+62         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5a04d5943ba652af2205c88b247e0c659c}{TWI\_NO\_ANSWER};
+63     \}
+64     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(reg)) \{
+65         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+66     \}
+67     \textcolor{keywordflow}{if} (\hyperlink{group__twi_gaf42e50aaf4a9794d3a2c000e7b407887}{twiWrite}(val)) \{
+68         \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac0e3b3463dcaf220e54794b4711708c9}{TWI\_WRITE\_ERROR};
+69     \}
+70     \hyperlink{group__twi_gabf581270e9537a60e2d8cf3d2c1543d1}{twiStop}();
+71     \textcolor{keywordflow}{return} \hyperlink{group__error_gga2c3e4bb40f36b262a5214e2da2bca9c5ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS};
+72 \}
 \end{DoxyCode}
 
 
@@ -378,7 +404,7 @@ Stored range to scale returned values.
 
 
 
-Definition at line 53 of file acc.\-c.
+Definition at line 51 of file acc.\-c.
 
 
 

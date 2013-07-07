@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['tasks',['tasks',['../group__task.html#gabf4510e1aba7b08f11d447c2b530d661',1,'tasks.c']]],
-  ['tasksregistered',['tasksRegistered',['../group__task.html#ga962f40b16f7aa5ab995593971fb6f848',1,'tasks.c']]],
   ['twiinit',['twiInit',['../group__twi.html#ga1a9c88673ee82a5a84274814f168ea78',1,'twiInit(void):&#160;twi.c'],['../group__twi.html#ga1a9c88673ee82a5a84274814f168ea78',1,'twiInit(void):&#160;twi.c']]],
   ['twireadack',['twiReadAck',['../group__twi.html#ga0ab816bd0abcc24d6817f8395de7eafd',1,'twiReadAck(void):&#160;twi.c'],['../group__twi.html#ga0ab816bd0abcc24d6817f8395de7eafd',1,'twiReadAck(void):&#160;twi.c']]],
   ['twireadnak',['twiReadNak',['../group__twi.html#ga5fad19b3784aeaa9ae995e64f9e965b8',1,'twiReadNak(void):&#160;twi.c'],['../group__twi.html#ga5fad19b3784aeaa9ae995e64f9e965b8',1,'twiReadNak(void):&#160;twi.c']]],

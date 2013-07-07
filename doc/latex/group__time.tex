@@ -143,9 +143,6 @@ Get the System Uptime.
 \begin{DoxyReturn}{Returns}
 System Uptime in Milliseconds 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples\-: ]\par
-\hyperlink{hardware_test_8c-example}{hardware\-Test.\-c}, and \hyperlink{uart_flight_8c-example}{uart\-Flight.\-c}.\end{Desc}
 
 
 Definition at line 68 of file time.\-c.
@@ -153,10 +150,6 @@ Definition at line 68 of file time.\-c.
 
 
 References system\-Time.
-
-
-
-Referenced by complementary\-Execute(), complementary\-Init(), orientation\-Task(), and pid\-Execute().
 
 
 \begin{DoxyCode}
@@ -175,13 +168,12 @@ Referenced by complementary\-Execute(), complementary\-Init(), orientation\-Task
 
 Initialize the system timer. 
 
-Execution every millisecond. Uses Timer 2. 
+Execution every millisecond. Uses Timer 2. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{flight_8c-example}{flight.\-c}.\end{Desc}
+
 
 Definition at line 55 of file time.\-c.
-
-
-
-Referenced by xy\-Init().
 
 
 \begin{DoxyCode}

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['debug_20output',['Debug Output',['../group__debug.html',1,'']]],
-  ['debug_2eh',['debug.h',['../debug_8h.html',1,'']]],
-  ['debugout',['DEBUGOUT',['../group__debug.html#ga19525f7b34cac5693e8cd76d113de4ea',1,'debug.h']]],
-  ['debugprint',['debugPrint',['../group__debug.html#gada1787bea8c10cd89775d6918f6fd324',1,'debug.h']]],
-  ['doc_2eh',['doc.h',['../doc_8h.html',1,'']]],
-  ['dt',['DT',['../group__config.html#ga943f07034774ef1261d62cd0d3d1fec9',1,'config.h']]]
+  ['datatypes',['Datatypes',['../group__datatypes.html',1,'']]],
+  ['datatypes_2eh',['datatypes.h',['../datatypes_8h.html',1,'']]],
+  ['display',['DISPLAY',['../group__uart.html#gab4bf926a45354a2f328f1a7b94ebd3c5',1,'serial.h']]],
+  ['doc_2eh',['doc.h',['../doc_8h.html',1,'']]]
 ];

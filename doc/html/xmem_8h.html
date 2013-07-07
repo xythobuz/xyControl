@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>xyControl: include/xmem.h File Reference</title>
+<title>xyControl: include/lowlevel/xmem.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b92be75897491f7deb10c5c99e35bdca.html">lowlevel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -123,6 +123,36 @@ Macros</h2></td></tr>
 <tr class="memitem:ga6b1167d0078b33af8ec17ededaebe0cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb">BANK_GENERIC</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:ga6b1167d0078b33af8ec17ededaebe0cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Memory Bank.  <a href="group__xmem.html#ga6b1167d0078b33af8ec17ededaebe0cb">More...</a><br/></td></tr>
 <tr class="separator:ga6b1167d0078b33af8ec17ededaebe0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5177871b2303418ed492a18405273f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gaa5177871b2303418ed492a18405273f9">BANK_SERIAL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:gaa5177871b2303418ed492a18405273f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bank for serial buffers.  <a href="group__xmem.html#gaa5177871b2303418ed492a18405273f9">More...</a><br/></td></tr>
+<tr class="separator:gaa5177871b2303418ed492a18405273f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabeec1986c81588dde8863b7936028fc9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gabeec1986c81588dde8863b7936028fc9">BANK0PORT</a>&#160;&#160;&#160;PORTG</td></tr>
+<tr class="memdesc:gabeec1986c81588dde8863b7936028fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">First Bank Selection Port.  <a href="group__xmem.html#gabeec1986c81588dde8863b7936028fc9">More...</a><br/></td></tr>
+<tr class="separator:gabeec1986c81588dde8863b7936028fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafba0bbf9336cfc754622a5e9b3d12d80"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gafba0bbf9336cfc754622a5e9b3d12d80">BANK0DDR</a>&#160;&#160;&#160;DDRG</td></tr>
+<tr class="memdesc:gafba0bbf9336cfc754622a5e9b3d12d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">First Bank Selection Data Direction Register.  <a href="group__xmem.html#gafba0bbf9336cfc754622a5e9b3d12d80">More...</a><br/></td></tr>
+<tr class="separator:gafba0bbf9336cfc754622a5e9b3d12d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa176e9b2752f764cd7e7d9fd49d46af8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gaa176e9b2752f764cd7e7d9fd49d46af8">BANK0PIN</a>&#160;&#160;&#160;PG3</td></tr>
+<tr class="memdesc:gaa176e9b2752f764cd7e7d9fd49d46af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">First Bank Selection Pin.  <a href="group__xmem.html#gaa176e9b2752f764cd7e7d9fd49d46af8">More...</a><br/></td></tr>
+<tr class="separator:gaa176e9b2752f764cd7e7d9fd49d46af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b3ee7126196f6e939989eae097c3ac4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#ga8b3ee7126196f6e939989eae097c3ac4">BANK1PORT</a>&#160;&#160;&#160;PORTG</td></tr>
+<tr class="memdesc:ga8b3ee7126196f6e939989eae097c3ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second Bank Selection Port.  <a href="group__xmem.html#ga8b3ee7126196f6e939989eae097c3ac4">More...</a><br/></td></tr>
+<tr class="separator:ga8b3ee7126196f6e939989eae097c3ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada13cb9312072b48628763a6e1fd50d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gada13cb9312072b48628763a6e1fd50d3">BANK1DDR</a>&#160;&#160;&#160;DDRG</td></tr>
+<tr class="memdesc:gada13cb9312072b48628763a6e1fd50d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second Bank Selection Data Direction Register.  <a href="group__xmem.html#gada13cb9312072b48628763a6e1fd50d3">More...</a><br/></td></tr>
+<tr class="separator:gada13cb9312072b48628763a6e1fd50d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacfebedc2067e3c52e6ae1f627afcc1e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gacfebedc2067e3c52e6ae1f627afcc1e1">BANK1PIN</a>&#160;&#160;&#160;PG4</td></tr>
+<tr class="memdesc:gacfebedc2067e3c52e6ae1f627afcc1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second Bank Selection Pin.  <a href="group__xmem.html#gacfebedc2067e3c52e6ae1f627afcc1e1">More...</a><br/></td></tr>
+<tr class="separator:gacfebedc2067e3c52e6ae1f627afcc1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad35afb0251524c201c2d60f3d035af32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#gad35afb0251524c201c2d60f3d035af32">BANK2PORT</a>&#160;&#160;&#160;PORTL</td></tr>
+<tr class="memdesc:gad35afb0251524c201c2d60f3d035af32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Third Bank Selection Port.  <a href="group__xmem.html#gad35afb0251524c201c2d60f3d035af32">More...</a><br/></td></tr>
+<tr class="separator:gad35afb0251524c201c2d60f3d035af32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62f56230c5f5f7220c44ab1c93d677ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#ga62f56230c5f5f7220c44ab1c93d677ab">BANK2DDR</a>&#160;&#160;&#160;DDRL</td></tr>
+<tr class="memdesc:ga62f56230c5f5f7220c44ab1c93d677ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Third Bank Selection Data Direction Register.  <a href="group__xmem.html#ga62f56230c5f5f7220c44ab1c93d677ab">More...</a><br/></td></tr>
+<tr class="separator:ga62f56230c5f5f7220c44ab1c93d677ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74c95f6ccdb5e482e97a5af53ed74229"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xmem.html#ga74c95f6ccdb5e482e97a5af53ed74229">BANK2PIN</a>&#160;&#160;&#160;PL5</td></tr>
+<tr class="memdesc:ga74c95f6ccdb5e482e97a5af53ed74229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Third Bank Selection Pin.  <a href="group__xmem.html#ga74c95f6ccdb5e482e97a5af53ed74229">More...</a><br/></td></tr>
+<tr class="separator:ga74c95f6ccdb5e482e97a5af53ed74229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

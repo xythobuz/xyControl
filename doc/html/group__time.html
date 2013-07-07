@@ -265,13 +265,10 @@ Variables</h2></td></tr>
 
 <p>Get the System Uptime. </p>
 <dl class="section return"><dt>Returns</dt><dd>System Uptime in Milliseconds </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="hardware_test_8c-example.html#a11">hardwareTest.c</a>, and <a class="el" href="uart_flight_8c-example.html#a14">uartFlight.c</a>.</dd>
-</dl>
+
 <p>Definition at line <a class="el" href="time_8c_source.html#l00068">68</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 <p>References <a class="el" href="time_8c_source.html#l00047">systemTime</a>.</p>
-
-<p>Referenced by <a class="el" href="complementary_8c_source.html#l00050">complementaryExecute()</a>, <a class="el" href="complementary_8c_source.html#l00045">complementaryInit()</a>, <a class="el" href="orientation_8c_source.html#l00090">orientationTask()</a>, and <a class="el" href="pid_8c_source.html#l00054">pidExecute()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                           {</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="group__time.html#ga90653843fa9b02271309112c1062bf4c" title="Current System Uptime.">systemTime</a>;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
@@ -294,10 +291,9 @@ Variables</h2></td></tr>
 
 <p>Initialize the system timer. </p>
 <p>Execution every millisecond. Uses Timer 2. </p>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="flight_8c-example.html#a4">flight.c</a>.</dd>
+</dl>
 <p>Definition at line <a class="el" href="time_8c_source.html#l00055">55</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
-
-<p>Referenced by <a class="el" href="xycontrol_8c_source.html#l00091">xyInit()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                       {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Timer initialization</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="group__time.html#ga2d2fd1cec45bcf7874da25b8b5efff3c" title="Timer 2 Control Register A.">TCRA</a> |= (1 &lt;&lt; WGM21); <span class="comment">// CTC Mode</span></div>
