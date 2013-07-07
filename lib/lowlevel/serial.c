@@ -30,9 +30,11 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <lowlevel/serial.h>
 #include <lowlevel/serial_device.h>
+#include <lowlevel/xmem.h>
 
 /** \addtogroup uart UART Library
  *  UART Library enabling you to control all available
@@ -96,8 +98,8 @@
 #define SERIALUDRIE 5
 #define SERIALUDRE  6
 
-uint8_t volatile rxBuffer[UART_COUNT][RX_BUFFER_SIZE];
-uint8_t volatile txBuffer[UART_COUNT][TX_BUFFER_SIZE];
+uint8_t *rxBuffer[UART_COUNT];
+uint8_t *txBuffer[UART_COUNT];
 uint16_t volatile rxRead[UART_COUNT];
 uint16_t volatile rxWrite[UART_COUNT];
 uint16_t volatile txRead[UART_COUNT];
@@ -105,20 +107,35 @@ uint16_t volatile txWrite[UART_COUNT];
 uint8_t volatile shouldStartTransmission[UART_COUNT];
 
 #ifdef FLOWCONTROL
-uint8_t volatile sendThisNext[UART_COUNT];
-uint8_t volatile flow[UART_COUNT];
-uint8_t volatile rxBufferElements[UART_COUNT];
+volatile uint8_t sendThisNext[UART_COUNT];
+volatile uint8_t flow[UART_COUNT];
+volatile uint8_t rxBufferElements[UART_COUNT];
 #endif
 
 uint8_t serialAvailable(void) {
     return UART_COUNT;
 }
 
-void serialInit(uint8_t uart, uint16_t baud) {
+uint8_t serialInit(uint8_t uart, uint16_t baud) {
     if (uart >= UART_COUNT) {
         for (uint8_t i = 0; i < UART_COUNT; i++) {
             serialInit(i, baud);
         }
+    }
+
+    MEMSWITCH(BANK_SERIAL);
+
+    rxBuffer[uart] = (uint8_t *)malloc(RX_BUFFER_SIZE);
+    if (rxBuffer[uart] == NULL) {
+        MEMSWITCHBACK(BANK_SERIAL);
+        return 1;
+    }
+
+    txBuffer[uart] = (uint8_t *)malloc(TX_BUFFER_SIZE);
+    if (txBuffer[uart] == NULL) {
+        free((void *)rxBuffer[uart]);
+        MEMSWITCHBACK(BANK_SERIAL);
+        return 1;
     }
 
     // Initialize state variables
@@ -146,12 +163,17 @@ void serialInit(uint8_t uart, uint16_t baud) {
 
     *serialRegisters[uart][SERIALB] = (1 << serialBits[uart][SERIALRXCIE]); // Enable Interrupts
     *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALRXEN]) | (1 << serialBits[uart][SERIALTXEN]); // Enable Receiver/Transmitter
+
+    MEMSWITCHBACK(BANK_SERIAL);
+
+    return 0;
 }
 
 void serialClose(uint8_t uart) {
     if (uart >= UART_COUNT)
         return;
 
+    MEMSWITCH(BANK_SERIAL);
     uint8_t sreg = SREG;
     sei();
     while (!serialTxBufferEmpty(uart));
@@ -160,6 +182,9 @@ void serialClose(uint8_t uart) {
     *serialRegisters[uart][SERIALB] = 0;
     *serialRegisters[uart][SERIALC] = 0;
     SREG = sreg;
+    free(rxBuffer[uart]);
+    free(txBuffer[uart]);
+    MEMSWITCHBACK(BANK_SERIAL);
 }
 
 #ifdef FLOWCONTROL
@@ -222,7 +247,7 @@ uint8_t serialGet(uint8_t uart) {
         return 0;
 
     uint8_t c;
-
+    MEMSWITCH(BANK_SERIAL);
 #ifdef FLOWCONTROL
     rxBufferElements[uart]--;
     if ((flow[uart] == 0) && (rxBufferElements[uart] <= FLOWMARK)) {
@@ -245,8 +270,10 @@ uint8_t serialGet(uint8_t uart) {
         } else {
             rxRead[uart] = 0;
         }
+        MEMSWITCHBACK(BANK_SERIAL);
         return c;
     } else {
+        MEMSWITCHBACK(BANK_SERIAL);
         return 0;
     }
 }
@@ -277,6 +304,7 @@ void serialWrite(uint8_t uart, uint8_t data) {
     if (uart >= UART_COUNT)
         return;
 
+    MEMSWITCH(BANK_SERIAL);
 #ifdef SERIALINJECTCR
     if (data == '\n') {
         serialWrite(uart, '\r');
@@ -295,6 +323,7 @@ void serialWrite(uint8_t uart, uint8_t data) {
         *serialRegisters[uart][SERIALB] |= (1 << serialBits[uart][SERIALUDRIE]); // Enable Interrupt
         *serialRegisters[uart][SERIALA] |= (1 << serialBits[uart][SERIALUDRE]); // Trigger Interrupt
     }
+    MEMSWITCHBACK(BANK_SERIAL);
 }
 
 void serialWriteString(uint8_t uart, const char *data) {
@@ -329,6 +358,7 @@ uint8_t serialTxBufferEmpty(uint8_t uart) {
 }
 
 void serialReceiveInterrupt(uint8_t uart) {
+    MEMSWITCH(BANK_SERIAL);
     rxBuffer[uart][rxWrite[uart]] = *serialRegisters[uart][SERIALDATA];
     if (rxWrite[uart] < (RX_BUFFER_SIZE - 1)) {
         rxWrite[uart]++;
@@ -348,9 +378,11 @@ void serialReceiveInterrupt(uint8_t uart) {
         }
     }
 #endif
+    MEMSWITCHBACK(BANK_SERIAL);
 }
 
 void serialTransmitInterrupt(uint8_t uart) {
+    MEMSWITCH(BANK_SERIAL);
 #ifdef FLOWCONTROL
     if (sendThisNext[uart]) {
         *serialRegisters[uart][SERIALDATA] = sendThisNext[uart];
@@ -371,6 +403,7 @@ void serialTransmitInterrupt(uint8_t uart) {
 #ifdef FLOWCONTROL
     }
 #endif
+    MEMSWITCHBACK(BANK_SERIAL);
 }
 
 ISR(SERIALRECIEVEINTERRUPT) { // Receive complete

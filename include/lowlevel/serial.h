@@ -43,10 +43,10 @@
  */
 
 #define USB 0 /**< First UART Name */
-#define BLUETOOTH 1 /**< Second UART Name */
+#define DISPLAY 1 /**< Second UART Name */
 
-#define RX_BUFFER_SIZE 64 /**< UART Receive Buffer Size */
-#define TX_BUFFER_SIZE 64 /**< UART Transmit Buffer Size */
+#define RX_BUFFER_SIZE 128 /**< UART Receive Buffer Size */
+#define TX_BUFFER_SIZE 128 /**< UART Transmit Buffer Size */
 
 /** Calculate Baudrate Register Value */
 #define BAUD(baudRate,xtalCpu) ((xtalCpu)/((baudRate)*16l)-1)
@@ -59,8 +59,9 @@ uint8_t serialAvailable(void);
 /** Initialize the UART Hardware.
  *  \param uart UART Module to initialize
  *  \param baud Baudrate. Use the BAUD() macro!
+ *  \returns 1 if not enough memory for buffers, 0 on success
  */
-void serialInit(uint8_t uart, uint16_t baud);
+uint8_t serialInit(uint8_t uart, uint16_t baud);
 
 /** Stop the UART Hardware.
  *  \param uart UART Module to stop

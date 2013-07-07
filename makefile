@@ -86,7 +86,9 @@ TARGETHEX = $(TARGETSRC:.c=.hex)
 TARGETFLASH = $(TARGETSRC:.c=.flash)
 TARGETPROGRAM = $(TARGETSRC:.c=.program)
 
-all: dropbox
+all: $(TARGETHEX)
+
+program: $(TARGETPROGRAM)
 
 doc: runDoxygen setPDF
 

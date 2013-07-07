@@ -53,6 +53,7 @@
 
 #define MEMBANKS 8 /**< Available Memory Banks */
 #define BANK_GENERIC 0 /**< Generic Memory Bank */
+#define BANK_SERIAL 0 /**< Bank for serial buffers */
 
 #define BANK0PORT PORTG /**< First Bank Selection Port */
 #define BANK0DDR DDRG   /**< First Bank Selection Data Direction Register */
