@@ -48,6 +48,7 @@ SRC += lib/lowlevel/xmem.c
 SRC += lib/acc.c
 SRC += lib/error.c
 SRC += lib/gyro.c
+SRC += lib/lcd.c
 SRC += lib/mag.c
 SRC += lib/remote.c
 
@@ -85,6 +86,8 @@ TARGETPROGRAM = $(TARGETSRC:.c=.program)
 all: $(TARGETHEX)
 
 program: $(TARGETPROGRAM)
+
+flash: $(TARGETFLASH)
 
 doc: runDoxygen setPDF
 

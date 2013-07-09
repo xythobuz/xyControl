@@ -1,5 +1,5 @@
 /*
- * flight.c
+ * lcd.h
  *
  * Copyright (c) 2013, Thomas Buck <xythobuz@me.com>
  * All rights reserved.
@@ -27,51 +27,42 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <stdint.h>
-#include <avr/io.h>
-#include <stdlib.h>
-#include <avr/interrupt.h>
-#include <avr/wdt.h>
 
-#include <util/delay.h>
+/** \addtogroup lcd UART LCD interface
+ *  \ingroup Hardware
+ *  @{
+ */
 
-#include <acc.h>
-#include <gyro.h>
-#include <lcd.h>
-#include <mag.h>
-#include <remote.h>
-#include <lowlevel/adc.h>
-#include <lowlevel/serial.h>
-#include <lowlevel/time.h>
-#include <lowlevel/twi.h>
-#include <lowlevel/xmem.h>
+/** \file lcd.h
+ *  UART LCD API Header
+ */
 
-/** \example flight.c */
+#ifndef _lcd_h
+#define _lcd_h
 
-int main(void) {
+/** Clear the Display */
+void lcdClear(void);
 
-    xmemInit();
-    adcInit(AVCC);
-    twiInit();
-    initSystemTimer();
-    serialInit(USB, BAUD(38400, F_CPU));
-    serialInit(DISPLAY, BAUD(38400, F_CPU));
+/** Set the Brightness.
+ *  \param val Brightness, 0 to 29
+ */
+void lcdBrightness(uint8_t val);
 
-    lcdClear();
-    lcdString("Minimum Initialized!");
-    lcdPosition(0, 1);
+/** Set the Cursor Position.
+ *  \param x Column (0..19)
+ *  \param y Row (0..3)
+ */
+void lcdPosition(uint8_t x, uint8_t y);
 
-    sei();
+/** Print a Char.
+ *  \param c Char to print
+ */
+void lcdChar(char c);
 
-    for(;;) {
-        if (serialHasChar(USB)) {
-            uint8_t c = serialGet(USB);
-            if (c == 'q') {
-                wdt_enable(WDTO_15MS);
-                while(1);
-            }
-        }
-    }
+/** Print a String.
+ *  \param data String to print
+ */
+void lcdString(const char *data);
 
-    return 0;
-}
+#endif
+/** @} */
